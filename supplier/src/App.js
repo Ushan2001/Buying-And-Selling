@@ -57,6 +57,7 @@ import DiscountDetails from './component/Discount Management/DiscountDetails';
 import UserCreateOrder from './component/Order Management(user)/UserCreateOrder';
 import UserPayment from './component/Payment Management(user)/UserPayment';
 import PaymentForm from './component/Payment Management(user)/PaymentForm';
+import AddPost from './component/Product Management(user)/AddPost';
 
 export default class App extends Component {
   render() {
@@ -96,6 +97,7 @@ export default class App extends Component {
         <Route path="/add/product" component={CreateProduct}></Route>
         <Route path="/editproduct/:id" component={EditProduct}></Route>
         <Route path="/product/:id" component={ProductDetails}></Route>
+        <Route path="/user/add/product" component={AddPost}></Route>
         
           {/* Rashini Weerawardane (Customer Management) */}
         <Route path="/customer" exact component={CustomerList}></Route>

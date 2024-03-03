@@ -31,7 +31,7 @@ export default class UserProductDetails extends Component {
   
 
   render() {
-    const { pid, name, type, description, price, quantity, date, _id } = this.state.product;
+    const { pid, name, type, description, price, quantity, date, sname, contact, _id } = this.state.product;
 
     return (
       <div>
@@ -53,6 +53,12 @@ export default class UserProductDetails extends Component {
 
                   <dt>Product Category:</dt>
                   <dd>{type}</dd>
+
+                  <dt>Seller Name:</dt>
+                  <dd>{sname}</dd>
+
+                  <dt>Contact Number:</dt>
+                  <dd>{contact}</dd>
                 </div>
 
                 <div className='col-sm-6'>

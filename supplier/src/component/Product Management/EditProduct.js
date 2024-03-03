@@ -13,6 +13,8 @@ export default function EditProduct(props) {
     const [price, setPrice] = useState("");
     const [quantity, setQuantity] = useState("");
     const [date, setDate] = useState("");
+    const [contact, setContact] = useState("");
+    const [sname, setSname] = useState("");
     const history = useHistory();
 
     useEffect(() => {
@@ -28,7 +30,10 @@ export default function EditProduct(props) {
       setDescription(product.description);
       setPrice(product.price);
       setQuantity(product.quantity);
-      setDate(product.date);  
+      setDate(product.date); 
+      setContact(product.contact);
+      setSname(product.sname);
+
     });
   }, [props.match.params.id]);
 
@@ -43,7 +48,9 @@ export default function EditProduct(props) {
       description,
       price,
       quantity,
-      date 
+      date ,
+      contact,
+      sname
     };
 
     axios.put(`http://localhost:8070/product/update/${id}`, updateProduct).then(() => {
@@ -56,17 +63,20 @@ export default function EditProduct(props) {
     }
 
     useEffect(() => {
-        // Get the current date
-        var currentDate = new Date();
-    
-        // Set the maximum date attribute for the input to the current date
-        var year = currentDate.getFullYear();
-        var month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
-        var day = currentDate.getDate().toString().padStart(2, '0');
-        var maxDate = `${year}-${month}-${day}`;
-    
-        document.getElementById('dateInput').setAttribute('max', maxDate);
-           }, []);
+      // Get the current date
+      var currentDate = new Date();
+  
+      // Set the maximum date attribute for the input to the current date
+      var year = currentDate.getFullYear();
+      var month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+      var day = currentDate.getDate().toString().padStart(2, '0');
+      var maxDate = `${year}-${month}-${day}`;
+  
+      // Update the input element
+      var dateInput = document.getElementById('dateInput');
+      dateInput.setAttribute('max', maxDate);
+      dateInput.setAttribute('min', maxDate); // Set the minimum date to the current date
+    }, []);
     
 
   return (
@@ -158,6 +168,28 @@ value={type}
             onChange={(e) => setQuantity(e.target.value)}
           />
         </div>
+
+        <div className="mb-3">
+    <label for="exampleInputPassword1" className="form-label">Your Name</label>
+    <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Your Name"
+    value={sname}
+    
+    onChange={(e) =>{
+
+    setSname(e.target.value);
+    }}/>
+</div>
+
+<div className="mb-3">
+    <label for="exampleInputPassword1" className="form-label">Contact Number</label>
+    <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter your Contact Number"
+    value={contact}
+    
+    onChange={(e) =>{
+
+    setContact(e.target.value);
+    }}/>
+</div>
 
         <div className="mb-3">
           <label htmlFor="dateInput" className="form-label">Add Date</label>
