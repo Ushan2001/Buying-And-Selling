@@ -31,7 +31,7 @@ export default class ProductDetails extends Component {
       }
   render() {
 
-    const {pid, name, type, description, price, quantity, date, _id } = this.state.product;
+    const {pid, name, type, description, price, quantity, date, sname, contact,  _id } = this.state.product;
     return (
       <div>
         <NavBar/>
@@ -59,6 +59,12 @@ export default class ProductDetails extends Component {
         <br></br><br></br>
         <dt className='col-sm-3'>Add Date</dt>
         <dd className='col-sm-9'>{date}</dd>
+        <br></br><br></br>
+        <dt className='col-sm-3'>Seller Name</dt>
+        <dd className='col-sm-9'>{sname}</dd>
+        <br></br><br></br>
+        <dt className='col-sm-3'>Seller Contact Number</dt>
+        <dd className='col-sm-9'>{contact}</dd>
         <br></br><br></br>
         <dt className='col-sm-3'>Image</dt>
         <dd className='col-sm-9'>

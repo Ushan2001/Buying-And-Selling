@@ -25,6 +25,8 @@ router.post("/product/save", upload.single("image"), (req, res) => {
     price: req.body.price,
     quantity: req.body.quantity,
     date: req.body.date,
+    contact: req.body.contact,
+    sname: req.body.sname,
     image: req.file.filename,
 
     

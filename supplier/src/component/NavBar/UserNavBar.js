@@ -22,6 +22,12 @@ export default function UserNavBar() {
         <li className="nav-item">
           <a className="nav-link active" aria-current="page" href="/feedback">Feedback</a>
         </li>
+
+        <a href='/user/add/product'>
+                            <button className="btn btn-outline-warning">
+                            Post Your AD
+                            </button >
+                            </a>
       </ul>
 
        <a href='/'>

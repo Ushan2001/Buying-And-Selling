@@ -11,7 +11,6 @@ const ProductSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-
     type:{
         
         type: String,
@@ -35,6 +34,16 @@ const ProductSchema = new mongoose.Schema({
 
     date:{
         
+        type: String,
+        required: true
+    },
+
+    sname:{
+        type: String,
+        required: true
+    },
+
+    contact:{
         type: String,
         required: true
     },

@@ -1,9 +1,10 @@
 import React,{useState, useEffect} from "react";
 import axios from "axios";
-import NavBar from '../NavBar/NavBar';
-import {useHistory } from "react-router-dom";
 
-export default function CreateProduct() {
+import {useHistory } from "react-router-dom";
+import UserNavBar from "../NavBar/UserNavBar";
+
+export default function AddPost() {
     
     const [pid, setPid] = useState("");
     const [name, setName] = useState("");
@@ -35,7 +36,7 @@ export default function CreateProduct() {
       
           axios.post("http://localhost:8070/product/save", formData).then(() =>{
               alert("Inventory Record Added")
-              history.push("/product"); 
+              history.push("/userproduct"); 
               window.location.reload(); 
           }).catch((err)=>{
               alert(err)
@@ -58,13 +59,16 @@ export default function CreateProduct() {
         dateInput.setAttribute('max', maxDate);
         dateInput.setAttribute('min', maxDate); // Set the minimum date to the current date
       }, []);
+    
   return (
     <div>
-        <NavBar/>
+        <UserNavBar/>
 
 <div className="container" style={{ marginTop:"55px"}}>
     <form onSubmit={sendData}>
-      <h2>Create Inventory Records</h2>
+        <center>
+      <h2>Add Your Post AD</h2>
+      </center>
       <br></br>
 
       <div className="mb-3">
@@ -170,7 +174,7 @@ export default function CreateProduct() {
 
 <button type="submit" className="btn btn-success" style={{marginTop:"15px"}}>
     <i className='fas fa-save'></i>
-    &nbsp; Save
+    &nbsp;Save
 </button>
 </form>
 </div>
