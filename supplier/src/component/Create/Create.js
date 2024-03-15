@@ -6,7 +6,7 @@ export default function Create() {
   return (
     <div>
         <NavBar/>
-      <div className="container" style={{marginTop:"50px"}}>
+      <div className="container" id="cardCreate" style={{marginTop:"50px"}}>
   <div className="row">
     <div className="col-md-4 mb-4">
       <div className="card animated-card" style={{width: "18rem"}}>

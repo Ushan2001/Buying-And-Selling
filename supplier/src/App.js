@@ -59,6 +59,10 @@ import UserPayment from './component/Payment Management(user)/UserPayment';
 import PaymentForm from './component/Payment Management(user)/PaymentForm';
 import AddPost from './component/Product Management(user)/AddPost';
 
+
+import DeliveryList from './component/Delivery Management/DeliveryList';
+import CreateDelivery from './component/Delivery Management/CreateDelivery';
+
 export default class App extends Component {
   render() {
     return (
@@ -129,6 +133,9 @@ export default class App extends Component {
         <Route path="/user/payment" exact component={UserPayment}></Route>
         <Route path="/user/payment/form" exact component={PaymentForm}></Route>
 
+        {/* Ridmi Ranashinha (Delivery Management) */}
+        <Route path="/delivery" exact component={DeliveryList}></Route>
+        <Route path="/add/delivery" component={CreateDelivery}></Route>
        
     </BrowserRouter>
   

@@ -13,7 +13,7 @@ const newUserRouter = require("./routes/NewUsers")
 /* Lashini Jayasooriya (Order Management) */
 const orderRouter = require("./routes/orders")
 
-/* Ridmi Ranashinha (Product Management) */
+/* Rashmika Nimesh (Product Management) */
 const productRouter = require("./routes/products")
 
 /* Rashini Weerawardane (Customer Management) */
@@ -27,6 +27,9 @@ const discountRouter = require("./routes/discount")
 
 /* Dulaj Indula (Payment Management) */
 const paymentRouter = require("./routes/payments")
+
+/* Ridmi Ranashinha (Delivery Management) */
+const deliveryRouter = require("./routes/delivery")
 
 
 
@@ -56,6 +59,9 @@ app.use(discountRouter)
 
 /* Dulaj Indula (Payment Management) */
 app.use(paymentRouter)
+
+/* Ridmi Ranashinha (Delivery Management) */
+app.use(deliveryRouter)
 
 
 
