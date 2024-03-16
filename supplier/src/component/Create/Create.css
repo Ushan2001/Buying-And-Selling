@@ -13,4 +13,10 @@
       margin-left: 20%;
     }
   }
+
+  @media (max-width: 1199px){
+    #cardCreate{
+       margin-left: 20%;
+     }
+   }
   

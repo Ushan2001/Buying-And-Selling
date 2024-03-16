@@ -64,16 +64,17 @@ app.use(paymentRouter)
 app.use(deliveryRouter)
 
 
-
 const PORT = 8070;
 const URL = "mongodb+srv://ushan:ushan2001@ushan.w9ekg7n.mongodb.net/supplier?retryWrites=true&w=majority"
 
 mongoose.connect(URL,{ useUnifiedTopology: true, useNewUrlParser: true })
+
+
 .then(() =>{
-    console.log("DB Connect")
+    console.log("BuySell Nexus Database Connected 😌")
 })
 .catch((err) =>console.log("DB Connection Error", err))
 
 app.listen(PORT, () =>{
-    console.log("App is running on  ",PORT)  
+    console.log("App is running on -->  ",PORT)  
 })

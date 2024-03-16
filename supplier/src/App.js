@@ -62,6 +62,7 @@ import AddPost from './component/Product Management(user)/AddPost';
 
 import DeliveryList from './component/Delivery Management/DeliveryList';
 import CreateDelivery from './component/Delivery Management/CreateDelivery';
+import EditDelivery from './component/Delivery Management/EditDelivery';
 
 export default class App extends Component {
   render() {
@@ -136,6 +137,7 @@ export default class App extends Component {
         {/* Ridmi Ranashinha (Delivery Management) */}
         <Route path="/delivery" exact component={DeliveryList}></Route>
         <Route path="/add/delivery" component={CreateDelivery}></Route>
+        <Route path="/editdelivery/:id" component={EditDelivery}></Route> 
        
     </BrowserRouter>
   
