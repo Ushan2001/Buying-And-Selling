@@ -6,35 +6,21 @@ const router = express.Router();
 
 //save order
 
+router.post("/order/save", (req, res) =>{
+  let newOrder = new Order(req.body);
 
-router.post("/order/save", async (req, res) => {
-  try {
-    // Check if a order with the same oid already exists
-    const existingOrder = await Order.findOne({
-      $or: { oid: req.body.oid }
-    });
-
-    if (existingOrder) {
+  newOrder.save((err) =>{
+    if(err){
       return res.status(400).json({
-        error: "Order with the same OID already exists.",
-      });
+        error:err
+      })
     }
-
-    // Create a new order instance
-    const newOrder = new Order(req.body);
-
-    // Save the new order
-    await newOrder.save();
-
     return res.status(200).json({
-      success: "Order record saved successfully",
-    });
-  } catch (error) {
-    return res.status(400).json({
-      error: error.message,
-    });
-  }
-});
+      success:"Order Save Successfully"
+    })
+  })
+})
+
 //get details
 
 router.get("/orders", (req, res) =>{
