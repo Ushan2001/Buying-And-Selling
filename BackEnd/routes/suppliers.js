@@ -6,20 +6,37 @@ const router = express.Router();
 
 //save supplier
 
-router.post("/supplier/save", (req, res) =>{
-  let newSupplier = new Supplier(req.body);
+router.post("/supplier/save", async (req, res) => {
+  try {
+    // Check if a supplier with the same sid or name already exists
+    const existingSupplier = await Supplier.findOne({
+      $or: [{ sid: req.body.sid }, { name: req.body.name }],
+    });
 
-  newSupplier.save((err) =>{
-    if(err){
+    if (existingSupplier) {
       return res.status(400).json({
-        error:err
-      })
+        error: "Supplier with the same SID or Name already exists.",
+      });
     }
+
+    // Create a new supplier instance
+    const newSupplier = new Supplier(req.body);
+
+    // Save the new supplier
+    await newSupplier.save();
+
     return res.status(200).json({
-      success:"Supplier Save Successfully"
-    })
-  })
-})
+      success: "Supplier saved successfully",
+    });
+  } catch (error) {
+    return res.status(400).json({
+      error: error.message,
+    });
+  }
+});
+
+
+
 
 //get details
 

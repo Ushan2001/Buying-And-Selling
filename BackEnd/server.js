@@ -9,6 +9,7 @@ const app = express();
 const supplierRouter = require("./routes/suppliers")
 const userRouter = require("./routes/Users")
 const newUserRouter = require("./routes/NewUsers")
+const oldSupplierRouter = require("./routes/OldSupplier")
 
 /* Lashini Jayasooriya (Order Management) */
 const orderRouter = require("./routes/orders")
@@ -40,6 +41,7 @@ app.use(cors())
 app.use(supplierRouter)
 app.use(userRouter)
 app.use(newUserRouter)
+app.use(oldSupplierRouter)
 
 /* Lashini Jayasooriya (Order Management) */
 app.use(orderRouter)

@@ -1,5 +1,8 @@
 .animated-card {
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border: 1;
+    border-style: dashed;
+    border-color: #053345;
   }
   
   .animated-card:hover {
@@ -18,5 +21,20 @@
     #cardCreate{
        margin-left: 20%;
      }
+   }
+
+   #cardCreate{
+     margin-top: 8%;
+     margin-left: 28%;
+     position: fixed;
+     overflow-y: scroll;
+     max-height: 80%;
+   }
+
+   #click{
+    color: whitesmoke;
+    font-family: Inter;
+    font-weight: 600;
+    margin-left: 10%; 
    }
   

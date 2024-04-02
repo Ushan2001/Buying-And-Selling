@@ -43,8 +43,8 @@ const PdfButton = ({ supplier }) => {
   };
 
   return (
-    <button className='btn btn-primary' onClick={downloadPdf}>
-      <i className='fas fa-download'></i>&nbsp;PDF
+    <button className='btn' id="PdfBtn" onClick={downloadPdf}>
+      <i className='fas fa-download' id="PdfIcon"></i>
     </button>
   );
 };

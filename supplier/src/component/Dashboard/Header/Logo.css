@@ -1,0 +1,54 @@
+/*---Logo---*/
+
+.logo {
+  line-height: 1;
+}
+
+@media (min-width: 1200px) {
+  .logo {
+    width: 280px;
+  }
+}
+
+.logo img {
+  max-height: 50px;
+  margin-right: 16px;
+  margin-left: 16px;
+}
+
+.logo {
+  width: 100%;
+  text-align: center;
+}
+
+.logo img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 6px;
+}
+.logo span {
+  font-size: 26px;
+  font-weight: 700;
+  color: #012970;
+  font-family: "Nunito", sans-serif;
+}
+
+/*---Logo---*/
+
+.toggle-sidebar-btn {
+  display: none; /* Hide the button by default */
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 767px) {
+  .toggle-sidebar-btn {
+    display: block; /* Show the button on screens up to 767 pixels wide (typically mobile devices) */
+  }
+}
+
+@media (max-width: 1199px) {
+  .toggle-sidebar-btn {
+    display: block; /* Show the button on screens up to 767 pixels wide (typically mobile devices) */
+  }
+}
+
