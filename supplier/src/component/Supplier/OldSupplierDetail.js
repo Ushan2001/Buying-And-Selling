@@ -20,10 +20,10 @@ export default class OldSupplierDetail extends Component {
         axios.get(`http://localhost:8070/old/supplier/${id}`).then((res) =>{
           if(res.data.success){
             this.setState({
-              oldsupplier:res.data.oldsupplier
+              Oldsupplier:res.data.Oldsupplier
             })
     
-            console.log(this.state.oldsupplier)
+            console.log(this.state.Oldsupplier)
           }
         })
     
@@ -31,7 +31,7 @@ export default class OldSupplierDetail extends Component {
     
 
   render() {
-    const {sid,product, amount, quantity, date, note,totalAmount, _id } = this.state.oldsupplier;
+    const {sid,product, amount, quantity, date, note,totalAmount, _id } = this.state.Oldsupplier;
     return (
       <div>
          <Header/>
@@ -46,7 +46,7 @@ export default class OldSupplierDetail extends Component {
         <dd className='col-sm-9' id="details">{product}</dd>
         <br></br><br></br>
         <dt className='col-sm-3' id='supplier'>Amount</dt>
-        <dd className='col-sm-9' id="details">{amount}</dd>
+        <dd className='col-sm-9' id="details">LKR :{amount}</dd>
         <br></br><br></br>
         <dt className='col-sm-3' id='supplier'>Quantity</dt>
         <dd className='col-sm-9' id="details">{quantity}</dd>
@@ -58,7 +58,7 @@ export default class OldSupplierDetail extends Component {
         <dd className='col-sm-9' id="details">{note}</dd>
         <br></br><br></br>
         <dt className='col-sm-3' id='supplier'>Total Amount</dt>
-        <dd className='col-sm-9' id="details">{totalAmount}</dd>
+        <dd className='col-sm-9' id="details">LKR :{totalAmount}</dd>
         
       </dl>
       

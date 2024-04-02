@@ -1,7 +1,8 @@
 import React,{useState, useEffect} from "react";
 import axios from "axios";
-import NavBar from '../NavBar/NavBar';
+import Header from "../Dashboard/Header/Header"
 import {useHistory } from "react-router-dom";
+import "./order.css"
 
 export default function CreateOrder() {
 
@@ -66,15 +67,15 @@ export default function CreateOrder() {
 
   return (
     <div>
-      <NavBar/>
+      <Header/>
 
-<div className="container" style={{ marginTop:"55px"}}>
+<div className="container" id="createOrderContainer">
     <form onSubmit={sendData}>
-      <h2>Create New Order Records</h2>
+      <h2 id='btnAllOrder'>Create New Order Records</h2>
       <br></br>
 <div className="mb-3">
-    <label for="exampleInputEmail1" className="form-label">Customer Name</label>
-    <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Customer Name" 
+    <label for="exampleInputEmail1" className="form-label" id="createOrder">Customer Name</label>
+    <input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Customer Name" 
     onChange={(e) =>{
 
     setName(e.target.value);
@@ -82,7 +83,7 @@ export default function CreateOrder() {
 </div>
 
 <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label">Contact Number</label>
+    <label for="exampleInputPassword1" className="form-label" id="createOrder">Contact Number</label>
     <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Contact Number"
     pattern="^\d{10}$"
 
@@ -93,7 +94,7 @@ export default function CreateOrder() {
 </div>
 
 <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label">Product Code</label>
+    <label for="exampleInputPassword1" className="form-label" id="createOrder">Product Code</label>
     <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Order Code"
     value={oid}
     onChange={(e) =>{
@@ -103,7 +104,7 @@ export default function CreateOrder() {
 </div>
 
 <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label">Amount</label>
+    <label for="exampleInputPassword1" className="form-label" id="createOrder">Amount</label>
     <input type="number" className="form-control" id="exampleInputPassword1" placeholder="Enter Amount"
         min={"1"}
         onChange={(e) => {
@@ -113,8 +114,10 @@ export default function CreateOrder() {
     />
 </div>
 
+<div className="row">
+    <div className="col">
 <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label">Quantity</label>
+    <label for="exampleInputPassword1" className="form-label" id="createOrder">Quantity</label>
     <input type="number" className="form-control" id="exampleInputPassword1" placeholder="Enter Quantity"
         max={"200"} min={"1"}
         onChange={(e) => {
@@ -123,17 +126,22 @@ export default function CreateOrder() {
         }}
     />
 </div>
+</div>
 
+<div className="col">
 <div className="mb-3">
-    <label htmlFor="dateInput" className="form-label">Date</label>
+    <label htmlFor="dateInput" className="form-label" id="createOrder">Date</label>
     <input type="date" id="dateInput" name="date" max={""} value={date}
     className="form-control"
      onChange={(e) => setDate(e.target.value)}
       required/>
   </div>
+  </div>
+
+  </div>
 
 <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label">Address</label>
+    <label for="exampleInputPassword1" className="form-label" id="createOrder">Address</label>
     <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Address"
    
    onChange={(e) =>{
@@ -143,7 +151,7 @@ export default function CreateOrder() {
 </div>
 
 <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label">Additional Comments</label>
+    <label for="exampleInputPassword1" className="form-label" id="createOrder">Additional Comments</label>
     <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Additional Comments"
     onChange={(e) =>{
 
@@ -151,13 +159,13 @@ export default function CreateOrder() {
     }}/>
 </div>
 
-<div className="mb-3">
-    <label htmlFor="exampleInputPassword1" className="form-label">Total Amount</label>
-    <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Total Amount" value={totalAmount} readOnly />
+<div class="count-display" style={{marginBottom:"2%", width:"70%"}}>
+    <label class="count-label" for="exampleInputPassword1" id='supplier'>Total Amount:</label>
+    <div class="count-value">LKR: {totalAmount}</div>
 </div>
 
 <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label">Deliver</label>
+    <label for="exampleInputPassword1" className="form-label" id="createOrder">Deliver</label>
     <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Yes or No"
     value={send}
     onChange={(e) =>{
@@ -167,9 +175,9 @@ export default function CreateOrder() {
 </div>
 
 
-<button type="submit" className="btn btn-success" style={{marginTop:"15px"}}>
+<button type="submit" className="btn btn-success" style={{marginTop:"15px", borderRadius:"20px"}}>
     <i className='fas fa-save'></i>
-    &nbsp; Save
+    &nbsp;Save Order
 </button>
 </form>
 </div>

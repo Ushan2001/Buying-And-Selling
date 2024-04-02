@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import NavBar from '../NavBar/NavBar';
+import Header from "../Dashboard/Header/Header"
 
 export default class OrderDetail extends Component {
 
@@ -33,8 +33,8 @@ export default class OrderDetail extends Component {
 
     return (
       <div>
-        <NavBar/>
-        <div style={{marginTop:"40px"}} className='container'>
+         <Header/>
+        <div id="orderDetailContainer" className='container'>
           <h4>{name}</h4>
           <hr/>
       <dl className='row'>
@@ -69,12 +69,13 @@ export default class OrderDetail extends Component {
         <dd className='col-sm-9'>{send}</dd>
         
       </dl>
-      </div>
-
-      <div style={{marginLeft:"30px", marginTop:"20px"}}>
-      <button className='btn btn-dark'><a href='/order' style={{textDecoration:"none", color:"white"}}>
+      <div style={{marginBottom:"5%"}}>
+      <button className='btn btn-dark' style={{borderRadius:"100%"}}><a href='/order' style={{textDecoration:"none", color:"white"}}>
       <i className='fas fa-arrow-left'></i></a></button>
       </div>
+      </div>
+
+     
       </div>
     )
   }

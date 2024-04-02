@@ -1,5 +1,6 @@
 import React from 'react';
 import pdfMake from 'pdfmake/build/pdfmake';
+import "./order.css"
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -42,8 +43,8 @@ const PdfButton = ({ order }) => {
   };
 
   return (
-    <button className='btn btn-primary' onClick={downloadPdf}>
-      <i className='fas fa-download'></i>&nbsp;PDF
+    <button className='btn ' id='btnPdf' onClick={downloadPdf}>
+      <i className='fas fa-download' id='pdfIcon'></i>
     </button>
   );
 };
