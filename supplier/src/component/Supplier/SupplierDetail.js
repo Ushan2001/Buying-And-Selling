@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import NavBar from '../NavBar/NavBar';
+import Header from '../Dashboard/Header/Header'
+import './supplier.css'
 
 export default class SupplierDetail extends Component {
 
@@ -33,43 +34,44 @@ export default class SupplierDetail extends Component {
     const {sid, name, address, product, amount, quantity, date, note,totalAmount, _id } = this.state.supplier;
     return (
       <div>
-        <NavBar/>
-        <div style={{marginTop:"40px"}} className='container'>
-          <h4>{name}</h4>
+         <Header/>
+        <div className='container' id="detailsContiner">
+          <h4 id="AllSupplier">{name}</h4>
           <hr/>
       <dl className='row'>
-        <dt className='col-sm-3'>Supplier Tempory ID</dt>
-        <dd className='col-sm-9'>{_id}</dd>
+        <dt className='col-sm-3' id='supplier'>Supplier Tempory ID</dt>
+        <dd className='col-sm-9' id="details">{_id}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3'>Supplier Code</dt>
-        <dd className='col-sm-9'>{sid}</dd>
+        <dt className='col-sm-3' id='supplier'>Supplier Code</dt>
+        <dd className='col-sm-9'id="details">{sid}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3'>Address</dt>
-        <dd className='col-sm-9'>{address}</dd>
+        <dt className='col-sm-3' id='supplier'>Address</dt>
+        <dd className='col-sm-9' id="details">{address}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3'>Product Name</dt>
-        <dd className='col-sm-9'>{product}</dd>
+        <dt className='col-sm-3' id='supplier'>Product Name</dt>
+        <dd className='col-sm-9' id="details">{product}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3'>Amount</dt>
-        <dd className='col-sm-9'>{amount}</dd>
+        <dt className='col-sm-3' id='supplier'>Amount</dt>
+        <dd className='col-sm-9' id="details">{amount}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3'>Quantity</dt>
-        <dd className='col-sm-9'>{quantity}</dd>
+        <dt className='col-sm-3' id='supplier'>Quantity</dt>
+        <dd className='col-sm-9' id="details">{quantity}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3'>Date</dt>
-        <dd className='col-sm-9'>{date}</dd>
+        <dt className='col-sm-3' id='supplier'>Date</dt>
+        <dd className='col-sm-9' id="details">{date}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3'>Additional Note</dt>
-        <dd className='col-sm-9'>{note}</dd>
+        <dt className='col-sm-3' id='supplier'>Additional Note</dt>
+        <dd className='col-sm-9' id="details">{note}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3'>Total Amount</dt>
-        <dd className='col-sm-9'>{totalAmount}</dd>
+        <dt className='col-sm-3' id='supplier'>Total Amount</dt>
+        <dd className='col-sm-9' id="details">{totalAmount}</dd>
         
       </dl>
+      
+       <div id='backBtnDiv' >
+      <button className='btn btn-dark' id='backBtn'><a href='/supplier'>
+      <i className='fas fa-arrow-left' id='backBtn'></i></a></button>
       </div>
-       <div style={{marginLeft:"30px", marginTop:"20px"}}>
-      <button className='btn btn-dark'><a href='/supplier' style={{textDecoration:"none", color:"white"}}>
-      <i className='fas fa-arrow-left'></i></a></button>
       </div>
       </div>
 

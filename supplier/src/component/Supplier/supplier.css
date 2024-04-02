@@ -1,0 +1,178 @@
+#supplierContainer{
+    margin-top: 8%;
+    margin-left: 23%;
+    position: fixed;
+    overflow-y: scroll; 
+    max-height: 80%;
+}
+
+#Extisting{
+    margin-top: 3%;    
+}
+
+#editBtn{
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    background-color: #4DB6AC1F;
+}
+
+#editIcon{
+    color: #4DB6AC;
+}
+
+#editDelete{
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    background-color: #F656561F;
+}
+
+#DeleteIcon{
+    color: #F65656;
+}
+
+#PdfBtn{
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    background-color: #4d56b61f;
+}
+
+#PdfIcon{
+    color: #5679f6;
+}
+
+#view{
+    text-decoration: none;
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 14.52px;
+    color: #197E89;
+}
+
+#supplier{
+    color: #053345;
+    font-family: Inter;
+    font-weight: 600;
+
+}
+
+#AllSupplier{
+    color: #01161f;
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 25px;
+}
+
+#supplierAdd{
+    
+    border-radius: 20px;
+}
+
+#supplierAddLod{
+    
+    border-radius: 20px;
+}
+
+#BtnRow{
+    margin-left: 50%;
+    margin-bottom: 3%;
+    margin-top: -3%;
+}
+
+#supplierAdd{
+    margin-left: 63%;
+}
+
+#createSupplier{
+    margin-top: 8%;
+    margin-left: 33%;
+    position: fixed;
+    overflow-y: scroll; 
+    max-height: 80%;
+    
+}
+
+#exampleInputPassword1{
+    border-radius: 20px;
+}
+
+#dateInput{
+    border-radius: 20px; 
+}
+
+.count-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    width: 500px; /* Adjust as needed */
+    margin-top: 3%;
+}
+
+.count-label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.count-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: #053345; /* or any color you prefer */
+    padding: 10px 20px;
+    border: 2px solid #053345;
+    border-radius: 5px;
+    animation: pulse 1s infinite alternate; /* Optional: Add animation */
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.1);
+    }
+}
+
+#editContainer{
+    margin-top: 8%;
+    margin-left: 33%;
+    position: fixed;
+    overflow-y: scroll; 
+    max-height: 80%;
+}
+
+#detailsContiner{
+    margin-top: 8%;
+    margin-left: 25%;
+    position: fixed;
+    overflow-y: scroll; 
+    max-height: 80%;
+}
+
+#backBtn{
+   margin-top: 2%;
+   border-radius: 100%;
+   color: white;
+}
+
+#details{
+    color: #000000;
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+#lineChart{
+   max-width: 1100px;
+   max-height: 400px;
+}
+
+

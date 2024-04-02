@@ -9,11 +9,12 @@ const app = express();
 const supplierRouter = require("./routes/suppliers")
 const userRouter = require("./routes/Users")
 const newUserRouter = require("./routes/NewUsers")
+const oldSupplierRouter = require("./routes/OldSupplier")
 
 /* Lashini Jayasooriya (Order Management) */
 const orderRouter = require("./routes/orders")
 
-/* Ridmi Ranashinha (Product Management) */
+/* Rashmika Nimesh (Product Management) */
 const productRouter = require("./routes/products")
 
 /* Rashini Weerawardane (Customer Management) */
@@ -28,6 +29,9 @@ const discountRouter = require("./routes/discount")
 /* Dulaj Indula (Payment Management) */
 const paymentRouter = require("./routes/payments")
 
+/* Ridmi Ranashinha (Delivery Management) */
+const deliveryRouter = require("./routes/delivery")
+
 
 
 app.use(bodyParser.json())  
@@ -37,6 +41,7 @@ app.use(cors())
 app.use(supplierRouter)
 app.use(userRouter)
 app.use(newUserRouter)
+app.use(oldSupplierRouter)
 
 /* Lashini Jayasooriya (Order Management) */
 app.use(orderRouter)
@@ -57,17 +62,21 @@ app.use(discountRouter)
 /* Dulaj Indula (Payment Management) */
 app.use(paymentRouter)
 
+/* Ridmi Ranashinha (Delivery Management) */
+app.use(deliveryRouter)
 
 
 const PORT = 8070;
 const URL = "mongodb+srv://ushan:ushan2001@ushan.w9ekg7n.mongodb.net/supplier?retryWrites=true&w=majority"
 
 mongoose.connect(URL,{ useUnifiedTopology: true, useNewUrlParser: true })
+
+
 .then(() =>{
-    console.log("DB Connect")
+    console.log("BuySell Nexus Database Connected 😌")
 })
 .catch((err) =>console.log("DB Connection Error", err))
 
 app.listen(PORT, () =>{
-    console.log("App is running on  ",PORT)  
+    console.log("App is running on -->  ",PORT)  
 })

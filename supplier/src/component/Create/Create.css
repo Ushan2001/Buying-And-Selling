@@ -1,5 +1,8 @@
 .animated-card {
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border: 1;
+    border-style: dashed;
+    border-color: #053345;
   }
   
   .animated-card:hover {
@@ -7,4 +10,31 @@
     opacity: 0.9; /* Adjust the opacity on hover */
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3); /* Add a box-shadow on hover */
   }
+
+  @media (max-width: 678px){
+   #cardCreate{
+      margin-left: 20%;
+    }
+  }
+
+  @media (max-width: 1199px){
+    #cardCreate{
+       margin-left: 20%;
+     }
+   }
+
+   #cardCreate{
+     margin-top: 8%;
+     margin-left: 28%;
+     position: fixed;
+     overflow-y: scroll;
+     max-height: 80%;
+   }
+
+   #click{
+    color: whitesmoke;
+    font-family: Inter;
+    font-weight: 600;
+    margin-left: 10%; 
+   }
   

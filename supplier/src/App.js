@@ -10,6 +10,7 @@ import UserProductList from './component/Product Management(user)/UserProductLis
 import UserProductDetails from './component/Product Management(user)/UserProductDetails';
 import UserDiscountList from './component/Discount Management(user)/UserDiscountList';
 import UserDiscountDetails from './component/Discount Management(user)/UserDiscountDetails';
+import OldSupplier from './component/Supplier/OldSupplier';
 
 import Login from './component/Login/Login';
 import UserLogin from './component/Login/UserLogin';
@@ -59,6 +60,14 @@ import UserPayment from './component/Payment Management(user)/UserPayment';
 import PaymentForm from './component/Payment Management(user)/PaymentForm';
 import AddPost from './component/Product Management(user)/AddPost';
 
+
+import DeliveryList from './component/Delivery Management/DeliveryList';
+import CreateDelivery from './component/Delivery Management/CreateDelivery';
+import EditDelivery from './component/Delivery Management/EditDelivery';
+import EditOldSupplier from './component/Supplier/EditOldSupplier';
+import OldSupplierDetail from './component/Supplier/OldSupplierDetail';
+
+
 export default class App extends Component {
   render() {
     return (
@@ -73,6 +82,9 @@ export default class App extends Component {
         <Route path="/userHome" exact component={UserHome}></Route>
         <Route path="/create" component={Create}></Route>
         <Route path="/contact" component={contact}></Route>
+        <Route path="/Old Supplier" component={OldSupplier}></Route>
+        <Route path="/editOldSupplier/:id" component={EditOldSupplier}></Route>
+        <Route path="/view/Oldsupplier/:id" component={OldSupplierDetail}></Route>
 
         <Route path="/userproduct" exact component={UserProductList}></Route>
         <Route path="/userproduct/:id" component={UserProductDetails}></Route>
@@ -129,6 +141,10 @@ export default class App extends Component {
         <Route path="/user/payment" exact component={UserPayment}></Route>
         <Route path="/user/payment/form" exact component={PaymentForm}></Route>
 
+        {/* Ridmi Ranashinha (Delivery Management) */}
+        <Route path="/delivery" exact component={DeliveryList}></Route>
+        <Route path="/add/delivery" component={CreateDelivery}></Route>
+        <Route path="/editdelivery/:id" component={EditDelivery}></Route> 
        
     </BrowserRouter>
   

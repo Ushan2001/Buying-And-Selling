@@ -1,7 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component} from 'react'
 import axios from "axios";
 import NavBar from '../NavBar/NavBar';
 import PdfButton from './PdfButton';
+import Chart from 'chart.js/auto'; 
+
 
 export default class HistoryList extends Component {
 
@@ -15,6 +17,7 @@ export default class HistoryList extends Component {
 
     componentDidMount(){
         this.retriveHistory()
+        this.initializeChart();
     }
 
     retriveHistory(){
@@ -68,6 +71,43 @@ export default class HistoryList extends Component {
              })
      }
 
+     initializeChart() {
+        const ctxL = document.getElementById("lineChart");
+    
+        if (!ctxL) return;
+    
+        if (this.chartInstance) {
+            this.chartInstance.destroy(); // Destroy existing chart instance
+        }
+    
+        this.chartInstance = new Chart(ctxL, {
+            type: 'line',
+            data: {
+                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                datasets: [{
+                    label: "My First dataset",
+                    data: [65, 59, 80, 81, 56, 55, 40],
+                    backgroundColor: 'rgba(105, 0, 132, .2)',
+                    borderColor: 'rgba(200, 99, 132, .7)',
+                    borderWidth: 2
+                },
+                {
+                    label: "My Second dataset",
+                    data: [28, 48, 40, 19, 86, 27, 90],
+                    backgroundColor: 'rgba(0, 137, 132, .2)',
+                    borderColor: 'rgba(0, 10, 130, .7)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    }
+    
+
+    
+
   render() {
     return (
       <div>
@@ -85,8 +125,9 @@ export default class HistoryList extends Component {
 
          </div>
         
+         <canvas id="lineChart"></canvas>
 
-        <h2>Transaction History</h2>
+        <h2 style={{marginTop:"10%"}}>Transaction History</h2>
         <br></br>
          <table className='table table-hover'>
             <thead>
@@ -130,6 +171,8 @@ export default class HistoryList extends Component {
          <i className='fas fa-plus'></i>&nbsp;Add New</a></button>
         
       </div>
+
+     
       </div>
     )
   }

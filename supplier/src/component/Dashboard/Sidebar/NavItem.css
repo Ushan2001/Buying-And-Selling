@@ -1,0 +1,60 @@
+/* Your CSS file, e.g., NavItem.css */
+
+.nav-item {
+    list-style: none;
+    
+  }
+  
+  /* Add a border to the "Create Exam" item */
+  .nav-item.add-record .nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the text horizontally */
+    border: 1px solid #053345; 
+    border-radius: 16px;
+    padding: 5px 10px; /* Adjust padding as needed */
+}
+
+.nav-item.home .nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the text horizontally */
+  background: linear-gradient(to right, #053345 0%, #0C7EAB 100%); /* Linear gradient */
+  border: 1px solid ; /* Set border color */
+  border-radius: 16px;
+  padding: 5px 10px; /* Adjust padding as needed */
+  color: #ffff;
+  margin-top: 6%;
+  margin-bottom: 5%;
+}
+
+
+  
+  .nav-link i {
+    margin-right: 10px;
+    font-size: 24px; /* Adjust the font size as needed */
+   
+  }
+  
+  .nav-content {
+    padding-left: 20px; /* Adjust indentation for nested items */
+    
+  }
+  
+  /* Styles for the submenu chevron */
+  .nav-link.has-submenu .bi-chevron-down {
+    margin-left: auto;
+  }
+
+  .nav-item.buy-credit .nav-link .bi-currency-dollar {
+    color: #ffff; /* Icon color */
+    border: 1px solid #ffff; /* Border color */
+    border-radius: 50%; /* Create a full circle */
+    display: inline-block; /* Ensure it's an inline-block element */
+    width: 24px; /* Adjust width and height as needed */
+    height: 24px;
+    text-align: center; /* Center the icon within the circle */
+    line-height: 24px; /* Center the icon vertically */
+  }
+  
+  
