@@ -48,16 +48,18 @@ export default function Home() {
                         </div>
                         <div className="col-xxl-7">
                             
-                            <div className="d-flex justify-content-center mt-5 mt-xxl-0">
-                                <div className="profile bg-gradient-primary-to-secondary">
+                           
                                    
-                                    <img className="profile-img" src="" alt="..." />
+    {/* Your homepage animation video */}
+    <video className="homepage-video" autoPlay loop muted   style={{ borderRadius: '20px', width:"600px"}}>
+  <source src="/images/home1.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
                                     
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                   
             </header>
            
             <section className="bg-light py-5">

@@ -51,6 +51,16 @@ export default class OrderList extends Component {
     }
   };
 
+  filterData(orders, searchKey){
+    const result = orders.filter((order) =>
+        order.name.toLowerCase().includes(searchKey) ||
+        order.number.toLowerCase().includes(searchKey) || 
+        order.oid.toLowerCase().includes(searchKey) 
+    );
+
+    this.setState({orders: result});
+}
+
   handleSearchArea = (e) => {
     const searchKey = e.currentTarget.value;
 
@@ -101,8 +111,7 @@ export default class OrderList extends Component {
             title: {
               display: true,
               text: 'Product Code',
-              color:"red"
-              
+              color:"red" 
             },
           },
           y: {

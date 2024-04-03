@@ -11718,3 +11718,32 @@ html {
   }
 }
 
+@media (max-width: 576px) {
+  .homepage-video {
+    width: 300px;
+    height: 300px;
+    margin-left: -25%;
+  }
+}
+
+.homepage-video {
+  border-radius: 20px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a soft shadow */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Add smooth transitions for transform and box-shadow */
+}
+
+.homepage-video:hover {
+  transform: scale(1.03); /* Scale up the video slightly on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Increase the shadow intensity on hover */
+}
+
+.homepage-video::-webkit-media-controls {
+  display: none; /* Hide default video controls */
+}
+
+.homepage-video {
+  outline: none; /* Remove outline when video is focused */
+}
+
