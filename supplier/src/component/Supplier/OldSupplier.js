@@ -5,6 +5,18 @@ import "./supplier.css";
 import Header from "../Dashboard/Header/Header";
 
 export default function OldSupplier() {
+
+  function sendEmailNotification(subject, message) {
+    axios.post("http://localhost:8070/send-email", { subject, message })
+      .then((response) => {
+        console.log("Email notification sent:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error sending email notification:", error);
+      });
+  }
+
+
   const [sids, setSids] = useState([]);
   const [selectedSid, setSelectedSid] = useState("");
   const [product, setProduct] = useState("");
@@ -36,6 +48,12 @@ export default function OldSupplier() {
       .post("http://localhost:8070/old/supplier/save", newSupplier)
       .then(() => {
         alert("Supplier Record Added");
+
+        // Send email notification
+        const emailSubject = 'New Product Added';
+        const emailMessage = `A new Product has been added with ID: ${newSupplier.sid}, Product Name is ${newSupplier.product}, Quantity is ${newSupplier.quantity} and Amount is ${newSupplier.amount}. Update Inventory!!!`;
+        sendEmailNotification(emailSubject, emailMessage);
+
         history.push("/supplier");
         window.location.reload();
       })
@@ -58,8 +76,12 @@ export default function OldSupplier() {
     var day = currentDate.getDate().toString().padStart(2, '0');
     var maxDate = `${year}-${month}-${day}`;
 
-    document.getElementById('dateInput').setAttribute('max', maxDate);
-       }, []);
+    // Update the input element
+    var dateInput = document.getElementById('dateInput');
+    dateInput.setAttribute('max', maxDate);
+    dateInput.setAttribute('min', maxDate); // Set the minimum date to the current date
+  }, []);
+
 
 
   return (

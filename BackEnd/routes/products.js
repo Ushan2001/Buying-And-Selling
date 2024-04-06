@@ -3,6 +3,7 @@ const Product = require("../module/product");
 const multer = require("multer");
 const path = require("path");
 
+
 const router = express.Router();
 
 // Multer configuration for handling file uploads

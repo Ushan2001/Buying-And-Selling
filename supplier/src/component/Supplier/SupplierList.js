@@ -12,7 +12,9 @@ export default class SupplierList extends Component {
 
         this.state = {
             suppliers:[],
-            oldsuppliers:[]
+            oldsuppliers:[],
+            currentPage: 1,
+            itemsPerPage: 5
         }
     }
 
@@ -39,7 +41,6 @@ export default class SupplierList extends Component {
                 this.setState({
                     oldsuppliers: res.data.existingOldSupplier
                 }, () => {
-                    // Call initializeChart with both datasets
                     this.initializeChart(this.state.suppliers, this.state.oldsuppliers);
                 });
             }
@@ -74,13 +75,15 @@ export default class SupplierList extends Component {
         }
     }
 
+
+  // new supplier search bar
     filterData(suppliers, searchKey){
         const result = suppliers.filter((supplier) =>
             supplier.sid.toLowerCase().includes(searchKey) ||
             supplier.name.toLowerCase().includes(searchKey) || 
             supplier.address.toLowerCase().includes(searchKey) 
         );
-
+    
         this.setState({suppliers: result});
     }
 
@@ -93,6 +96,28 @@ export default class SupplierList extends Component {
             }
         });
     }
+
+// old supplier search bar
+    filterData1(oldsuppliers, searchKey){
+        const result = oldsuppliers.filter((oldsupplier) =>
+            oldsupplier.sid.toLowerCase().includes(searchKey) ||
+            oldsupplier.product.toLowerCase().includes(searchKey) || 
+            oldsupplier.quantity.toLowerCase().includes(searchKey) 
+        );
+    
+        this.setState({oldsuppliers: result});
+    }
+
+    handleSearchArea1 = (e) =>{
+        const searchKey =  e.currentTarget.value;
+
+        axios.get("http://localhost:8070/old/supplier").then((res) =>{
+            if(res.data.success){
+                this.filterData1(res.data.existingOldSupplier, searchKey);
+            }
+        });
+    }
+
 
     initializeChart(suppliers, oldSuppliers) {
         const ctxL = document.getElementById("lineChart");
@@ -149,14 +174,25 @@ export default class SupplierList extends Component {
                         display: true,
                         title: {
                             display: true,
-                            text: 'X Axis = Supplier Name'
+                            text: 'X Axis = Supplier Name',
+                            color:"#053345",
+                            font:{
+                                weight:"700",
+                                size:"13px"
+                            }
                         }
                     },
                     y: {
                         display: true,
                         title: {
                             display: true,
-                            text: 'Y Axis = Total Amount'
+                            text: 'Y Axis = Total Amount',
+                            color:"#053345",
+                            font:{
+                                weight:"700",
+                                size:"13px"
+                            }
+                        
                         }
                     }
                 },
@@ -168,27 +204,26 @@ export default class SupplierList extends Component {
                         left: 30
                     }
                 },
-                
-                
             }
         });
     }
-    
-    
-    
 
     render() {
+        const { suppliers, oldsuppliers, currentPage, itemsPerPage } = this.state;
+        const indexOfLastSupplier = currentPage * itemsPerPage;
+        const indexOfFirstSupplier = indexOfLastSupplier - itemsPerPage;
+        const currentSuppliers = suppliers.slice(indexOfFirstSupplier, indexOfLastSupplier);
+        const currentOldSuppliers = oldsuppliers.slice(indexOfFirstSupplier, indexOfLastSupplier);
+
         return (
             <div>
                 <Header/>
                 <div className='container' id="supplierContainer">
-
-{/*graph */}
-                <div id="lineChartContainer" style={{marginBottom:"5%"}}>
+                    <div id="lineChartContainer" style={{marginBottom:"5%"}}>
+                    <span id='graph'>New and Existing Suppliers Amount 📢 📶 📈  </span>
                         <canvas id="lineChart"></canvas>
                     </div>
                     
-
                     <div className='col-lg-3 mt-2 mb-2'>
                         <input  
                             className="form-control"
@@ -200,7 +235,6 @@ export default class SupplierList extends Component {
                         />
                     </div>
                     
-                
                     <div className='row' id="BtnRow">
                         <div className='col' id="newCol">
                             <button className='btn btn-success' id="supplierAdd">
@@ -219,6 +253,8 @@ export default class SupplierList extends Component {
                         </div>
                     </div> 
 
+                    
+
                     <h2 id="AllSupplier">All Suppliers</h2>
                     <br></br>       
                     <table className='table table-hover'>
@@ -233,7 +269,7 @@ export default class SupplierList extends Component {
                         </thead>
 
                         <tbody>
-                            {this.state.suppliers.map((supplier, index) =>(
+                            {currentSuppliers.map((supplier, index) =>(
                                 <tr key={index}>
                                     <th scope='row'>{index+1}</th>
                                     <td id='supplier'>{supplier.sid}</td>
@@ -257,8 +293,25 @@ export default class SupplierList extends Component {
                     </table>
                 
                     <div id="Extisting">
+                        <div className='row'>
+                            <div className='col'>
                         <h2 id="AllSupplier">Existing Record</h2>
-                        <br></br>       
+                        </div>
+                        <br></br> 
+                        <div className='col'> 
+                        <div className='col-lg-3 mt-2 mb-2' >
+                        <input  
+                            className="form-control"
+                            type='search'
+                            placeholder='Search'
+                            name="serchQuery"
+                            style={{borderRadius:"20px", width:"300px"}}
+                            onChange={this.handleSearchArea1}
+                        />
+                    </div>
+                    </div> 
+                    </div>
+                    <br></br>    
                         <table className='table table-hover'>
                             <thead>
                                 <tr>
@@ -271,7 +324,7 @@ export default class SupplierList extends Component {
                             </thead>
 
                             <tbody>
-                                {this.state.oldsuppliers.map((oldsupplier, index) =>(
+                                {currentOldSuppliers.map((oldsupplier, index) =>(
                                     <tr key={index}>
                                         <th scope='row'>{index+1}</th>
                                         <td id='supplier'>{oldsupplier.sid}</td>
@@ -293,6 +346,16 @@ export default class SupplierList extends Component {
                             </tbody>
                         </table>
                     </div>
+                    <nav aria-label="Page navigation example">
+                        <ul className="pagination">
+                            {suppliers.length > itemsPerPage &&
+                                Array(Math.ceil(suppliers.length / itemsPerPage)).fill().map((_, index) => (
+                                    <li key={index} className={`page-item ${currentPage === index + 1 ? 'active' : ''}`}>
+                                        <a href="#!"className="page-link" onClick={() => this.setState({ currentPage: index + 1 })}>{index + 1}</a>
+                                    </li>
+                                ))}
+                        </ul>
+                    </nav>
                 </div>
             </div>
         )

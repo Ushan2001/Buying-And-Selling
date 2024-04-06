@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
 
+
 const SupplierSchema = new mongoose.Schema({
 
     sid:{
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
 
     name:{

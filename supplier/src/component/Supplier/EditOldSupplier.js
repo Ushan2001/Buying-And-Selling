@@ -145,6 +145,7 @@ export default function EditOldSupplier(props) {
                   type="date"
                   id="dateInput"
                   name="date"
+                  readOnly
                   max={""}
                   value={date}
                   className="form-control"

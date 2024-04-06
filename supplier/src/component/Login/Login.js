@@ -1,61 +1,71 @@
 import React, { useState} from "react";
 import axios from "axios";
-import {useHistory } from "react-router-dom";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import {useHistory } from "react-router-dom";
 
 export default function Login() {
 
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [showPassword, setShowPassword] = useState(false);
-    const history = useHistory();
+  const [showPassword, setShowPassword] = useState(false);
+  const history = useHistory();
 
-    const handleLogin = async () => {
-      try {
-          const response = await axios.post("http://localhost:8070/login", {
-              username,
-              password,
-          });
+  const [data, setData] = useState({
+    username: "",
+    password: "",
+  });
 
-          console.log(response.data);
+  function handleChange(evt) {
+    const name = evt.target.name;
+    const value = evt.target.value;
+    setData({
+      ...data,
+      [name]: value,
+    });
+  }
 
-          confirmAlert({
-            title: `Hi🫡🤝 ${username.split('@')[0]}`,  // Display only the part before '@'
-            message: "Login successful!",
-            buttons: [
-              {
-                label: "OK",
-                onClick: () => {
-                  history.push("/home");
-                  window.location.reload();
-                },
-              },
-            ],
-          });
-          
-  
-      } catch (err) {
-        console.error("Error logging in:", err.message);
-        alert(`Invalid username or password`, err.message);
-      }
-    };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const onSubmitForm = async (e) => {
     try {
-        await handleLogin(); // Call the login function
-    } catch (err) {
-        console.error("Error handling login:", err.message);
+      e.preventDefault();
+
+      const res = await axios({
+        method: "post",
+        baseURL: "http://localhost:8070",
+        url: "/api/user/signin",
+        data: data,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const token = res.data.token;
+      localStorage.setItem("token", token);
+      confirmAlert({
+        title: `Hi🫡🤝 ${data.username.split('@')[0]}`,
+        message: "Login successful!",
+        buttons: [
+          {
+            label: "OK",
+            onClick: () => {
+              history.push("/home");
+              window.location.reload();
+            },
+          },
+        ],
+      });
+      
+    } catch (error) {
+      console.log(error);
+      alert(error)
     }
-};
+  };
 
-const togglePasswordVisibility = () => {
-  setShowPassword(!showPassword);
-};
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
+  
 
+    
   return (
     <div>
       <div className='container'>
@@ -73,7 +83,7 @@ const togglePasswordVisibility = () => {
             <div className="col-md-6 col-lg-7 d-flex align-items-center">
               <div className="card-body p-4 p-lg-5 text-black">
 
-                <form onSubmit={handleSubmit}>
+                <form  noValidate onSubmit={(e) => onSubmitForm(e)}>
 
                   <div className="d-flex align-items-center mb-3 pb-1">
                     <i className="fas fa-cubes fa-2x me-3" style={{color: "#ff6219"}}></i>
@@ -84,8 +94,9 @@ const togglePasswordVisibility = () => {
 
                   <div className="form-outline mb-4">
                     <input type="email" id="form2Example17" className="form-control form-control-lg"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
+                     value={data.username}
+                     onChange={handleChange}
+                     name="username"
                   />
                    
                     <label className="form-label" for="form2Example17">Email address</label>
@@ -93,8 +104,10 @@ const togglePasswordVisibility = () => {
 
                   <div className="form-outline mb-4"  >
                     <input  type={showPassword ? "text" : "password"} id="form2Example27" className="form-control form-control-lg" 
-                       value={password}
-                       onChange={(e) => setPassword(e.target.value)}
+                       value={data.password}
+                       onChange={handleChange}
+                       name="password"
+                       
                     />
                     <label className="form-label" for="form2Example27">Password</label>
                   </div>

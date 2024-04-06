@@ -2,8 +2,11 @@ const express = require("express")
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
 const cors = require("cors")
+require("dotenv").config();
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 /* Ushan Mihiranga (Supplier Management) */
 const supplierRouter = require("./routes/suppliers")
@@ -39,7 +42,7 @@ app.use(cors())
 
 /* Ushan Mihiranga (Supplier Management) */
 app.use(supplierRouter)
-app.use(userRouter)
+app.use("/api/user", userRouter);
 app.use(newUserRouter)
 app.use(oldSupplierRouter)
 
