@@ -69,8 +69,8 @@ app.use(paymentRouter)
 app.use(deliveryRouter)
 
 
-const PORT = 8070;
-const URL = "mongodb+srv://ushan:ushan2001@ushan.w9ekg7n.mongodb.net/supplier?retryWrites=true&w=majority"
+const PORT = process.env.PORT || 8070;
+const URL = process.env.URL
 
 mongoose.connect(URL,{ useUnifiedTopology: true, useNewUrlParser: true })
 

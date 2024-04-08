@@ -139,16 +139,26 @@ export default class SupplierList extends Component {
                 datasets: [{
                     label: "Supplier Amount",
                     data: data,
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)', // Red background
-                    borderColor: 'rgba(255, 99, 132, 1)', // Red border
-                    borderWidth: 2
+                    backgroundColor: 'rgba(105, 0, 132, .2)', // Red background
+    
+                    fill: true,
+                    borderColor: [
+                    'rgba(255, 99, 132, 0.8)',
+          ],
+                    borderWidth: 2,
+                  
                 },
                 {
                     label: "Existing Supplier Amount",
                     data: oldData,
-                    background: 'rgba(54, 162, 235, 0.2)', // Blue background
-                    borderColor: 'rgba(54, 162, 235, 1)', // Blue border
-                    borderWidth: 2
+                    background: 'rgba(50, 150, 255, 1)', // Blue background
+
+                    fill: true,
+                    borderColor: [
+                   'rgba(50, 150, 255, 1)',
+                  ],
+                    borderWidth: 2,
+                    
                 }]
             },
             options: {
