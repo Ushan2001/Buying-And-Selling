@@ -105,7 +105,7 @@ router.post('/send-email', (req, res) => {
   // Email options
   const mailOptions = {
     from: 'ushanmihiranga2017@gmail.com', // replace with your Gmail address
-    to: 'it22095480@my.sliit.lk', // replace with your recipient's email address
+    to: 'it22243362@my.sliit.lk', // replace with your recipient's email address
     subject: subject,
     text: message,
   };
