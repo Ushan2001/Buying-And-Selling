@@ -17,6 +17,17 @@ export default function CreateOrder() {
     const [totalAmount, setTotalAmount] = useState(0);
     const [send, setSend] = useState("No");
     const history = useHistory();
+    
+
+    function sendEmailNotification(subject, message) {
+        axios.post("http://localhost:8070/send-email", { subject, message })
+          .then((response) => {
+            console.log("Email notification sent:", response.data);
+          })
+          .catch((error) => {
+            console.error("Error sending email notification:", error);
+          });
+      }
 
     function sendData(a){
 
@@ -39,6 +50,12 @@ export default function CreateOrder() {
       
           axios.post("http://localhost:8070/order/save", newOrder).then(() =>{
               alert("Order Record Added")
+
+              // Send email notification
+                const emailSubject = 'New Order Added';
+                const emailMessage = `A new Order has been added with name: ${newOrder.name}, Contact Number is ${newOrder.number}, Product Code is ${newOrder.oid} and Amount is ${newOrder.totalAmount}. Delivery Order!!!`;
+                sendEmailNotification(emailSubject, emailMessage);
+
               history.push("/order"); 
               window.location.reload(); 
           }).catch((err)=>{

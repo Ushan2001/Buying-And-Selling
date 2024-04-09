@@ -84,7 +84,7 @@ export default class OrderList extends Component {
     const data = orders.map((order) => order.quantity);
 
     this.chartInstance = new Chart(ctxB, {
-      type: 'bar',
+      type: 'line',
       data: {
         labels: labels,
         datasets: [
@@ -92,8 +92,11 @@ export default class OrderList extends Component {
             label: 'Quantity',
             data: data,
             backgroundColor: 'rgba(255, 99, 132, 0.2)', // Red background
+
+            fill:true, 
             borderColor: 'rgba(255, 99, 132, 1)', // Red border
-            borderWidth: 1,
+            borderWidth: 2,
+            tension:0.4
             
           },
         ],
