@@ -4,6 +4,8 @@ import PdfButton from './PdfButton';
 import Header from '../Dashboard/Header/Header';
 import Chart from 'chart.js/auto'; 
 import "./supplier.css";
+import Swal from 'sweetalert2';
+
 
 export default class SupplierList extends Component {
 
@@ -47,33 +49,71 @@ export default class SupplierList extends Component {
         })
     }
 
-    onDelete1 = (id) =>{
-        const isConfirmed = window.confirm('Are you sure you want to delete this supplier?');
-
-        if (isConfirmed) {
-            axios.delete(`http://localhost:8070/old/supplier/delete/${id}`)
-                .then((res) => {
-                    this.retriveOldSupplier();
-                })
-                .catch((err) => {
-                    console.error(err);
-                });
-        }
+    onDelete1 = (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Are you sure you want to delete this Old supplier ?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:8070/old/supplier/delete/${id}`)
+                    .then((res) => {
+                        this.retriveOldSupplier();
+                        Swal.fire(
+                            'Deleted!',
+                            'The supplier has been deleted.',
+                            'success'
+                        );
+                    })
+                    .catch((err) => {
+                        console.error(err);
+                        Swal.fire(
+                            'Error!',
+                            'Failed to delete the supplier.',
+                            'error'
+                        );
+                    });
+            }
+        });
     }
+    
 
-    onDelete = (id) =>{
-        const isConfirmed = window.confirm('Are you sure you want to delete this supplier?');
-
-        if (isConfirmed) {
-            axios.delete(`http://localhost:8070/supplier/delete/${id}`)
-                .then((res) => {
-                    this.retriveSupplier();
-                })
-                .catch((err) => {
-                    console.error(err);
-                });
-        }
+    onDelete = (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Are you sure you want to delete this supplier?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:8070/supplier/delete/${id}`)
+                    .then((res) => {
+                        this.retriveSupplier();
+                        Swal.fire(
+                            'Deleted!',
+                            'The supplier has been deleted.',
+                            'success'
+                        );
+                    })
+                    .catch((err) => {
+                        console.error(err);
+                        Swal.fire(
+                            'Error!',
+                            'Failed to delete the supplier.',
+                            'error'
+                        );
+                    });
+            }
+        });
     }
+    
 
 
   // new supplier search bar
@@ -145,7 +185,8 @@ export default class SupplierList extends Component {
                     borderColor: [
                     'rgba(255, 99, 132, 0.8)',
           ],
-                    borderWidth: 2,
+                    borderWidth: 3,
+                    tension:0.4
                   
                 },
                 {
@@ -157,7 +198,8 @@ export default class SupplierList extends Component {
                     borderColor: [
                    'rgba(50, 150, 255, 1)',
                   ],
-                    borderWidth: 2,
+                    borderWidth: 3,
+                    tension:0.4
                     
                 }]
             },

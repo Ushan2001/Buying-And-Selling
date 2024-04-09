@@ -3,6 +3,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import "./supplier.css";
 import Header from '../Dashboard/Header/Header';
+import Swal from 'sweetalert2';
 
 export default function CreateSupplier() {
   const [sid, setSid] = useState("");
@@ -60,13 +61,23 @@ export default function CreateSupplier() {
       .catch((err) => {
         if (err.response && err.response.data && err.response.data.error) {
           setError(err.response.data.error);
-          alert("Supplier with the same SID or Name already exists.")
-          console.log(error)
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Supplier with the same SID or Name already exists.'
+          });
+          console.log(error);
         } else {
           setError("An error occurred while saving the supplier.");
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'An error occurred while saving the supplier.'
+          });
         }
       });
-  }
+}
+
 
   useEffect(() => {
     // Get the current date

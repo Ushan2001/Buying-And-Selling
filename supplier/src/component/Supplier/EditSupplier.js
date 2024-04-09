@@ -42,8 +42,8 @@ export default function EditSupplier(props) {
   function sendData(e) {
     e.preventDefault();
 
-          // Calculate the total amount
-          const calculatedTotalAmount = quantity * amount;
+   // Calculate the total amount
+   const calculatedTotalAmount = quantity * amount;
 
     const updateSupplier = {
       sid,
