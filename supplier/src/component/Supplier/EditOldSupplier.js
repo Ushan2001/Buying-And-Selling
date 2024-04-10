@@ -3,6 +3,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Header from '../Dashboard/Header/Header';
 import "./supplier.css";
+import Swal from 'sweetalert2';
 
 export default function EditOldSupplier(props) {
   const [id, setId] = useState("");
@@ -34,10 +35,10 @@ export default function EditOldSupplier(props) {
 
   function sendData(e) {
     e.preventDefault();
-
+  
     // Calculate the total amount
     const calculatedTotalAmount = quantity * amount;
-
+  
     const updateOldSupplier = {
       sid,
       product,
@@ -47,16 +48,30 @@ export default function EditOldSupplier(props) {
       note,
       totalAmount: calculatedTotalAmount,
     };
-
-    axios.put(`http://localhost:8070/old/supplier/update/${id}`, updateOldSupplier).then(() => {
-      alert("Existing Supplier Record Updated");
-      history.push("/supplier");
-      window.location.reload();
-    }).catch((err) => {
-      alert(err);
-    });
+  
+    axios.put(`http://localhost:8070/old/supplier/update/${id}`, updateOldSupplier)
+      .then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Existing Supplier Record Updated',
+          text: 'The existing supplier record has been successfully updated!',
+          showConfirmButton: true,
+          confirmButtonText: 'Go to Supplier List'
+        }).then(() => {
+          history.push("/supplier");
+          window.location.reload();
+        });
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'An error occurred while updating the existing supplier record.'
+        });
+        console.error(err);
+      });
   }
-
+  
   useEffect(() => {
     // Get the current date
     var currentDate = new Date();

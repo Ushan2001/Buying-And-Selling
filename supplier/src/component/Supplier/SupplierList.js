@@ -146,7 +146,7 @@ export default class SupplierList extends Component {
         const result = oldsuppliers.filter((oldsupplier) =>
             oldsupplier.sid.toLowerCase().includes(searchKey) ||
             oldsupplier.product.toLowerCase().includes(searchKey) || 
-            oldsupplier.quantity.toLowerCase().includes(searchKey) 
+            oldsupplier.amount.toLowerCase().includes(searchKey) 
         );
     
         this.setState({oldsuppliers: result});
@@ -274,7 +274,7 @@ export default class SupplierList extends Component {
         return (
             <div>
                 <Header/>
-                <div className='container' id="supplierContainer">
+                <div className='container' id="supplierContainer" >
                     <div id="lineChartContainer" style={{marginBottom:"5%"}}>
                     <span id='graph'>New and Existing Suppliers Amount 📢 📶 📈  </span>
                         <canvas id="lineChart"></canvas>
@@ -374,7 +374,7 @@ export default class SupplierList extends Component {
                                     <th scope='col'><i className='fas fa-list'></i></th>
                                     <th scope='col'>Supplier Code</th>
                                     <th scope='col'>Product</th>
-                                    <th scope='col'>Quantity</th>
+                                    <th scope='col'>Amount</th>
                                     <th scope='col'>Action</th>
                                 </tr>
                             </thead>
