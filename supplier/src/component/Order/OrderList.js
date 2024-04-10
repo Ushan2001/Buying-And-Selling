@@ -99,13 +99,16 @@ export default class OrderList extends Component {
           {
             label: 'Quantity',
             data: data,
-            backgroundColor: 'rgba(255, 99, 132, 0.2)', // Red background
-
-            fill:true, 
-            borderColor: 'rgba(255, 99, 132, 1)', // Red border
+            backgroundColor: 'rgba(54, 162, 235, 0.2)', // Blue background
+            fill:true,
+            borderColor: 'rgba(54, 162, 235, 1)', // Blue border
             borderWidth: 2,
-            tension:0.4
-            
+            pointBackgroundColor: 'rgba(54, 162, 235, 1)', // Blue points
+            pointBorderColor: '#fff', // White points border
+            pointBorderWidth: 2,
+            pointRadius: 5,
+            pointHoverRadius: 7,
+            tension: 0.3
           },
         ],
       },
@@ -115,6 +118,10 @@ export default class OrderList extends Component {
           legend: {
             display: false,
           },
+          tooltip: {
+            mode: 'index',
+            intersect: false,
+          },
         },
         scales: {
           x: {
@@ -122,18 +129,34 @@ export default class OrderList extends Component {
             title: {
               display: true,
               text: 'Product Code',
-              color:"red" 
+              color: "#333"
             },
+            grid: {
+              color: "rgba(0, 0, 0, 0.1)"
+            },
+            ticks: {
+              color: "#333"
+            }
           },
           y: {
             display: true,
             title: {
               display: true,
               text: 'Quantity',
-              color:"red"
+              color: "#333"
             },
+            grid: {
+              color: "rgba(0, 0, 0, 0.1)"
+            },
+            ticks: {
+              color: "#333"
+            }
           },
         },
+        animation: {
+          duration: 1000,
+          easing: 'easeInOutQuart',
+        }
       },
     });
   }
