@@ -3,31 +3,47 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 export default function Signup() {
-  const history = useHistory();
+ const history = useHistory();
+ const [showPassword, setShowPassword] = useState(false);
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handleSignUp = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await axios.post("http://localhost:8070/newsignup", {
-        username,
-        password,
+  const [data, setData] = useState({
+      username: "",
+      password: "",
+    });
+  
+    function handleChange(evt) {
+      const name = evt.target.name;
+      const value = evt.target.value;
+      setData({
+        ...data,
+        [name]: value,
       });
-
-      console.log(response.data);
-      alert("Successfully signing up");
-      history.push("/"); // Navigate to the login page
-      window.location.reload(); // Reload the page
-    } catch (error) {
-      console.error("Error signing up:", error.message);
-      alert(`Error signing up ${error}`, error.message);
     }
-  };
-
+  
+    const onSubmitForm = async (e) => {
+      try {
+        e.preventDefault();
+  
+        const res = await axios({
+          method: "post",
+          baseURL: "http://localhost:8070",
+          url: "/api/user/customer/signup",
+          data: data,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+  
+        console.log(res.data);
+        alert("Data Saved Successfully!");
+        history.push("/");
+        window.location.reload();
+      } catch (error) {
+        console.log(error);
+        alert(error)
+      }
+    };
+  
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -44,20 +60,22 @@ export default function Signup() {
                     <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                       <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
 
-                      <form onSubmit={handleSignUp}>
+                      <form noValidate onSubmit={(e) => onSubmitForm(e)}>
                         <div className="mb-3">
                           <label htmlFor="exampleInputEmail1" className="form-label">
                             Email Address
                           </label>
                           <input
                             type="email"
+                            name="username"
                             className="form-control"
                             id="exampleInputEmail1"
                             aria-describedby="emailHelp"
                             placeholder="Enter Email Address"
                             title="Username should only contain lowercase letters. e.g. john"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
+                            value={data.username}
+                            onChange={handleChange}
+                          
                           />
                         </div>
                         <div className="mb-3">
@@ -70,8 +88,10 @@ export default function Signup() {
                             className="form-control"
                             placeholder="Enter Password"
                             id="myInput"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            name="password"
+                            value={data.password}
+                            onChange={handleChange}
+                            
                           />
                         </div>
                         <div className="mb-3">

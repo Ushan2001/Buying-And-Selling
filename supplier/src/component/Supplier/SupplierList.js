@@ -49,10 +49,13 @@ export default class SupplierList extends Component {
         })
     }
 
+
+//    Old supplier delete function
+
     onDelete1 = (id) => {
         Swal.fire({
             title: 'Are you sure?',
-            text: 'Are you sure you want to delete this Old supplier ?',
+            text: 'You want to delete this Old supplier ?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -82,10 +85,11 @@ export default class SupplierList extends Component {
     }
     
 
+    // New supplier delete function
     onDelete = (id) => {
         Swal.fire({
             title: 'Are you sure?',
-            text: 'Are you sure you want to delete this supplier?',
+            text: 'You want to delete this supplier?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -158,7 +162,7 @@ export default class SupplierList extends Component {
         });
     }
 
-
+// line chart
     initializeChart(suppliers, oldSuppliers) {
         const ctxL = document.getElementById("lineChart");
     

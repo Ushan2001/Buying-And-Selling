@@ -56,7 +56,7 @@ export default function UserHome() {
                             <div className="d-flex justify-content-center mt-5 mt-xxl-0">
                                 <div className="profile bg-gradient-primary-to-secondary">
                                    
-                                    <img className="profile-img" src="/images/b3.png" alt="..." />
+                                    <img className="profile-img" src="/images/BuySell Nexus.png" alt="..." />
                                     
                                 </div>
                             </div>

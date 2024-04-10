@@ -3,6 +3,7 @@ import axios from "axios";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import {useHistory } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 export default function Login() {
 
@@ -25,39 +26,42 @@ export default function Login() {
 
   const onSubmitForm = async (e) => {
     try {
-      e.preventDefault();
+        e.preventDefault();
 
-      const res = await axios({
-        method: "post",
-        baseURL: "http://localhost:8070",
-        url: "/api/user/signin",
-        data: data,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      const token = res.data.token;
-      localStorage.setItem("token", token);
-      confirmAlert({
-        title: `Hi🫡🤝 ${data.username.split('@')[0]}`,
-        message: "Login successful!",
-        buttons: [
-          {
-            label: "OK",
-            onClick: () => {
-              history.push("/home");
-              window.location.reload();
+        const res = await axios({
+            method: "post",
+            baseURL: "http://localhost:8070",
+            url: "/api/user/signin",
+            data: data,
+            headers: {
+                "Content-Type": "application/json",
             },
-          },
-        ],
-      });
-      
+        });
+
+        const token = res.data.token;
+        localStorage.setItem("token", token);
+        confirmAlert({
+            title: `Hi🫡🤝 ${data.username.split('@')[0]}`,
+            message: "Login successful!",
+            buttons: [{
+                label: "OK",
+                onClick: () => {
+                    history.push("/home");
+                    window.location.reload();
+                },
+            }, ],
+        });
+
     } catch (error) {
-      console.log(error);
-      alert(error)
+        console.log(error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'An error occurred while signing in. Please try again.',
+        });
     }
-  };
+};
+
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);

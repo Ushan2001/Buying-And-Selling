@@ -43,7 +43,7 @@ app.use(cors())
 /* Ushan Mihiranga (Supplier Management) */
 app.use(supplierRouter)
 app.use("/api/user", userRouter);
-app.use(newUserRouter)
+app.use("/api/user",newUserRouter)
 app.use(oldSupplierRouter)
 
 /* Lashini Jayasooriya (Order Management) */
