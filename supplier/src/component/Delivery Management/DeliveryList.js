@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from "axios";
-import NavBar from '../NavBar/NavBar';
+import Header from '../Dashboard/Header/Header';
 
 export default class DeliveryList extends Component {
 
@@ -71,19 +71,29 @@ export default class DeliveryList extends Component {
   render() {
     return (
       <div>
-        <NavBar/>
-        <div className='container' style={{ marginTop:"40px"}}>
-         <div className='col-lg-3 mt-2 mb-2'>
-            <input  className="form-control"
-            type='search'
-            placeholder='Search'
-            name="serchQuery"
-            style={{marginLeft:"1000px"}}
-            onChange={this.handleSearchArea}/>
+        <Header/>
+        <div className='container' id="supplierContainer" style={{width:"78%"}}>
+        <div className='col-lg-3 mt-2 mb-2'>
+                        <input  
+                            className="form-control"
+                            type='search'
+                            placeholder='Search'
+                            name="serchQuery"
+                            style={{marginLeft:"50px", borderRadius:"20px"}}
+                            onChange={this.handleSearchArea}
+                        />
          </div>
         
+         <div className='row' id="BtnRow">
+                        <div className='col' id="newCol">
+                        <button className='btn btn-success' id="supplierAdd">
+                            <a href='add/delivery' style={{textDecoration:"none", color:"white"}}>
+                        <i className='fas fa-plus'></i>&nbsp;Add New</a>
+                        </button>
+                        </div>
+        </div> 
 
-        <h2>All Delivery Details</h2>
+        <h2 id="AllSupplier">All Delivery Details</h2>
         <br></br>
          <table className='table table-hover'>
             <thead>
@@ -108,14 +118,15 @@ export default class DeliveryList extends Component {
                     <td>{deliverys.number}</td>
                     <td>{deliverys.code}</td>
                     <td>
-                        <a className='btn btn-warning' href={`/editdelivery/${deliverys._id}`}>
-                            <i className='fas fa-edit'></i>&nbsp;Edit
+                        <a className='btn btn-warning' id="editBtn" href={`/editdelivery/${deliverys._id}`}>
+                            <i className='fas fa-edit' id="editIcon"></i>&nbsp;
                         </a>
                         &nbsp;
-                        <a className='btn btn-danger' href='# ' onClick={() => this.onDelete(deliverys._id)}>
-                            <i className='fas fa-trash-alt'></i>&nbsp;Delete
+                        <a className='btn btn-danger' id="editDelete" href='# ' onClick={() => this.onDelete(deliverys._id)}>
+                            <i className='fas fa-trash-alt' id="DeleteIcon"></i>&nbsp;
                         </a>
                        
+                           
                     </td>
                 </tr>
             ))}
@@ -123,8 +134,7 @@ export default class DeliveryList extends Component {
         </tbody>
          </table>
 
-         <button className='btn btn-success'><a href='add/delivery' style={{textDecoration:"none", color:"white"}}>
-         <i className='fas fa-plus'></i>&nbsp;Add New</a></button>
+        
         
       </div>
       </div>
