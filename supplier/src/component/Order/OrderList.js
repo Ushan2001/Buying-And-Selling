@@ -4,6 +4,7 @@ import Header from '../Dashboard/Header/Header';
 import PdfButton from './PdfButton';
 import './order.css';
 import Chart from 'chart.js/auto';
+import Swal from 'sweetalert2';
 
 export default class OrderList extends Component {
   constructor(props) {
@@ -37,20 +38,27 @@ export default class OrderList extends Component {
   
 
   onDelete = (id) => {
-    const isConfirmed = window.confirm('Are you sure you want to delete this Order?');
-
-    if (isConfirmed) {
-      axios
-        .delete(`http://localhost:8070/order/delete/${id}`)
-        .then((res) => {
-          this.retrieveOrder();
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }
+    Swal.fire({
+      icon: 'warning',
+      title: 'Are you sure?',
+      text: 'Are you sure you want to delete this Order?',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`http://localhost:8070/order/delete/${id}`)
+          .then((res) => {
+            this.retrieveOrder();
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      }
+    });
   };
-
+  
   filterData(orders, searchKey){
     const result = orders.filter((order) =>
         order.name.toLowerCase().includes(searchKey) ||
