@@ -30,10 +30,10 @@ export default function CreateSupplier() {
 
   function sendData(e) {
     e.preventDefault();
-
+  
     // Calculate the total amount
     const calculatedTotalAmount = quantity * amount;
-
+  
     const newSupplier = {
       sid,
       name,
@@ -45,18 +45,26 @@ export default function CreateSupplier() {
       note,
       totalAmount: calculatedTotalAmount,
     };
-
+  
     axios.post("http://localhost:8070/supplier/save", newSupplier)
       .then(() => {
-        alert("Supplier Record Added");
-
-        // Send email notification
-        const emailSubject = 'New Product Added';
-        const emailMessage = `A new Product has been added with ID: ${newSupplier.sid}, Product Name is ${newSupplier.product}, Quantity is ${newSupplier.quantity} and Amount is ${newSupplier.amount}. Update Inventory!!!`;
-        sendEmailNotification(emailSubject, emailMessage);
-
-        history.push("/supplier");
-        window.location.reload();
+        Swal.fire({
+          icon: 'success',
+          title: 'Supplier Record Added',
+          text: 'Supplier record has been successfully added!',
+          showConfirmButton: true,
+          confirmButtonText: 'Go to Supplier List'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Send email notification
+            const emailSubject = 'New Product Added';
+            const emailMessage = `A new Product has been added with ID: ${newSupplier.sid}, Product Name is ${newSupplier.product}, Quantity is ${newSupplier.quantity} and Amount is ${newSupplier.amount}. Update Inventory!!!`;
+            sendEmailNotification(emailSubject, emailMessage);
+  
+            history.push("/supplier");
+            window.location.reload();
+          }
+        });
       })
       .catch((err) => {
         if (err.response && err.response.data && err.response.data.error) {
@@ -76,7 +84,8 @@ export default function CreateSupplier() {
           });
         }
       });
-}
+  }
+  
 
 
   useEffect(() => {

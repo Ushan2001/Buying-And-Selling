@@ -1,49 +1,61 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function Signup() {
- const history = useHistory();
- const [showPassword, setShowPassword] = useState(false);
-
+  const history = useHistory();
+  const [showPassword, setShowPassword] = useState(false);
   const [data, setData] = useState({
-      username: "",
-      password: "",
+    username: "",
+    password: "",
+  });
+
+  function handleChange(evt) {
+    const name = evt.target.name;
+    const value = evt.target.value;
+    setData({
+      ...data,
+      [name]: value,
     });
-  
-    function handleChange(evt) {
-      const name = evt.target.name;
-      const value = evt.target.value;
-      setData({
-        ...data,
-        [name]: value,
+  }
+
+  const onSubmitForm = async (e) => {
+    try {
+      e.preventDefault();
+
+      const res = await axios({
+        method: "post",
+        baseURL: "http://localhost:8070",
+        url: "/api/user/customer/signup",
+        data: data,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      console.log(res.data);
+      Swal.fire({
+        icon: "success",
+        title: "Signup Successful!",
+        text: "You have successfully signed up.",
+        showConfirmButton: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          history.push("/");
+          window.location.reload();
+        }
+      });
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "An error occurred while signing up. Please try again.",
       });
     }
-  
-    const onSubmitForm = async (e) => {
-      try {
-        e.preventDefault();
-  
-        const res = await axios({
-          method: "post",
-          baseURL: "http://localhost:8070",
-          url: "/api/user/customer/signup",
-          data: data,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-  
-        console.log(res.data);
-        alert("Data Saved Successfully!");
-        history.push("/");
-        window.location.reload();
-      } catch (error) {
-        console.log(error);
-        alert(error)
-      }
-    };
-  
+  };
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -75,7 +87,6 @@ export default function Signup() {
                             title="Username should only contain lowercase letters. e.g. john"
                             value={data.username}
                             onChange={handleChange}
-                          
                           />
                         </div>
                         <div className="mb-3">
@@ -83,7 +94,7 @@ export default function Signup() {
                             Password
                           </label>
                           <input
-                            minlength="8"
+                            minLength="8"
                             type={showPassword ? "text" : "password"}
                             className="form-control"
                             placeholder="Enter Password"
@@ -91,7 +102,6 @@ export default function Signup() {
                             name="password"
                             value={data.password}
                             onChange={handleChange}
-                            
                           />
                         </div>
                         <div className="mb-3">
@@ -119,9 +129,9 @@ export default function Signup() {
                     </div>
 
                     <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                alt="signup form" className="img-fluid" style={{borderRadius: "1rem 0 0 1rem"}} />
-            </div>
+                      <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                        alt="signup form" className="img-fluid" style={{ borderRadius: "1rem 0 0 1rem" }} />
+                    </div>
                   </div>
                 </div>
               </div>

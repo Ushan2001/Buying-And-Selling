@@ -3,6 +3,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import "./supplier.css";
 import Header from "../Dashboard/Header/Header";
+import Swal from 'sweetalert2';
 
 export default function OldSupplier() {
 
@@ -30,10 +31,10 @@ export default function OldSupplier() {
 
   function sendData(e) {
     e.preventDefault();
-
+  
     // Calculate the total amount
     const calculatedTotalAmount = quantity * amount;
-
+  
     const newSupplier = {
       sid: selectedSid,
       product,
@@ -43,23 +44,37 @@ export default function OldSupplier() {
       note,
       totalAmount: calculatedTotalAmount, // Add this line
     };
-
-    axios
-      .post("http://localhost:8070/old/supplier/save", newSupplier)
+  
+    axios.post("http://localhost:8070/old/supplier/save", newSupplier)
       .then(() => {
-        alert("Supplier Record Added");
-
-        // Send email notification
-        const emailSubject = 'New Product Added';
-        const emailMessage = `A new Product has been added with ID: ${newSupplier.sid}, Product Name is ${newSupplier.product}, Quantity is ${newSupplier.quantity} and Amount is ${newSupplier.amount}. Update Inventory!!!`;
-        sendEmailNotification(emailSubject, emailMessage);
-
-        history.push("/supplier");
-        window.location.reload();
+        Swal.fire({
+          icon: 'success',
+          title: 'Supplier Record Added',
+          text: 'Supplier record has been successfully added!',
+          showConfirmButton: true,
+          confirmButtonText: 'Go to Supplier List'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Send email notification
+            const emailSubject = 'New Product Added';
+            const emailMessage = `A new Product has been added with ID: ${newSupplier.sid}, Product Name is ${newSupplier.product}, Quantity is ${newSupplier.quantity} and Amount is ${newSupplier.amount}. Update Inventory!!!`;
+            sendEmailNotification(emailSubject, emailMessage);
+  
+            history.push("/supplier");
+            window.location.reload();
+          }
+        });
       })
-     
+      .catch((err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'An error occurred while adding the supplier record. Please try again.'
+        });
+        console.error(err);
+      });
   }
-
+  
   useEffect(() => {
     axios.get("http://localhost:8070/supplier").then((response) => {
       setSids(response.data.existingSupplier.map((supplier) => supplier.sid));
