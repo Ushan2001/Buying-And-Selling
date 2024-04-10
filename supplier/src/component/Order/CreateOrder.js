@@ -3,6 +3,7 @@ import axios from "axios";
 import Header from "../Dashboard/Header/Header"
 import {useHistory } from "react-router-dom";
 import "./order.css"
+import Swal from 'sweetalert2';
 
 export default function CreateOrder() {
 
@@ -29,41 +30,55 @@ export default function CreateOrder() {
           });
       }
 
-    function sendData(a){
-
+      function sendData(e) {
+        e.preventDefault();
+      
         // Calculate the total amount
         const calculatedTotalAmount = quantity * amount;
-
-        a.preventDefault();
-        const newOrder = {
-              name,
-              number,
-              oid,
-              amount,
-              quantity,
-              date,
-              address,
-              note,
-              totalAmount: calculatedTotalAmount,
-              send
-          }
       
-          axios.post("http://localhost:8070/order/save", newOrder).then(() =>{
-              alert("Order Record Added")
-
-              // Send email notification
+        const newOrder = {
+          name,
+          number,
+          oid,
+          amount,
+          quantity,
+          date,
+          address,
+          note,
+          totalAmount: calculatedTotalAmount,
+          send
+        };
+      
+        axios.post("http://localhost:8070/order/save", newOrder)
+          .then(() => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Order Record Added',
+              text: 'Order record has been successfully added!',
+              showConfirmButton: true,
+              confirmButtonText: 'OK'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                // Send email notification
                 const emailSubject = 'New Order Added';
                 const emailMessage = `A new Order has been added with name: ${newOrder.name}, Contact Number is ${newOrder.number}, Product Code is ${newOrder.oid} and Amount is ${newOrder.totalAmount}. Delivery Order!!!`;
                 sendEmailNotification(emailSubject, emailMessage);
-
-              history.push("/order"); 
-              window.location.reload(); 
-          }).catch((err)=>{
-              alert(err)
+      
+                history.push("/order");
+                window.location.reload();
+              }
+            });
           })
-      
-      
+          .catch((err) => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'An error occurred while adding the order record. Please try again.'
+            });
+            console.error(err);
+          });
       }
+      
 
       useEffect(() => {
         // Get the current date

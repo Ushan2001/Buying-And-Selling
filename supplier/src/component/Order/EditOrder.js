@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {useHistory } from "react-router-dom"
 import Header from "../Dashboard/Header/Header"
+import Swal from 'sweetalert2';
 
 export default function EditOrder(props) {
 
@@ -41,14 +42,12 @@ export default function EditOrder(props) {
   }, [props.match.params.id]);
 
   function sendData(e) {
-
     // Calculate the total amount
     const calculatedTotalAmount = quantity * amount;
-
+  
     e.preventDefault();
-
+  
     const updateOrder = {
-      
       name,
       number,
       oid,
@@ -60,14 +59,28 @@ export default function EditOrder(props) {
       totalAmount: calculatedTotalAmount,
       send
     };
-
-    axios.put(`http://localhost:8070/order/update/${id}`, updateOrder).then(() => {
-      alert("Order Record Updated");
-      history.push("/order"); 
-      window.location.reload(); 
-    }).catch((err) => {
-      alert(err);
-    });
+  
+    axios.put(`http://localhost:8070/order/update/${id}`, updateOrder)
+      .then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Order Record Updated',
+          text: 'Order record has been successfully updated!',
+          showConfirmButton: true,
+          confirmButtonText: 'Go to Order list'
+        }).then(() => {
+          history.push("/order");
+          window.location.reload();
+        });
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'An error occurred while updating the order record. Please try again.'
+        });
+        console.error(err);
+      });
   }
 
   useEffect(() => {
