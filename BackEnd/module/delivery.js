@@ -27,6 +27,14 @@ const DeliverySchema = new mongoose.Schema({
         required: true
     },
 
+    distance:{
+        type: String,
+        required: true
+    },
+    deliveryFee:{
+        type: String,
+        required: true
+    },
     date:{
         type: String,
         required: true
