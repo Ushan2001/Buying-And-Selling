@@ -118,11 +118,11 @@ export default class DeliveryList extends Component {
                     <td>{deliverys.number}</td>
                     <td>{deliverys.code}</td>
                     <td>
-                        <a className='btn btn-warning' id="editBtn" href={`/editdelivery/${deliverys._id}`}>
+                        <a className='btn' id="editBtn" href={`/editdelivery/${deliverys._id}`}>
                             <i className='fas fa-edit' id="editIcon"></i>&nbsp;
                         </a>
                         &nbsp;
-                        <a className='btn btn-danger' id="editDelete" href='# ' onClick={() => this.onDelete(deliverys._id)}>
+                        <a className='btn ' id="editDelete" href='# ' onClick={() => this.onDelete(deliverys._id)}>
                             <i className='fas fa-trash-alt' id="DeleteIcon"></i>&nbsp;
                         </a>
                        

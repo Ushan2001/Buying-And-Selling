@@ -66,6 +66,7 @@ import CreateDelivery from './component/Delivery Management/CreateDelivery';
 import EditDelivery from './component/Delivery Management/EditDelivery';
 import EditOldSupplier from './component/Supplier/EditOldSupplier';
 import OldSupplierDetail from './component/Supplier/OldSupplierDetail';
+import DeliveryDetail from './component/Delivery Management/DeliveryDetail';
 
 
 export default class App extends Component {
@@ -145,6 +146,7 @@ export default class App extends Component {
         <Route path="/delivery" exact component={DeliveryList}></Route>
         <Route path="/add/delivery" component={CreateDelivery}></Route>
         <Route path="/editdelivery/:id" component={EditDelivery}></Route> 
+        <Route path="/delivery/:id" component={DeliveryDetail}></Route>
        
     </BrowserRouter>
   

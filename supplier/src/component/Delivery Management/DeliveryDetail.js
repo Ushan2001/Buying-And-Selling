@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Header from '../Dashboard/Header/Header'
-import './supplier.css'
+
 
 export default class DeliveryDetail extends Component {
 
