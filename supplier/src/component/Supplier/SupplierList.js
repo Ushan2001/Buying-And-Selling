@@ -163,107 +163,52 @@ export default class SupplierList extends Component {
     }
 
 // line chart
-    initializeChart(suppliers, oldSuppliers) {
-        const ctxL = document.getElementById("lineChart");
-    
-        if (!ctxL || !suppliers || !oldSuppliers) return;
-    
-        if (this.chartInstance) {
-            this.chartInstance.destroy(); // Destroy existing chart instance
-        }
-    
-        const labels = suppliers.map(supplier => supplier.name);
-        const data = suppliers.map(supplier => supplier.amount);
-        const oldData = oldSuppliers.map(oldSupplier => oldSupplier.amount);
-    
-        this.chartInstance = new Chart(ctxL, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: "Supplier Amount",
-                    data: data,
-                    backgroundColor: 'rgba(105, 0, 132, .2)', // Red background
-    
-                    fill: true,
-                    borderColor: [
-                    'rgba(255, 99, 132, 0.8)',
-          ],
-                    borderWidth: 3,
-                    tension:0.4
-                  
-                },
-                {
-                    label: "Existing Supplier Amount",
-                    data: oldData,
-                    background: 'rgba(50, 150, 255, 1)', // Blue background
+initializeChart(suppliers, oldSuppliers) {
+    const ctxL = document.getElementById("lineChart");
 
-                    fill: true,
-                    borderColor: [
-                   'rgba(50, 150, 255, 1)',
-                  ],
-                    borderWidth: 3,
-                    tension:0.4
-                    
-                }]
-            },
-            options: {
-                responsive: true,
-                animation: {
-                    duration: 1000, 
-                    easing: 'easeInOutQuart', 
-                    
-                },
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top',
-                    }
-                },
-                elements: {
-                    line: {
-                        tension: 0 // Disable bezier curves
-                    }
-                },
-                scales: {
-                    x: {
-                        display: true,
-                        title: {
-                            display: true,
-                            text: 'X Axis = Supplier Name',
-                            color:"#053345",
-                            font:{
-                                weight:"700",
-                                size:"13px"
-                            }
-                        }
-                    },
-                    y: {
-                        display: true,
-                        title: {
-                            display: true,
-                            text: 'Y Axis = Total Amount',
-                            color:"#053345",
-                            font:{
-                                weight:"700",
-                                size:"13px"
-                            }
-                        
-                        }
-                    }
-                },
-                layout: {
-                    padding: {
-                        top: 20,
-                        right: 30,
-                        bottom: 20,
-                        left: 30
-                    }
-                },
-            }
-        });
+    if (!ctxL || !suppliers || !oldSuppliers) return;
+
+    if (this.chartInstance) {
+        this.chartInstance.destroy(); // Destroy existing chart instance
     }
 
+    const labels = suppliers.map(supplier => supplier.sid);
+    const data = suppliers.map(supplier => supplier.totalAmount);
+    const oldData = oldSuppliers.map(oldSupplier => oldSupplier.totalAmount);
+
+    this.chartInstance = new Chart(ctxL, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Supplier Amount",
+                data: data,
+                backgroundColor: 'rgba(105, 0, 132, .2)',
+                borderColor: 'rgba(200, 99, 132, .7)',
+                borderWidth: 2,
+                tension:0.4,
+                fill:true
+            },
+            {
+                label: "Existing Supplier Amount",
+                data: oldData,
+                backgroundColor: 'rgba(0, 137, 132, .2)',
+                borderColor: 'rgba(0, 10, 130, .7)',
+                borderWidth: 2,
+                tension:0.4,
+                fill:true
+            }]
+        },
+        options: {
+            responsive: true,
+            animation: {
+                duration: 1000, // Animation duration in milliseconds
+                easing: 'easeInOutQuart', // Easing function for animation
+                // You can add more animation properties as needed
+            }
+        }
+    });
+} 
     render() {
         const { suppliers, oldsuppliers, currentPage, itemsPerPage } = this.state;
         const indexOfLastSupplier = currentPage * itemsPerPage;
@@ -351,7 +296,7 @@ export default class SupplierList extends Component {
                 
                     <div id="Extisting">
                         <div className='row'>
-                            <div className='col' id="Existing">
+                            <div className='col' id="Extisting">
                         <h2 id="AllSupplier">Existing Record</h2>
                         </div>
                         <br></br> 
