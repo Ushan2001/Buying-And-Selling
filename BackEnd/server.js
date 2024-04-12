@@ -81,5 +81,5 @@ mongoose.connect(URL,{ useUnifiedTopology: true, useNewUrlParser: true })
 .catch((err) =>console.log("DB Connection Error", err))
 
 app.listen(PORT, () =>{
-    console.log("App is running on -->  ",PORT)  
+    console.log("BuySell Nexus is running on -->  ",PORT)  
 })

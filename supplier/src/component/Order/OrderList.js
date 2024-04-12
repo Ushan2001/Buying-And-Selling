@@ -129,7 +129,10 @@ export default class OrderList extends Component {
             title: {
               display: true,
               text: 'Product Code',
-              color: "#333"
+              color: "#333",
+              font: {
+                weight:1000,
+              }
             },
             grid: {
               color: "rgba(0, 0, 0, 0.1)"
@@ -143,7 +146,10 @@ export default class OrderList extends Component {
             title: {
               display: true,
               text: 'Quantity',
-              color: "#333"
+              color: "#333",
+              font: {
+                weight:1000,
+              }
             },
             grid: {
               color: "rgba(0, 0, 0, 0.1)"
