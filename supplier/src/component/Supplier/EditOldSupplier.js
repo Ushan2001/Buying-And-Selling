@@ -15,6 +15,21 @@ export default function EditOldSupplier(props) {
   const [note, setNote] = useState("");
   const [totalAmount, setTotalAmount] = useState(0);
   const history = useHistory();
+  const [token, setToken] = useState("");
+
+
+  //verify JWT token
+  useEffect(() => {
+    // Function to fetch token from local storage on component mount
+    const fetchToken = () => {
+      const storedToken = localStorage.getItem("token");
+      if (storedToken) {
+        setToken(storedToken);
+      }
+    };
+    fetchToken(); // Call fetchToken function
+  }, []);
+
 
   useEffect(() => {
     const oldSupplierId = props.match.params.id;
@@ -49,7 +64,11 @@ export default function EditOldSupplier(props) {
       totalAmount: calculatedTotalAmount,
     };
   
-    axios.put(`http://localhost:8070/old/supplier/update/${id}`, updateOldSupplier)
+    axios.put(`http://localhost:8070/old/supplier/update/${id}`, updateOldSupplier, {
+      headers: {
+        Authorization: `Bearer ${token}` // Attach token to request headers
+      }
+    })
       .then(() => {
         Swal.fire({
           icon: 'success',

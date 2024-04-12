@@ -12,13 +12,23 @@ export default class OrderList extends Component {
 
     this.state = {
       orders: [],
+      token: ""
     };
   }
 
   componentDidMount() {
+    this.fetchToken();
     this.retrieveOrder();
     this.initializeChart(this.state.orders); // Initialize chart with initial order data
+    
   }
+
+  fetchToken() {
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+        this.setState({ token: storedToken });
+    }
+}
   
 
   retrieveOrder() {
@@ -48,13 +58,27 @@ export default class OrderList extends Component {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:8070/order/delete/${id}`)
+          .delete(`http://localhost:8070/order/delete/${id}`, {
+            headers: {
+              Authorization: `Bearer ${this.state.token}`
+          }
+          })
           .then((res) => {
             this.retrieveOrder();
-          })
-          .catch((err) => {
+            Swal.fire(
+                'Deleted!',
+                'The Order has been deleted.',
+                'success'
+            );
+        })
+        .catch((err) => {
             console.error(err);
-          });
+            Swal.fire(
+                'Error!',
+                'Failed to delete the Order.',
+                'error'
+            );
+        });
       }
     });
   };

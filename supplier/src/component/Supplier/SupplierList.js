@@ -16,13 +16,22 @@ export default class SupplierList extends Component {
             suppliers:[],
             oldsuppliers:[],
             currentPage: 1,
-            itemsPerPage: 5
+            itemsPerPage: 5,
+            token: ""
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
+        this.fetchToken();
         this.retriveSupplier();
         this.retriveOldSupplier();
+    }
+
+    fetchToken() {
+        const storedToken = localStorage.getItem("token");
+        if (storedToken) {
+            this.setState({ token: storedToken });
+        }
     }
 
     retriveSupplier(){
@@ -35,6 +44,7 @@ export default class SupplierList extends Component {
                 });
             }
         })
+        .catch((error) => console.error(error));
     }
 
     retriveOldSupplier(){
@@ -63,7 +73,11 @@ export default class SupplierList extends Component {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:8070/old/supplier/delete/${id}`)
+                axios.delete(`http://localhost:8070/old/supplier/delete/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${this.state.token}`
+                    }
+                })
                     .then((res) => {
                         this.retriveOldSupplier();
                         Swal.fire(
@@ -97,7 +111,11 @@ export default class SupplierList extends Component {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:8070/supplier/delete/${id}`)
+                axios.delete(`http://localhost:8070/supplier/delete/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${this.state.token}`
+                    }
+                })
                     .then((res) => {
                         this.retriveSupplier();
                         Swal.fire(

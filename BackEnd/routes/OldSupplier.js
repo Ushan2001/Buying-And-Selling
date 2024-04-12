@@ -2,11 +2,12 @@ const express = require("express")
 const OldSupplier = require("../module/OldSupplier");
 const router = express.Router();
 const nodemailer = require('nodemailer');
+const { verifyToken } = require("../helpers/auth-middleware");
 
 
 //save order
 
-router.post("/old/supplier/save", (req, res) =>{
+router.post("/old/supplier/save", verifyToken, (req, res) =>{
     let oldSupplier = new OldSupplier(req.body);
   
     oldSupplier.save((err) =>{
@@ -23,7 +24,7 @@ router.post("/old/supplier/save", (req, res) =>{
 
   //get details
 
-router.get("/old/supplier", (req, res) =>{
+router.get("/old/supplier",  (req, res) =>{
     OldSupplier.find().exec((err, Oldsuppliers) =>{
       if(err){
         return res.status(400).json({
@@ -40,7 +41,7 @@ router.get("/old/supplier", (req, res) =>{
 
 //update
 
-router.put("/old/supplier/update/:id", (req, res) =>{
+router.put("/old/supplier/update/:id", verifyToken, (req, res) =>{
     OldSupplier.findByIdAndUpdate(
      req.params.id,
      {
@@ -60,7 +61,7 @@ router.put("/old/supplier/update/:id", (req, res) =>{
  
  //delete
  
- router.delete("/old/supplier/delete/:id", (req, res) =>{
+ router.delete("/old/supplier/delete/:id", verifyToken, (req, res) =>{
    OldSupplier.findByIdAndRemove(req.params.id).exec((err, deleteOldSupplier) =>{
      if(err) return res.status(400).json({
        message:"Delete Unsuccessfull", err

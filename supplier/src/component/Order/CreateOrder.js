@@ -18,6 +18,18 @@ export default function CreateOrder() {
     const [totalAmount, setTotalAmount] = useState(0);
     const [send, setSend] = useState("No");
     const history = useHistory();
+    const [token, setToken] = useState("");
+
+    useEffect(() => {
+      // Function to fetch token from local storage on component mount
+      const fetchToken = () => {
+        const storedToken = localStorage.getItem("token");
+        if (storedToken) {
+          setToken(storedToken);
+        }
+      };
+      fetchToken(); // Call fetchToken function
+    }, []);
     
 
     function sendEmailNotification(subject, message) {
@@ -49,7 +61,11 @@ export default function CreateOrder() {
           send
         };
       
-        axios.post("http://localhost:8070/order/save", newOrder)
+        axios.post("http://localhost:8070/order/save", newOrder, {
+          headers: {
+            Authorization: `Bearer ${token}` // Attach token to request headers
+          }
+        })
           .then(() => {
             Swal.fire({
               icon: 'success',

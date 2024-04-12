@@ -1,13 +1,14 @@
 const express = require("express")
 const Supplier = require("../module/supplier");
 const nodemailer = require('nodemailer');
+const { verifyToken } = require("../helpers/auth-middleware");
 
 
 const router = express.Router();
 
 //save supplier
 
-router.post("/supplier/save", async (req, res) => {
+router.post("/supplier/save", verifyToken, async (req, res) => {
   try {
     // Check if a supplier with the same sid or name already exists
     const existingSupplier = await Supplier.findOne({
@@ -58,7 +59,7 @@ router.get("/supplier", (req, res) =>{
 
 //update
 
-router.put("/supplier/update/:id", (req, res) =>{
+router.put("/supplier/update/:id", verifyToken, (req, res) =>{
    Supplier.findByIdAndUpdate(
     req.params.id,
     {
@@ -78,7 +79,7 @@ router.put("/supplier/update/:id", (req, res) =>{
 
 //delete
 
-router.delete("/supplier/delete/:id", (req, res) =>{
+router.delete("/supplier/delete/:id", verifyToken, (req, res) =>{
   Supplier.findByIdAndRemove(req.params.id).exec((err, deleteSupplier) =>{
     if(err) return res.status(400).json({
       message:"Delete Unsuccessfull", err

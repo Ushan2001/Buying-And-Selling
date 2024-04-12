@@ -1,12 +1,13 @@
 const express = require("express")
 const Order = require("../module/order");
+const { verifyToken } = require("../helpers/auth-middleware");
 
 
 const router = express.Router();
 
 //save order
 
-router.post("/order/save", (req, res) =>{
+router.post("/order/save", verifyToken, (req, res) =>{
   let newOrder = new Order(req.body);
 
   newOrder.save((err) =>{
@@ -40,7 +41,7 @@ router.get("/orders", (req, res) =>{
 
 //update
 
-router.put("/order/update/:id", (req, res) =>{
+router.put("/order/update/:id", verifyToken, (req, res) =>{
    Order.findByIdAndUpdate(
     req.params.id,
     {
@@ -60,7 +61,7 @@ router.put("/order/update/:id", (req, res) =>{
 
 //delete
 
-router.delete("/order/delete/:id", (req, res) =>{
+router.delete("/order/delete/:id", verifyToken, (req, res) =>{
   Order.findByIdAndRemove(req.params.id).exec((err, deleteOrder) =>{
     if(err) return res.status(400).json({
       message:"Delete Unsuccessfull", err
