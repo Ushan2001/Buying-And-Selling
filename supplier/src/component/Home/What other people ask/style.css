@@ -1,0 +1,78 @@
+#otherPeopleTitle{
+    font-family: "Poppins";
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+    color: #000000;
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: 4%;
+}
+
+#dropDownTitle{
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    color: #000000;
+}
+
+#accordionExample{
+    width: 1248px;
+    border-radius: 16px;
+    border: 1px;
+    border-color: #D0D0D0;
+    margin-bottom: 3%;
+}
+
+:root {
+    --bs-blue: #1e30f3;
+    --bs-indigo: #6610f2;
+    --bs-purple: #6f42c1;
+    --bs-pink: #e21e80;
+    --bs-red: #dc3545;
+    --bs-orange: #fd7e14;
+    --bs-yellow: #ffc107;
+    --bs-green: #198754;
+    --bs-teal: #20c997;
+    --bs-cyan: #0dcaf0;
+    --bs-black: #000;
+    --bs-white: #fff;
+    --bs-gray: #6c757d;
+  }
+  
+  #dropDownTitle[aria-expanded="true"] {
+    background: linear-gradient(315deg, #1e30f3 0%, #e21e80 100%);
+    color: #fff; /* Text color */
+  }
+  
+  
+
+#learnMore{
+    font-family: "Poppins";
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    color: #197E89;
+    font-style: italic;
+    cursor: pointer;
+}
+
+#bodyTitle{
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    color: #00000099;
+    font-style: italic;
+}
+
+@media (max-width: 678px){
+  #accordionExample{
+    max-width: 350px;
+    margin-left: 6%;
+  }
+}
+
+
+
