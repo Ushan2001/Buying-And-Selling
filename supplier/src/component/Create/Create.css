@@ -11,18 +11,6 @@
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3); /* Add a box-shadow on hover */
   }
 
-  @media (max-width: 678px){
-   #cardCreate{
-      margin-left: 10%;
-    }
-  }
-
-  @media (max-width: 1199px){
-    #cardCreate{
-       margin-left: 20%;
-     }
-   }
-
    #cardCreate{
      margin-top: 8%;
      margin-left: 28%;
@@ -37,6 +25,13 @@
     font-weight: 600;
     margin-left: 10%; 
    }
+
+@media(max-width:678px){
+  #cardCreate{
+    margin-left: 18%;
+    margin-top: 23%;
+  }
+}   
 
   
   

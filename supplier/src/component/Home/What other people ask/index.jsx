@@ -11,7 +11,7 @@ export default class index extends Component {
 
           <div className="accordion-item">
             <h2 className="accordion-header">
-              <button id="dropDownTitle" className="accordion-button  collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <button id="dropDownTitle" className="accordion-button  collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                 How does this app work?
               </button>
             </h2>

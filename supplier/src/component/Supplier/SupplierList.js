@@ -280,10 +280,11 @@ export default class SupplierList extends Component {
                         <canvas id="lineChart"></canvas>
                     </div>
                     
-                    <div className='col-lg-3 mt-2 mb-2'>
+                    <div className='col-lg-3 mt-2 mb-2' id="searchDiv">
                         <input  
                             className="form-control"
                             type='search'
+                            id="searchSupplier"
                             placeholder='Search'
                             name="serchQuery"
                             style={{marginLeft:"50px", borderRadius:"20px"}}
@@ -350,7 +351,7 @@ export default class SupplierList extends Component {
                 
                     <div id="Extisting">
                         <div className='row'>
-                            <div className='col'>
+                            <div className='col' id="Existing">
                         <h2 id="AllSupplier">Existing Record</h2>
                         </div>
                         <br></br> 
@@ -359,6 +360,7 @@ export default class SupplierList extends Component {
                         <input  
                             className="form-control"
                             type='search'
+                            id="searchSupplier1"
                             placeholder='Search'
                             name="serchQuery"
                             style={{borderRadius:"20px", width:"300px"}}
