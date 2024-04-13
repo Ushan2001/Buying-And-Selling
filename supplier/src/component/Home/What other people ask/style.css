@@ -41,12 +41,10 @@
     --bs-gray: #6c757d;
   }
   
-  #dropDownTitle[aria-expanded="true"] {
+#dropDownTitle[aria-expanded="true"] {
     background: linear-gradient(315deg, #1e30f3 0%, #e21e80 100%);
     color: #fff;
-  }
-  
-  
+}
 
 #learnMore{
     font-family: "Poppins";
