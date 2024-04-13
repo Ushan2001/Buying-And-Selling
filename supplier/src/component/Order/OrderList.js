@@ -166,7 +166,7 @@ export default class OrderList extends Component {
             </a>
           </button>
 
-          <h2 id='btnAllOrder'>All Orders</h2>
+          <h2 id='btnAllOrder'>Customer Orders</h2>
           <br></br>
           <table className='table table-hover'>
             <thead>
