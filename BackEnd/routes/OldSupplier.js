@@ -24,7 +24,7 @@ router.post("/old/supplier/save", verifyToken, (req, res) =>{
 
   //get details
 
-router.get("/old/supplier",  (req, res) =>{
+router.get("/old/supplier", (req, res) =>{
     OldSupplier.find().exec((err, Oldsuppliers) =>{
       if(err){
         return res.status(400).json({
