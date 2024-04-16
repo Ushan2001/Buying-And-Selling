@@ -12,6 +12,8 @@ export default class OrderList extends Component {
 
     this.state = {
       orders: [],
+      currentPage: 1,
+      itemsPerPage: 10,
       token: ""
     };
   }
@@ -132,7 +134,7 @@ export default class OrderList extends Component {
             pointBorderWidth: 2,
             pointRadius: 5,
             pointHoverRadius: 7,
-            tension: 0.3
+            tension: 0.4
           },
         ],
       },
@@ -191,7 +193,20 @@ export default class OrderList extends Component {
     });
   }
 
+  handlePageChange = (pageNumber) => {
+    this.setState({
+      currentPage: pageNumber
+    });
+  };
+
   render() {
+
+    const { orders, currentPage, itemsPerPage } = this.state;
+
+    // Pagination logic
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = orders.slice(indexOfFirstItem, indexOfLastItem);
     return (
       <div>
         <Header />
@@ -206,6 +221,7 @@ export default class OrderList extends Component {
             <input
               className='form-control'
               type='search'
+              id="orderSearch"
               placeholder='Search'
               name='serchQuery'
               style={{ marginLeft: '20px', borderRadius: '20px' }}
@@ -235,7 +251,8 @@ export default class OrderList extends Component {
             </thead>
 
             <tbody>
-              {this.state.orders.map((order, index) => (
+            {currentItems.map((order, index) => (
+             
                 <tr key={index}>
                   <th scope='row'>{index + 1}</th>
                   <td id='order'>{order.name}</td>
@@ -257,8 +274,25 @@ export default class OrderList extends Component {
                   </td>
                 </tr>
               ))}
+          
             </tbody>
           </table>
+         {/* Pagination */}
+          <nav aria-label="Page navigation example">
+            <ul className="pagination">
+              <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                <button className="page-link" onClick={() => this.handlePageChange(currentPage - 1)}><i class="bi bi-skip-backward"></i></button>
+              </li>
+              {Array.from({length: Math.ceil(orders.length / itemsPerPage)}, (_, i) => (
+                <li key={i} className={`page-item ${currentPage === i + 1 ? 'active' : ''}`}>
+                  <button className="page-link" onClick={() => this.handlePageChange(i + 1)}>{i + 1}</button>
+                </li>
+              ))}
+              <li className={`page-item ${currentPage === Math.ceil(orders.length / itemsPerPage) ? 'disabled' : ''}`}>
+                <button className="page-link" onClick={() => this.handlePageChange(currentPage + 1)}><i class="bi bi-skip-forward"></i></button>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     );

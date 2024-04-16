@@ -48,7 +48,7 @@ export default function CreateCustomer() {
       <br></br>
 <div className="mb-3">
 <label for="exampleInputEmail1" className="form-label">Customer Name</label>
-<input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Customer Name" 
+<input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Customer Name" 
 onChange={(e) =>{
 
 setName(e.target.value);
@@ -76,7 +76,7 @@ setAddress(e.target.value);
 
 <div className="mb-3">
 <label for="exampleInputPassword1" className="form-label">Gender</label>
-<select className="form-select" aria-label="Default select example" 
+<select className="form-select" aria-label="Default select example"  id="exampleInputPassword1"
   onChange={(e) =>{
 
     setGender(e.target.value);
@@ -101,7 +101,7 @@ setEmail(e.target.value);
 
 <div className="mb-3">
 <label for="exampleInputPassword1" className="form-label">Customer Type</label>
-<select className="form-select" aria-label="Default select example" 
+<select className="form-select" aria-label="Default select example"  id="exampleInputPassword1"
   onChange={(e) =>{
 
     setCtype(e.target.value);

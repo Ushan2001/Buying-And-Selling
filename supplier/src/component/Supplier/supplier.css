@@ -227,6 +227,8 @@
     #Extisting{
         margin-top: 8%;
     }
+
+    
 }
 
 
@@ -258,6 +260,31 @@
         width: 50%; /* Adjust the width of the Action column */
     }
 }
+
+#supplierCount{
+    margin-top: 1%;
+    margin-bottom: 3%;
+    margin-left: 1%;
+}
+
+@media (max-width:678px){
+    
+    #supplierCount{
+        margin-top: 1%;
+        margin-bottom: 5%;
+        margin-left: 4%;
+    }
+}
+
+#SupplierCardTitile{
+    font-weight: 900;
+    font-size: 25px;
+    color:#023b53;
+}
+
+
+
+
 
 
 

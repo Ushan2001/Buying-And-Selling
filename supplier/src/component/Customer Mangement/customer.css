@@ -1,0 +1,94 @@
+#cardTitile{
+    font-family: Inter;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16.94px;
+    color:#9A9A9A;
+}
+
+#card1{
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+}
+
+#cardText{
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 43.57px;
+    color:#0A0A1F;
+}
+
+#customerRow{
+    margin-bottom: 3%;
+}
+
+#customerNewDiv{
+  margin-bottom: 3%;
+}
+
+
+/* CSS for customer count card */
+#card {
+    margin-top: 20px; 
+  }
+  
+  #card1 {
+    background-color: #ffffff; /* Card background color */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Drop shadow */
+    transition: transform 0.3s ease-in-out; /* Add animation to card */
+    border: none;
+  }
+  
+  #card1:hover {
+    transform: scale(1.05); /* Scale up on hover */
+  }
+  
+  #card1 .card-body {
+    padding: 30px;
+  }
+  
+  #cardTitile {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333; /* Title color */
+  }
+  
+  #cardText {
+    font-size: 36px;
+    color: #007bff; /* Text color */
+    animation: fadeInUp 2s ease-in-out forwards;
+  }
+  
+  /* Animation effect for card */
+  @keyframes pulse {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7);
+    }
+  
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 10px rgba(0, 123, 255, 0);
+    }
+  
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+    }
+  }
+  
+  .pulse {
+    animation: pulse 2s infinite; /* Apply pulse animation */
+  }
+
+
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+  

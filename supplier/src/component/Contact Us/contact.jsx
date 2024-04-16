@@ -23,7 +23,7 @@ export default function contact() {
     </div>
 
     <div class="col-sm-4" id="contact2">
-        <h3>Buying & Selling</h3>
+        <h3>BuySell Nexus</h3>
         <hr align="left" width="50%"/>
         <h4 class="pt-2">Ushan Mihiranga</h4>
         <i class="fas fa-globe" style={{color:"#000"}}></i>Colombo, Sri Lanka<br/><br/>

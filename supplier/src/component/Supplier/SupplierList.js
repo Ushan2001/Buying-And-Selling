@@ -15,6 +15,7 @@ export default class SupplierList extends Component {
         this.state = {
             suppliers:[],
             oldsuppliers:[],
+            supplierCount: 0,
             currentPage: 1,
             itemsPerPage: 5,
             token: ""
@@ -37,8 +38,11 @@ export default class SupplierList extends Component {
     retriveSupplier(){
         axios.get("http://localhost:8070/supplier").then((res) =>{
             if(res.data.success){
+                const  existingSupplier =  res.data.existingSupplier;
                 this.setState({
-                    suppliers: res.data.existingSupplier
+                 suppliers:existingSupplier,
+                 supplierCount: existingSupplier.length
+    
                 }, () => {
                     this.initializeChart(this.state.suppliers);
                 });
@@ -146,7 +150,7 @@ export default class SupplierList extends Component {
             supplier.address.toLowerCase().includes(searchKey) 
         );
     
-        this.setState({suppliers: result});
+        this.setState({suppliers: result, supplierCount: result.length});
     }
 
     handleSearchArea = (e) =>{
@@ -238,11 +242,14 @@ initializeChart(suppliers, oldSuppliers) {
             <div>
                 <Header/>
                 <div className='container' id="supplierContainer" >
+
                     <div id="lineChartContainer" style={{marginBottom:"5%"}}>
+                    <div  style={{marginBottom:"2%"}}>
                     <span id='graph'>New and Existing Suppliers Amount 📢 📶 📈  </span>
+                    </div>
                         <canvas id="lineChart"></canvas>
                     </div>
-                    
+
                     <div className='col-lg-3 mt-2 mb-2' id="searchDiv">
                         <input  
                             className="form-control"
@@ -273,7 +280,11 @@ initializeChart(suppliers, oldSuppliers) {
                         </div>
                     </div> 
 
-                    
+                    <div id="supplierCount">
+                                    <div className='card-body'>
+                                        <h5 className='card-title' id="SupplierCardTitile" >✅ No. OF SUPPLIERS : <span id="cardText"> {this.state.supplierCount} </span></h5>        
+                            </div>
+                        </div>
 
                     <h2 id="AllSupplier">All Suppliers</h2>
                     <br></br>       

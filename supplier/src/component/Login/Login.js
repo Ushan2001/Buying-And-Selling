@@ -1,6 +1,5 @@
 import React, { useState} from "react";
 import axios from "axios";
-import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import {useHistory } from "react-router-dom";
 import Swal from 'sweetalert2';
@@ -40,20 +39,17 @@ export default function Login() {
 
         const token = res.data.token;
         localStorage.setItem("token", token);
-        confirmAlert({
+        Swal.fire({
+            icon: 'success',
             title: `Hi🫡🤝 ${data.username.split('@')[0]}`,
-            message: "Login successful!",
-            buttons: [{
-                label: "OK",
-                onClick: () => {
-                    history.push("/home");
-                    window.location.reload();
-                },
-            }, ],
+            text: 'Login successful!',
+            showConfirmButton: true,
+        }).then(() => {
+            history.push("/home");
+            window.location.reload();
         });
-
     } catch (error) {
-        console.log(error);
+        console.error(error);
         Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -61,6 +57,7 @@ export default function Login() {
         });
     }
 };
+
 
 
   const togglePasswordVisibility = () => {

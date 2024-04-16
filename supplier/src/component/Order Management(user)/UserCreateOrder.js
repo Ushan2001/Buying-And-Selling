@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import UserNavBar from '../NavBar/UserNavBar';
 import { useHistory } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 
 export default function UserCreateOrder() {
@@ -15,48 +16,94 @@ export default function UserCreateOrder() {
     const [address, setAddress] = useState("");
     const [note, setNote] = useState("");
     const [totalAmount, setTotalAmount] = useState(0);
-    const [send, setSend] = useState("No");
-    const [successMessage, setSuccessMessage] = useState("");
+    const [send, setSend] = useState("Pending");
     const history = useHistory();
+    const [token, setToken] = useState("");
 
-    function sendData(e) {
+    useEffect(() => {
+        // Function to fetch token from local storage on component mount
+        const fetchToken = () => {
+          const storedToken = localStorage.getItem("token");
+          if (storedToken) {
+            setToken(storedToken);
+          }
+        };
+        fetchToken(); // Call fetchToken function
+      }, []);
+
+      function sendEmailNotification(subject, message) {
+        axios.post("http://localhost:8070/send-email", { subject, message })
+          .then((response) => {
+            console.log("Email notification sent:", response.data);
+          })
+          .catch((error) => {
+            console.error("Error sending email notification:", error);
+          });
+      }
+
+      function sendData(e) {
         e.preventDefault();
-
+    
         // Calculate the total amount
         const calculatedTotalAmount = quantity * amount;
-
-        // Display confirmation message
-        const isConfirmed = window.confirm("Are you sure you want to confirm this order?");
-        if (!isConfirmed) {
-            return;  // If the user cancels, do nothing
-        }
-
-        const newOrder = {
-            name,
-            number,
-            oid,
-            amount,
-            quantity,
-            date,
-            address,
-            note,
-            totalAmount: calculatedTotalAmount,
-            send
-        }
-
-        axios.post("http://localhost:8070/order/save", newOrder)
-            .then(() => {
-                setSuccessMessage("Your Order Place On 3-5 Working Day. We Will Contact You!!");
-                history.push("/userproduct");
-                setTimeout(() => {
-                    window.location.reload();
-                }, 3000); // Adjust the delay as needed 
-            })
-            .catch((err) => {
-                alert(err)
-            })
+    
+        // Display Swal confirmation message
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Are you sure you want to confirm this order?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, confirm it',
+            cancelButtonText: 'No, cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const newOrder = {
+                    name,
+                    number,
+                    oid,
+                    amount,
+                    quantity,
+                    date,
+                    address,
+                    note,
+                    totalAmount: calculatedTotalAmount,
+                    send
+                }
+    
+                axios.post("http://localhost:8070/order/save", newOrder, {
+                    headers: {
+                        Authorization: `Bearer ${token}` // Attach token to request headers
+                    }
+                })
+                .then(() => {
+                    // Send email notification
+                    const emailSubject = `New Order Added Order ID: ${newOrder._id}`;
+                    const emailMessage = `A new Order has been added with name: ${newOrder.name}, Contact Number is ${newOrder.number}, Product Code is ${newOrder.oid} and Amount is ${newOrder.totalAmount}. Delivery Order!!!`;
+                    sendEmailNotification(emailSubject, emailMessage);
+          
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success!',
+                        text: 'Your order has been confirmed. Your order will be placed within 3-5 working days. We will contact you!',
+                        showConfirmButton: false,
+                        timer: 3000 // Display success message for 3 seconds
+                    }).then(() => {
+                        history.push("/userproduct");
+                        window.location.reload();
+                    });
+                })
+                .catch((err) => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error!',
+                        text: 'An error occurred while confirming the order. Please try again.'
+                    });
+                    console.error(err);
+                });
+            }
+        });
     }
-
+    
     useEffect(() => {
         // Get the current date
         var currentDate = new Date();
@@ -82,15 +129,10 @@ export default function UserCreateOrder() {
                     <h2>Order Confirm Form</h2>
                     <br></br>
 
-                    {successMessage && (
-                        <div className="alert alert-success" role="alert">
-                            {successMessage}
-                        </div>
-                    )}
 
 <div className="mb-3">
     <label for="exampleInputEmail1" className="form-label">Customer Name</label>
-    <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Customer Name" 
+    <input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Customer Name" 
     onChange={(e) =>{
 
     setName(e.target.value);
@@ -140,8 +182,8 @@ export default function UserCreateOrder() {
     />
 </div>
  
-<div className="mb-3">
-    <label htmlFor="dateInput" className="form-label">Date</label>
+<div className="mb-3" style={{marginLeft:"23%"}}>
+    <label htmlFor="dateInput" className="form-label" style={{marginLeft:"-30%"}} >Date</label>
     <input type="date" id="dateInput" name="date" max={""} value={date}
     className="form-control"
      onChange={(e) => setDate(e.target.value)}
@@ -167,9 +209,9 @@ export default function UserCreateOrder() {
     }}/>
 </div>
 
-<div className="mb-3">
-    <label htmlFor="exampleInputPassword1" className="form-label">Total Amount</label>
-    <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Total Amount" value={totalAmount} readOnly />
+<div class="count-display" style={{marginBottom:"2%", width:"70%"}}>
+    <label class="count-label" for="exampleInputPassword1" id='supplier'>Total Amount:</label>
+    <div class="count-value">LKR: {totalAmount}</div>
 </div>
 
 <div className="mb-3">

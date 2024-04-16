@@ -67,6 +67,7 @@ import EditDelivery from './component/Delivery Management/EditDelivery';
 import EditOldSupplier from './component/Supplier/EditOldSupplier';
 import OldSupplierDetail from './component/Supplier/OldSupplierDetail';
 import DeliveryDetail from './component/Delivery Management/DeliveryDetail';
+import getOrder from './component/Order Management(user)/getOrder';
 
 
 export default class App extends Component {
@@ -103,6 +104,7 @@ export default class App extends Component {
         <Route path="/editorder/:id" component={EditOrder}></Route>
         <Route path="/order/:id" component={OrderDetail}></Route>
         <Route path="/user/add/order" component={UserCreateOrder}></Route>
+        <Route path="/user/order" exact component={getOrder}></Route>
         
 
           {/* Rashmika Ranashinha (Inventory Management) */}
