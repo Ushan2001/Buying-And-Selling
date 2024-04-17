@@ -7,6 +7,19 @@ import Swal from 'sweetalert2';
 
 export default function OldSupplier() {
 
+  //verify JWT token
+  useEffect(() => {
+    // Function to fetch token from local storage on component mount
+    const fetchToken = () => {
+      const storedToken = localStorage.getItem("token");
+      if (storedToken) {
+        setToken(storedToken);
+      }
+    };
+    fetchToken(); // Call fetchToken function
+  }, []);
+
+
   function sendEmailNotification(subject, message) {
     axios.post("http://localhost:8070/send-email", { subject, message })
       .then((response) => {
@@ -27,6 +40,7 @@ export default function OldSupplier() {
   const [note, setNote] = useState("");
   const [totalAmount, setTotalAmount] = useState(0);
   const history = useHistory();
+  const [token, setToken] = useState("");
   
 
   function sendData(e) {
@@ -45,7 +59,11 @@ export default function OldSupplier() {
       totalAmount: calculatedTotalAmount, // Add this line
     };
   
-    axios.post("http://localhost:8070/old/supplier/save", newSupplier)
+    axios.post("http://localhost:8070/old/supplier/save", newSupplier, {
+      headers: {
+        Authorization: `Bearer ${token}` // Attach token to request headers
+      }
+    })
       .then(() => {
         Swal.fire({
           icon: 'success',

@@ -18,6 +18,21 @@ export default function EditOrder(props) {
     const [totalAmount, setTotalAmount] = useState(0);
     const [send, setSend] = useState("No");
     const history = useHistory();
+    const [token, setToken] = useState("");
+
+
+
+    //verify JWT Token
+    useEffect(() => {
+      // Function to fetch token from local storage on component mount
+      const fetchToken = () => {
+        const storedToken = localStorage.getItem("token");
+        if (storedToken) {
+          setToken(storedToken);
+        }
+      };
+      fetchToken(); // Call fetchToken function
+    }, []);
 
     useEffect(() => {
         const orderId = props.match.params.id;
@@ -60,7 +75,11 @@ export default function EditOrder(props) {
       send
     };
   
-    axios.put(`http://localhost:8070/order/update/${id}`, updateOrder)
+    axios.put(`http://localhost:8070/order/update/${id}`, updateOrder, {
+      headers: {
+        Authorization: `Bearer ${token}` // Attach token to request headers
+      }
+    })
       .then(() => {
         Swal.fire({
           icon: 'success',

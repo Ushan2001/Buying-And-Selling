@@ -1,6 +1,5 @@
 import React,{useState,  useEffect } from "react";
 import axios from "axios";
-import NavBar from '../NavBar/NavBar';
 import {useHistory } from "react-router-dom";
 import Header from '../Dashboard/Header/Header';
 

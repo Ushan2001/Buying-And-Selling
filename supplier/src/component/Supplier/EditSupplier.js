@@ -18,6 +18,19 @@ export default function EditSupplier(props) {
     const [note, setNote] = useState("");
     const [totalAmount, setTotalAmount] = useState(0);
     const history = useHistory();
+    const [token, setToken] = useState("");
+      
+
+    useEffect(() => {
+      // Function to fetch token from local storage on component mount
+      const fetchToken = () => {
+        const storedToken = localStorage.getItem("token");
+        if (storedToken) {
+          setToken(storedToken);
+        }
+      };
+      fetchToken(); // Call fetchToken function
+    }, []);
 
     useEffect(() => {
         const supplierId = props.match.params.id;
@@ -35,7 +48,7 @@ export default function EditSupplier(props) {
       setDate(supplier.date);
       setNote(supplier.note);
       setTotalAmount(supplier.totalAmount);
-      
+     
       
     });
   }, [props.match.params.id]);
@@ -58,7 +71,11 @@ export default function EditSupplier(props) {
       totalAmount: calculatedTotalAmount,
     };
   
-    axios.put(`http://localhost:8070/supplier/update/${id}`, updateSupplier)
+    axios.put(`http://localhost:8070/supplier/update/${id}`, updateSupplier,{
+      headers: {
+        Authorization: `Bearer ${token}` // Attach token to request headers
+      }
+    })
       .then(() => {
         Swal.fire({
           icon: 'success',

@@ -15,26 +15,40 @@ export default class SupplierList extends Component {
         this.state = {
             suppliers:[],
             oldsuppliers:[],
+            supplierCount: 0,
             currentPage: 1,
-            itemsPerPage: 5
+            itemsPerPage: 5,
+            token: ""
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
+        this.fetchToken();
         this.retriveSupplier();
         this.retriveOldSupplier();
+    }
+
+    fetchToken() {
+        const storedToken = localStorage.getItem("token");
+        if (storedToken) {
+            this.setState({ token: storedToken });
+        }
     }
 
     retriveSupplier(){
         axios.get("http://localhost:8070/supplier").then((res) =>{
             if(res.data.success){
+                const  existingSupplier =  res.data.existingSupplier;
                 this.setState({
-                    suppliers: res.data.existingSupplier
+                 suppliers:existingSupplier,
+                 supplierCount: existingSupplier.length
+    
                 }, () => {
                     this.initializeChart(this.state.suppliers);
                 });
             }
         })
+        .catch((error) => console.error(error));
     }
 
     retriveOldSupplier(){
@@ -63,7 +77,11 @@ export default class SupplierList extends Component {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:8070/old/supplier/delete/${id}`)
+                axios.delete(`http://localhost:8070/old/supplier/delete/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${this.state.token}`
+                    }
+                })
                     .then((res) => {
                         this.retriveOldSupplier();
                         Swal.fire(
@@ -97,7 +115,11 @@ export default class SupplierList extends Component {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:8070/supplier/delete/${id}`)
+                axios.delete(`http://localhost:8070/supplier/delete/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${this.state.token}`
+                    }
+                })
                     .then((res) => {
                         this.retriveSupplier();
                         Swal.fire(
@@ -128,7 +150,7 @@ export default class SupplierList extends Component {
             supplier.address.toLowerCase().includes(searchKey) 
         );
     
-        this.setState({suppliers: result});
+        this.setState({suppliers: result, supplierCount: result.length});
     }
 
     handleSearchArea = (e) =>{
@@ -146,7 +168,7 @@ export default class SupplierList extends Component {
         const result = oldsuppliers.filter((oldsupplier) =>
             oldsupplier.sid.toLowerCase().includes(searchKey) ||
             oldsupplier.product.toLowerCase().includes(searchKey) || 
-            oldsupplier.quantity.toLowerCase().includes(searchKey) 
+            oldsupplier.amount.toLowerCase().includes(searchKey) 
         );
     
         this.setState({oldsuppliers: result});
@@ -163,107 +185,52 @@ export default class SupplierList extends Component {
     }
 
 // line chart
-    initializeChart(suppliers, oldSuppliers) {
-        const ctxL = document.getElementById("lineChart");
-    
-        if (!ctxL || !suppliers || !oldSuppliers) return;
-    
-        if (this.chartInstance) {
-            this.chartInstance.destroy(); // Destroy existing chart instance
-        }
-    
-        const labels = suppliers.map(supplier => supplier.name);
-        const data = suppliers.map(supplier => supplier.amount);
-        const oldData = oldSuppliers.map(oldSupplier => oldSupplier.amount);
-    
-        this.chartInstance = new Chart(ctxL, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: "Supplier Amount",
-                    data: data,
-                    backgroundColor: 'rgba(105, 0, 132, .2)', // Red background
-    
-                    fill: true,
-                    borderColor: [
-                    'rgba(255, 99, 132, 0.8)',
-          ],
-                    borderWidth: 3,
-                    tension:0.4
-                  
-                },
-                {
-                    label: "Existing Supplier Amount",
-                    data: oldData,
-                    background: 'rgba(50, 150, 255, 1)', // Blue background
+initializeChart(suppliers, oldSuppliers) {
+    const ctxL = document.getElementById("lineChart");
 
-                    fill: true,
-                    borderColor: [
-                   'rgba(50, 150, 255, 1)',
-                  ],
-                    borderWidth: 3,
-                    tension:0.4
-                    
-                }]
-            },
-            options: {
-                responsive: true,
-                animation: {
-                    duration: 1000, 
-                    easing: 'easeInOutQuart', 
-                    
-                },
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top',
-                    }
-                },
-                elements: {
-                    line: {
-                        tension: 0 // Disable bezier curves
-                    }
-                },
-                scales: {
-                    x: {
-                        display: true,
-                        title: {
-                            display: true,
-                            text: 'X Axis = Supplier Name',
-                            color:"#053345",
-                            font:{
-                                weight:"700",
-                                size:"13px"
-                            }
-                        }
-                    },
-                    y: {
-                        display: true,
-                        title: {
-                            display: true,
-                            text: 'Y Axis = Total Amount',
-                            color:"#053345",
-                            font:{
-                                weight:"700",
-                                size:"13px"
-                            }
-                        
-                        }
-                    }
-                },
-                layout: {
-                    padding: {
-                        top: 20,
-                        right: 30,
-                        bottom: 20,
-                        left: 30
-                    }
-                },
-            }
-        });
+    if (!ctxL || !suppliers || !oldSuppliers) return;
+
+    if (this.chartInstance) {
+        this.chartInstance.destroy(); // Destroy existing chart instance
     }
 
+    const labels = suppliers.map(supplier => supplier.sid);
+    const data = suppliers.map(supplier => supplier.totalAmount);
+    const oldData = oldSuppliers.map(oldSupplier => oldSupplier.totalAmount);
+
+    this.chartInstance = new Chart(ctxL, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Supplier Amount",
+                data: data,
+                backgroundColor: 'rgba(105, 0, 132, .2)',
+                borderColor: 'rgba(200, 99, 132, .7)',
+                borderWidth: 2,
+                tension:0.4,
+                fill:true
+            },
+            {
+                label: "Existing Supplier Amount",
+                data: oldData,
+                backgroundColor: 'rgba(0, 137, 132, .2)',
+                borderColor: 'rgba(0, 10, 130, .7)',
+                borderWidth: 2,
+                tension:0.4,
+                fill:true
+            }]
+        },
+        options: {
+            responsive: true,
+            animation: {
+                duration: 1000, // Animation duration in milliseconds
+                easing: 'easeInOutQuart', // Easing function for animation
+                // You can add more animation properties as needed
+            }
+        }
+    });
+} 
     render() {
         const { suppliers, oldsuppliers, currentPage, itemsPerPage } = this.state;
         const indexOfLastSupplier = currentPage * itemsPerPage;
@@ -274,16 +241,20 @@ export default class SupplierList extends Component {
         return (
             <div>
                 <Header/>
-                <div className='container' id="supplierContainer">
+                <div className='container' id="supplierContainer" >
+
                     <div id="lineChartContainer" style={{marginBottom:"5%"}}>
+                    <div  style={{marginBottom:"2%"}}>
                     <span id='graph'>New and Existing Suppliers Amount 📢 📶 📈  </span>
+                    </div>
                         <canvas id="lineChart"></canvas>
                     </div>
-                    
-                    <div className='col-lg-3 mt-2 mb-2'>
+
+                    <div className='col-lg-3 mt-2 mb-2' id="searchDiv">
                         <input  
                             className="form-control"
                             type='search'
+                            id="searchSupplier"
                             placeholder='Search'
                             name="serchQuery"
                             style={{marginLeft:"50px", borderRadius:"20px"}}
@@ -309,7 +280,11 @@ export default class SupplierList extends Component {
                         </div>
                     </div> 
 
-                    
+                    <div id="supplierCount">
+                                    <div className='card-body'>
+                                        <h5 className='card-title' id="SupplierCardTitile" >✅ No. OF SUPPLIERS : <span id="cardText"> {this.state.supplierCount} </span></h5>        
+                            </div>
+                        </div>
 
                     <h2 id="AllSupplier">All Suppliers</h2>
                     <br></br>       
@@ -350,7 +325,7 @@ export default class SupplierList extends Component {
                 
                     <div id="Extisting">
                         <div className='row'>
-                            <div className='col'>
+                            <div className='col' id="Extisting">
                         <h2 id="AllSupplier">Existing Record</h2>
                         </div>
                         <br></br> 
@@ -359,6 +334,7 @@ export default class SupplierList extends Component {
                         <input  
                             className="form-control"
                             type='search'
+                            id="searchSupplier1"
                             placeholder='Search'
                             name="serchQuery"
                             style={{borderRadius:"20px", width:"300px"}}
@@ -374,7 +350,7 @@ export default class SupplierList extends Component {
                                     <th scope='col'><i className='fas fa-list'></i></th>
                                     <th scope='col'>Supplier Code</th>
                                     <th scope='col'>Product</th>
-                                    <th scope='col'>Quantity</th>
+                                    <th scope='col'>Amount</th>
                                     <th scope='col'>Action</th>
                                 </tr>
                             </thead>

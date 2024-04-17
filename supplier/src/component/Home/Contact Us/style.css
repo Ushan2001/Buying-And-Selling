@@ -1,0 +1,76 @@
+#contactUsContainer{
+    background-color: #F3F6FB;
+    height: 700px;
+}
+
+#contactImg{
+    width: 500px;
+    height: 420px;
+    margin-left: 106px;
+}
+
+#contactUsTitle{
+    text-align: center;
+    font-family: "Poppins";
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+    margin-top: 3%;
+}
+
+#contactUsSubTitle{
+    text-align: center;
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 18px;
+    line-height:27px;
+    color: #00000099;
+    margin-bottom: 3%;
+}
+
+#sendBtn{
+    background-color: #053345;
+    width: 600px;
+    height: 44px;
+    color: white;
+    border-radius: 10px;
+}
+
+#WhatsappBtn{
+    background-color: #25D366;
+    width: 600px;
+    height: 44px;
+    color: white;
+    border-radius: 10px;
+}
+
+#orDiv{
+    margin-left: 79%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+@media (max-width:678px){
+    #contactImg{
+        margin-left: 15%;
+        max-width: 280px;
+        max-height: 220px;
+        margin-bottom: 5%;
+    }
+
+    #sendBtn{
+        max-width: 80%;
+    }
+
+    #orDiv{
+        margin-left: 50%;
+    }
+
+    #WhatsappBtn{
+        max-width: 80%;
+    }
+
+    #contact-form{
+        margin-left: 3%;
+    }
+}

@@ -1,5 +1,8 @@
 import React from 'react'
 import "./Home.css"
+import Feedback from './feebback/feedback'
+import People from './What other people ask/index'
+import ContactUs from './Contact Us/index'
 
 
 export default function UserHome() {
@@ -18,7 +21,7 @@ export default function UserHome() {
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span className="navbar-toggler-icon"></span></button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
-                            <li className="nav-item"><a className="nav-link" href="/userproduct"><i className='fas fa-shopping-bag'></i>&nbsp;Product</a></li>
+                            <li className="nav-item"><a className="nav-link" href="/user/order"><i className='fas fa-shopping-bag'></i>&nbsp;Your Orders</a></li>
                             <li className="nav-item"><a className="nav-link" href="/add/usercustomer"><i className='fas fa-user-plus'></i>&nbsp;Registration</a></li>
                             <li className="nav-item"><a className="nav-link" href="/feedback"><i className='fas fa-comment'></i>&nbsp;Feedback</a></li>
                             <a href='/user/add/product'>
@@ -63,6 +66,9 @@ export default function UserHome() {
                         </div>
                     </div>
                 </div>
+                <People/>
+                <ContactUs/>
+                        <Feedback/>
             </header>
            
             <section className="bg-light py-5">

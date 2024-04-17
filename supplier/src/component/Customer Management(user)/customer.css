@@ -1,0 +1,19 @@
+#rashini{
+    font-weight: 700;
+    color: black;
+    font-size: 18px;
+}
+
+#register{
+    font-weight: 900;
+    color: black;
+    font-size: 30px;
+    margin-left: 30%;
+}
+
+@media (max-width:678px){
+    #register{
+        margin-left: 8%;
+    }
+}
+

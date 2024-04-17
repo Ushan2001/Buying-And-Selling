@@ -52,7 +52,7 @@ export default class SupplierDetail extends Component {
         <dd className='col-sm-9' id="details">{product}</dd>
         <br></br><br></br>
         <dt className='col-sm-3' id='supplier'>Amount</dt>
-        <dd className='col-sm-9' id="details">{amount}</dd>
+        <dd className='col-sm-9' id="details">LKR :{amount}</dd>
         <br></br><br></br>
         <dt className='col-sm-3' id='supplier'>Quantity</dt>
         <dd className='col-sm-9' id="details">{quantity}</dd>
@@ -64,7 +64,7 @@ export default class SupplierDetail extends Component {
         <dd className='col-sm-9' id="details">{note}</dd>
         <br></br><br></br>
         <dt className='col-sm-3' id='supplier'>Total Amount</dt>
-        <dd className='col-sm-9' id="details">{totalAmount}</dd>
+        <dd className='col-sm-9' id="details"> LKR :{totalAmount}</dd>
         
       </dl>
       

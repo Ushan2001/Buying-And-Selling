@@ -12,14 +12,27 @@ export default class OrderList extends Component {
 
     this.state = {
       orders: [],
-      orderCount:0
+      orderCount:0,
+      currentPage: 1,
+      itemsPerPage: 10,
+      token: ""
+
     };
   }
 
   componentDidMount() {
+    this.fetchToken();
     this.retrieveOrder();
     this.initializeChart(this.state.orders); // Initialize chart with initial order data
+    
   }
+
+  fetchToken() {
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+        this.setState({ token: storedToken });
+    }
+}
   
 
   retrieveOrder() {
@@ -51,13 +64,27 @@ export default class OrderList extends Component {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:8070/order/delete/${id}`)
+          .delete(`http://localhost:8070/order/delete/${id}`, {
+            headers: {
+              Authorization: `Bearer ${this.state.token}`
+          }
+          })
           .then((res) => {
             this.retrieveOrder();
-          })
-          .catch((err) => {
+            Swal.fire(
+                'Deleted!',
+                'The Order has been deleted.',
+                'success'
+            );
+        })
+        .catch((err) => {
             console.error(err);
-          });
+            Swal.fire(
+                'Error!',
+                'Failed to delete the Order.',
+                'error'
+            );
+        });
       }
     });
   };
@@ -102,13 +129,16 @@ export default class OrderList extends Component {
           {
             label: 'Quantity',
             data: data,
-            backgroundColor: 'rgba(255, 99, 132, 0.2)', // Red background
-
-            fill:true, 
-            borderColor: 'rgba(255, 99, 132, 1)', // Red border
+            backgroundColor: 'rgba(54, 162, 235, 0.2)', // Blue background
+            fill:true,
+            borderColor: 'rgba(54, 162, 235, 1)', // Blue border
             borderWidth: 2,
-            tension:0.4
-            
+            pointBackgroundColor: 'rgba(54, 162, 235, 1)', // Blue points
+            pointBorderColor: '#fff', // White points border
+            pointBorderWidth: 2,
+            pointRadius: 5,
+            pointHoverRadius: 7,
+            tension: 0.4
           },
         ],
       },
@@ -118,6 +148,10 @@ export default class OrderList extends Component {
           legend: {
             display: false,
           },
+          tooltip: {
+            mode: 'index',
+            intersect: false,
+          },
         },
         scales: {
           x: {
@@ -125,23 +159,58 @@ export default class OrderList extends Component {
             title: {
               display: true,
               text: 'Product Code',
-              color:"red" 
+              color: "#333",
+              font: {
+                weight:1000,
+              }
             },
+            grid: {
+              color: "rgba(0, 0, 0, 0.1)"
+            },
+            ticks: {
+              color: "#333"
+            }
           },
           y: {
             display: true,
             title: {
               display: true,
               text: 'Quantity',
-              color:"red"
+              color: "#333",
+              font: {
+                weight:1000,
+              }
             },
+            grid: {
+              color: "rgba(0, 0, 0, 0.1)"
+            },
+            ticks: {
+              color: "#333"
+            }
           },
         },
+        animation: {
+          duration: 1000,
+          easing: 'easeInOutQuart',
+        }
       },
     });
   }
 
+  handlePageChange = (pageNumber) => {
+    this.setState({
+      currentPage: pageNumber
+    });
+  };
+
   render() {
+
+    const { orders, currentPage, itemsPerPage } = this.state;
+
+    // Pagination logic
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = orders.slice(indexOfFirstItem, indexOfLastItem);
     return (
       <div>
         <Header />
@@ -156,6 +225,7 @@ export default class OrderList extends Component {
             <input
               className='form-control'
               type='search'
+              id="orderSearch"
               placeholder='Search'
               name='serchQuery'
               style={{ marginLeft: '20px', borderRadius: '20px' }}
@@ -190,7 +260,8 @@ export default class OrderList extends Component {
             </thead>
 
             <tbody>
-              {this.state.orders.map((order, index) => (
+            {currentItems.map((order, index) => (
+             
                 <tr key={index}>
                   <th scope='row'>{index + 1}</th>
                   <td id='order'>{order.name}</td>
@@ -212,8 +283,25 @@ export default class OrderList extends Component {
                   </td>
                 </tr>
               ))}
+          
             </tbody>
           </table>
+         {/* Pagination */}
+          <nav aria-label="Page navigation example">
+            <ul className="pagination">
+              <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                <button className="page-link" onClick={() => this.handlePageChange(currentPage - 1)}><i class="bi bi-skip-backward"></i></button>
+              </li>
+              {Array.from({length: Math.ceil(orders.length / itemsPerPage)}, (_, i) => (
+                <li key={i} className={`page-item ${currentPage === i + 1 ? 'active' : ''}`}>
+                  <button className="page-link" onClick={() => this.handlePageChange(i + 1)}>{i + 1}</button>
+                </li>
+              ))}
+              <li className={`page-item ${currentPage === Math.ceil(orders.length / itemsPerPage) ? 'disabled' : ''}`}>
+                <button className="page-link" onClick={() => this.handlePageChange(currentPage + 1)}><i class="bi bi-skip-forward"></i></button>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     );

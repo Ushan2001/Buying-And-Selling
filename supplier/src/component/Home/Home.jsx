@@ -1,5 +1,8 @@
 import React from 'react'
 import "./Home.css"
+import Feedback from './feebback/feedback'
+import People from './What other people ask/index'
+import ContactUs from './Contact Us/index'
 
 
 export default function Home() {
@@ -59,8 +62,12 @@ export default function Home() {
                                 </div>
                             </div>
                         </div>
+                        <People/>
+                        <ContactUs/>
+                        <Feedback/>
                    
             </header>
+
            
             <section className="bg-light py-5">
                 <div className="container px-5">

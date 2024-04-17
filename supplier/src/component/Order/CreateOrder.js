@@ -6,7 +6,7 @@ import "./order.css"
 import Swal from 'sweetalert2';
 
 export default function CreateOrder() {
-
+    
     const [name, setName] = useState("");
     const [number, setNumber] = useState("");
     const [oid, setOid] = useState("PID");
@@ -16,8 +16,20 @@ export default function CreateOrder() {
     const [address, setAddress] = useState("");
     const [note, setNote] = useState("");
     const [totalAmount, setTotalAmount] = useState(0);
-    const [send, setSend] = useState("No");
+    const [send, setSend] = useState("Pending");
     const history = useHistory();
+    const [token, setToken] = useState("");
+
+    useEffect(() => {
+      // Function to fetch token from local storage on component mount
+      const fetchToken = () => {
+        const storedToken = localStorage.getItem("token");
+        if (storedToken) {
+          setToken(storedToken);
+        }
+      };
+      fetchToken(); // Call fetchToken function
+    }, []);
     
 
     function sendEmailNotification(subject, message) {
@@ -49,7 +61,11 @@ export default function CreateOrder() {
           send
         };
       
-        axios.post("http://localhost:8070/order/save", newOrder)
+        axios.post("http://localhost:8070/order/save", newOrder, {
+          headers: {
+            Authorization: `Bearer ${token}` // Attach token to request headers
+          }
+        })
           .then(() => {
             Swal.fire({
               icon: 'success',
@@ -60,7 +76,7 @@ export default function CreateOrder() {
             }).then((result) => {
               if (result.isConfirmed) {
                 // Send email notification
-                const emailSubject = 'New Order Added';
+                const emailSubject = `New Order Added Order ID: ${newOrder._id}`;
                 const emailMessage = `A new Order has been added with name: ${newOrder.name}, Contact Number is ${newOrder.number}, Product Code is ${newOrder.oid} and Amount is ${newOrder.totalAmount}. Delivery Order!!!`;
                 sendEmailNotification(emailSubject, emailMessage);
       

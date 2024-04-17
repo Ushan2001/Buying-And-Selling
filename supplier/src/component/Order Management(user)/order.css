@@ -1,0 +1,52 @@
+#orderCard{
+    width: 20rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    border: none;
+}
+
+#orderBody{
+    background-color: rgba(255, 255, 255, 0);
+    padding: 16px;
+}
+
+#orderTitle{
+    color: #343a40;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+#orderText1{
+    color: #000;
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+#orderText2{
+    color: #28a745;
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+    font-weight: bold;
+}
+
+#getOrderRow{
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+#orderSearch{
+    width: 350px;
+}
+
+#searchCol{
+    margin-top: -1.5%;
+}
+
+#status{
+    color: tomato;
+    font-weight: 400;
+    font-size: 18px;
+}

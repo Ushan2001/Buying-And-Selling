@@ -12,7 +12,7 @@ export default function UserNavBar() {
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="/userproduct">Product</a>
+          <a className="nav-link active" aria-current="page" href="/user/order">Your Orders</a>
         </li> 
 
         <li className="nav-item">

@@ -17,6 +17,19 @@ export default function CreateSupplier() {
   const [totalAmount, setTotalAmount] = useState(0);
   const history = useHistory();
   const [error, setError] = useState("");
+  const [token, setToken] = useState("");
+
+  useEffect(() => {
+    // Function to fetch token from local storage on component mount
+    const fetchToken = () => {
+      const storedToken = localStorage.getItem("token");
+      if (storedToken) {
+        setToken(storedToken);
+      }
+    };
+    fetchToken(); // Call fetchToken function
+  }, []);
+  
 
   function sendEmailNotification(subject, message) {
     axios.post("http://localhost:8070/send-email", { subject, message })
@@ -46,7 +59,11 @@ export default function CreateSupplier() {
       totalAmount: calculatedTotalAmount,
     };
   
-    axios.post("http://localhost:8070/supplier/save", newSupplier)
+    axios.post("http://localhost:8070/supplier/save", newSupplier, {
+      headers: {
+        Authorization: `Bearer ${token}` // Attach token to request headers
+      }
+    })
       .then(() => {
         Swal.fire({
           icon: 'success',
