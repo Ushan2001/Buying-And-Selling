@@ -1,7 +1,7 @@
 .animated-card {
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    border: 1;
-    border-color: #053345;
+    border: 0.5px solid #b7b9b9;
+    
   }
   
   .animated-card:hover {

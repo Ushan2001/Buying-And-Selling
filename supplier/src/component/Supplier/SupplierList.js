@@ -199,7 +199,7 @@ initializeChart(suppliers, oldSuppliers) {
     const oldData = oldSuppliers.map(oldSupplier => oldSupplier.totalAmount);
 
     this.chartInstance = new Chart(ctxL, {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: labels,
             datasets: [{
