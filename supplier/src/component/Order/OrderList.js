@@ -12,9 +12,11 @@ export default class OrderList extends Component {
 
     this.state = {
       orders: [],
+      orderCount:0,
       currentPage: 1,
       itemsPerPage: 10,
       token: ""
+
     };
   }
 
@@ -36,8 +38,10 @@ export default class OrderList extends Component {
   retrieveOrder() {
     axios.get('http://localhost:8070/orders').then((res) => {
       if (res.data.success) {
+        const existingOrder = res.data.existingOrder;
         this.setState({
-          orders: res.data.existingOrder,
+          orders:existingOrder,
+          orderCount:existingOrder.length
         }, () => {
           // Call initializeChart after setting state
           this.initializeChart(this.state.orders);
@@ -92,7 +96,7 @@ export default class OrderList extends Component {
         order.oid.toLowerCase().includes(searchKey) 
     );
 
-    this.setState({orders: result});
+    this.setState({orders: result,orderCount:result.length});
 }
 
   handleSearchArea = (e) => {
@@ -234,8 +238,13 @@ export default class OrderList extends Component {
               <i className='fas fa-plus'></i>&nbsp;Add New
             </a>
           </button>
+          <div id="supplierCount">
+                                    <div className='card-body'>
+                                        <h5 className='card-title' id="SupplierCardTitile" >✅ No. OF ORDERS : <span id="cardText"> {this.state.orderCount} </span></h5>        
+                            </div>
+                        </div>
 
-          <h2 id='btnAllOrder'>Customer Orders</h2>
+          <h2 id='btnAllOrder'>New Customer Orders</h2>
           <br></br>
           <table className='table table-hover'>
             <thead>
