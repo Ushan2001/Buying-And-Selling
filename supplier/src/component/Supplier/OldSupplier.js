@@ -126,7 +126,7 @@ export default function OldSupplier() {
           onSubmit={sendData}
           style={{ position: "relative", width: "65%" }}
         >
-          <h2 id="AllSupplier">Add New Supplier</h2>
+          <h2 id="AllSupplier">Add Old Supplier</h2>
           <br></br>
           
           <div className="mb-3">
@@ -253,6 +253,8 @@ export default function OldSupplier() {
               className="form-control"
               id="exampleInputPassword1"
               placeholder="Enter Additional Note"
+              pattern="[A-Za-z\s]+" 
+              title="Please enter only letters and spaces"
               onChange={(e) => {
                 setNote(e.target.value);
               }}

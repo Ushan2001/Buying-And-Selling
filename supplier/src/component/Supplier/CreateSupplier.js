@@ -142,6 +142,7 @@ export default function CreateSupplier() {
           <div className="mb-3">
             <label htmlFor="exampleInputPassword1" className="form-label" id='supplier'>Supplier Name</label>
             <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Supplier Name"
+            pattern="[A-Za-z\s]+" title="Please enter only letters and spaces"
               onChange={(e) => {
                 setName(e.target.value);
               }} />
@@ -202,6 +203,7 @@ export default function CreateSupplier() {
           <div className="mb-3">
             <label htmlFor="exampleInputPassword1" className="form-label" id='supplier'>Additional Note</label>
             <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Additional Note"
+            pattern="[A-Za-z\s]+" title="Please enter only letters and spaces"
               onChange={(e) => {
                 setNote(e.target.value);
               }} />

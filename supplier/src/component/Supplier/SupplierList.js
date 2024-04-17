@@ -184,53 +184,83 @@ export default class SupplierList extends Component {
         });
     }
 
-// line chart
-initializeChart(suppliers, oldSuppliers) {
-    const ctxL = document.getElementById("lineChart");
-
-    if (!ctxL || !suppliers || !oldSuppliers) return;
-
-    if (this.chartInstance) {
-        this.chartInstance.destroy(); // Destroy existing chart instance
-    }
-
-    const labels = suppliers.map(supplier => supplier.sid);
-    const data = suppliers.map(supplier => supplier.totalAmount);
-    const oldData = oldSuppliers.map(oldSupplier => oldSupplier.totalAmount);
-
-    this.chartInstance = new Chart(ctxL, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: "Supplier Amount",
-                data: data,
-                backgroundColor: 'rgba(105, 0, 132, .2)',
-                borderColor: 'rgba(200, 99, 132, .7)',
-                borderWidth: 2,
-                tension:0.4,
-                fill:true
-            },
-            {
-                label: "Existing Supplier Amount",
-                data: oldData,
-                backgroundColor: 'rgba(0, 137, 132, .2)',
-                borderColor: 'rgba(0, 10, 130, .7)',
-                borderWidth: 2,
-                tension:0.4,
-                fill:true
-            }]
-        },
-        options: {
-            responsive: true,
-            animation: {
-                duration: 1000, // Animation duration in milliseconds
-                easing: 'easeInOutQuart', // Easing function for animation
-                // You can add more animation properties as needed
-            }
+    initializeChart(suppliers, oldSuppliers) {
+        const ctxL = document.getElementById("lineChart");
+    
+        if (!ctxL || !suppliers || !oldSuppliers) return;
+    
+        if (this.chartInstance) {
+            this.chartInstance.destroy(); // Destroy existing chart instance
         }
-    });
-} 
+    
+        // Combine current and old suppliers for easier processing
+        const allSuppliers = [...suppliers, ...oldSuppliers];
+    
+        // Extract unique SIDs
+        const uniqueSIDs = Array.from(new Set(allSuppliers.map(supplier => supplier.sid)));
+    
+        // Define an array of colors
+        const colors = [
+            'rgba(105, 0, 132, .2)',
+            'rgba(0, 137, 132, .2)',
+            'rgba(200, 99, 132, .7)',
+            'rgba(0, 10, 130, .7)',
+            'rgba(145, 30, 180, .7)',
+            'rgba(255, 255, 0, .7)',
+            'rgba(255, 0, 0, .7)',
+            'rgba(0, 255, 0, .7)',
+            'rgba(0, 0, 255, .7)',
+            'rgba(255, 128, 0, .7)',
+            'rgba(255, 0, 255, .7)',
+            'rgba(128, 128, 128, .7)',
+            'rgba(128, 0, 128, .7)',
+            'rgba(0, 128, 128, .7)',
+            'rgba(128, 0, 0, .7)',
+            'rgba(0, 128, 0, .7)',
+            'rgba(0, 0, 128, .7)',
+            'rgba(255, 255, 255, .7)',
+            'rgba(192, 192, 192, .7)',
+            'rgba(128, 128, 0, .7)',
+            'rgba(128, 0, 0, .7)',
+            'rgba(0, 0, 128, .7)',
+            // Add more colors as needed
+        ];
+        
+        // Prepare data for each SID
+        const datasets = uniqueSIDs.map((sid, index) => {
+            const currentSupplier = suppliers.find(supplier => supplier.sid === sid);
+            const existingSupplier = oldSuppliers.find(supplier => supplier.sid === sid);
+            const data = [currentSupplier ? currentSupplier.totalAmount : 0, existingSupplier ? existingSupplier.totalAmount : 0];
+            const colorIndex = index % colors.length; // Get color index within the range of colors array
+            return {
+                label: `SID: ${sid}`,
+                data: data,
+                backgroundColor: colors[colorIndex],
+                borderColor: colors[colorIndex],
+                borderWidth: 2,
+                tension: 0.4,
+                fill: true
+            };
+        });
+    
+        this.chartInstance = new Chart(ctxL, {
+            type: 'bar',
+            data: {
+                labels: ['Current Supplier', 'Existing Supplier'],
+                datasets: datasets
+            },
+            options: {
+                responsive: true,
+                animation: {
+                    duration: 1000, // Animation duration in milliseconds
+                    easing: 'easeInOutQuart', // Easing function for animation
+                    // You can add more animation properties as needed
+                }
+            }
+        });
+    }
+    
+    
     render() {
         const { suppliers, oldsuppliers, currentPage, itemsPerPage } = this.state;
         const indexOfLastSupplier = currentPage * itemsPerPage;

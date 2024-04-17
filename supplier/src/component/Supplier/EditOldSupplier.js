@@ -197,6 +197,7 @@ export default function EditOldSupplier(props) {
               className="form-control"
               id="exampleInputPassword1"
               placeholder="Enter Additional Note"
+              pattern="[A-Za-z\s]+" title="Please enter only letters and spaces"
               value={note}
               onChange={(e) => setNote(e.target.value)}
             />
