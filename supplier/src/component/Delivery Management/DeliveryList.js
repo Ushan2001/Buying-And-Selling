@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from "axios";
-import Header from '../Dashboard/Header/Header';
 import PdfButton from './PdfButton';
+import Header from '../Dashboard/Header/Header';
 import Swal from 'sweetalert2';
 
 export default class DeliveryList extends Component {
@@ -46,19 +46,7 @@ export default class DeliveryList extends Component {
         });
     }
 
-    // onDelete = (id) =>{
-    //     const isConfirmed = window.confirm('Are you sure you want to delete this delivery details?');
-
-    //     if (isConfirmed) {
-    //         axios.delete(`http://localhost:8070/delivery/delete/${id}`)
-    //             .then((res) => {
-    //                 this.retriveDelivery();
-    //             })
-    //             .catch((err) => {
-    //                 console.error(err);
-    //             });
-    //     }
-    // }
+  
 
     onDelete = (id) => {
         Swal.fire({
@@ -118,19 +106,9 @@ export default class DeliveryList extends Component {
              })
      }
 
-//   handlePageChange = (pageNumber) => {
-//     this.setState({
-//       currentPage: pageNumber
-//     });
-//   };
+
 
   render() {
-    // const { orders, currentPage, itemsPerPage } = this.state;
-
-    // Pagination logic
-    // const indexOfLastItem = currentPage * itemsPerPage;
-    // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    // const currentItems = orders.slice(indexOfFirstItem, indexOfLastItem);
     return (
       <div>
         <Header/>
@@ -192,30 +170,12 @@ export default class DeliveryList extends Component {
                             <i className='fas fa-trash-alt' id="DeleteIcon"></i>&nbsp;
                         </a>
                         &nbsp;<PdfButton delivery={deliverys} />
-                           
                     </td>
                 </tr>
             ))}
     
         </tbody>
          </table>
- {/* Pagination */}
- {/* <nav aria-label="Page navigation example">
-            <ul className="pagination">
-              <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
-                <button className="page-link" onClick={() => this.handlePageChange(currentPage - 1)}><i class="bi bi-skip-backward"></i></button>
-              </li>
-              {Array.from({length: Math.ceil(deliverys.length / itemsPerPage)}, (_, i) => (
-                <li key={i} className={`page-item ${currentPage === i + 1 ? 'active' : ''}`}>
-                  <button className="page-link" onClick={() => this.handlePageChange(i + 1)}>{i + 1}</button>
-                </li>
-              ))}
-              <li className={`page-item ${currentPage === Math.ceil(deliverys.length / itemsPerPage) ? 'disabled' : ''}`}>
-                <button className="page-link" onClick={() => this.handlePageChange(currentPage + 1)}><i class="bi bi-skip-forward"></i></button>
-              </li>
-            </ul>
-          </nav> */}
-        
         
       </div>
       </div>

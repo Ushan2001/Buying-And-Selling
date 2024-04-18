@@ -149,7 +149,8 @@ export default class App extends Component {
         <Route path="/add/delivery" component={CreateDelivery}></Route>
         <Route path="/editdelivery/:id" component={EditDelivery}></Route> 
         <Route path="/delivery/:id" component={DeliveryDetail}></Route>
-       
+
+
     </BrowserRouter>
   
       </div>
