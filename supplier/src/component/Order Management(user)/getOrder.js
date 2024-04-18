@@ -33,7 +33,7 @@ export default class getOrder extends Component {
       filterData(orders, searchKey){
         const result = orders.filter((order) =>
             order.name.toLowerCase().includes(searchKey) ||
-            order.number.toLowerCase().includes(searchKey) || 
+            
             order.send.toLowerCase().includes(searchKey) 
         );
     
