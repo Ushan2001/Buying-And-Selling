@@ -186,7 +186,7 @@ export default class CustomerList extends Component {
                                             <i className='fas fa-edit' id="editIcon"></i>
                                         </a>
                                         &nbsp;
-                                        <a className='btn' id="DeleteIcon" href='# ' onClick={() => this.onDelete(customer._id)}>
+                                        <a className='btn' id="editDelete" href='# ' onClick={() => this.onDelete(customer._id)}>
                                             <i className='fas fa-trash-alt' id="DeleteIcon"></i>
                                         </a>
                                         &nbsp;<PdfButton customer={customer} />
