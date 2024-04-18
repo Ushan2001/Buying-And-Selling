@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from "axios";
 import NavBar from '../NavBar/NavBar';
 import PdfButton from './PdfButton';
-
+import Header from "../Dashboard/Header/Header";
 
 export default class PaymentList extends Component {
 
@@ -71,20 +71,20 @@ export default class PaymentList extends Component {
   render() {
     return (
       <div>
-        <NavBar/>
-        <div className='container' style={{ marginTop:"40px"}}>
+        <Header />
+        <div className='container' id="paymentContainer">
          <div className='col-lg-3 mt-2 mb-2'>
             <input  className="form-control"
             type='search'
             placeholder='Search'
             name="serchQuery"
-            style={{marginLeft:"1000px"}}
+            style={{borderRadius:"20px", width:"300px", marginBottom:"30px"}}
             onChange={this.handleSearchArea}/>
     
          </div>
         
 
-        <h2>All Payments</h2>
+        <h2 id="AllPayment">All Payments</h2>
         <br></br>
          <table className='table table-hover'>
             <thead>

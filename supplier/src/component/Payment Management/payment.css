@@ -1,0 +1,39 @@
+#payment{
+    color: #053345;
+    font-family: Inter;
+    font-weight: 600;
+
+}
+
+#createPayment{
+    margin-top: 8%;
+    margin-left: 33%;
+    position: fixed;
+    overflow-y: scroll; 
+    max-height: 80%;
+    
+}
+
+#dateInput{
+    border-radius: 20px; 
+    margin-left: 0px;
+}
+
+#exampleInputPassword1{
+    border-radius: 20px;
+}
+
+#AllPayment{
+    color: #01161f;
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 25px;
+}
+
+#paymentContainer{
+    margin-top: 8%;
+    margin-left: 23%;
+    position: fixed;
+    overflow-y: scroll; 
+    max-height: 80%;
+}

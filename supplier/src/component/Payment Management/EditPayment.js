@@ -2,6 +2,7 @@ import React, { useState,  useEffect} from "react";
 import axios from "axios";
 import {useHistory } from "react-router-dom"
 import NavBar from '../NavBar/NavBar';
+import Header from "../Dashboard/Header/Header";
 
 export default function EditPayment(props) {
 
@@ -75,8 +76,8 @@ export default function EditPayment(props) {
     
   return (
     <div>
-       <NavBar/>
-      <div className="container" style={{ marginTop:"55px"}}>
+       <Header/>
+      <div className="container" id="createPayment">
     <form onSubmit={sendData}>
       <h2>Edit Payment Records</h2>
       <br></br>
@@ -133,9 +134,9 @@ setAmount(e.target.value);
 }}/>
 </div>
 
-<div className="mb-3">
+<div className="mb-3" style={{ position: "relative", width: "70%"}}>
 <label for="exampleInputPassword1" className="form-label">Payment Method</label>
-<select className="form-select" aria-label="Default select example"
+<select style={{borderRadius:"20px" }} className="form-select" aria-label="Default select example"
 value={method} 
   onChange={(e) =>{
 
