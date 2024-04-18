@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@creative-tim-official/argon-dashboard-free": "^1.2.0",
+    "@creative-tim-official/argon-dashboard-free": "^1.1.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "axios": "^0.21.4",
+    "axios": "^1.6.8",
     "bootstrap-icons": "^1.11.3",
     "chart.js": "^3.7.0",
     "jwt-decode": "^4.0.0",
@@ -17,8 +17,8 @@
     "react-confirm-alert": "^3.0.6",
     "react-dom": "^18.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "5.0.1",
-    "sweetalert2": "^11.10.7",
+    "react-scripts": "^5.0.1",
+    "sweetalert2": "^11.6.13",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

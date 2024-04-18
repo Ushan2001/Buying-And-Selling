@@ -1,6 +1,6 @@
 import React,{useState } from "react";
 import axios from "axios";
-import NavBar from '../NavBar/NavBar';
+import Header from '../Dashboard/Header/Header';
 import {useHistory } from "react-router-dom";
 
 export default function CreateCustomer() {
@@ -40,9 +40,9 @@ export default function CreateCustomer() {
       }
   return (
     <div>
-      <NavBar/>
+      <Header/>
 
-<div className="container" style={{ marginTop:"55px"}}>
+<div className="container" id="createSupplier">
     <form onSubmit={sendData}>
       <h2>Create New Customer Records</h2>
       <br></br>

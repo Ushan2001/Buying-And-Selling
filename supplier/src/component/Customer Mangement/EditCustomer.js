@@ -1,7 +1,7 @@
 import React, { useState,  useEffect} from "react";
 import axios from "axios";
 import {useHistory } from "react-router-dom"
-import NavBar from '../NavBar/NavBar';
+import Header from '../Dashboard/Header/Header';
 
 export default function EditCustomer(props) {
 
@@ -60,8 +60,8 @@ export default function EditCustomer(props) {
 
   return (
     <div>
-       <NavBar/>
-<div className="container" style={{ marginTop:"63px"}}>
+       <Header/>
+<div className="container" id="editContainer">
       <form onSubmit={sendData}>
         <h2>Edit Customer Record</h2>
         <br></br>
@@ -70,7 +70,7 @@ export default function EditCustomer(props) {
           <input
             type="text"
             className="form-control"
-            id="exampleInputEmail1"
+            id="exampleInputPassword1"
             aria-describedby="emailHelp"
             placeholder="Enter Customer Name"
             value={name}
@@ -106,6 +106,7 @@ export default function EditCustomer(props) {
         <div className="mb-3">
           <label htmlFor="exampleInputPassword1" className="form-label">Gender</label>
           <select className="form-select" aria-label="Default select example" 
+             id="exampleInputPassword1"
              value={gender}
              onChange={(e) => setGender(e.target.value)} >
         <option selected>Open this select menu</option>
@@ -131,6 +132,7 @@ export default function EditCustomer(props) {
         <div className="mb-3">
 <label for="exampleInputPassword1" className="form-label">Customer Type</label>
 <select className="form-select" aria-label="Default select example"
+id="exampleInputPassword1"
 value={ctype} 
   onChange={(e) =>{
 

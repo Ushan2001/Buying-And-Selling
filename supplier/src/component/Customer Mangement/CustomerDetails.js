@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import NavBar from '../NavBar/NavBar';
+import Header from '../Dashboard/Header/Header';
 
 export default class CustomerDetails extends Component {
 
@@ -34,8 +34,8 @@ export default class CustomerDetails extends Component {
     return (
       <div>
         <div>
-        <NavBar/>
-        <div style={{marginTop:"40px"}} className='container'>
+        <Header />
+        <div id="detailsContiner" className='container'>
           <h4>{name}</h4>
           <hr/>
       <dl className='row'>
