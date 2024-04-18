@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import NavBar from '../NavBar/NavBar';
 import { useHistory } from "react-router-dom";
 import Header from "../Dashboard/Header/Header";
 import "./payment.css"
@@ -129,6 +128,7 @@ export default function CreatePayment() {
           <div className="mb-3">
             <label htmlFor="dateInput" className="form-label" id="payment">Date</label>
             <input type="date" id="dateInput" name="date" max={""} value={date}
+            style={{marginLeft:"0%"}}
               className="form-control"
               onChange={(e) => setDate(e.target.value)}
               required />
