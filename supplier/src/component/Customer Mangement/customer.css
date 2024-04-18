@@ -91,4 +91,12 @@
     100% { opacity: 1; transform: translateY(0); }
 }
 
+#customerCol{
+  margin-left: 5%;
+}
+
+#customerCol1{
+  margin-left: 7%;
+}
+
   
