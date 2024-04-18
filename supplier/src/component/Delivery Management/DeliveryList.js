@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from "axios";
 import Header from '../Dashboard/Header/Header';
+import PdfButton from './PdfButton';
+import Swal from 'sweetalert2';
 
 export default class DeliveryList extends Component {
 
@@ -8,38 +10,86 @@ export default class DeliveryList extends Component {
         super(props)
 
         this.state = {
-            deliverys:[]
+            deliverys:[],
+            deliveryCount:0,
+            currentPage: 1,
+            itemsPerPage: 10,
+            token: ""
+      
         }
     } 
 
     componentDidMount(){
-        this.retriveDelivery()
+        this.fetchToken();
+        this.retriveDelivery();
     }
 
+    fetchToken() {
+        const storedToken = localStorage.getItem("token");
+        if (storedToken) {
+            this.setState({ token: storedToken });
+        }
+    }
     retriveDelivery(){
         axios.get("http://localhost:8070/deliverys").then((res) =>{
             if(res.data.success){
+                const existingDelivery = res.data.existingDelivery;
+
                 this.setState({
-                    deliverys:res.data.existingDelivery
+                    deliverys:existingDelivery,
+                    deliveryCount:existingDelivery.length
+
                 })
 
                 console.log(this.state.deliverys)
             }
-        })
+        });
     }
 
-    onDelete = (id) =>{
-        const isConfirmed = window.confirm('Are you sure you want to delete this delivery details?');
+    // onDelete = (id) =>{
+    //     const isConfirmed = window.confirm('Are you sure you want to delete this delivery details?');
 
-        if (isConfirmed) {
-            axios.delete(`http://localhost:8070/delivery/delete/${id}`)
+    //     if (isConfirmed) {
+    //         axios.delete(`http://localhost:8070/delivery/delete/${id}`)
+    //             .then((res) => {
+    //                 this.retriveDelivery();
+    //             })
+    //             .catch((err) => {
+    //                 console.error(err);
+    //             });
+    //     }
+    // }
+
+    onDelete = (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You want to delete this delivery details?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:8070/delivery/delete/${id}`)
                 .then((res) => {
                     this.retriveDelivery();
+                    Swal.fire(
+                        'Deleted!',
+                        'The delivery details has been deleted.',
+                        'success'
+                    );
                 })
                 .catch((err) => {
                     console.error(err);
+                    Swal.fire(
+                        'Error!',
+                        'Failed to delete the delivery details.',
+                        'error'
+                    );
                 });
-        }
+            }
+        });
     }
 
     filterData(deliverys, searchKey){
@@ -51,7 +101,7 @@ export default class DeliveryList extends Component {
     
         )
       
-        this.setState({deliverys:result})
+        this.setState({deliverys:result,deliveryCount:result.length})
       
       }
 
@@ -68,7 +118,19 @@ export default class DeliveryList extends Component {
              })
      }
 
+//   handlePageChange = (pageNumber) => {
+//     this.setState({
+//       currentPage: pageNumber
+//     });
+//   };
+
   render() {
+    // const { orders, currentPage, itemsPerPage } = this.state;
+
+    // Pagination logic
+    // const indexOfLastItem = currentPage * itemsPerPage;
+    // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    // const currentItems = orders.slice(indexOfFirstItem, indexOfLastItem);
     return (
       <div>
         <Header/>
@@ -92,7 +154,11 @@ export default class DeliveryList extends Component {
                         </button>
                         </div>
         </div> 
-
+        <div id="supplierCount">
+                <div className='card-body'>
+                    <h5 className='card-title' id="SupplierCardTitile" >✅ No. OF DELIVERIES : <span id="cardText"> {this.state.deliveryCount} </span></h5>        
+                </div>
+        </div>
         <h2 id="AllSupplier">All Delivery Details</h2>
         <br></br>
          <table className='table table-hover'>
@@ -125,7 +191,7 @@ export default class DeliveryList extends Component {
                         <a className='btn ' id="editDelete" href='# ' onClick={() => this.onDelete(deliverys._id)}>
                             <i className='fas fa-trash-alt' id="DeleteIcon"></i>&nbsp;
                         </a>
-                       
+                        &nbsp;<PdfButton delivery={deliverys} />
                            
                     </td>
                 </tr>
@@ -133,11 +199,26 @@ export default class DeliveryList extends Component {
     
         </tbody>
          </table>
-
+ {/* Pagination */}
+ {/* <nav aria-label="Page navigation example">
+            <ul className="pagination">
+              <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                <button className="page-link" onClick={() => this.handlePageChange(currentPage - 1)}><i class="bi bi-skip-backward"></i></button>
+              </li>
+              {Array.from({length: Math.ceil(deliverys.length / itemsPerPage)}, (_, i) => (
+                <li key={i} className={`page-item ${currentPage === i + 1 ? 'active' : ''}`}>
+                  <button className="page-link" onClick={() => this.handlePageChange(i + 1)}>{i + 1}</button>
+                </li>
+              ))}
+              <li className={`page-item ${currentPage === Math.ceil(deliverys.length / itemsPerPage) ? 'disabled' : ''}`}>
+                <button className="page-link" onClick={() => this.handlePageChange(currentPage + 1)}><i class="bi bi-skip-forward"></i></button>
+              </li>
+            </ul>
+          </nav> */}
         
         
       </div>
       </div>
-    )
+    );
   }
 }
