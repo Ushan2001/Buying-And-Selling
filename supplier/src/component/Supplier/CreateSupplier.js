@@ -148,6 +148,8 @@ export default function CreateSupplier() {
               }} />
           </div>
 
+          
+
           <div className="mb-3">
             <label htmlFor="exampleInputPassword1" className="form-label" id='supplier'>Address</label>
             <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Supplier Address"
