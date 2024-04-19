@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import axios from "axios";
-import NavBar from '../NavBar/NavBar';
+import Header from "../Dashboard/Header/Header"
 import PdfButton from './PdfButton';
-
+import "./product.css";
 
 export default class productList extends Component {
 
@@ -73,14 +73,14 @@ export default class productList extends Component {
   render() {
     return (
       <div>
-        <NavBar/>
-        <div className='container' style={{ marginTop:"40px"}}>
+       <Header/>
+        <div className='container' id="productContainer">
          <div className='col-lg-3 mt-2 mb-2'>
             <input  className="form-control"
             type='search'
             placeholder='Search'
             name="serchQuery"
-            style={{marginLeft:"1000px"}}
+            style={{marginLeft:"0px", borderRadius:"20px"}}
             onChange={this.handleSearchArea}/>
          </div>
         
@@ -110,12 +110,12 @@ export default class productList extends Component {
                     <td>{products.name}</td>
                     <td>{products.price}</td>
                     <td>
-                        <a className='btn btn-warning' href={`/editproduct/${products._id}`}>
-                            <i className='fas fa-edit'></i>&nbsp;Edit
+                        <a className='btn' id="editBtn" href={`/editproduct/${products._id}`}>
+                            <i className='fas fa-edit' id="editIcon"></i>&nbsp;
                         </a>
                         &nbsp;
-                        <a className='btn btn-danger' href='# ' onClick={() => this.onDelete(products._id)}>
-                            <i className='fas fa-trash-alt'></i>&nbsp;Delete
+                        <a className='btn' href='# ' id="editDelete"  onClick={() => this.onDelete(products._id)}>
+                            <i className='fas fa-trash-alt' id="DeleteIcon"></i>&nbsp;
                         </a>
                         &nbsp;<PdfButton product={products} />
                     </td>

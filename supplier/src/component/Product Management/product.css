@@ -1,0 +1,18 @@
+#productContainer{
+    margin-top: 8%;
+    margin-left: 23%;
+    position: fixed;
+    overflow-y: scroll; 
+    max-height: 80%;
+}
+
+#product{
+    color: #053345;
+    font-family: Inter;
+    font-weight: 600;
+
+}
+
+#exampleInputPassword1{
+    border-radius: 20px;
+}

@@ -136,12 +136,12 @@ export default function UserCreateOrder() {
       }, []);
     
     return (
-        <div>
+        <div id="orderUserContainer">
             <UserNavBar />
 
-            <div className="container" style={{ marginTop: "55px" }}>
+            <div className="container" style={{ marginTop: "55px", marginLeft:"23%", maxWidth:"75%" }}>
                 <form onSubmit={sendData}>
-                    <h2>Order Confirm Form</h2>
+                    <h2 id='btnAllOrder' style={{ marginLeft:"25%" }}>Order Confirm Form</h2>
                     <br></br>
 
 
@@ -245,7 +245,7 @@ export default function UserCreateOrder() {
 
 
                     <div className="mb-3">
-                        <button type="submit" className="btn btn-success" style={{ marginTop: "15px", borderRadius:"20px" }}>
+                        <button type="submit" className="btn btn-success" style={{ marginTop: "15px", borderRadius:"20px", marginLeft:"26%", marginBottom:"3%", fontSize:"18px", fontWeight:700 }}>
                             <i className='fas fa-save'></i>
                             &nbsp; Confirm Order
                         </button>

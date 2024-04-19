@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from "react";
 import axios from "axios";
-import NavBar from '../NavBar/NavBar';
 import {useHistory } from "react-router-dom";
+import Header from "../Dashboard/Header/Header";
 
 export default function CreateProduct() {
     
@@ -60,16 +60,16 @@ export default function CreateProduct() {
       }, []);
   return (
     <div>
-        <NavBar/>
+        <Header/>
 
-<div className="container" style={{ marginTop:"55px"}}>
-    <form onSubmit={sendData}>
+<div className='container' id="productContainer">
+    <form onSubmit={sendData} style={{ position: "relative", width: "65%" }}>
       <h2>Create Inventory Records</h2>
       <br></br>
 
       <div className="mb-3">
-    <label for="exampleInputEmail1" className="form-label">Product Code</label>
-    <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Product Code" 
+    <label for="exampleInputEmail1" className="form-label" id="product">Product Code</label>
+    <input  type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Product Code" 
     onChange={(e) =>{
 
     setPid(e.target.value);
@@ -77,8 +77,8 @@ export default function CreateProduct() {
 </div>
 
 <div className="mb-3">
-    <label for="exampleInputEmail1" className="form-label">Product Name</label>
-    <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Product Name" 
+    <label for="exampleInputEmail1" className="form-label" id="product">Product Name</label>
+    <input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Product Name" 
     onChange={(e) =>{
 
     setName(e.target.value);
@@ -86,8 +86,8 @@ export default function CreateProduct() {
 </div>
 
 <div className="mb-3">
-<label for="exampleInputPassword1" className="form-label">Product Category</label>
-<select className="form-select" aria-label="Default select example" 
+<label for="exampleInputPassword1" className="form-label" id="product">Product Category</label>
+<select id="exampleInputPassword1" className="form-select" aria-label="Default select example" 
   onChange={(e) =>{
 
     setType(e.target.value);
@@ -103,7 +103,7 @@ export default function CreateProduct() {
 </div>
 
 <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label">Description</label>
+    <label for="exampleInputPassword1" className="form-label" id="product">Description</label>
     <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Description"
     
     onChange={(e) =>{
@@ -113,7 +113,7 @@ export default function CreateProduct() {
 </div>
 
 <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label">Price</label>
+    <label for="exampleInputPassword1" className="form-label" id="product">Price</label>
     <input type="number" className="form-control" id="exampleInputPassword1" placeholder="Enter Price"
     min={"1"}
     onChange={(e) =>{
@@ -123,7 +123,7 @@ export default function CreateProduct() {
 </div>
 
 <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label">Quantity</label>
+    <label for="exampleInputPassword1" className="form-label" id="product">Quantity</label>
     <input type="number" className="form-control" id="exampleInputPassword1" placeholder="Enter Quantity"
     min={"1"}  max={"200"}
     onChange={(e) =>{
@@ -133,15 +133,15 @@ export default function CreateProduct() {
 </div>
 
 <div className="mb-3">
-    <label htmlFor="dateInput" className="form-label">Add Date</label>
-    <input type="date" id="dateInput" name="date" max={""} value={date}
+    <label htmlFor="dateInput" className="form-label" id="product">Add Date</label>
+    <input style={{ marginLeft:"0px"}} type="date" id="dateInput" name="date" max={""} value={date}
     className="form-control"
      onChange={(e) => setDate(e.target.value)}
       required/>
   </div>
 
   <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label">Your Name</label>
+    <label for="exampleInputPassword1" className="form-label" id="product">Your Name</label>
     <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Your Name"
     
     onChange={(e) =>{
@@ -151,7 +151,7 @@ export default function CreateProduct() {
 </div>
 
 <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label">Contact Number</label>
+    <label for="exampleInputPassword1" className="form-label" id="product">Contact Number</label>
     <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter your Contact Number"
     
     onChange={(e) =>{
@@ -161,8 +161,8 @@ export default function CreateProduct() {
 </div>
 
   <div className="mb-3">
-  <label htmlFor="image" className="form-label">Image</label>
-    <input type="file" className="form-control" id="image" accept="image/*"
+  <label htmlFor="image" className="form-label" id="product">Image</label>
+    <input id="exampleInputPassword1" type="file" className="form-control"  accept="image/*"
      onChange={(e) => {
      setImage(e.target.files[0]);
     }}/>
