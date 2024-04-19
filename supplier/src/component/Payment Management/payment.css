@@ -16,6 +16,7 @@
 
 #dateInput{
     border-radius: 20px; 
+   
     
 }
 
@@ -92,6 +93,15 @@
     margin-left: 1%;
 }
 
+
+#detailsContiner{
+    margin-top: 8%;
+    margin-left: 25%;
+    position: fixed;
+    overflow-y: scroll; 
+    max-height: 80%;
+}
+
 @media (max-width:678px){
     
     #paymentCount{
@@ -106,3 +116,16 @@
     font-size: 25px;
     color:#023b53;
 }
+
+#details{
+    color: #000000;
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+#backBtn{
+    margin-top: 2%;
+    border-radius: 100%;
+    color: white;
+ }
