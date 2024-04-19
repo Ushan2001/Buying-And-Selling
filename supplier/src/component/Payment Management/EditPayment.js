@@ -79,11 +79,11 @@ export default function EditPayment(props) {
        <Header/>
       <div className="container" id="createPayment">
     <form onSubmit={sendData}>
-      <h2>Edit Payment Records</h2>
+      <h2 id="AllPayment">Edit Payment Records</h2>
       <br></br>
       <div className="mb-3">
-<label for="exampleInputEmail1" className="form-label">Customer Name</label>
-<input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Customer Name"
+<label for="exampleInputEmail1" className="form-label" id="payment">Customer Name</label>
+<input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Customer Name"
 value={customer}
 onChange={(e) =>{
 
@@ -92,7 +92,7 @@ setCustomer(e.target.value);
 </div>
 
 <div className="mb-3">
-<label for="exampleInputPassword1" className="form-label">Address</label>
+<label for="exampleInputPassword1" className="form-label" id="payment">Address</label>
 <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Your Address"
 value={address}
 onChange={(e) =>{
@@ -102,7 +102,7 @@ setAddress(e.target.value);
 </div>
 
 <div className="mb-3">
-<label for="exampleInputPassword1" className="form-label">Contact Number</label>
+<label for="exampleInputPassword1" className="form-label" id="payment">Contact Number</label>
 <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Contact Number"
 pattern="^\d{10}$"
 value={phone}
@@ -113,7 +113,7 @@ setPhone(e.target.value);
 </div>
 
 <div className="mb-3">
-<label for="exampleInputPassword1" className="form-label">Product Code</label>
+<label for="exampleInputPassword1" className="form-label" id="payment">Product Code</label>
 
 <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Product Code"
 value={pid}
@@ -124,7 +124,7 @@ setPid(e.target.value);
 </div>
 
 <div className="mb-3">
-<label for="exampleInputPassword1" className="form-label">Bill Amount</label>
+<label for="exampleInputPassword1" className="form-label" id="payment">Bill Amount</label>
 <input type="number" className="form-control" id="exampleInputPassword1" placeholder="Enter Bill Amount"
 value={amount}
 min={1}
@@ -135,7 +135,7 @@ setAmount(e.target.value);
 </div>
 
 <div className="mb-3" style={{ position: "relative", width: "70%"}}>
-<label for="exampleInputPassword1" className="form-label">Payment Method</label>
+<label for="exampleInputPassword1" className="form-label" id="payment">Payment Method</label>
 <select style={{borderRadius:"20px" }} className="form-select" aria-label="Default select example"
 value={method} 
   onChange={(e) =>{
@@ -149,7 +149,7 @@ value={method}
 </div>
 
 <div className="mb-3">
-    <label htmlFor="dateInput" className="form-label">Date</label>
+    <label htmlFor="dateInput" className="form-label" id="payment">Date</label>
     <input type="date" id="dateInput" name="date" max={""} value={date}
     className="form-control"
      onChange={(e) => setDate(e.target.value)}
