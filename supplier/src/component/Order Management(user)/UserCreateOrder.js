@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import UserNavBar from '../NavBar/UserNavBar';
-import { useHistory } from "react-router-dom";
+import {useHistory, useLocation } from "react-router-dom";
 import Swal from 'sweetalert2';
 
 
@@ -9,7 +9,7 @@ export default function UserCreateOrder() {
 
     const [name, setName] = useState("");
     const [number, setNumber] = useState("");
-    const [oid, setOid] = useState("PID");
+    const [oid, setOid] = useState("");
     const [amount, setAmount] = useState("");
     const [quantity, setQuantity] = useState("");
     const [date, setDate] = useState("");
@@ -19,6 +19,21 @@ export default function UserCreateOrder() {
     const [send, setSend] = useState("Pending");
     const history = useHistory();
     const [token, setToken] = useState("");
+    const location = useLocation();
+
+    useEffect(() => {
+        console.log("Location state:", location.state);
+        const { state } = location;
+        if (state && state.oid && state.amount) {
+            console.log("Received oid:", state.oid);
+            console.log("Received amount:", state.amount);
+            setOid(state.oid);
+            setAmount(state.amount);
+            setTotalAmount(state.amount * quantity); // Update totalAmount based on the received amount
+        }
+    }, [location, oid, amount, quantity]);
+    
+    
 
     useEffect(() => {
         // Function to fetch token from local storage on component mount
@@ -131,7 +146,7 @@ export default function UserCreateOrder() {
 
 
 <div className="mb-3">
-    <label for="exampleInputEmail1" className="form-label">Customer Name</label>
+    <label for="exampleInputEmail1" className="form-label" id="createOrder">Customer Name</label>
     <input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Customer Name" 
     onChange={(e) =>{
 
@@ -140,7 +155,7 @@ export default function UserCreateOrder() {
 </div>
 
 <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label">Contact Number</label>
+    <label for="exampleInputPassword1" className="form-label" id="createOrder">Contact Number</label>
     <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Contact Number"
     pattern="^\d{10}$"
 
@@ -151,8 +166,10 @@ export default function UserCreateOrder() {
 </div>
 
 <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label" >Product Code</label>
-    <input type="text" className="form-control" id="exampleInputPassword1" placeholder="check the product details page enter valid product code"
+    <label for="exampleInputPassword1" className="form-label" id="createOrder" >Product Code</label>
+    <input type="text" className="form-control" id="exampleInputPassword1" 
+    readOnly
+    disabled
     value={oid}
     onChange={(e) =>{
 
@@ -160,38 +177,39 @@ export default function UserCreateOrder() {
     }}/>
 </div>
 
-<div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label">Amount</label>
-    <input type="number" className="form-control" id="exampleInputPassword1" placeholder="Enter Amount"
-        min={"1"}
-        onChange={(e) => {
-            setAmount(e.target.value);
-            setTotalAmount(e.target.value * quantity);
-        }}
-    />
-</div>
 
+
+<div className="row">
+    <div className="col">
 <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label">Quantity</label>
+    <label for="exampleInputPassword1" className="form-label" id="createOrder">Quantity</label>
     <input type="number" className="form-control" id="exampleInputPassword1" placeholder="Enter Quantity"
-        max={"200"} min={"1"}
+        max={"200"} 
+        min={"1"}
+        value={quantity}
         onChange={(e) => {
             setQuantity(e.target.value);
             setTotalAmount(e.target.value * amount);
         }}
     />
 </div>
- 
-<div className="mb-3" style={{marginLeft:"23%"}}>
-    <label htmlFor="dateInput" className="form-label" style={{marginLeft:"-30%"}} >Date</label>
+</div>
+
+<div className="col">
+<div className="mb-3">
+    <label htmlFor="dateInput" className="form-label" id="createOrder" >Date</label>
     <input type="date" id="dateInput" name="date" max={""} value={date}
     className="form-control"
      onChange={(e) => setDate(e.target.value)}
-      />
+      required/>
+  </div>
   </div>
 
+  </div>
+
+
 <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label">Address</label>
+    <label for="exampleInputPassword1" className="form-label" id="createOrder">Address</label>
     <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Address"
    
    onChange={(e) =>{
@@ -201,7 +219,7 @@ export default function UserCreateOrder() {
 </div>
 
 <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label">Additional Comments</label>
+    <label for="exampleInputPassword1" className="form-label" id="createOrder">Additional Comments</label>
     <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Additional Comments"
     onChange={(e) =>{
 
@@ -215,7 +233,7 @@ export default function UserCreateOrder() {
 </div>
 
 <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label">Deliver</label>
+    <label for="exampleInputPassword1" className="form-label" id="createOrder">Deliver</label>
     <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Yes or No"
     value={send}
     disabled
@@ -227,7 +245,7 @@ export default function UserCreateOrder() {
 
 
                     <div className="mb-3">
-                        <button type="submit" className="btn btn-success" style={{ marginTop: "15px" }}>
+                        <button type="submit" className="btn btn-success" style={{ marginTop: "15px", borderRadius:"20px" }}>
                             <i className='fas fa-save'></i>
                             &nbsp; Confirm Order
                         </button>

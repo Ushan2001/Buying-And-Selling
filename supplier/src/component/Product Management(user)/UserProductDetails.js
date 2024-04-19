@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import UserNavBar from '../NavBar/UserNavBar';
 
+
 export default class UserProductDetails extends Component {
 
   constructor(props) {
@@ -25,10 +26,19 @@ export default class UserProductDetails extends Component {
           });
         }
       });
+    
   }
 
+  handleOrderButtonClick = () => {
+    const { pid, price } = this.state.product;
+    this.props.history.push({
+      pathname: '/user/add/order',
+      state: { oid: pid, amount: price }
+      
+    });
+    window.location.reload();
+  };
 
-  
 
   render() {
     const { pid, name, type, description, price, quantity, date, sname, contact, _id } = this.state.product;
@@ -77,11 +87,10 @@ export default class UserProductDetails extends Component {
               </dl>
            <div>
             <p>You Can Choose Cash on Delivery Method Click This Button</p>
-              <button className='btn btn-dark'>
-            <a href='/user/add/order' target='_black' style={{ textDecoration: "none", color: "white" }}>
-              Order Item&nbsp;<i className='fas fa-arrow-right'></i>
-            </a>
-          </button>
+            <button className='btn btn-dark' onClick={this.handleOrderButtonClick}>
+                  Order Item <i className='fas fa-arrow-right'></i>
+                </button>
+
 
           </div>
 
