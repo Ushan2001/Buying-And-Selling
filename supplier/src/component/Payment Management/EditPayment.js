@@ -1,7 +1,6 @@
 import React, { useState,  useEffect} from "react";
 import axios from "axios";
 import {useHistory } from "react-router-dom"
-import NavBar from '../NavBar/NavBar';
 import Header from "../Dashboard/Header/Header";
 
 export default function EditPayment(props) {

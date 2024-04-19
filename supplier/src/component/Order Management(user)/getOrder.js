@@ -33,7 +33,7 @@ export default class getOrder extends Component {
       filterData(orders, searchKey){
         const result = orders.filter((order) =>
             order.name.toLowerCase().includes(searchKey) ||
-            order.number.toLowerCase().includes(searchKey) || 
+            
             order.send.toLowerCase().includes(searchKey) 
         );
     
@@ -84,7 +84,6 @@ export default class getOrder extends Component {
                 <div className="card animated-card" id="orderCard" style={{backgroundImage: 'url("/images/back.jpg")'}}>
   <div className="card-body" id="orderBody">
     <h5 className="card-title" id="orderTitle">{order.name}</h5>
-    <p className="card-text" id="orderText1">Contact: {order.number}</p>
     <p className="card-text" id="orderText2">Delivery Status: <span id="status"> {order.send} </span></p>
     
   </div>

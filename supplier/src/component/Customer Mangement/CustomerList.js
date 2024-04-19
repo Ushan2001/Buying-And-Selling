@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import NavBar from '../NavBar/NavBar';
+import Header from '../Dashboard/Header/Header';
 import PdfButton from './PdfButton';
 import "./customer.css";
 
@@ -97,14 +97,14 @@ export default class CustomerList extends Component {
     render() {
         return (
             <div>
-                <NavBar/>
-                <div className='container' style={{ marginTop:"40px"}}>
+                <Header />
+                <div className='container' id="supplierContainer" style={{width:"85%"}}>
                     <div className='col-lg-3 mt-2 mb-2'>
                         <input  className="form-control"
                             type='search'
                             placeholder='Search'
                             name="serchQuery"
-                            style={{marginLeft:"1000px"}}
+                            style={{marginLeft:"40px", marginBottom:"5%"}}
                             onChange={this.handleSearchArea}/>
                     </div>
                     <div className='row' id="customerRow">
@@ -113,9 +113,9 @@ export default class CustomerList extends Component {
                         </div>
                         </div>
                         <div className='row' id="customerRow">
-                        <div className='col'>
+                        <div className='col-md-2'>
                             <div className='col-md-3' id="card">
-                                <div className='card' id="card1" style={{ width: '18rem', backgroundImage: 'url("/images/back.jpg")'}}>
+                                <div className='card' id="card1" style={{ width: '17rem', backgroundImage: 'url("/images/back.jpg")'}}>
                                     <div className='card-body'>
                                         <h5 className='card-title' id="cardTitile">No. Of Customers</h5>
                                         <p className='card-text' id="cardText">{this.state.customerCount}</p>
@@ -123,7 +123,7 @@ export default class CustomerList extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className='col'>
+                        <div className='col-md-2' id="customerCol1">
                             <div className='col-md-3' id="card">
                                 <div className='card' id="card1" style={{ width: '15rem', backgroundImage: 'url("/images/back.jpg")'}}>
                                     <div className='card-body'>
@@ -133,7 +133,7 @@ export default class CustomerList extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className='col'>
+                        <div className='col-md-2' id="customerCol">
                             <div className='col-md-3' id="card">
                                 <div className='card' id="card1" style={{ width: '15rem', backgroundImage: 'url("/images/back.jpg")'}}>
                                     <div className='card-body'>
@@ -143,7 +143,7 @@ export default class CustomerList extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className='col'>
+                        <div className='col-md-2'id="customerCol">
                             <div className='col-md-3' id="card">
                                 <div className='card' id="card1" style={{ width: '15rem', backgroundImage: 'url("/images/back.jpg")'}}>
                                     <div className='card-body'>
@@ -182,12 +182,12 @@ export default class CustomerList extends Component {
                                     <td>{customer.number}</td>
                                     <td>{customer.address}</td>
                                     <td>
-                                        <a className='btn btn-warning' href={`/editcustomer/${customer._id}`}>
-                                            <i className='fas fa-edit'></i>&nbsp;Edit
+                                        <a className='btn' id="editBtn" href={`/editcustomer/${customer._id}`}>
+                                            <i className='fas fa-edit' id="editIcon"></i>
                                         </a>
                                         &nbsp;
-                                        <a className='btn btn-danger' href='# ' onClick={() => this.onDelete(customer._id)}>
-                                            <i className='fas fa-trash-alt'></i>&nbsp;Delete
+                                        <a className='btn' id="editDelete" href='# ' onClick={() => this.onDelete(customer._id)}>
+                                            <i className='fas fa-trash-alt' id="DeleteIcon"></i>
                                         </a>
                                         &nbsp;<PdfButton customer={customer} />
                                     </td>

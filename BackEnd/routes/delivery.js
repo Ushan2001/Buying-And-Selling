@@ -1,11 +1,11 @@
 const express = require("express")
 const Delivery = require("../module/delivery");
-
 const router = express.Router();
+
 
 //save Delivery
 
-router.post("/delivery/save", (req, res) =>{
+router.post("/delivery/save",(req, res) =>{
   let newDelivery = new Delivery(req.body);
 
   newDelivery.save((err) =>{
@@ -39,7 +39,7 @@ router.get("/deliverys", (req, res) =>{
 
 //update
 
-router.put("/delivery/update/:id", (req, res) =>{
+router.put("/delivery/update/:id",(req, res) =>{
     Delivery.findByIdAndUpdate(
      req.params.id,
      {
