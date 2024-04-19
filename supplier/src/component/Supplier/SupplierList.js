@@ -201,29 +201,67 @@ export default class SupplierList extends Component {
     
         // Define an array of colors
         const colors = [
+            /* Purple Plum */
             'rgba(105, 0, 132, .2)',
+
+            /* Caribbean Green */
             'rgba(0, 137, 132, .2)',
+
+            /* Blush Red */
             'rgba(200, 99, 132, .7)',
+
+            /* Deep Sea Blue */
             'rgba(0, 10, 130, .7)',
+
+            /* Royal Purple */
             'rgba(145, 30, 180, .7)',
+
+            /* Lemon Yellow */
             'rgba(255, 255, 0, .7)',
+
+            /* Fire Engine Red */
             'rgba(255, 0, 0, .7)',
+
+            /* Neon Green */
             'rgba(0, 255, 0, .7)',
+
+            /* Electric Blue */
             'rgba(0, 0, 255, .7)',
+
+            /* Orange Peel */
             'rgba(255, 128, 0, .7)',
+
+            /* Fuchsia */
             'rgba(255, 0, 255, .7)',
+
+            /* Gray */
             'rgba(128, 128, 128, .7)',
+
+            /* Purple Heart */
             'rgba(128, 0, 128, .7)',
+
+            /* Teal */
             'rgba(0, 128, 128, .7)',
+
+            /* Maroon */
             'rgba(128, 0, 0, .7)',
+
+            /* Lime */
             'rgba(0, 128, 0, .7)',
+
+            /* Navy Blue */
             'rgba(0, 0, 128, .7)',
+
+            /* White */
             'rgba(255, 255, 255, .7)',
+
+            /* Silver */
             'rgba(192, 192, 192, .7)',
-            'rgba(128, 128, 0, .7)',
-            'rgba(128, 0, 0, .7)',
-            'rgba(0, 0, 128, .7)',
-            // Add more colors as needed
+
+            /* Olive */
+            'rgba(128, 128, 0, .7)'
+
+           
         ];
         
         // Prepare data for each SID
