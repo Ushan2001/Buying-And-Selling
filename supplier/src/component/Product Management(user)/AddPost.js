@@ -72,8 +72,8 @@ export default function AddPost() {
       <br></br>
 
       <div className="mb-3">
-    <label for="exampleInputEmail1" className="form-label" >Product Code</label>
-    <input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Product Code" 
+    <label for="exampleInputEmail1" className="form-label">Product Code</label>
+    <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Product Code" 
     onChange={(e) =>{
 
     setPid(e.target.value);
@@ -82,7 +82,7 @@ export default function AddPost() {
 
 <div className="mb-3">
     <label for="exampleInputEmail1" className="form-label">Product Name</label>
-    <input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Product Name" 
+    <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Product Name" 
     onChange={(e) =>{
 
     setName(e.target.value);
@@ -91,7 +91,7 @@ export default function AddPost() {
 
 <div className="mb-3">
 <label for="exampleInputPassword1" className="form-label">Product Category</label>
-<select className="form-select" aria-label="Default select example"  id="exampleInputPassword1"
+<select className="form-select" aria-label="Default select example" 
   onChange={(e) =>{
 
     setType(e.target.value);
@@ -136,8 +136,8 @@ export default function AddPost() {
     }}/>
 </div>
 
-<div className="mb-3" style={{marginLeft:"23%"}}>
-    <label htmlFor="dateInput" className="form-label" style={{marginLeft:"-30%"}}>Add Date</label>
+<div className="mb-3">
+    <label htmlFor="dateInput" className="form-label">Add Date</label>
     <input type="date" id="dateInput" name="date" max={""} value={date}
     className="form-control"
      onChange={(e) => setDate(e.target.value)}
