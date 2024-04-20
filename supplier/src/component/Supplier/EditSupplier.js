@@ -94,7 +94,7 @@ export default function EditSupplier(props) {
         Swal.fire({
           icon: 'error',
           title: 'Error',
-          text: 'An error occurred while updating the supplier record. Please try again.'
+          text: 'Supplier with this name already exists. Cannot update.'
         });
         console.error(err);
       });
@@ -131,7 +131,7 @@ export default function EditSupplier(props) {
             id="exampleInputPassword1"
             aria-describedby="emailHelp"
             placeholder="Enter Supplier Code"
-            readOnly
+            disabled
             value={sid}
             onChange={(e) => setSid(e.target.value)}
           />
@@ -209,7 +209,7 @@ export default function EditSupplier(props) {
   <div className="mb-3">
     <label htmlFor="dateInput" className="form-label" id='supplier'>Date</label>
     <input type="date" id="dateInput" name="date" max={""} value={date}
-    readOnly
+     disabled
     className="form-control"
      onChange={(e) => setDate(e.target.value)}
       required/>
