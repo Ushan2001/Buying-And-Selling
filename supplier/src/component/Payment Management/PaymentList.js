@@ -100,11 +100,14 @@ export default class PaymentList extends Component {
                     </div>
 
 
-                    <div id="supplierCount">
+                    <div id="paymentCount">
                                     <div className='card-body'>
-                                        <h5 className='card-title' id="SupplierCardTitile" >✅ No. OF PAYMENTS : <span id="cardText"> {this.state.paymentCount} </span></h5>        
+                                        <h5 className='card-title' id="PaymentCardTitile" >✅ No. OF PAYMENTS : <span id="cardText"> {this.state.paymentCount} </span></h5>        
                             </div>
                         </div>
+
+                        <button className='btn btn-success' id="paymentAdd"><a href='add/payment' style={{ textDecoration: "none", color: "white" }}>
+                        <i className='fas fa-plus'></i>&nbsp;Add New</a></button>
 
 
                     <h2 id="AllPayment">All Payments</h2>
@@ -125,11 +128,7 @@ export default class PaymentList extends Component {
                             {this.state.payments.map((payments, index) => (
                                 <tr key={index}>
                                     <th scope='row'>{index + 1}</th>
-                                    <td id="payment">
-                                        <a href={`/payment/${payments._id}`} style={{ textDecoration: "none", color: "#053345" }}>
-                                            {payments.customer}
-                                        </a>
-                                    </td>
+                                    <td id="payment">{payments.customer}</td>
                                     <td id="payment">{payments.phone}</td>
                                     <td id="payment">{payments.amount}</td>
                                     <td id="payment">{payments.pid}</td>
@@ -152,8 +151,7 @@ export default class PaymentList extends Component {
                         </tbody>
                     </table>
 
-                    <button className='btn btn-success' id="paymentAdd"><a href='add/payment' style={{ textDecoration: "none", color: "white" }}>
-                        <i className='fas fa-plus'></i>&nbsp;Add New</a></button>
+                   
 
                 </div>
             </div>
