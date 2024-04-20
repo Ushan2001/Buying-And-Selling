@@ -37,3 +37,72 @@
     overflow-y: scroll; 
     max-height: 80%;
 }
+
+#editBtn{
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    background-color: #4DB6AC1F;
+}
+
+#editIcon{
+    color: #4DB6AC;
+}
+
+#editDelete{
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    background-color: #F656561F;
+}
+
+#DeleteIcon{
+    color: #F65656;
+}
+
+#PdfBtn{
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    background-color: #4d56b61f;
+}
+
+#PdfIcon{
+    color: #5679f6;
+}
+
+#view{
+    text-decoration: none;
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 14.52px;
+    color: #197E89;
+}
+
+#paymentAdd{
+    
+    border-radius: 20px;
+}
+
+
+#paymentCount{
+    margin-top: 1%;
+    margin-bottom: 3%;
+    margin-left: 1%;
+}
+
+@media (max-width:678px){
+    
+    #paymentCount{
+        margin-top: 1%;
+        margin-bottom: 5%;
+        margin-left: 4%;
+    }
+}
+
+#paymentCardTitile{
+    font-weight: 900;
+    font-size: 25px;
+    color:#023b53;
+}

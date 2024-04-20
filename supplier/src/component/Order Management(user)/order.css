@@ -50,3 +50,12 @@
     font-weight: 400;
     font-size: 18px;
 }
+
+#orderUserContainer {
+    background-image: url('../../../public/images/order1.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+  }
+  
