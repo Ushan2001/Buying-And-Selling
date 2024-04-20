@@ -12,7 +12,7 @@ export default class PaymentList extends Component {
         this.state = {
             payments: [],
             paymentCount: 0,
-        
+
         }
     }
 
@@ -30,20 +30,20 @@ export default class PaymentList extends Component {
 
 
 
-    retrivePayment(){
-        axios.get("http://localhost:8070/payments").then((res) =>{
-            if(res.data.success){
-                const  existingPayment =  res.data.existingPayment;
+    retrivePayment() {
+        axios.get("http://localhost:8070/payments").then((res) => {
+            if (res.data.success) {
+                const existingPayment = res.data.existingPayment;
                 this.setState({
-                 payments:existingPayment,
-                 paymentCount: existingPayment.length
-    
+                    payments: existingPayment,
+                    paymentCount: existingPayment.length
+
                 })
 
                 console.log(this.state.payments)
             }
         })
-        .catch((error) => console.error(error));
+            .catch((error) => console.error(error));
     }
 
     onDelete = (id) => {
@@ -65,7 +65,8 @@ export default class PaymentList extends Component {
         const result = payments.filter((payment) =>
             payment.customer.toLowerCase().includes(searchKey) ||
             payment.phone.toLowerCase().includes(searchKey) ||
-            payment.pid.toLowerCase().includes(searchKey)
+            payment.pid.toLowerCase().includes(searchKey) ||
+            payment.PayID.toLowerCase().includes(searchKey)
 
         )
 
@@ -101,12 +102,12 @@ export default class PaymentList extends Component {
 
 
                     <div id="paymentCount">
-                                    <div className='card-body'>
-                                        <h5 className='card-title' id="PaymentCardTitile" >✅ No. OF PAYMENTS : <span id="cardText"> {this.state.paymentCount} </span></h5>        
-                            </div>
+                        <div className='card-body'>
+                            <h5 className='card-title' id="PaymentCardTitile" >✅ No. OF PAYMENTS : <span id="cardText"> {this.state.paymentCount} </span></h5>
                         </div>
+                    </div>
 
-                        <button className='btn btn-success' id="paymentAdd"><a href='add/payment' style={{ textDecoration: "none", color: "white" }}>
+                    <button className='btn btn-success' id="paymentAdd"><a href='add/payment' style={{ textDecoration: "none", color: "white" }}>
                         <i className='fas fa-plus'></i>&nbsp;Add New</a></button>
 
 
@@ -117,6 +118,7 @@ export default class PaymentList extends Component {
                             <tr>
                                 <th scope='col'><i className='fas fa-list'></i></th>
                                 <th scope='col'>Customer Name</th>
+                                <th scope='col'>PayID</th>
                                 <th scope='col'>Phone</th>
                                 <th scope='col'>Amount</th>
                                 <th scope='col'>Product Code</th>
@@ -129,6 +131,7 @@ export default class PaymentList extends Component {
                                 <tr key={index}>
                                     <th scope='row'>{index + 1}</th>
                                     <td id="payment">{payments.customer}</td>
+                                    <td id="payment">{payments.PayID}</td>
                                     <td id="payment">{payments.phone}</td>
                                     <td id="payment">{payments.amount}</td>
                                     <td id="payment">{payments.pid}</td>
@@ -151,7 +154,7 @@ export default class PaymentList extends Component {
                         </tbody>
                     </table>
 
-                   
+
 
                 </div>
             </div>
