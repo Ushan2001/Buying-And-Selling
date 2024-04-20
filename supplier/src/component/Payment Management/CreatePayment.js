@@ -7,7 +7,7 @@ import "./payment.css"
 export default function CreatePayment() {
 
   const [customer, setCustomer] = useState("");
-  const [address, setAddress] = useState("");
+  const [PayID, setPayID] = useState("");
   const [phone, setPhone] = useState("");
   const [pid, setPid] = useState("");
   const [amount, setAmount] = useState("");
@@ -21,7 +21,7 @@ export default function CreatePayment() {
     const newPayment = {
 
       customer,
-      address,
+      PayID,
       phone,
       pid,
       amount,
@@ -73,11 +73,11 @@ export default function CreatePayment() {
           </div>
 
           <div className="mb-3">
-            <label for="exampleInputPassword1" className="form-label" id="payment">Address</label>
+            <label for="exampleInputPassword1" className="form-label" id="payment">PayID</label>
             <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Your Address"
               onChange={(e) => {
 
-                setAddress(e.target.value);
+                setPayID(e.target.value);
               }} />
           </div>
 
@@ -121,6 +121,7 @@ export default function CreatePayment() {
             >
               <option selected>Open this select menu</option>
               <option value="Credit/Debit Card">Credit/Debit Card</option>
+              <option value="COD">COD</option>
             </select>
           </div>
 

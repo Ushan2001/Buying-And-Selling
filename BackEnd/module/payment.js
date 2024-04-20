@@ -7,7 +7,7 @@ const PaymentSchema = new mongoose.Schema({
         required: true
     },
 
-    address:{
+    PayID:{
         type: String,
         required: true
     },

@@ -55,7 +55,7 @@ const PdfButton = ({ payment }) => {
               widths: ['auto', '*'],
               body: [
               [{ text: 'Customer Name', style: 'label' }, payment.customer],
-              [{ text: 'Address', style: 'label' }, payment.address],
+              [{ text: 'PayID', style: 'label' }, payment.PayID],
               [{ text: 'Phone Number', style: 'label' }, payment.phone],
               [{ text: 'Product Code', style: 'label' }, payment.pid],
               [{ text: 'Buying Amount', style: 'label' }, payment.amount],
@@ -66,7 +66,7 @@ const PdfButton = ({ payment }) => {
             },
           },
           { text: '\n' }, { text: '\n' }, { text: '\n' }, { text: '\n' }, { text: '\n' },
-          { text: 'This report Contains supplier details for BuySell Nexus company (PVT) LTD.' },
+          { text: 'This report Contains payment details for BuySell Nexus company (PVT) LTD.' },
           { text: '\n' },
           { text: '\n' },
           { text: '_____________', style:"space" }, // Signature line
