@@ -11,24 +11,39 @@ export default class PaymentList extends Component {
 
         this.state = {
             payments: [],
+            paymentCount: 0,
         
         }
     }
 
     componentDidMount() {
-        this.retrivePayment()
+        this.retrivePayment();
+        this.fetchToken();
     }
 
-    retrivePayment() {
-        axios.get("http://localhost:8070/payments").then((res) => {
-            if (res.data.success) {
+    fetchToken() {
+        const storedToken = localStorage.getItem("token");
+        if (storedToken) {
+            this.setState({ token: storedToken });
+        }
+    }
+
+
+
+    retrivePayment(){
+        axios.get("http://localhost:8070/payments").then((res) =>{
+            if(res.data.success){
+                const  existingPayment =  res.data.existingPayment;
                 this.setState({
-                    payments: res.data.existingPayment
+                 payments:existingPayment,
+                 paymentCount: existingPayment.length
+    
                 })
 
                 console.log(this.state.payments)
             }
         })
+        .catch((error) => console.error(error));
     }
 
     onDelete = (id) => {
@@ -83,6 +98,13 @@ export default class PaymentList extends Component {
                             onChange={this.handleSearchArea} />
 
                     </div>
+
+
+                    <div id="supplierCount">
+                                    <div className='card-body'>
+                                        <h5 className='card-title' id="SupplierCardTitile" >✅ No. OF PAYMENTS : <span id="cardText"> {this.state.paymentCount} </span></h5>        
+                            </div>
+                        </div>
 
 
                     <h2 id="AllPayment">All Payments</h2>
