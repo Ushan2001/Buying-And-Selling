@@ -132,6 +132,8 @@ export default function EditOrder(props) {
             id="exampleInputPassword1"
             aria-describedby="emailHelp"
             placeholder="Enter Customer Name"
+            pattern="[A-Za-z\s]+" 
+            title="Please enter only letters and spaces"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
