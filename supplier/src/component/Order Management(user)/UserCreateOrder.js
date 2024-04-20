@@ -20,6 +20,8 @@ export default function UserCreateOrder() {
     const history = useHistory();
     const [token, setToken] = useState("");
     const location = useLocation();
+    const [contactNumberValid, setContactNumberValid] = useState(false);
+    
 
     useEffect(() => {
         console.log("Location state:", location.state);
@@ -87,7 +89,7 @@ export default function UserCreateOrder() {
     
                 axios.post("http://localhost:8070/order/save", newOrder, {
                     headers: {
-                        Authorization: `Bearer ${token}` // Attach token to request headers
+                        Authorization:` Bearer ${token}` // Attach token to request headers
                     }
                 })
                 .then(() => {
@@ -145,25 +147,42 @@ export default function UserCreateOrder() {
                     <br></br>
 
 
-<div className="mb-3">
-    <label for="exampleInputEmail1" className="form-label" id="createOrder">Customer Name</label>
-    <input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Customer Name" 
-    onChange={(e) =>{
-
-    setName(e.target.value);
-    }}/>
+                    <div className="mb-3">
+    <label htmlFor="exampleInputPassword1" className="form-label" id="createOrder">Customer Name</label>
+    <input 
+        type="text" 
+        className="form-control" 
+        id="exampleInputPassword1" 
+        aria-describedby="emailHelp" 
+        placeholder="Enter Customer Name"
+        pattern="[A-Za-z\s]+"  // Regular expression pattern to allow only letters and spaces
+        title="Please enter only letters and spaces"  // Tooltip message
+        onChange={(e) => {
+            setName(e.target.value);
+        }}
+    />
+    {!/^[A-Za-z\s]+$/.test(name) && (
+        <p style={{ color: "red", fontSize: "14px", marginTop: "5px" }}>Please enter only letters and spaces</p>
+    )}
 </div>
 
 <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label" id="createOrder">Contact Number</label>
-    <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Contact Number"
-    pattern="^\d{10}$"
-
-    onChange={(e) =>{
-
-    setNumber(e.target.value);
-    }}/>
-</div>
+                        <label htmlFor="exampleInputPassword1" className="form-label" id="createOrder">Contact Number</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="exampleInputPassword1"
+                            placeholder="Enter Contact Number"
+                            pattern="^\d{10}$"  // Regular expression pattern to match a 10-digit number
+                            title="Please enter a 10-digit number"  // Tooltip message
+                            onChange={(e) => {
+                                setNumber(e.target.value);
+                                setContactNumberValid(/^\d{10}$/.test(e.target.value));
+                            }} />
+                        {!contactNumberValid && (
+                            <p style={{ color: "red", fontSize: "14px", marginTop: "5px" }}>Please enter a valid 10-digit number</p>
+                        )}
+                    </div>
 
 <div className="mb-3">
     <label for="exampleInputPassword1" className="form-label" id="createOrder" >Product Code</label>
