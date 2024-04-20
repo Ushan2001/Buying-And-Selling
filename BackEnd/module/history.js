@@ -33,12 +33,17 @@ const HistorySchema = new mongoose.Schema({
         required: true
     },
 
+    price:{
+        type: String,
+        required: true
+    },
+
     address:{
         type: String,
         required: true
     },
 
-    cost:{
+    totalAmount:{
         type: String,
         required: true
     }
