@@ -78,7 +78,7 @@ export default class DiscountList extends Component {
             type='search'
             placeholder='Search'
             name="serchQuery"
-            style={{marginLeft:"1000px"}}
+            style={{marginLeft:"10px"}}
             onChange={this.handleSearchArea}/>
          </div>
         
