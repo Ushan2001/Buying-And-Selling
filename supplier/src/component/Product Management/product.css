@@ -21,3 +21,10 @@
     margin-left: 80%;
     margin-bottom: 20px;
 }
+
+#details{
+    color: #000000;
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 16px;
+}
