@@ -7,7 +7,7 @@ export default function EditPayment(props) {
 
     const [id, setId] = useState("");
     const [customer, setCustomer] = useState("");
-    const [address, setAddress] = useState("");
+    const [PayID, setPayID] = useState("");
     const [phone, setPhone] = useState("");
     const [pid, setPid] = useState("");
     const [amount, setAmount] = useState("");
@@ -24,7 +24,7 @@ export default function EditPayment(props) {
     
           setId(payment._id);
           setCustomer(payment.customer);
-          setAddress(payment.address);
+          setPayID(payment.PayID);
           setPhone(payment.phone);
           setPid(payment.pid);
           setAmount(payment.amount);
@@ -40,7 +40,7 @@ export default function EditPayment(props) {
         const updatePayment = {
           
           customer,
-          address,
+          PayID,
           phone,
           pid,
           amount,
@@ -91,12 +91,12 @@ setCustomer(e.target.value);
 </div>
 
 <div className="mb-3">
-<label for="exampleInputPassword1" className="form-label" id="payment">Address</label>
+<label for="exampleInputPassword1" className="form-label" id="payment">PayID</label>
 <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Your Address"
-value={address}
+value={PayID}
 onChange={(e) =>{
 
-setAddress(e.target.value);
+setPayID(e.target.value);
 }}/>
 </div>
 
@@ -144,6 +144,7 @@ value={method}
 >
   <option selected>Open this select menu</option>
   <option value="Credit/Debit Card">Credit/Debit Card</option>
+  <option value="COD">COD</option>
 </select>
 </div>
 
