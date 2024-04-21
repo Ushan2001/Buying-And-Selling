@@ -18,15 +18,15 @@ export default class PaymentList extends Component {
 
     componentDidMount() {
         this.retrivePayment();
-        this.fetchToken();
+        //this.fetchToken();
     }
 
-    fetchToken() {
+    /*fetchToken() {
         const storedToken = localStorage.getItem("token");
         if (storedToken) {
             this.setState({ token: storedToken });
         }
-    }
+    }*/
 
 
 
