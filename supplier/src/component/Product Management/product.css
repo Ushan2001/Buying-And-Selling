@@ -16,3 +16,8 @@
 #exampleInputPassword1{
     border-radius: 20px;
 }
+
+#addBtn{
+    margin-left: 80%;
+    margin-bottom: 20px;
+}

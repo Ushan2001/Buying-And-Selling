@@ -96,6 +96,9 @@ export default class productList extends Component {
         
 
         <h2>All Products</h2>
+
+        <button className='btn btn-success' id="addBtn"><a href='add/product' style={{textDecoration:"none", color:"white"}}>
+         <i className='fas fa-plus'></i>&nbsp;Add New</a></button>
         <br></br>
          <table className='table table-hover'>
             <thead>
@@ -135,8 +138,7 @@ export default class productList extends Component {
         </tbody>
          </table>
 
-         <button className='btn btn-success'><a href='add/product' style={{textDecoration:"none", color:"white"}}>
-         <i className='fas fa-plus'></i>&nbsp;Add New</a></button>
+         
         
       </div>
       </div>
