@@ -1,7 +1,10 @@
 import React,{useState, useEffect } from "react";
 import axios from "axios";
-import NavBar from '../NavBar/NavBar';
 import {useHistory } from "react-router-dom";
+import Header from "../Dashboard/Header/Header";
+import "./discount.css"
+
+
 
 export default function CreateDiscount() {
 
@@ -54,16 +57,16 @@ export default function CreateDiscount() {
       
   return (
     <div>
-      <NavBar/>
+      <Header/>
 
-<div className="container" style={{ marginTop:"55px"}}>
-    <form onSubmit={sendData}>
-      <h2>New Discount Records</h2>
+      <div className="container" id="createDis">
+    <form onSubmit={sendData} style={{ position: "relative", width: "65%" }}>
+      <h2 id="AllDis">New Discount Records</h2>
       <br></br>
 
 <div className="mb-3">
-    <label for="exampleInputEmail1" className="form-label">Product Name</label>
-    <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Product Name" 
+    <label for="exampleInputEmail1" className="form-label" id="dis">Product Name</label>
+    <input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Product Name" 
     onChange={(e) =>{
 
     setName(e.target.value);
@@ -71,8 +74,8 @@ export default function CreateDiscount() {
 </div>
 
 <div className="mb-3">
-<label for="exampleInputPassword1" className="form-label">Product Category</label>
-<select className="form-select" aria-label="Default select example" 
+<label for="exampleInputPassword1" className="form-label" id="dis">Product Category</label>
+<select className="form-select" aria-label="Default select example"  id="exampleInputPassword1"
   onChange={(e) =>{
 
     setCategory(e.target.value);
@@ -88,8 +91,8 @@ export default function CreateDiscount() {
 </div>
 
 <div className="mb-3">
-<label for="exampleInputPassword1" className="form-label">Discount</label>
-<select className="form-select" aria-label="Default select example" 
+<label for="exampleInputPassword1" className="form-label" id="dis">Discount</label>
+<select className="form-select" aria-label="Default select example" id="exampleInputPassword1"
   onChange={(e) =>{
 
     setDiscount(e.target.value);
@@ -106,16 +109,16 @@ export default function CreateDiscount() {
 
 
 <div className="mb-3">
-    <label htmlFor="dateInput" className="form-label">Start Date</label>
-    <input type="date" id="dateInput" name="date" max={""} value={date}
+    <label htmlFor="dateInput" className="form-label" id="dis">Start Date</label>
+    <input style={{marginLeft:"0px"}} type="date"  id="dateInput" name="date" max={""} value={date}
     className="form-control"
      onChange={(e) => setDate(e.target.value)}
       required/>
   </div>
 
   <div className="mb-3">
-<label for="exampleInputPassword1" className="form-label">Time Duaration</label>
-<select className="form-select" aria-label="Default select example" 
+<label for="exampleInputPassword1" className="form-label" id="dis">Time Duaration</label>
+<select className="form-select" id="exampleInputPassword1" aria-label="Default select example" 
   onChange={(e) =>{
 
     setTime(e.target.value);
@@ -128,11 +131,10 @@ export default function CreateDiscount() {
   <option value="3 Week">3 Week</option>
   <option value="1 Month">1 Month</option>
 </select>
-</div>
-
+</div> 
 <div className="mb-3">
-    <label for="exampleInputEmail1" className="form-label">Additional Comment</label>
-    <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Additional Comment" 
+    <label for="exampleInputEmail1" className="form-label" id="dis">Additional Comment</label>
+    <input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Additional Comment" 
     onChange={(e) =>{
 
     setNote(e.target.value);
@@ -146,6 +148,6 @@ export default function CreateDiscount() {
 </form>
 </div>
       
-    </div>
-  )
+    </div>
+  )
 }

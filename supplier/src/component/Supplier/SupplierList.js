@@ -5,6 +5,7 @@ import Header from '../Dashboard/Header/Header';
 import Chart from 'chart.js/auto'; 
 import "./supplier.css";
 import Swal from 'sweetalert2';
+import SupplierReport from './SupplierReport';
 
 
 export default class SupplierList extends Component {
@@ -348,11 +349,17 @@ export default class SupplierList extends Component {
                         </div>
                     </div> 
 
+                    <div style={{marginBottom:"1%", marginTop:"2%", marginLeft:"1%"}}>
+                            <SupplierReport/>
+                        </div>
+
                     <div id="supplierCount">
                                     <div className='card-body'>
                                         <h5 className='card-title' id="SupplierCardTitile" >✅ No. OF SUPPLIERS : <span id="cardText"> {this.state.supplierCount} </span></h5>        
                             </div>
                         </div>
+
+                       
 
                     <h2 id="AllSupplier">All Suppliers</h2>
                     <br></br>       

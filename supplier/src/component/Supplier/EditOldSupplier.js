@@ -201,6 +201,8 @@ export default function EditOldSupplier(props) {
               value={note}
               onChange={(e) => setNote(e.target.value)}
             />
+             {!/^[A-Za-z\s]+$/.test(note) && (
+        <p style={{ color: "red", fontSize: "14px", marginTop: "5px" }}>Please enter only letters and spaces</p>)}
           </div>
 
           <div className="count-display">
