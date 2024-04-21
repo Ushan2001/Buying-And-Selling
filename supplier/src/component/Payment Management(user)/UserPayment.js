@@ -138,7 +138,7 @@ setAmount(e.target.value);
 
 <div className="mb-3">
     <label htmlFor="dateInput" className="form-label">Date</label>
-    <input type="date" id="dateInput" name="date" max={""} value={date}
+    <input type="date" id="dateInput" style={{marginLeft:"0px"}} name="date" max={""} value={date}
     className="form-control"
      onChange={(e) => setDate(e.target.value)}
       required/>
