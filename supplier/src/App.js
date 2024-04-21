@@ -70,6 +70,7 @@ import DeliveryDetail from './component/Delivery Management/DeliveryDetail';
 import getOrder from './component/Order Management(user)/getOrder';
 
 
+
 export default class App extends Component {
   render() {
     return (
@@ -87,6 +88,7 @@ export default class App extends Component {
         <Route path="/Old Supplier" component={OldSupplier}></Route>
         <Route path="/editOldSupplier/:id" component={EditOldSupplier}></Route>
         <Route path="/view/Oldsupplier/:id" component={OldSupplierDetail}></Route>
+       
 
         <Route path="/userproduct" exact component={UserProductList}></Route>
         <Route path="/userproduct/:id" component={UserProductDetails}></Route>
