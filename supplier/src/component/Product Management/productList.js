@@ -10,7 +10,8 @@ export default class productList extends Component {
         super(props)
 
         this.state = {
-            products:[]
+            products:[],
+            productCount: 0,
         }
     }
 
@@ -21,13 +22,16 @@ export default class productList extends Component {
     retriveProduct(){
         axios.get("http://localhost:8070/products").then((res) =>{
             if(res.data.success){
+                const existingProduct = res.data.existingProduct;
                 this.setState({
-                    products:res.data.existingProduct
+                    products: existingProduct,
+                    productCount: existingProduct.length
                 })
 
                 console.log(this.state.products)
             }
         })
+        .catch((error) => console.error(error));
     }
 
     onDelete = (id) =>{
@@ -83,6 +87,12 @@ export default class productList extends Component {
             style={{marginLeft:"0px", borderRadius:"20px"}}
             onChange={this.handleSearchArea}/>
          </div>
+
+         <div id="productCount" style={{marginBottom:"20px"}}>
+                        <div className='card-body'>
+                            <h5 className='card-title' id="ProductCardTitile" >✅ No. OF PRODUCTS : <span id="cardText"> {this.state.productCount} </span></h5>
+                        </div>
+                    </div>
         
 
         <h2>All Products</h2>
