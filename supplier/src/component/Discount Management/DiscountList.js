@@ -85,10 +85,10 @@ export default class DiscountList extends Component {
 
          
 
-        <h2 id="AllSupplier">All Discount</h2>
+        <h2 id="AllSupplier" style={{marginTop:"30px", marginBottom:"30px"}}>All Discount</h2>
 
         <button className='btn btn-success' id="disAdd"><a href='add/discount' style={{textDecoration:"none", color:"white"}}>
-         <i className='fas fa-plus'></i>&nbsp;Add New</a></button>
+         <i className='fas fa-plus'></i>&nbsp;</a>Add New</button>
 
         <br></br>
          <table className='table table-hover'>
