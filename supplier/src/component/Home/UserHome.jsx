@@ -23,7 +23,7 @@ export default function UserHome() {
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
                             <li className="nav-item"><a className="nav-link" href="/user/order"><i className='fas fa-shopping-bag'></i>&nbsp;Your Orders</a></li>
                             <li className="nav-item"><a className="nav-link" href="/add/usercustomer"><i className='fas fa-user-plus'></i>&nbsp;Registration</a></li>
-                            <li className="nav-item"><a className="nav-link" href="/feedback"><i className='fas fa-comment'></i>&nbsp;Feedback</a></li>
+                            <li className="nav-item"><a className="nav-link" href="Feedbackk"><i className='fas fa-comment'></i>&nbsp;Feedback</a></li>
                             <a href='/user/add/product'>
                             <button className="btn btn-outline-warning">
                             Post Your AD

@@ -31,6 +31,7 @@ const historyRouter = require("./routes/history")
 
 /* Haritha Lidapitiya (Report Genaration) */
 const discountRouter = require("./routes/discount")
+const ComplainRouter = require("./routes/complains")
 
 /* Dulaj Indula (Payment Management) */
 const paymentRouter = require("./routes/payments")
@@ -60,6 +61,7 @@ app.use(historyRouter)
 
 /* Haritha Lidapitiya (Report Genaration) */
 app.use(discountRouter)
+app.use(ComplainRouter)
 
 /* Dulaj Indula (Payment Management) */
 app.use(paymentRouter)
