@@ -59,23 +59,30 @@ router.get("/supplier", (req, res) =>{
 
 //update
 
-router.put("/supplier/update/:id", verifyToken, (req, res) =>{
-   Supplier.findByIdAndUpdate(
-    req.params.id,
-    {
-      $set:req.body
-    },
-    (err, supplier) =>{
-      if(err){
-        return res.status(400).json({error:err})
+router.put("/supplier/update/:id", verifyToken, async (req, res) => {
+  try {
+      const existingSupplier = await Supplier.findOne({ name: req.body.name });
+      if (existingSupplier && existingSupplier._id != req.params.id) {
+          // If a supplier with the same name exists and it's not the one being updated
+          return res.status(400).json({ error: "Supplier with this name already exists." });
       }
 
-      return res.status(200).json({
-        success:"update succedfully"
-      })
-    }
-   )
-})
+      Supplier.findByIdAndUpdate(
+          req.params.id,
+          { $set: req.body },
+          { new: true }, // Return the updated document
+          (err, supplier) => {
+              if (err) {
+                  return res.status(400).json({ error: err });
+              }
+              return res.status(200).json({ success: "Update successful", supplier });
+          }
+      );
+  } catch (error) {
+      return res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 
 //delete
 

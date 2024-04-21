@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import NavBar from '../NavBar/NavBar';
+import Header from '../Dashboard/Header/Header';
 
 export default class HistoryDetails extends Component {
 
@@ -29,45 +29,45 @@ export default class HistoryDetails extends Component {
       }
   render() {
 
-    const {tid, date, bname, sname, pname, quantity, address, cost, _id } = this.state.history;
+    const {tid, date, bname, sname, pname, quantity, address, totalAmount, _id } = this.state.history;
 
     return (
       <div>
-         <NavBar/>
-        <div style={{marginTop:"40px"}} className='container'>
-          <h4>{tid}</h4>
+         <Header/>
+        <div  style={{marginTop:"100px"}} className='container' id="detailsContiner">
+          <h4 id="AllSupplier">{tid}</h4>
           <hr/>
       <dl className='row'>
-       <dt className='col-sm-3'>Transaction Tempory ID</dt>
-        <dd className='col-sm-9'>{_id}</dd>
+       <dt className='col-sm-3'id="supplier">Transaction Tempory ID</dt>
+        <dd className='col-sm-9' id="details">{_id}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3'>Date</dt>
-        <dd className='col-sm-9'>{date}</dd>
+        <dt className='col-sm-3' id="supplier">Date</dt>
+        <dd className='col-sm-9' id="details">{date}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3'>Buyer Name</dt>
-        <dd className='col-sm-9'>{bname}</dd>
+        <dt className='col-sm-3' id="supplier">Buyer Name</dt>
+        <dd className='col-sm-9' id="details">{bname}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3'>Seller Name</dt>
-        <dd className='col-sm-9'>{sname}</dd>
+        <dt className='col-sm-3' id="supplier">Seller Name</dt>
+        <dd className='col-sm-9' id="details">{sname}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3'>Product Name</dt>
-        <dd className='col-sm-9'>{pname}</dd>
+        <dt className='col-sm-3' id="supplier">Product Name</dt>
+        <dd className='col-sm-9' id="details">{pname}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3'>Quantity</dt>
-        <dd className='col-sm-9'>{quantity}</dd>
+        <dt className='col-sm-3' id="supplier">Quantity</dt>
+        <dd className='col-sm-9' id="details">{quantity}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3'>Address</dt>
-        <dd className='col-sm-9'>{address}</dd>
+        <dt className='col-sm-3' id="supplier">Address</dt>
+        <dd className='col-sm-9' id="details">{address}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3'>Total Cost</dt>
-        <dd className='col-sm-9'>{cost}</dd>
+        <dt className='col-sm-3' id="supplier">Total Cost</dt>
+        <dd className='col-sm-9' id="details">{totalAmount}</dd>
         
       </dl>
       </div>
 
       <div style={{marginLeft:"30px", marginTop:"20px"}}>
-      <button className='btn btn-dark'><a href='/history' style={{textDecoration:"none", color:"white"}}>
-      <i className='fas fa-arrow-left'></i></a></button>
+      <button className='btn btn-dark' id="backBtn"><a href='/history' style={{textDecoration:"none", color:"white"}}>
+      <i className='fas fa-arrow-left' id="backBtn"></i></a></button>
       </div>
       </div>
     )
