@@ -64,7 +64,7 @@ export default function CreateProduct() {
 
 <div className='container' id="productContainer">
     <form onSubmit={sendData} style={{ position: "relative", width: "65%" }}>
-      <h2>Create Inventory Records</h2>
+      <h2>Add Products To Inventory</h2>
       <br></br>
 
       <div className="mb-3">
@@ -153,7 +153,7 @@ export default function CreateProduct() {
 <div className="mb-3">
     <label for="exampleInputPassword1" className="form-label" id="product">Contact Number</label>
     <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter your Contact Number"
-    
+       pattern="^\d{10}$"
     onChange={(e) =>{
 
     setContact(e.target.value);

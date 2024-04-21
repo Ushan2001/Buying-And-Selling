@@ -40,13 +40,13 @@ export default class ProductDetails extends Component {
           <hr/>
       <dl className='row'>
         <dt className='col-sm-3' id="product">Product Tempory ID</dt>
-        <dd className='col-sm-9'>{_id}</dd>
+        <dd className='col-sm-9' id="details">{_id}</dd>
         <br></br><br></br>
         <dt className='col-sm-3' id="product">Product Code</dt>
-        <dd className='col-sm-9'>{pid}</dd>
+        <dd className='col-sm-9' id="details">{pid}</dd>
         <br></br><br></br>
         <dt className='col-sm-3' id="product">Product Category</dt>
-        <dd className='col-sm-9'>{type}</dd>
+        <dd className='col-sm-9' id="details">{type}</dd>
         <br></br><br></br>
         <dt className='col-sm-3' id="product">Description</dt>
         <dd className='col-sm-9' id="details">{description}</dd>
