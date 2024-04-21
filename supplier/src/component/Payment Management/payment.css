@@ -84,6 +84,7 @@
 #paymentAdd{
     
     border-radius: 20px;
+    margin-left: 80%;
 }
 
 
@@ -129,3 +130,7 @@
     border-radius: 100%;
     color: white;
  }
+
+#paymentCount{
+    margin-left: 0%;
+}
