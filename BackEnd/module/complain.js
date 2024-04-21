@@ -2,15 +2,11 @@ const mongoose = require("mongoose");
 
 const ComplainSchema = new mongoose.Schema({
 
-    fname:{
+    name:{
         type: String,
         required: true
     },
 
-    lname:{
-        type: String,
-        required: true
-    },
 
     email:{
         type: String,

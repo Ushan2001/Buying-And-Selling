@@ -73,7 +73,7 @@ export default class DiscountList extends Component {
     return (
       <div>
         <Header/>
-        <div className='container' id="discountContainer">
+        <div className='container' style={{ marginTop:"40px"}}>
          <div className='col-lg-3 mt-2 mb-2'>
             <input  className="form-control"
             type='search'
@@ -84,13 +84,7 @@ export default class DiscountList extends Component {
          </div>
         
 
-         
-
-        <h2 id="AllSupplier">All Discount</h2>
-
-        <button className='btn btn-success' id="disAdd"><a href='add/discount' style={{textDecoration:"none", color:"white"}}>
-         <i className='fas fa-plus'></i>&nbsp;Add New</a></button>
-
+        <h2>All Discount</h2>
         <br></br>
          <table className='table table-hover'>
             <thead>
@@ -112,15 +106,15 @@ export default class DiscountList extends Component {
                         {discounts.name}
                         </a>
                         </td>
-                    <td id="dayment">{discounts.category}</td>
-                    <td id="dayment">{discounts.pdiscount}</td>
+                    <td>{discounts.category}</td>
+                    <td>{discounts.pdiscount}</td>
                     <td>
-                        <a className='btn' id="editBtn" href={`/editdiscount/${discounts._id}`}>
-                            <i className='fas fa-edit' id="editIcon"></i>&nbsp;
+                        <a className='btn btn-warning' href={`/editdiscount/${discounts._id}`}>
+                            <i className='fas fa-edit'></i>&nbsp;Edit
                         </a>
                         &nbsp;
-                        <a className='btn' id="editDelete" href='# ' onClick={() => this.onDelete(discounts._id)}>
-                            <i className='fas fa-trash-alt' id="DeleteIcon"></i>&nbsp;
+                        <a className='btn btn-danger' href='# ' onClick={() => this.onDelete(discounts._id)}>
+                            <i className='fas fa-trash-alt'></i>&nbsp;Delete
                         </a>
                         
                     </td>
@@ -130,7 +124,8 @@ export default class DiscountList extends Component {
         </tbody>
          </table>
 
-         
+         <button className='btn btn-success'><a href='add/discount' style={{textDecoration:"none", color:"white"}}>
+         <i className='fas fa-plus'></i>&nbsp;Add New</a></button>
         
       </div>
       </div>
