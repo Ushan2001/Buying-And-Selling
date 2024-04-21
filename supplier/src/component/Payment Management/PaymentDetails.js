@@ -29,7 +29,7 @@ export default class PaymentDetails extends Component {
       }
   render() {
 
-    const {customer, address, phone, amount, method, date, _id } = this.state.payment;
+    const {customer, PayID, phone, amount, method, date, _id } = this.state.payment;
     return (
 
       <div>
@@ -44,8 +44,8 @@ export default class PaymentDetails extends Component {
         <dt className='col-sm-3' id="payment">Customer Name</dt>
         <dd className='col-sm-9' id="details">{customer}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3' id="payment">Address</dt>
-        <dd className='col-sm-9' id="details">{address}</dd>
+        <dt className='col-sm-3' id="payment">Pay ID</dt>
+        <dd className='col-sm-9' id="details">{PayID}</dd>
         <br></br><br></br>
         <dt className='col-sm-3' id="payment">Phone Number</dt>
         <dd className='col-sm-9' id="details">{phone}</dd>

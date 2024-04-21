@@ -1,0 +1,13 @@
+#historyContainer{
+    margin-left: 23%;
+    margin-top: 8%;
+    position: fixed;
+    overflow-y: scroll;
+    max-height: 80%;
+}
+
+#historyEditBtn{
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+}
