@@ -33,18 +33,15 @@ const SupplierReport = () => {
     }
   };
 
-   // Get current month name
-   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-   const currentMonthIndex = new Date().getMonth();
-   const currentMonthName = months[currentMonthIndex];
+
 
   return (
     <div>
         <div className='row'>
-      <div className='col-md-4'>
-      <h2 id="SupplierCardTitile"> ✅ Monthly Report for {currentMonthName} &nbsp;  👉</h2>
+      <div className='col-md-10'>
+     
       </div>
-      <div className='col-md-1'>
+      <div className='col-md-1' style={{marginLeft:"-15%", marginTop:"-8%"}}>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <button className='btn' onClick={handleDownload} id="PdfBtn1"><i className='fas fa-download' id="PdfIcon1"></i></button>
       </div>
