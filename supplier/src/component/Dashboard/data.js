@@ -33,6 +33,12 @@ const navList = [
       icon: "bi bi-wallet2",
       href:"/payment"
     },
+    {
+      _id: 6,
+      name: "Complains",
+      icon: "bi bi-bell-fill",
+      href:"@#"
+    },
    
   ];
   

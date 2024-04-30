@@ -6,6 +6,7 @@ import Chart from 'chart.js/auto';
 import "./supplier.css";
 import Swal from 'sweetalert2';
 import SupplierReport from './SupplierReport';
+import LoadingPage from './LoadingPage';
 
 
 export default class SupplierList extends Component {
@@ -19,7 +20,10 @@ export default class SupplierList extends Component {
             supplierCount: 0,
             currentPage: 1,
             itemsPerPage: 5,
-            token: ""
+            token: "",
+            isMonthlyReportAvailable: false,
+            loading: true,
+           
         }
     }
 
@@ -27,6 +31,7 @@ export default class SupplierList extends Component {
         this.fetchToken();
         this.retriveSupplier();
         this.retriveOldSupplier();
+        this.checkMonthlyReportAvailability();
     }
 
     fetchToken() {
@@ -36,16 +41,41 @@ export default class SupplierList extends Component {
         }
     }
 
+    checkMonthlyReportAvailability() {
+        const isMonthlyReportAvailable = true;
+        this.setState({ isMonthlyReportAvailable }, () => {
+
+        });
+    }
+
+    
+
+    displayMonthlyReport() {
+         // Get current month name
+         const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+         const currentMonthIndex = new Date().getMonth();
+         const currentMonthName = months[currentMonthIndex];
+       
+        Swal.fire({
+            icon: 'info',
+            title: `${currentMonthName} Report Available!`,
+            text: 'Go to down and Click Download Button 👇',
+            confirmButtonText: 'OK'
+        });
+    }
+
     retriveSupplier(){
         axios.get("http://localhost:8070/supplier").then((res) =>{
             if(res.data.success){
                 const  existingSupplier =  res.data.existingSupplier;
                 this.setState({
                  suppliers:existingSupplier,
-                 supplierCount: existingSupplier.length
+                 supplierCount: existingSupplier.length,
+                 loading: false
     
                 }, () => {
                     this.initializeChart(this.state.suppliers);
+                    
                 });
             }
         })
@@ -307,10 +337,24 @@ export default class SupplierList extends Component {
         const currentSuppliers = suppliers.slice(indexOfFirstSupplier, indexOfLastSupplier);
         const currentOldSuppliers = oldsuppliers.slice(indexOfFirstSupplier, indexOfLastSupplier);
 
+        const { loading } = this.state; 
+
         return (
             <div>
+                
                 <Header/>
+                <LoadingPage loading={loading} />
                 <div className='container' id="supplierContainer" >
+                    <div id="notification-icon">
+                {this.state.isMonthlyReportAvailable && (
+    <button className="btn notification-icon" onClick={() => this.displayMonthlyReport()}>
+       <img src="/images/notify.png" alt="logo" id="notifyImg"/>
+        <span className="badge bg-danger">1</span>
+    </button>
+)}
+
+</div>
+
 
                     <div id="lineChartContainer" style={{marginBottom:"5%"}}>
                     <div  style={{marginBottom:"2%"}}>
