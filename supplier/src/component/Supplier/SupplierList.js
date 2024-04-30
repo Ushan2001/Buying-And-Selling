@@ -5,7 +5,6 @@ import Header from '../Dashboard/Header/Header';
 import Chart from 'chart.js/auto'; 
 import "./supplier.css";
 import Swal from 'sweetalert2';
-import SupplierReport from './SupplierReport';
 import LoadingPage from './LoadingPage';
 
 
@@ -21,7 +20,6 @@ export default class SupplierList extends Component {
             currentPage: 1,
             itemsPerPage: 5,
             token: "",
-            isMonthlyReportAvailable: false,
             loading: true,
            
         }
