@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import "./supplier.css"
 
 const SupplierReport = () => {
   const [error, setError] = useState('');
@@ -32,15 +33,20 @@ const SupplierReport = () => {
     }
   };
 
+   // Get current month name
+   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+   const currentMonthIndex = new Date().getMonth();
+   const currentMonthName = months[currentMonthIndex];
+
   return (
     <div>
         <div className='row'>
-      <div className='col-md-5'>
-      <h2 id="SupplierCardTitile"> ✅ Monthly Report for Current Month 👉</h2>
+      <div className='col-md-4'>
+      <h2 id="SupplierCardTitile"> ✅ Monthly Report for {currentMonthName} &nbsp;  👉</h2>
       </div>
       <div className='col-md-1'>
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <button className='btn' onClick={handleDownload} id="PdfBtn"><i className='fas fa-download' id="PdfIcon"></i></button>
+      <button className='btn' onClick={handleDownload} id="PdfBtn1"><i className='fas fa-download' id="PdfIcon1"></i></button>
       </div>
     </div>
     </div>
