@@ -97,7 +97,7 @@ export default class App extends Component {
         <Route path="/userHome" exact component={UserHome}></Route>
         <Route path="/create" component={Create}></Route>
         <Route path="/contact" component={contact}></Route>
-        <Route path="/Old Supplier" component={OldSupplier}></Route>
+        <Route path="/Old_Supplier" component={OldSupplier}></Route>
         <Route path="/editOldSupplier/:id" component={EditOldSupplier}></Route>
         <Route path="/view/Oldsupplier/:id" component={OldSupplierDetail}></Route>
         <Route path="/RequestedProduct" component={RequestedProduct}></Route>

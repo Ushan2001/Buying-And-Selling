@@ -63,9 +63,10 @@ export default class RequestedProduct extends Component {
   // new supplier search bar
     filterData(suppliers, searchKey){
         const result = suppliers.filter((supplier) =>
-            supplier.sid.toLowerCase().includes(searchKey) ||
-            supplier.name.toLowerCase().includes(searchKey) || 
-            supplier.address.toLowerCase().includes(searchKey) 
+            supplier.product.toLowerCase().includes(searchKey) ||
+            supplier.quantity.toLowerCase().includes(searchKey) || 
+            supplier.amount.toLowerCase().includes(searchKey) ||
+            supplier.InventoryStatus.toLowerCase().includes(searchKey) 
         );
     
         this.setState({suppliers: result});
@@ -84,9 +85,10 @@ export default class RequestedProduct extends Component {
 // old supplier search bar
     filterData1(oldsuppliers, searchKey){
         const result = oldsuppliers.filter((oldsupplier) =>
-            oldsupplier.sid.toLowerCase().includes(searchKey) ||
-            oldsupplier.product.toLowerCase().includes(searchKey) || 
-            oldsupplier.amount.toLowerCase().includes(searchKey) 
+            oldsupplier.product.toLowerCase().includes(searchKey) ||
+            oldsupplier.quantity.toLowerCase().includes(searchKey) || 
+            oldsupplier.amount.toLowerCase().includes(searchKey) ||
+            oldsupplier.InventoryStatus.toLowerCase().includes(searchKey) 
         );
     
         this.setState({oldsuppliers: result});

@@ -57,14 +57,22 @@ export default class SupplierPayment extends Component {
 
 
   // new supplier search bar
-    filterData(suppliers, searchKey){
-        const result = suppliers.filter((supplier) =>
+    filterData(suppliers, oldsuppliers, searchKey){
+        const result1 = suppliers.filter((supplier) =>
             supplier.sid.toLowerCase().includes(searchKey) ||
-            supplier.name.toLowerCase().includes(searchKey) || 
-            supplier.address.toLowerCase().includes(searchKey) 
+            supplier.totalAmount.toLowerCase().includes(searchKey) || 
+            supplier.InventoryStatus.toLowerCase().includes(searchKey) ||
+            supplier.PaymentStatus.toLowerCase().includes(searchKey) 
+        );
+
+        const result2 = oldsuppliers.filter((oldsupplier) =>
+            oldsupplier.sid.toLowerCase().includes(searchKey) ||
+            oldsupplier.totalAmount.toLowerCase().includes(searchKey) || 
+            oldsupplier.InventoryStatus.toLowerCase().includes(searchKey) ||
+            oldsupplier.PaymentStatus.toLowerCase().includes(searchKey) 
         );
     
-        this.setState({suppliers: result});
+        this.setState({suppliers: result1, oldsupplier: result2});
     }
 
     handleSearchArea = (e) =>{
@@ -81,8 +89,9 @@ export default class SupplierPayment extends Component {
     filterData1(oldsuppliers, searchKey){
         const result = oldsuppliers.filter((oldsupplier) =>
             oldsupplier.sid.toLowerCase().includes(searchKey) ||
-            oldsupplier.product.toLowerCase().includes(searchKey) || 
-            oldsupplier.amount.toLowerCase().includes(searchKey) 
+            oldsupplier.totalAmount.toLowerCase().includes(searchKey) || 
+            oldsupplier.InventoryStatus.toLowerCase().includes(searchKey) ||
+            oldsupplier.PaymentStatus.toLowerCase().includes(searchKey) 
         );
     
         this.setState({oldsuppliers: result});
