@@ -5,6 +5,12 @@ import SupplierList from './component/Supplier/SupplierList'
 import CreateSupplier from './component/Supplier/CreateSupplier';
 import SupplierDetail from './component/Supplier/SupplierDetail';
 import EditSupplier from './component/Supplier/EditSupplier';
+import RequestedProduct from './component/Product Management/RequestedProduct';
+import EditNewSupplierProduct from './component/Product Management/EditNewSupplierProduct';
+import EditOldSupplierProduct from './component/Product Management/EditOldSupplierProduct';
+import SupplierPayment from './component/Payment Management/SupplierPayment';
+import EditNewSupplier from './component/Payment Management/EditNewSupplier';
+import EditOldSupplierPay from './component/Payment Management/EditOldSupplierPay';
 
 import UserProductList from './component/Product Management(user)/UserProductList';
 import UserProductDetails from './component/Product Management(user)/UserProductDetails';
@@ -25,6 +31,8 @@ import OrderList from './component/Order/OrderList';
 import CreateOrder from './component/Order/CreateOrder';
 import EditOrder from './component/Order/EditOrder';
 import OrderDetail from './component/Order/OrderDetail';
+import RequestedOrder from './component/Delivery Management/RequestedOrder';
+import EditRequestOrder from './component/Delivery Management/EditRequestOrder';
 
 import productList from './component/Product Management/productList';
 import CreateProduct from './component/Product Management/CreateProduct';
@@ -70,8 +78,8 @@ import OldSupplierDetail from './component/Supplier/OldSupplierDetail';
 import DeliveryDetail from './component/Delivery Management/DeliveryDetail';
 import getOrder from './component/Order Management(user)/getOrder';
 import Feedbackk from './component/Feedback management/Feedbackk';
-import RequestedOrder from './component/Delivery Management/RequestedOrder';
-import EditRequestOrder from './component/Delivery Management/EditRequestOrder';
+
+
 
 
 
@@ -89,9 +97,16 @@ export default class App extends Component {
         <Route path="/userHome" exact component={UserHome}></Route>
         <Route path="/create" component={Create}></Route>
         <Route path="/contact" component={contact}></Route>
-        <Route path="/Old Supplier" component={OldSupplier}></Route>
+        <Route path="/Old_Supplier" component={OldSupplier}></Route>
         <Route path="/editOldSupplier/:id" component={EditOldSupplier}></Route>
         <Route path="/view/Oldsupplier/:id" component={OldSupplierDetail}></Route>
+        <Route path="/RequestedProduct" component={RequestedProduct}></Route>
+        <Route path="/edit/new/supplier/:id" component={EditNewSupplierProduct}></Route>
+        <Route path="/edit/old/supplier/:id" component={EditOldSupplierProduct}></Route>
+        <Route path="/SupplierPayment" component={SupplierPayment}></Route>
+        <Route path="/edit/new/payment/:id" component={EditNewSupplier}></Route>
+        <Route path="/edit/old/payment/:id" component={EditOldSupplierPay}></Route>
+        
        
 
         <Route path="/userproduct" exact component={UserProductList}></Route>

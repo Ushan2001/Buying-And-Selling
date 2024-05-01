@@ -102,20 +102,21 @@ router.delete("/supplier/delete/:id", verifyToken, (req, res) =>{
 
 
 //get a specific supplier
-router.get("/supplier/:id",(req, res) =>{
+router.get("/supplier/:id", (req, res) => {
   let supplierId = req.params.id;
 
-  Supplier.findById(supplierId,(err, supplier) =>{
-    if(err){
-      return res.status(400).json({success:fails, err})
+  Supplier.findById(supplierId, (err, supplier) => {
+    if (err) {
+      return res.status(400).json({ success: false, err }); // Change fails to false
     }
 
     return res.status(200).json({
-      success:true,
+      success: true,
       supplier
-    })
-  })
-})
+    });
+  });
+});
+
 
 
 

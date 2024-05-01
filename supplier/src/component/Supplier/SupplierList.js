@@ -356,7 +356,7 @@ export default class SupplierList extends Component {
 
                         <div className='col' id="oldCol">
                             <button className='btn btn-info' id="supplierAddLod" >
-                                <a href='/Old Supplier' style={{textDecoration:"none", color:"white"}}>
+                                <a href='/Old_Supplier' style={{textDecoration:"none", color:"white"}}>
                                     <i className='fas fa-plus'></i>&nbsp;Add Old
                                 </a>
                             </button>

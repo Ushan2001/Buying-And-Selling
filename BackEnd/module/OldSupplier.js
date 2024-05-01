@@ -36,6 +36,14 @@ const OldSupplierSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    InventoryStatus:{
+        type:String,
+        default:"Not yet"
+    },
+    PaymentStatus:{
+        type:String,
+        default:"Not yet"
+    }
 });
 
 module.exports = mongoose.model("OldSupplier", OldSupplierSchema)

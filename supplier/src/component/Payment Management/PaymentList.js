@@ -107,6 +107,11 @@ export default class PaymentList extends Component {
                         </div>
                     </div>
 
+                    <div>
+                    <button className='btn btn-dark'><a href='/SupplierPayment' style={{ textDecoration: "none", color: "white" }}>
+                    <i class="bi bi-currency-dollar"></i>&nbsp;Payment Approve</a></button>
+                    </div>
+
                     <button className='btn btn-success' id="paymentAdd"><a href='add/payment' style={{ textDecoration: "none", color: "white" }}>
                         <i className='fas fa-plus'></i>&nbsp;Add New</a></button>
 
