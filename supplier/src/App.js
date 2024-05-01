@@ -71,6 +71,9 @@ import DeliveryDetail from './component/Delivery Management/DeliveryDetail';
 import getOrder from './component/Order Management(user)/getOrder';
 import Feedbackk from './component/Feedback management/Feedbackk';
 
+import RequestedOrder from './component/Delivery Management/RequestedOrder';
+import EditRequestOrder from './component/Delivery Management/EditRequestOrder';
+
 
 
 export default class App extends Component {
@@ -109,6 +112,8 @@ export default class App extends Component {
         <Route path="/order/:id" component={OrderDetail}></Route>
         <Route path="/user/add/order" component={UserCreateOrder}></Route>
         <Route path="/user/order" exact component={getOrder}></Route>
+        <Route path="/requeste/order" exact component={RequestedOrder}></Route>
+        <Route path="/edit/request/order/:id" component={EditRequestOrder}></Route>
         
 
           {/* Rashmika Ranashinha (Inventory Management) */}

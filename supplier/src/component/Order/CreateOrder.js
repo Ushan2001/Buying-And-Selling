@@ -33,7 +33,7 @@ export default function CreateOrder() {
     
 
     function sendEmailNotification(subject, message) {
-        axios.post("http://localhost:8070/send-email/lashini", { subject, message })
+        axios.post("http://localhost:8070/send-email", { subject, message })
           .then((response) => {
             console.log("Email notification sent:", response.data);
           })
