@@ -127,13 +127,13 @@ export default class App extends Component {
         <Route path="/usercustomer" exact component={UserCustomerList}></Route>
         <Route path="/usercustomer/:id" component={UserCustomerDetails}></Route>
 
-          {/* Samadhi Jayasooriya (Transaction History) */}
+          {/* Samadhi Jayasundara (Transaction History) */}
         <Route path="/history" exact component={HistoryList}></Route>
         <Route path="/add/history" component={CreateHistory}></Route>
         <Route path="/edithistory/:id" component={EditHistory}></Route>
         <Route path="/history/:id" component={HistoryDetails}></Route>
 
-          {/* Haritha Lidapitiya (Report Genaration) */}
+          {/* Haritha Lidapitiya (####) */}
         <Route path="/discount" exact component={DiscountList}></Route>
         <Route path="/add/discount" component={CreateDiscount}></Route>
         <Route path="/editdiscount/:id" component={EditDiscount}></Route>

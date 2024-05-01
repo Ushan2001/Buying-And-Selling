@@ -1,6 +1,4 @@
 const mongoose = require("mongoose");
-
-
 const SupplierSchema = new mongoose.Schema({
 
     sid:{
@@ -49,6 +47,13 @@ const SupplierSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-});
+    status:{
+        type:String,
+        default:"Active"
+    }
+},{timestamps: true});
 
 module.exports = mongoose.model("Supplier", SupplierSchema)
+
+
+

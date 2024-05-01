@@ -138,3 +138,87 @@
   background-color: #f6f9ff;
 }
 
+
+
+
+
+
+
+
+.notification-container {
+  position: relative;
+}
+
+.notification-dropdown {
+  position: absolute;
+  top: 50px; 
+  right: 50px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 350px;
+}
+
+.notification-header {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notification-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notification-list li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.notification-list li:hover {
+  background-color: #f0f0f0;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #666;
+  width: 45px;
+  height: 45px;
+}
+
+.close-button:hover {
+  color: #ff0000;
+}
+
+.reportName{
+  font-weight: 1000;
+    font-size: 25px;
+    color:#023b53;
+}
+
+#closeIcon{
+  width: 45px;
+  height: 45px;
+}
+
+.notification-list li {
+  display: inline;
+}
+
+.notification-dropdown .notification-list li {
+  background-color: none;
+  background-color: transparent; /* Remove hover color */
+  color: inherit; /* Inherit text color */
+ 
+}
+
+
+
