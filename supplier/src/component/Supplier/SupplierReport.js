@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import "./supplier.css"
 
 const SupplierReport = () => {
   const [error, setError] = useState('');
@@ -32,15 +33,17 @@ const SupplierReport = () => {
     }
   };
 
+
+
   return (
     <div>
         <div className='row'>
-      <div className='col-md-5'>
-      <h2 id="SupplierCardTitile"> ✅ Monthly Report for Current Month 👉</h2>
+      <div className='col-md-10'>
+     
       </div>
-      <div className='col-md-1'>
+      <div className='col-md-1' style={{marginLeft:"-15%", marginTop:"-8%"}}>
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <button className='btn' onClick={handleDownload} id="PdfBtn"><i className='fas fa-download' id="PdfIcon"></i></button>
+      <button className='btn' onClick={handleDownload} id="PdfBtn1"><i className='fas fa-download' id="PdfIcon1"></i></button>
       </div>
     </div>
     </div>

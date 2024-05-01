@@ -17,6 +17,7 @@
     color: #343a40;
     font-size: 1.5rem;
     margin-bottom: 8px;
+    font-weight: 600;
 }
 
 #orderText1{
@@ -26,10 +27,10 @@
 }
 
 #orderText2{
-    color: #28a745;
+    color: #343a40;
     font-size: 1.25rem;
     margin-bottom: 16px;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 #getOrderRow{
@@ -46,9 +47,9 @@
 }
 
 #status{
-    color: tomato;
-    font-weight: 400;
-    font-size: 18px;
+    
+    font-weight: 900;
+    font-size: 19px;
 }
 
 #orderUserContainer {
@@ -58,4 +59,3 @@
     min-height: 100vh;
     background-repeat: no-repeat;
   }
-  
