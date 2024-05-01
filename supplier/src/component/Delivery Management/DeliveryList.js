@@ -30,26 +30,7 @@ export default class DeliveryList extends Component {
             this.setState({ token: storedToken });
         }
     }
-    // retriveDelivery(){
-    //         const { statusFilter } = this.state;
-    //         let url = "http://localhost:8070/deliverys";
-    //         if (statusFilter !== "all") {
-    //             url += `?status=${statusFilter}`;
-    //         }
-    //         axios.get(url).then((res) =>{
-    //         if(res.data.success){
-    //             const existingDelivery = res.data.existingDelivery;
 
-    //             this.setState({
-    //                 deliverys:existingDelivery,
-    //                 deliveryCount:existingDelivery.length
-
-    //             })
-
-    //             console.log(this.state.deliverys)
-    //         }
-    //     });
-    // }
     retriveDelivery() {
         const { statusFilter } = this.state;
         let url = `http://localhost:8070/deliverys?status=${statusFilter}`;
@@ -160,15 +141,7 @@ export default class DeliveryList extends Component {
                             onChange={this.handleSearchArea}
                         />
          </div>
-         <div className='col-lg-3 mt-2 mb-2'>
-                        {/* Dropdown for status filter */}
-                        <select className="form-select" value={this.state.statusFilter} onChange={this.handleStatusFilterChange}>
-                            <option value="all">All</option>
-                            <option value="delivered">Delivered</option>
-                            <option value="in transit">In Transit</option>
-                            <option value="pending">Pending</option>
-                        </select>
-        </div>
+     
          <div className='row' id="BtnRow">
                         <div className='col' id="newCol">
                         <button className='btn btn-success' id="btnAddNew">
