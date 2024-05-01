@@ -49,6 +49,16 @@ export default class getOrder extends Component {
           }
         });
       };
+
+      deliveryColor = (send) => {
+        let color;
+        if (send === 'Pending') {
+          color = 'tomato';
+        } else {
+          color = '#28a745';
+        }
+        return { color };
+      };
     
   render() {
     return (
@@ -82,7 +92,7 @@ export default class getOrder extends Component {
                 <div className="card animated-card" id="orderCard" style={{backgroundImage: 'url("/images/back.jpg")'}}>
   <div className="card-body" id="orderBody">
     <h5 className="card-title" id="orderTitle">{order.name}</h5>
-    <p className="card-text" id="orderText2">Delivery Status: <span id="status"> {order.send} </span></p>
+    <p className="card-text" id="orderText2">Delivery Status: <span id="status" style={this.deliveryColor(order.send)}> {order.send} </span></p>
     
   </div>
 </div>
