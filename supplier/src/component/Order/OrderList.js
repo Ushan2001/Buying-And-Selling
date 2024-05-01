@@ -6,6 +6,8 @@ import './order.css';
 import Chart from 'chart.js/auto';
 import Swal from 'sweetalert2';
 
+export const orderCount = "this.state.orderCount";
+
 export default class OrderList extends Component {
   constructor(props) {
     super(props);
@@ -19,6 +21,8 @@ export default class OrderList extends Component {
 
     };
   }
+
+
 
   componentDidMount() {
     this.fetchToken();
