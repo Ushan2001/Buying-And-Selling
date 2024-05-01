@@ -43,7 +43,7 @@ function NavNotification() {
             <h5 className="reportName">Notification Center</h5>
           </div>
           <ul className="notification-list">
-            <li> 1️⃣ {currentMonthName} suppliers' report available<SupplierReport/></li>
+            <li>1️⃣ {currentMonthName} suppliers' report available <SupplierReport/></li>
           </ul>
           <button className="close-button" onClick={closeNotifications}><i class="bi bi-x-square" id="closeIcon"></i></button>
         </div>
