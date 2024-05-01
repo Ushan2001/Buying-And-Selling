@@ -112,35 +112,36 @@ export default class DeliveryList extends Component {
     return (
       <div>
         <Header/>
-        <div className='container' id="supplierContainer" style={{width:"78%"}}>
+        <div className='container' id="deliveryContainer" style={{width:"78%"}}>
+        <div className='row' style={{marginTop:"1%",marginLeft:"50px"}}>
+                        <div className='col' >
+                        <button className='btn btn-warning'>
+                            <a href='/requeste/order' style={{textDecoration:"none", color:"black"}}>
+                            <i class="bi bi-truck"></i>&nbsp;Requested Order</a>
+                        </button>
+                        </div>
+        </div>
         <div className='col-lg-3 mt-2 mb-2'>
                         <input  
                             className="form-control"
                             type='search'
                             placeholder='Search'
                             name="serchQuery"
-                            style={{marginLeft:"50px", borderRadius:"20px"}}
+                            style={{marginLeft:"50px",marginTop:"50px", borderRadius:"20px"}}
                             onChange={this.handleSearchArea}
                         />
          </div>
         
          <div className='row' id="BtnRow">
                         <div className='col' id="newCol">
-                        <button className='btn btn-success' id="supplierAdd">
+                        <button className='btn btn-success' id="btnAddNew">
                             <a href='add/delivery' style={{textDecoration:"none", color:"white"}}>
                         <i className='fas fa-plus'></i>&nbsp;Add New</a>
                         </button>
                         </div>
+                        
         </div> 
-        <div className='row' style={{marginTop:"1%"}}>
-                        <div className='col' >
-                        <button className='btn btn-dark'>
-                            <a href='/requeste/order' style={{textDecoration:"none", color:"white"}}>
-                            <i class="bi bi-truck"></i>&nbsp;Requested Order</a>
-                        </button>
-                        </div>
-        </div>
-        
+       
         <div id="supplierCount">
                 <div className='card-body'>
                     <h5 className='card-title' id="SupplierCardTitile" >✅ No. OF DELIVERIES : <span id="cardText"> {this.state.deliveryCount} </span></h5>        

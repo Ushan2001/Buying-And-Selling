@@ -2,6 +2,7 @@ import React,{useState,  useEffect } from "react";
 import axios from "axios";
 import {useHistory } from "react-router-dom";
 import Header from '../Dashboard/Header/Header';
+import "./style.css"
 
 
 export default function CreateDelivery() {
@@ -72,13 +73,13 @@ export default function CreateDelivery() {
     <div>
       <Header />
 
-<div className="container" id="createSupplier" >
-    <form onSubmit={sendData} style={{ position: "relative",width: "70%" }}>
-      <h2 id="AllSupplier">Create New Delivery Records</h2>
+<div className="container" id="createDeliveryContainer" >
+    <form onSubmit={sendData}>
+      <h2 id="btnAllDelivery">Create New Delivery Records</h2>
       <br></br>
 <div className="mb-3">
-<label for="exampleInputEmail1" className="form-label"  id='supplier'>Customer Name</label>
-<input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Customer Name" 
+<label for="exampleInputEmail1" className="form-label"  id='createDelivery'>Customer Name</label>
+<input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Customer Name" 
 onChange={(e) =>{
 
 setName(e.target.value);
@@ -86,7 +87,7 @@ setName(e.target.value);
 </div>
 
 <div className="mb-3">
-<label for="exampleInputPassword1" className="form-label" id='supplier'>Contact Number</label>
+<label for="exampleInputPassword1" className="form-label" id='createDelivery'>Contact Number</label>
 <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Contact Number"
 pattern="^\d{10}$"
 onChange={(e) =>{
@@ -98,8 +99,8 @@ setNumber(e.target.value);
 <div className="row">
     <div className="col">
 <div className="mb-3">
-<label for="exampleInputEmail1" className="form-label" id='supplier'>Order ID</label>
-<input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Order ID" 
+<label for="exampleInputPassword1" className="form-label" id='createDelivery'>Order ID</label>
+<input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Order ID" 
 onChange={(e) =>{
 
 setOid(e.target.value);
@@ -109,8 +110,8 @@ setOid(e.target.value);
 
 <div className="col">
 <div className="mb-3">
-<label for="exampleInputEmail1" className="form-label" id='supplier'>Delivery Code</label>
-<input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Delivery Code" 
+<label for="exampleInputPassword1" className="form-label" id='createDelivery'>Delivery Code</label>
+<input type="text" className="form-control" id="dateInput" aria-describedby="emailHelp" placeholder="Enter Delivery Code" 
 onChange={(e) =>{
 
 setCode(e.target.value);
@@ -120,7 +121,7 @@ setCode(e.target.value);
 </div>
 
 <div className="mb-3">
-<label for="exampleInputPassword1" className="form-label" id='supplier'>Address</label>
+<label for="exampleInputPassword1" className="form-label" id='createDelivery'>Address</label>
 <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Customer Address"
 onChange={(e) =>{
 
@@ -129,7 +130,7 @@ setAddress(e.target.value);
 </div>
 
 <div className="mb-3">
-    <label htmlFor="dateInput" className="form-label" id='supplier' >Date</label>
+    <label htmlFor="dateInput" className="form-label" id='createDelivery' >Date</label>
     <input type="date" id="dateInput" name="date" max={""} value={date} style={{marginLeft:"3px"}}
     className="form-control"
      onChange={(e) =>
@@ -139,7 +140,7 @@ setAddress(e.target.value);
 
 
 <div className="mb-3">
-<label for="exampleInputPassword1" className="form-label" id='supplier'>Additional Information</label>
+<label for="exampleInputPassword1" className="form-label" id='createDelivery'>Additional Information</label>
 <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Additional Information"
 onChange={(e) =>{
 
@@ -148,28 +149,36 @@ setNote(e.target.value);
 </div>
 
 <div className="mb-3">
-<label for="exampleInputPassword1" className="form-label" id='supplier'>Delivery Status</label>
-<input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Delivery Status"
-onChange={(e) =>{
+<label for="exampleInputPassword1" className="form-label" id='createDelivery'>Delivery Status</label>
 
-setStatus(e.target.value);
-}}/>
+<select
+              className="form-select"
+              id="exampleInputPassword1"
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+              required
+            >
+              <option value="">Select Status</option>
+              <option value="Pending">Pending</option>
+              <option value="Delivered">Delivered</option>
+</select>
+
 </div>
 
 <div className="mb-3">
-  <label htmlFor="exampleInputDistance" className="form-label" id='supplier'>Distance (in km)</label>
-  <input type="number" className="form-control" id="exampleInputDistance" placeholder="Enter Distance"
+  <label htmlFor="exampleInputDistance" className="form-label" id='createDelivery'>Distance (in km)</label>
+  <input type="number" className="form-control" id="exampleInputPassword1" placeholder="Enter Distance"
       onChange={(e) => setDistance(parseInt(e.target.value))} />
 </div>
 
 <div class="count-display" style={{marginBottom:"2%", width:"70%"}}>
-    <label class="count-label" for="exampleInputPassword1" id='supplier'>Delivery Fee:</label>
+    <label class="count-label" for="exampleInputPassword1" id='createDelivery'>Delivery Fee:</label>
     <div class="count-value">LKR: {deliveryFee}</div>
 </div>
 
-<button type="submit" className="btn btn-success" style={{marginTop:"15px"}}>
+<button type="submit" className="btn btn-success" style={{marginTop:"15px",borderRadius:"20px"}}>
 <i className='fas fa-save'></i>
-&nbsp; Save
+&nbsp; Save Delivery
 </button>
 </form>
 </div>
