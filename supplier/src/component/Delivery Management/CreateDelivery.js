@@ -20,10 +20,10 @@ export default function CreateDelivery() {
     const history = useHistory();
 
     function sendData(a){
-
+// Calculate delivery fee based on distance
       if (distance > 10) {
         const extraDistance = distance - 10;
-        const calculatedDeliveryFee = extraDistance * 50;
+        const calculatedDeliveryFee = extraDistance * 20;
         setDeliveryFee(calculatedDeliveryFee);
     } else {
         setDeliveryFee(0); // Reset deliveryFee if distance is 10km or less
@@ -80,10 +80,19 @@ export default function CreateDelivery() {
 <div className="mb-3">
 <label for="exampleInputEmail1" className="form-label"  id='createDelivery'>Customer Name</label>
 <input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Customer Name" 
+
+<label for="exampleInputEmail1" className="form-label"  id='supplier'>Customer Name</label>
+<input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Customer Name" 
+pattern="[A-Za-z\s]+" title="Please enter only letters and spaces"
+
 onChange={(e) =>{
 
 setName(e.target.value);
 }}/>
+ {!/^[A-Za-z\s]+$/.test(name) && (
+        <p style={{ color: "red", fontSize: "14px", marginTop: "5px" }}>Please enter only letters and spaces</p>
+    )}
+
 </div>
 
 <div className="mb-3">
@@ -100,6 +109,9 @@ setNumber(e.target.value);
     <div className="col">
 <div className="mb-3">
 <label for="exampleInputPassword1" className="form-label" id='createDelivery'>Order ID</label>
+=======
+<label for="exampleInputEmail1" className="form-label" id='supplier'>Order ID</label>
+
 <input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Order ID" 
 onChange={(e) =>{
 
@@ -112,6 +124,9 @@ setOid(e.target.value);
 <div className="mb-3">
 <label for="exampleInputPassword1" className="form-label" id='createDelivery'>Delivery Code</label>
 <input type="text" className="form-control" id="dateInput" aria-describedby="emailHelp" placeholder="Enter Delivery Code" 
+
+<label for="exampleInputEmail1" className="form-label" id='supplier'>Delivery Code</label>
+<input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Delivery Code" 
 onChange={(e) =>{
 
 setCode(e.target.value);
@@ -167,6 +182,17 @@ setNote(e.target.value);
 
 <div className="mb-3">
   <label htmlFor="exampleInputDistance" className="form-label" id='createDelivery'>Distance (in km)</label>
+=======
+<label htmlFor="statusSelect" className="form-label" id="supplier">Delivery Status</label>
+    <select className="form-select" id="statusSelect" value={status} onChange={(e) => setStatus(e.target.value)}>
+        <option value="pending">Pending</option>
+        <option value="in transit">In Transit</option>
+        <option value="delivered">Delivered</option>
+    </select>
+</div>
+
+<div className="mb-3">
+  <label htmlFor="exampleInputDistance" className="form-label" id='supplier'>Distance (in km)</label>
   <input type="number" className="form-control" id="exampleInputPassword1" placeholder="Enter Distance"
       onChange={(e) => setDistance(parseInt(e.target.value))} />
 </div>

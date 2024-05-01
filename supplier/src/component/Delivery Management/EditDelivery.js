@@ -95,8 +95,11 @@ export default function EditDelivery(props) {
       <br></br>
 <div className="mb-3">
 <label for="exampleInputEmail1" className="form-label"id='createDelivery'>Customer Name</label>
+
+<label for="exampleInputEmail1" className="form-label"id='supplier'>Customer Name</label>
 <input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Customer Name"
 value={name} 
+pattern="[A-Za-z\s]+" title="Please enter only letters and spaces"
 onChange={(e) =>{
 
 setName(e.target.value);
@@ -118,6 +121,7 @@ setNumber(e.target.value);
     <div className="col">
 <div className="mb-3">
 <label for="exampleInputEmail1" className="form-label"id='createDelivery'>Order ID</label>
+<label for="exampleInputEmail1" className="form-label"id='supplier'>Order ID</label>
 <input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Order ID" 
 value={oid}
 onChange={(e) =>{
@@ -131,6 +135,8 @@ setOid(e.target.value);
 <div className="mb-3">
 <label for="exampleInputPassword1" className="form-label"id='createDelivery'>Delivery Code</label>
 <input type="text" className="form-control" id="dateInput" aria-describedby="emailHelp" placeholder="Enter Delivery Code"
+<label for="exampleInputEmail1" className="form-label"id='supplier'>Delivery Code</label>
+<input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Delivery Code"
 value={code} 
 onChange={(e) =>{
 
@@ -154,6 +160,7 @@ setAddress(e.target.value);
     <label htmlFor="dateInput" className="form-label"id='createDelivery'>Date</label>
     <input type="date" id="dateInput" name="date" max={""} value={date} style={{marginLeft:"3px"}}
     className="form-control"
+    readOnly
      onChange={(e) => setDate(e.target.value)}
       required/>
   </div>
@@ -165,7 +172,7 @@ setAddress(e.target.value);
         onChange={(e) => {
           if (distance > 10) {
             const extraDistance = distance - 10;
-            const calculatedDeliveryFee = extraDistance * 50;
+            const calculatedDeliveryFee = extraDistance * 20;
             setDeliveryFee(calculatedDeliveryFee);
         } else {
             setDeliveryFee(0); // Reset deliveryFee if distance is 10km or less
@@ -197,6 +204,14 @@ setNote(e.target.value);
               <option value="Pending">Pending</option>
               <option value="Delivered">Delivered</option>
 </select>
+=======
+<label htmlFor="statusSelect" className="form-label" id="supplier">Delivery Status</label>
+    <select className="form-select" id="exampleInputPassword1"  value={status} onChange={(e) => setStatus(e.target.value)}>
+        <option value="pending">Pending</option>
+        <option value="in transit">In Transit</option>
+        <option value="delivered">Delivered</option>
+    </select>
+
 </div>
 <div class="count-display" style={{marginBottom:"2%", width:"70%"}}>
     <label class="count-label" for="exampleInputPassword1" id='createDelivery'>Delivery Fee:</label>
