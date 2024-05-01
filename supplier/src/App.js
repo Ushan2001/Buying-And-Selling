@@ -73,7 +73,6 @@ import Feedbackk from './component/Feedback management/Feedbackk';
 
 
 
-
 export default class App extends Component {
   render() {
     return (
@@ -110,7 +109,6 @@ export default class App extends Component {
         <Route path="/order/:id" component={OrderDetail}></Route>
         <Route path="/user/add/order" component={UserCreateOrder}></Route>
         <Route path="/user/order" exact component={getOrder}></Route>
-      
         
 
           {/* Rashmika Ranashinha (Inventory Management) */}
