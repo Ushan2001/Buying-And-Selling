@@ -83,6 +83,16 @@ export default class productList extends Component {
             style={{marginLeft:"0px", borderRadius:"20px"}}
             onChange={this.handleSearchArea}/>
          </div>
+
+         <div style={{marginTop:"3%", marginBottom:"3%"}}>
+         <button className='btn btn-dark'><a href='/RequestedProduct' style={{textDecoration:"none", color:"white"}}>
+         <i class="bi bi-bag-plus-fill"></i>&nbsp;Requested Product</a></button>
+         </div>
+
+         <div style={{marginBottom:"3%"}}>
+         <button className='btn btn-success'><a href='add/product' style={{textDecoration:"none", color:"white"}}>
+         <i className='fas fa-plus'></i>&nbsp;Add New</a></button>
+         </div>
         
 
         <h2>All Products</h2>
@@ -125,8 +135,7 @@ export default class productList extends Component {
         </tbody>
          </table>
 
-         <button className='btn btn-success'><a href='add/product' style={{textDecoration:"none", color:"white"}}>
-         <i className='fas fa-plus'></i>&nbsp;Add New</a></button>
+         
         
       </div>
       </div>
