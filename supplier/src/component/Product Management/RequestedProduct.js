@@ -149,7 +149,7 @@ export default class RequestedProduct extends Component {
                         <thead>
                             <tr>
                                 <th scope='col'><i className='fas fa-list'></i></th>
-                                <th scope='col'>Procut Name</th>
+                                <th scope='col'>Product Name</th>
                                 <th scope='col'>Quantity</th>
                                 <th scope='col'>Amount</th>
                                 <th scope='col'>Status</th>
