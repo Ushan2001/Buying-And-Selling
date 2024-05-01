@@ -61,6 +61,7 @@ import PaymentForm from './component/Payment Management(user)/PaymentForm';
 import AddPost from './component/Product Management(user)/AddPost';
 
 
+
 import DeliveryList from './component/Delivery Management/DeliveryList';
 import CreateDelivery from './component/Delivery Management/CreateDelivery';
 import EditDelivery from './component/Delivery Management/EditDelivery';
@@ -68,6 +69,8 @@ import EditOldSupplier from './component/Supplier/EditOldSupplier';
 import OldSupplierDetail from './component/Supplier/OldSupplierDetail';
 import DeliveryDetail from './component/Delivery Management/DeliveryDetail';
 import getOrder from './component/Order Management(user)/getOrder';
+import Feedbackk from './component/Feedback management/Feedbackk';
+
 
 
 export default class App extends Component {
@@ -87,6 +90,7 @@ export default class App extends Component {
         <Route path="/Old Supplier" component={OldSupplier}></Route>
         <Route path="/editOldSupplier/:id" component={EditOldSupplier}></Route>
         <Route path="/view/Oldsupplier/:id" component={OldSupplierDetail}></Route>
+       
 
         <Route path="/userproduct" exact component={UserProductList}></Route>
         <Route path="/userproduct/:id" component={UserProductDetails}></Route>
@@ -134,9 +138,9 @@ export default class App extends Component {
         <Route path="/add/discount" component={CreateDiscount}></Route>
         <Route path="/editdiscount/:id" component={EditDiscount}></Route>
         <Route path="/discount/:id" component={DiscountDetails}></Route>
-        
+        <Route path="/Feedbackk" component={Feedbackk}></Route>
 
-          {/* Dulaj Indura (Payment Management) */}
+          {/* Dulaj Indula (Payment Management) */}
         <Route path="/payment" exact component={PaymentList}></Route>
         <Route path="/add/payment" component={CreatePayment}></Route> 
         <Route path="/editpayment/:id" component={EditPayment}></Route> 

@@ -16,6 +16,7 @@ export default function CreateProduct() {
     const [sname, setSname] = useState("");
     const [image, setImage] = useState(null);
     const history = useHistory();
+    const [contactNumberValid, setContactNumberValid] = useState(false);
 
     function sendData(a){
 
@@ -154,10 +155,15 @@ export default function CreateProduct() {
     <label for="exampleInputPassword1" className="form-label" id="product">Contact Number</label>
     <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter your Contact Number"
        pattern="^\d{10}$"
-    onChange={(e) =>{
-
-    setContact(e.target.value);
-    }}/>
+       title="Please enter a 10-digit number"  // Tooltip message
+                            onChange={(e) => {
+                                setContact(e.target.value);
+                                setContactNumberValid(/^\d{10}$/.test(e.target.value));
+                            }} />
+                        {!contactNumberValid && (
+                            <p style={{ color: "red", fontSize: "14px", marginTop: "5px" }}>Please enter a valid 10-digit number</p>
+                        )}
+    
 </div>
 
   <div className="mb-3">
