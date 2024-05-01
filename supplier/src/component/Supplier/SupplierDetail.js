@@ -31,7 +31,7 @@ export default class SupplierDetail extends Component {
     
 
   render() {
-    const {sid, name, address, product, amount, quantity, date, note,totalAmount, _id } = this.state.supplier;
+    const {sid, name, address, product, amount, quantity, date, note,totalAmount, _id, InventoryStatus, PaymentStatus } = this.state.supplier;
     return (
       <div>
          <Header/>
@@ -65,6 +65,12 @@ export default class SupplierDetail extends Component {
         <br></br><br></br>
         <dt className='col-sm-3' id='supplier'>Total Amount</dt>
         <dd className='col-sm-9' id="details"> LKR :{totalAmount}</dd>
+        <br></br><br></br>
+        <dt className='col-sm-3' id='supplier'>Inventory Status</dt>
+        <dd className='col-sm-9' id="details">{InventoryStatus}</dd>
+        <br></br><br></br>
+        <dt className='col-sm-3' id='supplier'>Payment Status</dt>
+        <dd className='col-sm-9' id="details">{PaymentStatus}</dd>
         
       </dl>
       

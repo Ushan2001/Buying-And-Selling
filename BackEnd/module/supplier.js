@@ -50,6 +50,14 @@ const SupplierSchema = new mongoose.Schema({
     status:{
         type:String,
         default:"Active"
+    },
+    InventoryStatus:{
+        type:String,
+        default:"Not yet"
+    },
+    PaymentStatus:{
+        type:String,
+        default:"Not yet"
     }
 },{timestamps: true});
 
