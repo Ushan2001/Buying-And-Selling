@@ -148,7 +148,10 @@ export default class productList extends Component {
     </tbody>
 </table>
 
-                <p>Stock In Rate:{this.state.stockInRate.toFixed(2)}%</p>
+            <div className="rate-display">
+            <label className="rate-label" htmlFor="exampleInputPassword1" id='product'>Stock In Rate</label>
+            <div className="rate-value">{this.state.stockInRate.toFixed(2)}% </div>
+          </div>
                 </div>
             </div>
         );
