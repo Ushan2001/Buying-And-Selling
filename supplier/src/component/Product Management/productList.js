@@ -131,21 +131,6 @@ export default class productList extends Component {
          <i className='fas fa-plus'></i>&nbsp;Add New</a></button>
          </div>
 
-
-    render() {
-        return(
-            <div>
-                <Header />
-                <div className='container' id="productContainer">
-                <div className='col-lg-3 mt-2 mb-2'>
-                        <input className="form-control"
-                            type='search'
-                            placeholder='Search'
-                            name="serchQuery"
-                            style={{ marginLeft: "0px", borderRadius: "20px" }}
-                            onChange={this.handleSearchArea} />
-                    </div>
-
                     <div id="productCount" style={{ marginBottom: "20px" }}>
                         <div className='card-body'>
                             <h5 className='card-title' id="ProductCardTitile" >
@@ -207,12 +192,5 @@ export default class productList extends Component {
                 </div>
             </div>
         );
-  }
-
-         
-        
-      </div>
-      </div>
-    )
   }
 }

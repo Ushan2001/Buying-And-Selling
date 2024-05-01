@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import NavBar from '../NavBar/NavBar';
 import Header from "../Dashboard/Header/Header";
 export default class ProductDetails extends Component {
 
