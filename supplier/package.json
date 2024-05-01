@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@ckeditor/ckeditor5-build-classic": "^41.3.1",
-    "@ckeditor/ckeditor5-inspector": "^4.1.0",
-    "@ckeditor/ckeditor5-react": "^6.3.0",
     "@creative-tim-official/argon-dashboard-free": "^1.1.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",

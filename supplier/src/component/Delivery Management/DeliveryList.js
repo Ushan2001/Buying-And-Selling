@@ -154,6 +154,7 @@ export default class DeliveryList extends Component {
                         </button>
                         </div>
         </div> 
+
         <div id="supplierCount">
                 <div className='card-body'>
                     <h5 className='card-title' id="SupplierCardTitile" >✅ No. OF DELIVERIES : <span id="cardText"> {this.state.deliveryCount} </span></h5>        

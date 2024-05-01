@@ -185,9 +185,9 @@ router.get("/supplier/report/:year/:month", async (req, res) => {
 
     // Add the logo to the PDF document
   pdfDoc.image(logoImage, {
-  fit: [150, 150], 
-  align:"right", 
-  valign: "right" ,
+  fit: [120, 120], 
+  align:"left", 
+  valign: "left" ,
   
 }).moveDown(12); 
 
