@@ -3,6 +3,8 @@ import axios from "axios";
 import Header from "../Dashboard/Header/Header";
 import PdfButton from './PdfButton';
 import "./product.css";
+import { orderCount } from '../Order/OrderList';
+
 
 export default class productList extends Component {
 
@@ -14,6 +16,7 @@ export default class productList extends Component {
             initialProductCount:0,
             productCount: 0,
             stockInRate: 0, 
+            stockOutRate:0,
         }
     }
 
@@ -21,7 +24,27 @@ export default class productList extends Component {
         this.retriveProduct();
     }
 
+    retrieveOrder() {
+        axios.get('http://localhost:8070/orders').then((res) => {
+          if (res.data.success) {
+            const existingOrder = res.data.existingOrder;
+
+            this.setState({
+              orders:existingOrder,
+              orderCount:existingOrder.length
+             
+            }, () => {
+              // Call initializeChart after setting state
+              this.initializeChart(this.state.orders);
+            });
+      
+            console.log(this.state.orders);
+          }
+        });
+      }
+
     retriveProduct() {
+
         axios.get("http://localhost:8070/products")
             .then((res) => {
                 if (res.data.success) {
@@ -31,11 +54,14 @@ export default class productList extends Component {
                 
                     const stockInRate = (productCount/24) * 100;
 
+                    const stockOutRate = (orderCount/24) * 100;
+
                     this.setState({
                         products: existingProduct,
                         initialProductCount: productCount,
                         productCount,
                         stockInRate,
+                        stockOutRate,
                     });
                 }
             })
@@ -149,8 +175,12 @@ export default class productList extends Component {
 </table>
 
             <div className="rate-display">
-            <label className="rate-label" htmlFor="exampleInputPassword1" id='product'>Stock In Rate</label>
+            <label className="rate-label" htmlFor="exampleInputPassword1" id='product'>Stock In Rate Per Day</label>
             <div className="rate-value">{this.state.stockInRate.toFixed(2)}% </div>
+          </div>
+          <div className="rate-display">
+            <label className="rate-label" htmlFor="exampleInputPassword1" id='product'>Stock Out Rate Per Day</label>
+            <div className="rate-value">{this.state.stockOutRate.toFixed(2)}% </div>
           </div>
                 </div>
             </div>
