@@ -69,7 +69,7 @@ export default class RequestedOrder extends Component {
     return (
       <div>
         <Header />
-        <div className='container' id='RequestOrderContainer'>
+        <div className='container' id="supplierContainer" style={{maxWidth:"80%"}}>
             
           <div className='col-lg-3 mt-2 mb-2'>
             <input
