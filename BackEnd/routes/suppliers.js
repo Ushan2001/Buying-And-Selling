@@ -9,7 +9,6 @@ const fs = require("fs");
 const router = express.Router();
 
 //save supplier
-
 router.post("/supplier/save", verifyToken, async (req, res) => {
   try {
     // Check if a supplier with the same sid or name already exists
@@ -41,11 +40,9 @@ router.post("/supplier/save", verifyToken, async (req, res) => {
 
 
 
-
 //get details
-
 router.get("/supplier", (req, res) =>{
-    Supplier.find().exec((err, suppliers) =>{
+    Supplier.find().select("-__v -createdAt -updatedAt -addedBy").exec((err, suppliers) =>{
       if(err){
         return res.status(400).json({
           error:err
@@ -59,8 +56,9 @@ router.get("/supplier", (req, res) =>{
     })
 })
 
-//update
 
+
+//update
 router.put("/supplier/update/:id", verifyToken, async (req, res) => {
   try {
       const existingSupplier = await Supplier.findOne({ name: req.body.name });
@@ -86,8 +84,9 @@ router.put("/supplier/update/:id", verifyToken, async (req, res) => {
 });
 
 
-//delete
 
+
+//delete
 router.delete("/supplier/delete/:id", verifyToken, (req, res) =>{
   Supplier.findByIdAndRemove(req.params.id).exec((err, deleteSupplier) =>{
     if(err) return res.status(400).json({
@@ -100,22 +99,26 @@ router.delete("/supplier/delete/:id", verifyToken, (req, res) =>{
   })
 })
 
-//get a specific supplier
 
-router.get("/supplier/:id",(req, res) =>{
+
+//get a specific supplier
+router.get("/supplier/:id", (req, res) => {
   let supplierId = req.params.id;
 
-  Supplier.findById(supplierId,(err, supplier) =>{
-    if(err){
-      return res.status(400).json({success:fails, err})
+  Supplier.findById(supplierId, (err, supplier) => {
+    if (err) {
+      return res.status(400).json({ success: false, err }); // Change fails to false
     }
 
     return res.status(200).json({
-      success:true,
+      success: true,
       supplier
-    })
-  })
-})
+    });
+  });
+});
+
+
+
 
 // POST endpoint for sending emails
 router.post('/send-email', (req, res) => {
@@ -159,6 +162,8 @@ router.get("/supplier/report/:year/:month", async (req, res) => {
     const month = parseInt(req.params.month);
     const startDate = new Date(year, month - 1, 1);
     const endDate = new Date(year, month, 0, 23, 59, 59);
+    const logoPath = "./images/BuySell Nexus.png"; // Update this with the actual path to your logo file
+    const logoImage = fs.readFileSync(logoPath);
 
     const suppliers = await Supplier.find({
       date: {
@@ -177,12 +182,21 @@ router.get("/supplier/report/:year/:month", async (req, res) => {
 
      // Add current date
      const currentDate = new Date().toLocaleDateString();
-     pdfDoc.font("Helvetica").fontSize(12).moveDown(1).text(`Report Genarate: ${currentDate}`, { align: "right" }).moveDown();
+     pdfDoc.font("Helvetica").fontSize(12).moveUp(2).text(`Report Genarate: ${currentDate}`, { align: "right" });
+
+    // Add the logo to the PDF document
+  pdfDoc.image(logoImage, {
+  fit: [120, 120], 
+  align:"left", 
+  valign: "left" ,
+  
+}).moveDown(12); 
+
 
     // Add company address
-    pdfDoc.text("BuySell Nexus", { align: "left" });
-    pdfDoc.text("Malabe", { align: "left" });
-    pdfDoc.text("Colombo", { align: "left" });
+    pdfDoc.font("Helvetica-Bold").fontSize(12).text("BuySell Nexus,", { align: "left" });
+    pdfDoc.font("Helvetica-Bold").fontSize(12).text("Malabe,", { align: "left" });
+    pdfDoc.font("Helvetica-Bold").fontSize(12).text("Greater-Colombo.", { align: "left" });
 
     pdfDoc.font("Helvetica-Bold").fontSize(20).text("Monthly Supplier Report", { align: "center" }).moveDown();
 
@@ -190,7 +204,8 @@ router.get("/supplier/report/:year/:month", async (req, res) => {
 
     // Add table content
     suppliers.forEach((supplier, index) => {
-      pdfDoc.font("Helvetica").fontSize(12).text(`Supplier ID: ${supplier.sid}`);
+     
+      pdfDoc.font("Helvetica").fontSize(12).text(`${index+1}.Supplier ID: ${supplier.sid}`);
       pdfDoc.font("Helvetica").fontSize(12).text(`Name: ${supplier.name}`);
       pdfDoc.font("Helvetica").fontSize(12).text(`Product: ${supplier.product}`);
       pdfDoc.font("Helvetica").fontSize(12).text(`Amount: ${supplier.amount}`);

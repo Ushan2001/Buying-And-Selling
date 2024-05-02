@@ -154,6 +154,15 @@ export default class DeliveryList extends Component {
                         </button>
                         </div>
         </div> 
+        <div className='row' style={{marginTop:"1%"}}>
+                        <div className='col' >
+                        <button className='btn btn-dark'>
+                            <a href='/requeste/order' style={{textDecoration:"none", color:"white"}}>
+                            <i class="bi bi-truck"></i>&nbsp;Requested Order</a>
+                        </button>
+                        </div>
+        </div>
+        
         <div id="supplierCount">
                 <div className='card-body'>
                     <h5 className='card-title' id="SupplierCardTitile" >✅ No. OF DELIVERIES : <span id="cardText"> {this.state.deliveryCount} </span></h5>        

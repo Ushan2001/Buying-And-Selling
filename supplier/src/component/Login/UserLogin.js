@@ -58,15 +58,11 @@ export default function Login() {
     }
 };
 
-
-
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  
-
-    
+   
   return (
     <div>
       <div className='container'>

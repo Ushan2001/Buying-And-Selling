@@ -1,6 +1,4 @@
 const mongoose = require("mongoose");
-
-
 const SupplierSchema = new mongoose.Schema({
 
     sid:{
@@ -49,6 +47,21 @@ const SupplierSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-});
+    status:{
+        type:String,
+        default:"Active"
+    },
+    InventoryStatus:{
+        type:String,
+        default:"Not yet"
+    },
+    PaymentStatus:{
+        type:String,
+        default:"Not yet"
+    }
+},{timestamps: true});
 
 module.exports = mongoose.model("Supplier", SupplierSchema)
+
+
+
