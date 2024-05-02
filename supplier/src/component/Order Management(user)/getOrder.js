@@ -10,24 +10,44 @@ export default class getOrder extends Component {
     
         this.state = {
           orders: [],
+            token: ""
          
         };
       }
     
       componentDidMount() {
-        this.retrieveOrder();   
-      }
+        this.fetchToken();
+        this.retrieveOrder();    
+    }
     
-      retrieveOrder() {
-        axios.get('http://localhost:8070/orders').then((res) => {
-          if (res.data.success) {
-            this.setState({
-              orders: res.data.existingOrder,
-            });
-            console.log(this.state.orders);
-          }
+    fetchToken() {
+        const storedToken = localStorage.getItem("token");
+        if (storedToken) {
+            this.setState({ token: storedToken });
+        }
+    }
+    
+    retrieveOrder() {
+        axios.get('http://localhost:8070/orders', {
+            headers: {
+                Authorization: `Bearer ${this.state.token}`,
+                "Content-Type": "application/json",
+            }
+        })
+        .then(res => {
+            if (res.data.success) {
+                this.setState({
+                    orders: res.data.existingOrder
+                });
+            } else {
+                console.error('Error retrieving orders:', res.data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error retrieving orders:', error);
         });
-      }
+    }
+    
        
       
       filterData(orders, searchKey){
