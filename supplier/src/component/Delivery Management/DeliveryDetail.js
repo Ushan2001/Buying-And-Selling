@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import Header from '../Dashboard/Header/Header'
 
-
 export default class DeliveryDetail extends Component {
 
     constructor(props){
