@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import axios from "axios";
-import NavBar from '../NavBar/NavBar';
 import Header from '../Dashboard/Header/Header';
-import complain from '../../../../BackEnd/module/complain';
+
 
 
 export default class compaintlist extends Component {
@@ -11,7 +10,7 @@ export default class compaintlist extends Component {
         super(props)
 
         this.state = {
-            complain:[]
+            complains:[]
         }
     }
 
@@ -20,13 +19,13 @@ export default class compaintlist extends Component {
     }
 
     retrivecomplain(){
-        axios.get("http://localhost:8070/complain").then((res) =>{
+        axios.get("http://localhost:8070/complains").then((res) =>{
             if(res.data.success){
                 this.setState({
-                    complain:res.data.existingcompalain
+                    complains:res.data.existingComplain
                 })
 
-                console.log(this.state.complain)
+                console.log(this.state.complains)
             }
         })
     }
@@ -37,7 +36,7 @@ export default class compaintlist extends Component {
         if (isConfirmed) {
             axios.delete(`http://localhost:8070/complain/delete/${id}`)
                 .then((res) => {
-                    this.retriveDiscount();
+                    this.retrivecomplain();
                 })
                 .catch((err) => {
                     console.error(err);
@@ -45,25 +44,25 @@ export default class compaintlist extends Component {
         }
     }
 
-    filterData(complain, searchKey){
+    filterData(complains, searchKey){
    
-        const result =  complain.filter((_complain) =>
-           discount.name.toLowerCase().includes(searchKey) ||
-           discount.email.toLowerCase().includes(searchKey) ||
-           discount.message.toLowerCase().includes(searchKey)
+        const result =  complains.filter((complain) =>
+           complain.name.toLowerCase().includes(searchKey) ||
+           complain.email.toLowerCase().includes(searchKey) ||
+           complain.message.toLowerCase().includes(searchKey)
         )
       
-        this.setState({complain:result})
+        this.setState({complains:result})
       
       }
 
       handleSearchArea = (e) =>{
         const searchKey =  e.currentTarget.value
      
-        axios.get("http://localhost:8070/complain").then((res) =>{
+        axios.get("http://localhost:8070/complains").then((res) =>{
                  if(res.data.success){
                      
-                   this.filterData(res.data.existingcomplain, searchKey)
+                   this.filterData(res.data.existingComplain, searchKey)
      
                     
                  }
@@ -99,7 +98,7 @@ export default class compaintlist extends Component {
             </thead>
 
         <tbody>
-            {this.state.complain.map((_complain, index) =>(
+            {this.state.complains.map((complain, index) =>(
                 <tr key={index}>
                     <th scope='row'>{index+1}</th>
                     <td>
