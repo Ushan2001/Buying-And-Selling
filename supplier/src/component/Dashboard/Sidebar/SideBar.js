@@ -19,7 +19,7 @@ function SideBar() {
           <NavItem key={nav._id} nav={nav} />
         ))}
       </ul>
-      <a href="/admin">
+      <a href="/">
       <button id="logoutBtn"><i class="bi bi-box-arrow-right"></i>&nbsp;Log out</button>
       </a>
       

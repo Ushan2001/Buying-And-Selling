@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from "axios";
 import Header from '../Dashboard/Header/Header';
+import "./complain.css"
 
 
 
@@ -73,13 +74,13 @@ export default class compaintlist extends Component {
     return (
       <div>
         <Header/>
-        <div className='container' style={{ marginTop:"40px"}}>
+        <div className='container' id="ComplainContainer">
          <div className='col-lg-3 mt-2 mb-2'>
             <input  className="form-control"
             type='search'
             placeholder='Search'
             name="serchQuery"
-            style={{marginLeft:"1000px"}}
+            style={{marginLeft:"100px"}}
             onChange={this.handleSearchArea}/>
          </div>
         
