@@ -5,43 +5,6 @@ import companyLogo from '../../images/BuySell Nexus.png';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
-// const PdfButton = ({ delivery }) => {
-//   const downloadPdf = () => {
-//     const docDefinition = {
-//       content: [
-//         { text: ` Delivery Details (${delivery._id})`, style: 'header' },
-//         { text: '\n' }, // Add some space
-//         {
-//           layout: 'form',
-//           table: {
-//             widths: ['auto', '*'],
-//             body: [
-//               [{ text: 'Delivery Code', style: 'label' }, delivery.code],
-//               [{ text: 'Name', style: 'label' }, delivery.name],
-//               [{ text: 'Address', style: 'label' }, delivery.address],
-//               [{ text: 'Phone Number', style: 'label' }, delivery.number],
-//               [{ text: 'Order ID', style: 'label' }, delivery.oid],
-//               [{ text: 'Delivery Distance', style: 'label' }, delivery.distance],
-//               [{ text: 'Date', style: 'label' }, delivery.date],
-//               [{ text: 'Additional Note', style: 'label' }, delivery.note],
-//               [{ text: 'Delivery Fee', style: 'label' }, delivery.deliveryFee],
-//             ],
-//           },
-//         },
-//       ],
-//       styles: {
-//         header: {
-//           fontSize: 18,
-//           bold: true,
-//         },
-//         label: {
-//           bold: true,
-//         },
-//       },
-//     };
-
-//     pdfMake.createPdf(docDefinition).download(`delivery_${delivery.code}_form.pdf`);
-//   };
 const PdfButton = ({ delivery }) => {
   const downloadPdf = () => {
     // Get the current date
@@ -94,12 +57,11 @@ const PdfButton = ({ delivery }) => {
                 [{ text: 'Delivery Code :', style: 'label', fillColor: '#f2f2f2' }, { text: delivery.code, fillColor: '#ffffff' }],
                 [{ text: 'Name :', style: 'label', fillColor: '#f2f2f2' }, { text: delivery.name, fillColor: '#ffffff' }],
                 [{ text: 'Address :', style: 'label', fillColor: '#f2f2f2' }, { text: delivery.address, fillColor: '#ffffff' }],
-                [{ text: 'Product Name :', style: 'label', fillColor: '#f2f2f2' }, { text: delivery.product, fillColor: '#ffffff' }],
                 [{ text: 'Order ID :', style: 'label', fillColor: '#f2f2f2' }, { text: delivery.oid, fillColor: '#ffffff' }],
                 [{ text: 'Delivery Distance :', style: 'label', fillColor: '#f2f2f2' }, { text: delivery.distance, fillColor: '#ffffff' }],
                 [{ text: 'Date :', style: 'label', fillColor: '#f2f2f2' }, { text: delivery.date, fillColor: '#ffffff' }],
                 [{ text: 'Additional Note :', style: 'label', fillColor: '#f2f2f2' }, { text: delivery.note, fillColor: '#ffffff' }],
-                [{ text: 'Delivery Fee :', style: 'label', fillColor: '#f2f2f2' }, { text: delivery.deliveryFee, fillColor: '#ffffff' }],
+                [{ text: 'Delivery Fee :', style: 'label', fillColor: '#f2f2f2' }, { text:delivery.deliveryFee, fillColor: '#ffffff' }],
               ],
             },
           },

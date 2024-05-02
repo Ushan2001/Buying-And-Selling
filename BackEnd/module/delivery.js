@@ -6,27 +6,22 @@ const DeliverySchema = new mongoose.Schema({
         type: String,
         required: true
     },
-
     number:{
         type: String,
         required: true
     },
-
     oid:{
         type: String,
         required: true
     },
-
     code:{
         type: String,
         required: true
     },
-
     address:{
         type: String,
         required: true
     },
-
     distance:{
         type: String,
         required: true
@@ -39,12 +34,10 @@ const DeliverySchema = new mongoose.Schema({
         type: String,
         required: true
     },
-
     note:{
         type: String,
         required: true
     },
-
     status:{
         type: String,
         required: true

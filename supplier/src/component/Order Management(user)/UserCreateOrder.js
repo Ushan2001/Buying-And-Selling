@@ -16,7 +16,6 @@ export default function UserCreateOrder() {
     const [address, setAddress] = useState("");
     const [note, setNote] = useState("");
     const [totalAmount, setTotalAmount] = useState(0);
-    const [send, setSend] = useState("Pending");
     const history = useHistory();
     const [token, setToken] = useState("");
     const location = useLocation();
@@ -84,7 +83,6 @@ export default function UserCreateOrder() {
                     address,
                     note,
                     totalAmount: calculatedTotalAmount,
-                    send
                 }
     
                 axios.post("http://localhost:8070/order/save", newOrder, {
@@ -251,16 +249,7 @@ export default function UserCreateOrder() {
     <div class="count-value">LKR: {totalAmount}</div>
 </div>
 
-<div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label" id="createOrder">Deliver</label>
-    <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Yes or No"
-    value={send}
-    disabled
-    onChange={(e) =>{
 
-    setSend(e.target.value);
-    }}/>
-</div>
 
 
                     <div className="mb-3">
