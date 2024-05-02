@@ -33,6 +33,7 @@ import EditOrder from './component/Order/EditOrder';
 import OrderDetail from './component/Order/OrderDetail';
 import RequestedOrder from './component/Delivery Management/RequestedOrder';
 import EditRequestOrder from './component/Delivery Management/EditRequestOrder';
+import InventoryOrders from './component/Product Management/InventoryOrders'
 
 import productList from './component/Product Management/productList';
 import CreateProduct from './component/Product Management/CreateProduct';
@@ -78,6 +79,7 @@ import OldSupplierDetail from './component/Supplier/OldSupplierDetail';
 import DeliveryDetail from './component/Delivery Management/DeliveryDetail';
 import getOrder from './component/Order Management(user)/getOrder';
 import Feedbackk from './component/Feedback management/Feedbackk';
+import EditInventoryOrders from './component/Product Management/EditInventoryOrders';
 
 
 
@@ -128,7 +130,9 @@ export default class App extends Component {
         <Route path="/user/order" exact component={getOrder}></Route>
         <Route path="/requeste/order" exact component={RequestedOrder}></Route>
         <Route path="/edit/request/order/:id" component={EditRequestOrder}></Route>
-        
+        <Route path="/inventory/requeste/order" component={InventoryOrders}></Route>
+        <Route path="/edit/inventory/order/:id" component={EditInventoryOrders}></Route>
+     
 
           {/* Rashmika Ranashinha (Inventory Management) */}
         <Route path="/product" exact component={productList}></Route>
