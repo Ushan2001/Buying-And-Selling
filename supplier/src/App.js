@@ -18,7 +18,6 @@ import UserDiscountList from './component/Discount Management(user)/UserDiscount
 import UserDiscountDetails from './component/Discount Management(user)/UserDiscountDetails';
 import OldSupplier from './component/Supplier/OldSupplier';
 
-import Login from './component/Login/Login';
 import UserLogin from './component/Login/UserLogin';
 import Signup from './component/Signup/Signup';
 
@@ -80,6 +79,7 @@ import DeliveryDetail from './component/Delivery Management/DeliveryDetail';
 import getOrder from './component/Order Management(user)/getOrder';
 import Feedbackk from './component/Feedback management/Feedbackk';
 import EditInventoryOrders from './component/Product Management/EditInventoryOrders';
+import complainList from './component/Complain Management/complainList'
 
 
 
@@ -92,7 +92,6 @@ export default class App extends Component {
         <BrowserRouter>
         
          {/* Ushan Mihiranga (Supplier Management) */}
-        <Route path="/admin" exact component={Login}></Route>
         <Route path="/" exact component={UserLogin}></Route>
         <Route path="/sign" exact component={Signup}></Route>
         <Route path="/home" exact component={Home}></Route>
@@ -162,6 +161,7 @@ export default class App extends Component {
         <Route path="/editdiscount/:id" component={EditDiscount}></Route>
         <Route path="/discount/:id" component={DiscountDetails}></Route>
         <Route path="/Feedbackk" component={Feedbackk}></Route>
+        <Route path="/complain" component={complainList}></Route>
 
           {/* Dulaj Indula (Payment Management) */}
         <Route path="/payment" exact component={PaymentList}></Route>

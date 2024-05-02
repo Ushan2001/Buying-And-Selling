@@ -45,8 +45,15 @@ export default function Login() {
             text: 'Login successful!',
             showConfirmButton: true,
         }).then(() => {
+
+          if(data.username.split('@')[0] === "admin2024" ){
+            history.push("/home");
+            window.location.reload();
+          }
+          else{
             history.push("/userHome");
             window.location.reload();
+          }
         });
     } catch (error) {
         console.error(error);
@@ -133,12 +140,6 @@ export default function Login() {
 
 
                 </form>
-                <a href='/admin'>
-        <button className="btn btn-outline-info" style={{marginRight:"20px"}}>
-        <i className='fas fa-sign-out-alt'></i>&nbsp;Switch
-          </button>   
-          </a>
-
               </div>
             </div>
           </div>

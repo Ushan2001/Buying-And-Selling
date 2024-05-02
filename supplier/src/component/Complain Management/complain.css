@@ -1,0 +1,9 @@
+#ComplainContainer{
+    margin-top: 8%;
+    margin-left: 23%;
+    position: fixed;
+    max-height: 80%;
+    overflow-y: scroll;
+    max-width: 80%;
+    
+}
