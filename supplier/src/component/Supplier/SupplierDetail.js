@@ -95,8 +95,8 @@ export default class SupplierDetail extends Component {
       </dl>
       
        <div id='backBtnDiv' >
-      <button className='btn btn-dark' id='backBtn'><a href='/supplier'>
-      <i className='fas fa-arrow-left' id='backBtn'></i></a></button>
+      <button className='btn btn-dark' id='backBtn' onClick={() => window.history.back()} style={{marginBottom:"3%"}}>
+      <i className='fas fa-arrow-left' id='backBtn'></i></button>
       </div>
       </div>
       </div>

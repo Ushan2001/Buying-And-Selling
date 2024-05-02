@@ -6,9 +6,12 @@ import Header from '../Dashboard/Header/Header';
 
 export default function CreateDelivery() {
 
-    const [name, setName] = useState("");
-    const [number, setNumber] = useState("");
-    const [oid, setOid] = useState("");
+    const [names, setNames] = useState([]);
+    const [selectedName, setSelectedName] = useState("");
+    const [numbers, setNumbers] = useState("");
+    const [selectedNumber, setSelectedNumber] = useState("");
+    const [oids, setOids] = useState("");
+    const [selectedOid, setSelectedOid] = useState("");
     const [code, setCode] = useState("");
     const [address, setAddress] = useState("");
     const [date, setDate] = useState("");
@@ -31,9 +34,9 @@ export default function CreateDelivery() {
         a.preventDefault();
         const newDelivery = {
 
-              name,
-              number,
-              oid,
+              name: selectedName ,
+              number : selectedNumber,
+              oid : selectedOid,
               code,
               address,
               date,
@@ -51,6 +54,32 @@ export default function CreateDelivery() {
               alert(err)
           })
       }
+
+      useEffect(() => {
+        axios.get("http://localhost:8070/orders")
+            .then((response) => {
+                const orders = response.data.existingOrder;
+                setNames(orders.map((order) => order.name));
+                setOids(orders.reduce((acc, order) => {
+                    acc[order.name] = order._id; // Store name-ID pairs in an object
+                    return acc;
+                }, {}));
+                setNumbers(orders.reduce((acc1, order) => {
+                  acc1[order.name] = order.number; // Store name-Number pairs in an object
+                  return acc1;
+              }, {}));
+            })
+            .catch((error) => {
+                console.error("Error fetching orders:", error);
+            });
+    }, []);
+
+    function handleNameChange(event) {
+        const selectedName = event.target.value;
+        setSelectedName(selectedName);
+        setSelectedOid(oids[selectedName]); // Get the corresponding ID from the object
+        setSelectedNumber(numbers[selectedName]);
+    }
 
       useEffect(() => {
         // Get the current date
@@ -76,41 +105,59 @@ export default function CreateDelivery() {
     <form onSubmit={sendData} style={{ position: "relative",width: "70%" }}>
       <h2 id="AllSupplier">Create New Delivery Records</h2>
       <br></br>
-<div className="mb-3">
-<label for="exampleInputEmail1" className="form-label"  id='supplier'>Customer Name</label>
-<input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Customer Name" 
-onChange={(e) =>{
 
-setName(e.target.value);
-}}/>
-</div>
+      <div className="mb-3">
+                        <label htmlFor="exampleInputPassword1" className="form-label" id="supplier">
+                            Customer Name
+                        </label>
+                        <select
+                            className="form-control"
+                            onChange={handleNameChange}
+                            value={selectedName}
+                            id="exampleInputPassword1"
+                        >
+                            <option value="">Select Customer Name</option>
+                            {names.map((name) => (
+                                <option key={name} value={name}>
+                                    {name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
 
-<div className="mb-3">
-<label for="exampleInputPassword1" className="form-label" id='supplier'>Contact Number</label>
-<input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Contact Number"
-pattern="^\d{10}$"
-onChange={(e) =>{
-
-setNumber(e.target.value);
-}}/>
-</div>
-
-<div className="row">
-    <div className="col">
-<div className="mb-3">
-<label for="exampleInputEmail1" className="form-label" id='supplier'>Order ID</label>
-<input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Order ID" 
-onChange={(e) =>{
-
-setOid(e.target.value);
-}}/>
-</div>
-</div>
+                    <div className="mb-3">
+                        <label htmlFor="exampleInputEmail1" className="form-label" id="supplier">
+                           Contact Number
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="exampleInputPassword1"
+                            aria-describedby="emailHelp"
+                            value={selectedNumber}
+                            disabled
+                        />
+                    </div>
+                        <div className="row">
+                        <div className="mb-3">
+                        <label htmlFor="exampleInputEmail1" className="form-label" id="supplier">
+                            Order ID
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="exampleInputPassword1"
+                            aria-describedby="emailHelp"
+                            value={selectedOid}
+                            disabled
+                        />
+                    </div>
+                    
 
 <div className="col">
 <div className="mb-3">
 <label for="exampleInputEmail1" className="form-label" id='supplier'>Delivery Code</label>
-<input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Delivery Code" 
+<input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Delivery Code" 
 onChange={(e) =>{
 
 setCode(e.target.value);
