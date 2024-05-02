@@ -18,7 +18,6 @@ import UserDiscountList from './component/Discount Management(user)/UserDiscount
 import UserDiscountDetails from './component/Discount Management(user)/UserDiscountDetails';
 import OldSupplier from './component/Supplier/OldSupplier';
 
-import Login from './component/Login/Login';
 import UserLogin from './component/Login/UserLogin';
 import Signup from './component/Signup/Signup';
 
@@ -33,6 +32,7 @@ import EditOrder from './component/Order/EditOrder';
 import OrderDetail from './component/Order/OrderDetail';
 import RequestedOrder from './component/Delivery Management/RequestedOrder';
 import EditRequestOrder from './component/Delivery Management/EditRequestOrder';
+import InventoryOrders from './component/Product Management/InventoryOrders'
 
 import productList from './component/Product Management/productList';
 import CreateProduct from './component/Product Management/CreateProduct';
@@ -78,7 +78,8 @@ import OldSupplierDetail from './component/Supplier/OldSupplierDetail';
 import DeliveryDetail from './component/Delivery Management/DeliveryDetail';
 import getOrder from './component/Order Management(user)/getOrder';
 import Feedbackk from './component/Feedback management/Feedbackk';
-import compaintlist from './component/Complain Management/complainList';
+import EditInventoryOrders from './component/Product Management/EditInventoryOrders';
+import complainList from './component/Complain Management/complainList'
 
 
 
@@ -91,7 +92,6 @@ export default class App extends Component {
         <BrowserRouter>
         
          {/* Ushan Mihiranga (Supplier Management) */}
-        <Route path="/admin" exact component={Login}></Route>
         <Route path="/" exact component={UserLogin}></Route>
         <Route path="/sign" exact component={Signup}></Route>
         <Route path="/home" exact component={Home}></Route>
@@ -129,7 +129,9 @@ export default class App extends Component {
         <Route path="/user/order" exact component={getOrder}></Route>
         <Route path="/requeste/order" exact component={RequestedOrder}></Route>
         <Route path="/edit/request/order/:id" component={EditRequestOrder}></Route>
-        
+        <Route path="/inventory/requeste/order" component={InventoryOrders}></Route>
+        <Route path="/edit/inventory/order/:id" component={EditInventoryOrders}></Route>
+     
 
           {/* Rashmika Ranashinha (Inventory Management) */}
         <Route path="/product" exact component={productList}></Route>
@@ -159,7 +161,7 @@ export default class App extends Component {
         <Route path="/editdiscount/:id" component={EditDiscount}></Route>
         <Route path="/discount/:id" component={DiscountDetails}></Route>
         <Route path="/Feedbackk" component={Feedbackk}></Route>
-        <Route path="/Complain" component={compaintlist}></Route>
+        <Route path="/complain" component={complainList}></Route>
 
           {/* Dulaj Indula (Payment Management) */}
         <Route path="/payment" exact component={PaymentList}></Route>
@@ -174,8 +176,7 @@ export default class App extends Component {
         <Route path="/add/delivery" component={CreateDelivery}></Route>
         <Route path="/editdelivery/:id" component={EditDelivery}></Route> 
         <Route path="/delivery/:id" component={DeliveryDetail}></Route>
-
-
+       
     </BrowserRouter>
   
       </div>
