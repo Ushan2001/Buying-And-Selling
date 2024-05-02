@@ -78,6 +78,7 @@ import OldSupplierDetail from './component/Supplier/OldSupplierDetail';
 import DeliveryDetail from './component/Delivery Management/DeliveryDetail';
 import getOrder from './component/Order Management(user)/getOrder';
 import Feedbackk from './component/Feedback management/Feedbackk';
+import compaintlist from './component/Complain Management/complainList';
 
 
 
@@ -158,6 +159,7 @@ export default class App extends Component {
         <Route path="/editdiscount/:id" component={EditDiscount}></Route>
         <Route path="/discount/:id" component={DiscountDetails}></Route>
         <Route path="/Feedbackk" component={Feedbackk}></Route>
+        <Route path="/Complain" component={compaintlist}></Route>
 
           {/* Dulaj Indula (Payment Management) */}
         <Route path="/payment" exact component={PaymentList}></Route>
@@ -172,7 +174,8 @@ export default class App extends Component {
         <Route path="/add/delivery" component={CreateDelivery}></Route>
         <Route path="/editdelivery/:id" component={EditDelivery}></Route> 
         <Route path="/delivery/:id" component={DeliveryDetail}></Route>
-       
+
+
     </BrowserRouter>
   
       </div>
