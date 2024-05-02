@@ -19,6 +19,8 @@ export default function CreateDelivery() {
     const [deliveryFee, setDeliveryFee] = useState(0); // Initialize deliveryFee
     const history = useHistory();
 
+
+
     function sendData(a){
 // Calculate delivery fee based on distance
       if (distance > 10) {
