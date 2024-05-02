@@ -66,18 +66,8 @@ export default class UserProductList extends Component {
     return (
       <div>
         <UserNavBar />
-        <div className="container" style={{ marginTop: '40px' }}>
-          <div className="col-lg-3 mt-2 mb-2">
-            <input
-              className="form-control"
-              type="search"
-              placeholder="Search"
-              name="searchQuery"
-              onChange={this.handleSearchArea}
-            />
-          </div>
-
-          <div className="col-lg-3 mt-2 mb-2">
+        <div className="container" style={{ marginBottom: '10px' }}>
+        <div className="col-lg-3 mt-2 mb-2"></div>
             <select
               className="form-control"
               value={type}
@@ -91,6 +81,18 @@ export default class UserProductList extends Component {
               <option value="Sports and Outdoors">Sports and Outdoors</option>
             </select>
           </div>
+        <div className="container" style={{ marginTop: '40px' }}>
+          <div className="col-lg-3 mt-2 mb-2">
+            <input
+              className="form-control"
+              type="search"
+              placeholder="Search"
+              name="searchQuery"
+              onChange={this.handleSearchArea}
+            />
+          </div>
+
+          
 
           <h2>𝓐𝓵𝓵 𝓟𝓻𝓸𝓭𝓾𝓬𝓽 𝓛𝓲𝓼𝓽</h2>
           <br></br>
