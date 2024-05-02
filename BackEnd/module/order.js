@@ -50,7 +50,7 @@ const OrderSchema = new mongoose.Schema({
 
     send:{
         type: String,
-        required: true
+        default:"Pending"
     }
 
 });
