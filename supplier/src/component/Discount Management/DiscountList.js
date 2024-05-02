@@ -85,7 +85,7 @@ export default class DiscountList extends Component {
 
          
 
-        <h2 id="AllSupplier">All Discount</h2>
+        <h2 id="AllSupplier" style={{marginTop:"30px", marginBottom:"30px"}}>All Discount</h2>
 
         <button className='btn btn-success' id="disAdd"><a href='add/discount' style={{textDecoration:"none", color:"white"}}>
          <i className='fas fa-plus'></i>&nbsp;Add New</a></button>
@@ -106,21 +106,22 @@ export default class DiscountList extends Component {
             {this.state.discounts.map((discounts, index) =>(
                 <tr key={index}>
                     <th scope='row'>{index+1}</th>
-                    <td>
-                        <a href= {`/discount/${discounts._id}`} style={{textDecoration:"none"}}>
+                    <td
+                        href= {`/discount/${discounts._id}`} style={{textDecoration:"none"}}>
                         {discounts.name}
-                        </a>
+                        
                         </td>
                     <td id="dayment">{discounts.category}</td>
                     <td id="dayment">{discounts.pdiscount}</td>
                     <td>
                         <a className='btn' id="editBtn" href={`/editdiscount/${discounts._id}`}>
                             <i className='fas fa-edit' id="editIcon"></i>&nbsp;
-                        </a>
+                        </a>&nbsp; &nbsp; &nbsp;
                         &nbsp;
                         <a className='btn' id="editDelete" href='# ' onClick={() => this.onDelete(discounts._id)}>
-                            <i className='fas fa-trash-alt' id="DeleteIcon"></i>&nbsp;
-                        </a>
+                            <i className='fas fa-trash-alt' id="DeleteIcon"></i>&nbsp; &nbsp;
+                        </a>&nbsp; &nbsp; &nbsp;
+                        <a href={`/discount/${discounts._id}`} id="view">VIEW</a>
                         
                     </td>
                 </tr>

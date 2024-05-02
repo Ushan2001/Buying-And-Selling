@@ -75,5 +75,11 @@
 }
 
 #disAdd{
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+}
+#details{
+    color: #000000;
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 16px;
 }
