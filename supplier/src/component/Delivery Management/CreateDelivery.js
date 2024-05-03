@@ -55,31 +55,7 @@ export default function CreateDelivery() {
           })
       }
 
-      useEffect(() => {
-        axios.get("http://localhost:8070/orders")
-            .then((response) => {
-                const orders = response.data.existingOrder;
-                setNames(orders.map((order) => order.name));
-                setOids(orders.reduce((acc, order) => {
-                    acc[order.name] = order._id; // Store name-ID pairs in an object
-                    return acc;
-                }, {}));
-                setNumbers(orders.reduce((acc1, order) => {
-                  acc1[order.name] = order.number; // Store name-Number pairs in an object
-                  return acc1;
-              }, {}));
-            })
-            .catch((error) => {
-                console.error("Error fetching orders:", error);
-            });
-    }, []);
-
-    function handleNameChange(event) {
-        const selectedName = event.target.value;
-        setSelectedName(selectedName);
-        setSelectedOid(oids[selectedName]); // Get the corresponding ID from the object
-        setSelectedNumber(numbers[selectedName]);
-    }
+      
 
     useEffect(() => {
         axios.get("http://localhost:8070/orders")
@@ -101,6 +77,15 @@ export default function CreateDelivery() {
                 console.error("Error fetching orders:", error);
             });
     }, []);
+
+    function handleNameChange(event) {
+        const selectedName = event.target.value;
+        setSelectedName(selectedName);
+        setSelectedOid(oids[selectedName]); // Get the corresponding ID from the object
+        setSelectedNumber(numbers[selectedName]);
+    }
+
+   
 
   return (
     <div>
