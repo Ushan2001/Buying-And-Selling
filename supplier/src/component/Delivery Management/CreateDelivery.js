@@ -85,7 +85,7 @@ export default function CreateDelivery() {
         setSelectedName(selectedName);
         setSelectedOid(oids[selectedName]); // Get the corresponding ID from the object
         setSelectedNumber(numbers[selectedName]);
-        setSelectedAddress(numbers[selectedAddress]);
+        setSelectedAddress(address[selectedAddress]);
     }
 
     useEffect(() => {
