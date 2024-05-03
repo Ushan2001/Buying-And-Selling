@@ -1,55 +1,85 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Header from '../Dashboard/Header/Header';
-import "./style.css"
 
-export default class RequestedOrder extends Component {
-    constructor(props) {
-        super(props);
-    
-        this.state = {
-          orders: [],
-          currentPage: 1,
-          itemsPerPage: 10,
-         
-        };
-      }
-    
-      componentDidMount() {
-        this.retrieveOrder();   
-      }
-    
-      retrieveOrder() {
-        axios.get('http://localhost:8070/orders').then((res) => {
-          if (res.data.success) {
-            this.setState({
-              orders: res.data.existingOrder,
-            });
-            console.log(this.state.orders);
-          }
-        });
-      }
-       
-      
-      filterData(orders, searchKey){
-        const result = orders.filter((order) =>
-            order.name.toLowerCase().includes(searchKey) ||
-            
-            order.send.toLowerCase().includes(searchKey) 
-        );
-    
-        this.setState({orders: result});
+
+export default class InventoryOrders extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      orders: [],
+      currentPage: 1,
+      itemsPerPage: 10,
+      token: ""
+
+    };
+  }
+
+  componentDidMount() {
+    this.fetchToken();
+    this.retrieveOrder();  
+  }
+
+
+  fetchToken() {
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+        this.setState({ token: storedToken });
     }
+}
+  
+
+  retrieveOrder() {
+    axios.get('http://localhost:8070/orders').then((res) => {
+      if (res.data.success) {
+        const existingOrder = res.data.existingOrder;
+        this.setState({
+          orders:existingOrder,
+        }, () => {
+       
     
-      handleSearchArea = (e) => {
-        const searchKey = e.currentTarget.value;
-    
-        axios.get('http://localhost:8070/orders').then((res) => {
-          if (res.data.success) {
-            this.filterData(res.data.existingOrder, searchKey);
-          }
         });
-      };
+  
+        console.log(this.state.orders);
+      }
+    });
+  }
+  
+  
+  filterData(orders, searchKey){
+    const result = orders.filter((order) =>
+        order.name.toLowerCase().includes(searchKey) ||
+        order.number.toLowerCase().includes(searchKey) || 
+        order.oid.toLowerCase().includes(searchKey) 
+    );
+
+    this.setState({orders: result,orderCount:result.length});
+}
+
+  handleSearchArea = (e) => {
+    const searchKey = e.currentTarget.value;
+
+    axios.get('http://localhost:8070/orders').then((res) => {
+      if (res.data.success) {
+        this.filterData(res.data.existingOrder, searchKey);
+      }
+    });
+  };
+
+
+  productColor = (requestOrderStatus) =>{
+    let color;
+    if(requestOrderStatus=== "Not yet"){
+        color = 'tomato';
+    }else{
+        color = '#28a745';
+    }
+    return{color};
+}
+
+
+
 
 
   handlePageChange = (pageNumber) => {
@@ -69,8 +99,11 @@ export default class RequestedOrder extends Component {
     return (
       <div>
         <Header />
-        <div className='container' id="supplierContainer" style={{maxWidth:"80%"}}>
-            
+        <div className='container' id='orderContainer'
+        style={{maxWidth:"80%"}}>
+
+
+
           <div className='col-lg-3 mt-2 mb-2'>
             <input
               className='form-control'
@@ -81,10 +114,9 @@ export default class RequestedOrder extends Component {
               style={{ marginLeft: '20px', borderRadius: '20px' }}
               onChange={this.handleSearchArea}
             />
-          </div><br></br>
+          </div>
 
-        
-          <h2 id='btnAllOrder'>Requested Orders</h2>
+          <h2 id='btnAllOrder'>Requested Order</h2>
           <br></br>
           <table className='table table-hover'>
             <thead>
@@ -92,9 +124,9 @@ export default class RequestedOrder extends Component {
                 <th scope='col'>
                   <i className='fas fa-list'></i>
                 </th>
-                <th scope='col'>Customer Name</th>
-                <th scope='col'>Contact Number</th>
-                <th scope='col'>Delivery Status</th>
+                <th scope='col'>Product Code</th>
+                <th scope='col'>Quantity</th>
+                <th scope='col'>Order Status</th>
                 <th scope='col'>Action</th>
               </tr>
             </thead>
@@ -104,11 +136,11 @@ export default class RequestedOrder extends Component {
              
                 <tr key={index}>
                   <th scope='row'>{index + 1}</th>
-                  <td id='order'>{order.name}</td>
-                  <td id='order'>{order.number}</td>
-                  <td id='order' style={{color:"tomato"}}>{order.send}</td>
+                  <td id='order'>{order.oid}</td>
+                  <td id='order'>{order.quantity}</td>
+                  <td id='order'>{order.requestOrderStatus}</td>
                   <td>
-                    <a className='btn' id='btnEdit' href={`/edit/request/order/${order._id}`}>
+                    <a className='btn' id='btnEdit' href={`/edit/inventory/order/${order._id}`}>
                       <i className='fas fa-edit' id='EditIcon'></i>
                     </a>
                   </td>
@@ -117,9 +149,6 @@ export default class RequestedOrder extends Component {
           
             </tbody>
           </table>
-
-          
-
          {/* Pagination */}
           <nav aria-label="Page navigation example">
             <ul className="pagination">
@@ -139,5 +168,6 @@ export default class RequestedOrder extends Component {
         </div>
       </div>
     );
-  }
 }
+
+};

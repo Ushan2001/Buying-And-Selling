@@ -50,7 +50,11 @@ const OrderSchema = new mongoose.Schema({
 
     send:{
         type: String,
-        default:"Pending"
+        default:"Not yet",
+    },
+    requestOrderStatus:{
+        type:String,
+        default:"Not yet",
     }
 
 });

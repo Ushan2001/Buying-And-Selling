@@ -131,10 +131,21 @@ export default class productList extends Component {
             style={{marginLeft:"0px", borderRadius:"20px"}}
             onChange={this.handleSearchArea}/>
          </div>
+         <div className='row' style={{marginTop:"2%",marginBottom:"2%"}} >
+            <div className='col-md-2'>
 
          <div style={{marginTop:"3%", marginBottom:"3%"}}>
          <button className='btn btn-dark'><a href='/RequestedProduct' style={{textDecoration:"none", color:"white"}}>
          <i class="bi bi-bag-plus-fill"></i>&nbsp;Requested Product</a></button>
+         </div>
+         </div>
+         <div className='col-md-2'>
+
+         <div style={{marginTop:"3%", marginBottom:"3%"}}>
+         <button className='btn btn-warning'><a href='/inventory/requeste/order' style={{textDecoration:"none", color:"white"}}>
+         <i class="bi bi-bag-plus-fill"></i>&nbsp;Inventory  Orders</a></button>
+         </div>
+         </div>
          </div>
 
          
