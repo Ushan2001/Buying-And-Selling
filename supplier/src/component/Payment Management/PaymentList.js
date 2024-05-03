@@ -18,15 +18,9 @@ export default class PaymentList extends Component {
 
     componentDidMount() {
         this.retrivePayment();
-        //this.fetchToken();
+        
     }
 
-    /*fetchToken() {
-        const storedToken = localStorage.getItem("token");
-        if (storedToken) {
-            this.setState({ token: storedToken });
-        }
-    }*/
 
 
 
@@ -98,6 +92,8 @@ export default class PaymentList extends Component {
                             style={{ borderRadius: "20px", width: "300px", marginBottom: "30px" }}
                             onChange={this.handleSearchArea} />
 
+
+
                     </div>
 
 
@@ -107,13 +103,32 @@ export default class PaymentList extends Component {
                         </div>
                     </div>
 
-                    <div>
-                    <button className='btn btn-dark'><a href='/SupplierPayment' style={{ textDecoration: "none", color: "white" }}>
-                    <i class="bi bi-currency-dollar"></i>&nbsp;Payment Approve</a></button>
+                    <div className='row' style={{ marginTop: "2%", marginBottom: "2%" }}>
+                        <div className='col-md-2'>
+                            <button className='btn btn-dark'><a href='/SupplierPayment' style={{ textDecoration: "none", color: "white" }}>
+                                <i class="bi bi-currency-dollar"></i>&nbsp;Payment Approve</a></button>
+                        </div>
+
+                        <div className='col-md-2'>
+                            <button className='btn btn-success' id="income"><a href='income/payment' style={{ textDecoration: "none", color: "white" }}>
+                                <i className='bi bi-currency-dollar'></i>&nbsp;View Income</a></button>
+                        </div>
                     </div>
+
+
+
+
+
 
                     <button className='btn btn-success' id="paymentAdd"><a href='add/payment' style={{ textDecoration: "none", color: "white" }}>
                         <i className='fas fa-plus'></i>&nbsp;Add New</a></button>
+
+
+
+
+
+
+
 
 
                     <h2 id="AllPayment">All Payments</h2>
