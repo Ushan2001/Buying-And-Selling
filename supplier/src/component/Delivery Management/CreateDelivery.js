@@ -60,38 +60,6 @@ export default function CreateDelivery() {
         axios.get("http://localhost:8070/orders")
             .then((response) => {
                 const orders = response.data.existingOrder;
-                setNames(orders.map((order) => order.name));
-                setOids(orders.reduce((acc, order) => {
-                    acc[order.name] = order._id; // Store name-ID pairs in an object
-                    return acc;
-                }, {}));
-                setNumbers(orders.reduce((acc1, order) => {
-                  acc1[order.name] = order.number; // Store name-Number pairs in an object
-                  return acc1;
-              }, {}));
-                setAddress(orders.reduce((acc2, order) => {
-                acc2[order.name] = order.address; // Store name-address pairs in an object
-                return acc2;
-            }, {}));
-
-            })
-            .catch((error) => {
-                console.error("Error fetching orders:", error);
-            });
-    }, []);
-
-    function handleNameChange(event) {
-        const selectedName = event.target.value;
-        setSelectedName(selectedName);
-        setSelectedOid(oids[selectedName]); // Get the corresponding ID from the object
-        setSelectedNumber(numbers[selectedName]);
-        setSelectedAddress(address[selectedAddress]);
-    }
-
-    useEffect(() => {
-        axios.get("http://localhost:8070/orders")
-            .then((response) => {
-                const orders = response.data.existingOrder;
                 const pendingOrders = orders.filter(order => order.send === "Pending");
                 const pendingNames = pendingOrders.map((order) => order.name);
                 setNames(pendingNames);
@@ -112,6 +80,16 @@ export default function CreateDelivery() {
                 console.error("Error fetching orders:", error);
             });
     }, []);
+
+    function handleNameChange(event) {
+        const selectedName = event.target.value;
+        setSelectedName(selectedName);
+        setSelectedOid(oids[selectedName]); // Get the corresponding ID from the object
+        setSelectedNumber(numbers[selectedName]);
+        setSelectedAddress(address[selectedAddress]);
+    }
+
+   
 
   return (
     <div>
