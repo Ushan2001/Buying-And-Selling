@@ -14,6 +14,7 @@ export default function CreateDelivery() {
     const [selectedOid, setSelectedOid] = useState("");
     const [code, setCode] = useState("");
     const [address, setAddress] = useState("");
+    const [selectedAddress, setSelectedAddress] = useState("");
     const [date, setDate] = useState("");
     const [note, setNote] = useState("");
     const [status, setStatus] = useState("");
@@ -38,7 +39,7 @@ export default function CreateDelivery() {
               number : selectedNumber,
               oid : selectedOid,
               code,
-              address,
+              address: selectedAddress,
               date,
               note,
               status,
@@ -68,6 +69,11 @@ export default function CreateDelivery() {
                   acc1[order.name] = order.number; // Store name-Number pairs in an object
                   return acc1;
               }, {}));
+                setAddress(orders.reduce((acc2, order) => {
+                acc2[order.name] = order.address; // Store name-address pairs in an object
+                return acc2;
+            }, {}));
+
             })
             .catch((error) => {
                 console.error("Error fetching orders:", error);
@@ -79,23 +85,33 @@ export default function CreateDelivery() {
         setSelectedName(selectedName);
         setSelectedOid(oids[selectedName]); // Get the corresponding ID from the object
         setSelectedNumber(numbers[selectedName]);
+        setSelectedAddress(numbers[selectedAddress]);
     }
 
-      useEffect(() => {
-        // Get the current date
-        var currentDate = new Date();
-    
-        // Set the maximum date attribute for the input to the current date
-        var year = currentDate.getFullYear();
-        var month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
-        var day = currentDate.getDate().toString().padStart(2, '0');
-        var maxDate = `${year}-${month}-${day}`;
-    
-        // Update the input element
-        var dateInput = document.getElementById('dateInput');
-        dateInput.setAttribute('max', maxDate);
-        dateInput.setAttribute('min', maxDate); // Set the minimum date to the current date
-      }, []);
+    useEffect(() => {
+        axios.get("http://localhost:8070/orders")
+            .then((response) => {
+                const orders = response.data.existingOrder;
+                const pendingOrders = orders.filter(order => order.send === "Pending");
+                const pendingNames = pendingOrders.map((order) => order.name);
+                setNames(pendingNames);
+                setOids(pendingOrders.reduce((acc, order) => {
+                    acc[order.name] = order._id; // Store name-ID pairs in an object
+                    return acc;
+                }, {}));
+                setNumbers(pendingOrders.reduce((acc1, order) => {
+                    acc1[order.name] = order.number; // Store name-Number pairs in an object
+                    return acc1;
+                }, {}));
+                setAddress(pendingOrders.reduce((acc2, order) => {
+                    acc2[order.name] = order.address; // Store name-Number pairs in an object
+                    return acc2;
+                }, {}));
+            })
+            .catch((error) => {
+                console.error("Error fetching orders:", error);
+            });
+    }, []);
 
   return (
     <div>
@@ -166,14 +182,19 @@ setCode(e.target.value);
 </div>
 </div>
 
-<div className="mb-3">
-<label for="exampleInputPassword1" className="form-label" id='supplier'>Address</label>
-<input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Customer Address"
-onChange={(e) =>{
-
-setAddress(e.target.value);
-}}/>
-</div>
+                    <div className="mb-3">
+                        <label htmlFor="exampleInputEmail1" className="form-label" id="supplier">
+                           Address
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="exampleInputPassword1"
+                            aria-describedby="emailHelp"
+                            value={selectedAddress}
+                            disabled
+                        />
+                    </div>
 
 <div className="mb-3">
     <label htmlFor="dateInput" className="form-label" id='supplier' >Date</label>
