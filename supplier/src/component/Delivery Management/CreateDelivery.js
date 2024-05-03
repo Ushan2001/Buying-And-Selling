@@ -55,20 +55,23 @@ export default function CreateDelivery() {
           })
       }
 
-      useEffect(() => {
+      
+
+    useEffect(() => {
         axios.get("http://localhost:8070/orders")
             .then((response) => {
                 const orders = response.data.existingOrder;
-                setNames(orders.map((order) => order.name));
-                setOids(orders.reduce((acc, order) => {
+                const pendingOrders = orders.filter(order => order.send === "Pending");
+                const pendingNames = pendingOrders.map((order) => order.name);
+                setNames(pendingNames);
+                setOids(pendingOrders.reduce((acc, order) => {
                     acc[order.name] = order._id; // Store name-ID pairs in an object
                     return acc;
                 }, {}));
-                setNumbers(orders.reduce((acc1, order) => {
-                  acc1[order.name] = order.number; // Store name-Number pairs in an object
-                  return acc1;
-              }, {}));
-
+                setNumbers(pendingOrders.reduce((acc1, order) => {
+                    acc1[order.name] = order.number; // Store name-Number pairs in an object
+                    return acc1;
+                }, {}));
             })
             .catch((error) => {
                 console.error("Error fetching orders:", error);
@@ -80,10 +83,7 @@ export default function CreateDelivery() {
         setSelectedName(selectedName);
         setSelectedOid(oids[selectedName]); // Get the corresponding ID from the object
         setSelectedNumber(numbers[selectedName]);
-       
     }
-
-    
 
    
 
