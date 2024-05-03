@@ -141,7 +141,7 @@ export default class DeliveryList extends Component {
     return (
       <div>
         <Header/>
-        <div className='container' id="deliveryContainer" style={{width:"78%"}}>
+        <div className='container' id="supplierContainer" style={{width:"78%"}}>
         <div className='row' style={{marginTop:"1%",marginLeft:"50px"}}>
                         <div className='col' >
                         <button className='btn btn-warning'>
