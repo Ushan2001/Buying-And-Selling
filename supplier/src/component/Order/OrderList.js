@@ -6,6 +6,8 @@ import './order.css';
 import Chart from 'chart.js/auto';
 import Swal from 'sweetalert2';
 
+export const orderCount = "this.state.orderCount";
+
 export default class OrderList extends Component {
   constructor(props) {
     super(props);
@@ -19,6 +21,8 @@ export default class OrderList extends Component {
 
     };
   }
+
+
 
   componentDidMount() {
     this.fetchToken();
@@ -118,8 +122,21 @@ export default class OrderList extends Component {
       this.chartInstance.destroy(); // Destroy existing chart instance
     }
 
-    const labels = orders.map((order) => order.oid);
-    const data = orders.map((order) => order.quantity);
+    const oidMap = new Map();
+    // Aggregate quantities by product code (oid)
+    orders.forEach(order => {
+        const quantity = parseInt(order.quantity); // Parse quantity as integer
+        if (!isNaN(quantity)) {
+            if (oidMap.has(order.oid)) {
+                oidMap.set(order.oid, oidMap.get(order.oid) + quantity); // Sum up quantities
+            } else {
+                oidMap.set(order.oid, quantity);
+            }
+        }
+    });
+
+    const labels = Array.from(oidMap.keys());
+    const data = Array.from(oidMap.values());
 
     this.chartInstance = new Chart(ctxB, {
       type: 'line',
@@ -195,7 +212,9 @@ export default class OrderList extends Component {
         }
       },
     });
-  }
+}
+
+
 
   handlePageChange = (pageNumber) => {
     this.setState({

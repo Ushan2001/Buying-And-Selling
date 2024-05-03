@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from "axios";
-import Header from '../Dashboard/Header/Header';
 import PdfButton from './PdfButton';
+import Header from '../Dashboard/Header/Header';
 import Swal from 'sweetalert2';
 
 export default class DeliveryList extends Component {
@@ -14,9 +14,9 @@ export default class DeliveryList extends Component {
             deliveryCount:0,
             currentPage: 1,
             itemsPerPage: 10,
-            token: ""
-      
-        }
+            token: "",
+            statusFilter: "all" // Initialize status filter to "all"
+        };
     } 
 
     componentDidMount(){
@@ -30,35 +30,27 @@ export default class DeliveryList extends Component {
             this.setState({ token: storedToken });
         }
     }
-    retriveDelivery(){
-        axios.get("http://localhost:8070/deliverys").then((res) =>{
-            if(res.data.success){
-                const existingDelivery = res.data.existingDelivery;
 
-                this.setState({
-                    deliverys:existingDelivery,
-                    deliveryCount:existingDelivery.length
-
-                })
-
-                console.log(this.state.deliverys)
-            }
-        });
+    retriveDelivery() {
+        const { statusFilter } = this.state;
+        let url = `http://localhost:8070/deliverys?status=${statusFilter}`;
+        axios.get(url)
+            .then((res) => {
+                if (res.data.success) {
+                    const existingDelivery = res.data.existingDelivery;
+                    this.setState({
+                        deliverys: existingDelivery,
+                        deliveryCount: existingDelivery.length
+                    });
+                }
+            })
+            .catch((err) => {
+                console.error(err);
+            });
     }
-
-    // onDelete = (id) =>{
-    //     const isConfirmed = window.confirm('Are you sure you want to delete this delivery details?');
-
-    //     if (isConfirmed) {
-    //         axios.delete(`http://localhost:8070/delivery/delete/${id}`)
-    //             .then((res) => {
-    //                 this.retriveDelivery();
-    //             })
-    //             .catch((err) => {
-    //                 console.error(err);
-    //             });
-    //     }
-    // }
+    
+    
+  
 
     onDelete = (id) => {
         Swal.fire({
@@ -118,42 +110,48 @@ export default class DeliveryList extends Component {
              })
      }
 
-//   handlePageChange = (pageNumber) => {
-//     this.setState({
-//       currentPage: pageNumber
-//     });
-//   };
+     handleStatusFilterChange = (event) => {
+        const statusFilter = event.target.value;
+        this.setState({ statusFilter }, () => {
+            this.retriveDelivery();
+        });
+    }
+    
 
   render() {
-    // const { orders, currentPage, itemsPerPage } = this.state;
-
-    // Pagination logic
-    // const indexOfLastItem = currentPage * itemsPerPage;
-    // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    // const currentItems = orders.slice(indexOfFirstItem, indexOfLastItem);
     return (
       <div>
         <Header/>
-        <div className='container' id="supplierContainer" style={{width:"78%"}}>
+        <div className='container' id="deliveryContainer" style={{width:"78%"}}>
+        <div className='row' style={{marginTop:"1%",marginLeft:"50px"}}>
+                        <div className='col' >
+                        <button className='btn btn-warning'>
+                            <a href='/requeste/order' style={{textDecoration:"none", color:"black"}}>
+                            <i class="bi bi-truck"></i>&nbsp;Requested Order</a>
+                        </button>
+                        </div>
+        </div>
         <div className='col-lg-3 mt-2 mb-2'>
                         <input  
                             className="form-control"
                             type='search'
                             placeholder='Search'
                             name="serchQuery"
-                            style={{marginLeft:"50px", borderRadius:"20px"}}
+                            style={{marginLeft:"50px",marginTop:"50px", borderRadius:"20px"}}
                             onChange={this.handleSearchArea}
                         />
          </div>
-        
+     
          <div className='row' id="BtnRow">
                         <div className='col' id="newCol">
-                        <button className='btn btn-success' id="supplierAdd">
+                        <button className='btn btn-success' id="btnAddNew">
                             <a href='add/delivery' style={{textDecoration:"none", color:"white"}}>
                         <i className='fas fa-plus'></i>&nbsp;Add New</a>
                         </button>
                         </div>
+                        
         </div> 
+       
         <div id="supplierCount">
                 <div className='card-body'>
                     <h5 className='card-title' id="SupplierCardTitile" >✅ No. OF DELIVERIES : <span id="cardText"> {this.state.deliveryCount} </span></h5>        
@@ -192,30 +190,12 @@ export default class DeliveryList extends Component {
                             <i className='fas fa-trash-alt' id="DeleteIcon"></i>&nbsp;
                         </a>
                         &nbsp;<PdfButton delivery={deliverys} />
-                           
                     </td>
                 </tr>
             ))}
     
         </tbody>
          </table>
- {/* Pagination */}
- {/* <nav aria-label="Page navigation example">
-            <ul className="pagination">
-              <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
-                <button className="page-link" onClick={() => this.handlePageChange(currentPage - 1)}><i class="bi bi-skip-backward"></i></button>
-              </li>
-              {Array.from({length: Math.ceil(deliverys.length / itemsPerPage)}, (_, i) => (
-                <li key={i} className={`page-item ${currentPage === i + 1 ? 'active' : ''}`}>
-                  <button className="page-link" onClick={() => this.handlePageChange(i + 1)}>{i + 1}</button>
-                </li>
-              ))}
-              <li className={`page-item ${currentPage === Math.ceil(deliverys.length / itemsPerPage) ? 'disabled' : ''}`}>
-                <button className="page-link" onClick={() => this.handlePageChange(currentPage + 1)}><i class="bi bi-skip-forward"></i></button>
-              </li>
-            </ul>
-          </nav> */}
-        
         
       </div>
       </div>

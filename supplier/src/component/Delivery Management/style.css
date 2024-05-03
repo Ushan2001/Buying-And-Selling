@@ -1,0 +1,131 @@
+#deliveryContainer{
+    margin-top: 8%;
+    margin-left: 23%;
+    position: fixed;
+    overflow-y: scroll;
+    max-height: 80%;
+}
+
+#btnEdit{
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    background-color: #4DB6AC1F;
+}
+#EditIcon{
+    color: #4DB6AC;
+}
+
+#btnDelete{
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    background-color: #F656561F;
+
+}
+
+#DeleteIcon{
+    color: #F65656;
+
+}
+
+#btnPdf{
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    background-color: #4d56b61f;
+
+}
+#pdfIcon{
+    color: #5679f6;
+}
+#view{
+    text-decoration: none;
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 14.52px;
+    color: #197E89;
+}
+#delivery{
+    color: #053345;
+    font-family: sans-serif;
+    font-weight: 550;
+}
+#btnAddNew{
+    border-radius: 20px;
+    margin-left: 77%;
+    margin-top: -4%;
+    margin-bottom: 2%;
+}
+#btnAllDelivery{
+    color: #01161f;
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 25px;
+}
+
+#createDeliveryContainer{
+    margin-left: 28%;
+    margin-top: 8%;
+    position: fixed;
+    overflow-y: scroll;
+    max-height: 80%;
+    
+}
+
+#createDelivery{
+    color: #053345;
+    font-family: sans-serif;
+    font-weight: 550;
+}
+
+#exampleInputPassword1{
+    width: 70%;
+    border-radius: 20px;
+}
+
+
+#dateInput{
+    width: 70%;
+    border-radius: 20px;
+    margin-left: -30%;
+   
+} 
+
+#editdeliveryContainer{
+    margin-left: 28%;
+    margin-top: 8%;
+    position: fixed;
+    overflow-y: scroll;
+    max-height: 80%;
+    
+}
+
+#deliveryDetailContainer{
+    margin-left: 23%;
+    margin-top: 8%;
+    position: fixed;
+    overflow-y: scroll;
+    max-height: 80%;
+    
+}
+
+ @media(max-width:678px){
+    #deliveryContainer{
+        margin-left: 1%;
+    }
+
+    #deliverySearch{
+        max-width: 230px;
+    }
+
+    #btnAddNew{
+        margin-left: 5%;
+        margin-top: 3%;
+        margin-bottom: 2%;
+    }
+ }
+
+
+ 

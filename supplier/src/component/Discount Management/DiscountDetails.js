@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import NavBar from '../NavBar/NavBar';
+import Header from '../Dashboard/Header/Header';
 
 export default class DiscountDetails extends Component {
 
@@ -33,28 +33,28 @@ export default class DiscountDetails extends Component {
 
     return (
       <div>
-        <NavBar/>
-        <div style={{marginTop:"40px"}} className='container'>
+        <Header/>
+        <div className="container" id="editContainer">
           <h4>{name}</h4>
           <hr/>
       <dl className='row'>
-       <dt className='col-sm-3'>Discount Tempory ID</dt>
-        <dd className='col-sm-9'>{_id}</dd>
+       <dt className='col-sm-3' id="supplier">Discount Tempory ID</dt>
+        <dd className='col-sm-9' id="details">{_id}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3'>Category</dt>
-        <dd className='col-sm-9'>{category}</dd>
+        <dt className='col-sm-3' id="supplier">Category</dt>
+        <dd className='col-sm-9' id="details">{category}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3'>Discount</dt>
-        <dd className='col-sm-9'>{pdiscount}</dd>
+        <dt className='col-sm-3' id="supplier">Discount</dt>
+        <dd className='col-sm-9' id="details">{pdiscount}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3'>Start Date</dt>
-        <dd className='col-sm-9'>{date}</dd>
+        <dt className='col-sm-3' id="supplier">Start Date</dt>
+        <dd className='col-sm-9' id="details">{date}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3'>Time Duration</dt>
-        <dd className='col-sm-9'>{time}</dd>
+        <dt className='col-sm-3' id="supplier">Time Duration</dt>
+        <dd className='col-sm-9' id="details">{time}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3'>Additional Comment</dt>
-        <dd className='col-sm-9'>{note}</dd>
+        <dt className='col-sm-3' id="supplier">Additional Comment</dt>
+        <dd className='col-sm-9' id="details">{note}</dd>
         
       </dl>
       </div>

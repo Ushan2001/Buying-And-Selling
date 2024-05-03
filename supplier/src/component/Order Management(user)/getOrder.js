@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import axios from 'axios';
-import UserNavBar from '../NavBar/UserNavBar'
-import "./order.css"
+import UserNavBar from '../NavBar/UserNavBar';
+import './order.css';
 
 export default class getOrder extends Component {
 
@@ -10,24 +10,44 @@ export default class getOrder extends Component {
     
         this.state = {
           orders: [],
+            token: ""
          
         };
       }
     
       componentDidMount() {
-        this.retrieveOrder();   
-      }
+        this.fetchToken();
+        this.retrieveOrder();    
+    }
     
-      retrieveOrder() {
-        axios.get('http://localhost:8070/orders').then((res) => {
-          if (res.data.success) {
-            this.setState({
-              orders: res.data.existingOrder,
-            });
-            console.log(this.state.orders);
-          }
+    fetchToken() {
+        const storedToken = localStorage.getItem("token");
+        if (storedToken) {
+            this.setState({ token: storedToken });
+        }
+    }
+    
+    retrieveOrder() {
+        axios.get('http://localhost:8070/orders', {
+            headers: {
+                Authorization: `Bearer ${this.state.token}`,
+                "Content-Type": "application/json",
+            }
+        })
+        .then(res => {
+            if (res.data.success) {
+                this.setState({
+                    orders: res.data.existingOrder
+                });
+            } else {
+                console.error('Error retrieving orders:', res.data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error retrieving orders:', error);
         });
-      }
+    }
+    
        
       
       filterData(orders, searchKey){
@@ -49,33 +69,41 @@ export default class getOrder extends Component {
           }
         });
       };
+
+      deliveryColor = (send) => {
+        let color;
+        if (send === 'Pending') {
+          color = 'tomato';
+        } else {
+          color = '#28a745';
+        }
+        return { color };
+      };
     
   render() {
     return (
       <div>
-        <UserNavBar/>
-        <div className='container'>
-
-          <div className='row' id="getOrderRow">
-
-          <div className='col-md-4'>
-         <div>
-          <h2 id='btnAllOrder'>Customer Orders</h2>
-          </div>
-          </div>
-            <div className='col-md-7' id="searchCol">
-        <div className='col-lg-3 mt-2 mb-2'>
-            <input
-              className='form-control'
-              type='search'
-              id="orderSearch"
-              placeholder='Search'
-              name='serchQuery'
-              style={{ marginLeft: '20px', borderRadius: '20px' }}
-              onChange={this.handleSearchArea}
-            />
-          </div>
-          </div>
+        <UserNavBar />
+        <div className="container">
+          <div className="row" id="getOrderRow">
+            <div className="col-md-4">
+              <div>
+                <h2 id="btnAllOrder">Customer Orders</h2>
+              </div>
+            </div>
+            <div className="col-md-7" id="searchCol">
+              <div className="col-lg-3 mt-2 mb-2">
+                <input
+                  className="form-control"
+                  type="search"
+                  id="orderSearch"
+                  placeholder="Search"
+                  name="searchQuery"
+                  style={{ marginLeft: '20px', borderRadius: '20px' }}
+                  onChange={this.handleSearchArea}
+                />
+              </div>
+            </div>
           </div>
 
           <div className="row">
@@ -84,7 +112,7 @@ export default class getOrder extends Component {
                 <div className="card animated-card" id="orderCard" style={{backgroundImage: 'url("/images/back.jpg")'}}>
   <div className="card-body" id="orderBody">
     <h5 className="card-title" id="orderTitle">{order.name}</h5>
-    <p className="card-text" id="orderText2">Delivery Status: <span id="status"> {order.send} </span></p>
+    <p className="card-text" id="orderText2">Delivery Status: <span id="status" style={this.deliveryColor(order.send)}> {order.send} </span></p>
     
   </div>
 </div>
@@ -95,6 +123,6 @@ export default class getOrder extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }

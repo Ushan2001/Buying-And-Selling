@@ -73,7 +73,7 @@ app.use(deliveryRouter)
 const PORT = process.env.PORT || 8070;
 
 mongoose
-.connect(process.env.URL,{ useUnifiedTopology: true, useNewUrlParser: true })
+.connect(process.env.URL,{ useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false  })
 .then(() =>{
     console.log("BuySell Nexus Database Connected 😌")
 })
