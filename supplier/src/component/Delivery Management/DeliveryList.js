@@ -22,6 +22,7 @@ export default class DeliveryList extends Component {
     componentDidMount(){
         this.fetchToken();
         this.retriveDelivery();
+        this.retrieveOrder();
     }
 
     fetchToken() {
@@ -30,6 +31,22 @@ export default class DeliveryList extends Component {
             this.setState({ token: storedToken });
         }
     }
+
+    retrieveOrder() {
+        axios.get('http://localhost:8070/orders').then((res) => {
+          if (res.data.success) {
+            const existingOrder = res.data.existingOrder;
+            const pendingCount = existingOrder.filter(order => order.send === "Pending").length;
+            const deliveredCount = existingOrder.filter(order => order.send === "Delivered").length;
+            this.setState({
+              orders: existingOrder,
+              orderCount: existingOrder.length,
+              pendingCount,
+              deliveredCount,
+            });
+          }
+        });
+      }
 
     retriveDelivery() {
         const { statusFilter } = this.state;
@@ -138,6 +155,7 @@ export default class DeliveryList extends Component {
     
 
   render() {
+    const {pendingCount, deliveredCount} = this.state;
     return (
       <div>
         <Header/>
@@ -156,7 +174,7 @@ export default class DeliveryList extends Component {
                                 <div className='card' id="card1" style={{ width: '15rem', backgroundColor: 'lightblue'}}>
                                     <div className='card-body'>
                                         <h5 className='card-title' id="cardTitile">Pending</h5>
-                                        <p className='card-text' id="cardText">{this.state.pendingCount}</p>
+                                        <p className='card-text' id="cardText">{pendingCount}</p>
                                     </div>
                                 </div>
                             </div>
@@ -166,7 +184,7 @@ export default class DeliveryList extends Component {
                                 <div className='card' id="card1" style={{ width: '15rem', backgroundColor: 'lightblue'}}>
                                     <div className='card-body'>
                                         <h5 className='card-title' id="cardTitile">Delivered</h5>
-                                        <p className='card-text' id="cardText">{this.state.deliveryCount}</p>
+                                        <p className='card-text' id="cardText">{deliveredCount}</p>
                                     </div>
                                 </div>
                             </div>
