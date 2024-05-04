@@ -41,7 +41,7 @@ export default function CreateCustomer() {
       <br></br>
 <div className="mb-3">
 <label for="exampleInputEmail1" className="form-label">User Name</label>
-<input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Customer Name" 
+<input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter user Name" 
 onChange={(e) =>{
 
 setName(e.target.value);
@@ -60,7 +60,7 @@ setNumber(e.target.value);
 
 <div className="mb-3">
 <label for="exampleInputPassword1" className="form-label">Address</label>
-<input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Customer Address"
+<input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter user Address"
 onChange={(e) =>{
 
 setAddress(e.target.value);
