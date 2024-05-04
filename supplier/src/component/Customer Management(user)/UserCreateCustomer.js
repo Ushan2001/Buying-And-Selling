@@ -74,7 +74,7 @@ export default function UserCreateCustomer() {
         className="form-control"
         id="exampleInputPassword1"
         aria-describedby="emailHelp"
-        placeholder="Enter Customer Name"
+        placeholder="Enter User Name"
         onChange={(e) => {
           setName(e.target.value);
         }}
@@ -105,7 +105,7 @@ export default function UserCreateCustomer() {
         type="text"
         className="form-control"
         id="exampleInputPassword1"
-        placeholder="Enter Customer Address"
+        placeholder="Enter user Address"
         onChange={(e) => {
           setAddress(e.target.value);
         }}
