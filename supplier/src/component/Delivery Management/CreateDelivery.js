@@ -14,7 +14,6 @@ export default function CreateDelivery() {
     const [selectedOid, setSelectedOid] = useState("");
     const [code, setCode] = useState("");
     const [address, setAddress] = useState("");
-    const [selectedAddress, setSelectedAddress] = useState("");
     const [date, setDate] = useState("");
     const [note, setNote] = useState("");
     const [status, setStatus] = useState("");
@@ -39,7 +38,7 @@ export default function CreateDelivery() {
               number : selectedNumber,
               oid : selectedOid,
               code,
-              address: selectedAddress,
+              address,
               date,
               note,
               status,
@@ -56,37 +55,7 @@ export default function CreateDelivery() {
           })
       }
 
-      useEffect(() => {
-        axios.get("http://localhost:8070/orders")
-            .then((response) => {
-                const orders = response.data.existingOrder;
-                setNames(orders.map((order) => order.name));
-                setOids(orders.reduce((acc, order) => {
-                    acc[order.name] = order._id; // Store name-ID pairs in an object
-                    return acc;
-                }, {}));
-                setNumbers(orders.reduce((acc1, order) => {
-                  acc1[order.name] = order.number; // Store name-Number pairs in an object
-                  return acc1;
-              }, {}));
-                setAddress(orders.reduce((acc2, order) => {
-                acc2[order.name] = order.address; // Store name-address pairs in an object
-                return acc2;
-            }, {}));
-
-            })
-            .catch((error) => {
-                console.error("Error fetching orders:", error);
-            });
-    }, []);
-
-    function handleNameChange(event) {
-        const selectedName = event.target.value;
-        setSelectedName(selectedName);
-        setSelectedOid(oids[selectedName]); // Get the corresponding ID from the object
-        setSelectedNumber(numbers[selectedName]);
-        setSelectedAddress(numbers[selectedAddress]);
-    }
+      
 
     useEffect(() => {
         axios.get("http://localhost:8070/orders")
@@ -103,15 +72,20 @@ export default function CreateDelivery() {
                     acc1[order.name] = order.number; // Store name-Number pairs in an object
                     return acc1;
                 }, {}));
-                setAddress(pendingOrders.reduce((acc2, order) => {
-                    acc2[order.name] = order.address; // Store name-Number pairs in an object
-                    return acc2;
-                }, {}));
             })
             .catch((error) => {
                 console.error("Error fetching orders:", error);
             });
     }, []);
+
+    function handleNameChange(event) {
+        const selectedName = event.target.value;
+        setSelectedName(selectedName);
+        setSelectedOid(oids[selectedName]); // Get the corresponding ID from the object
+        setSelectedNumber(numbers[selectedName]);
+    }
+
+   
 
   return (
     <div>
@@ -182,19 +156,14 @@ setCode(e.target.value);
 </div>
 </div>
 
-                    <div className="mb-3">
-                        <label htmlFor="exampleInputEmail1" className="form-label" id="supplier">
-                           Address
-                        </label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="exampleInputPassword1"
-                            aria-describedby="emailHelp"
-                            value={selectedAddress}
-                            disabled
-                        />
-                    </div>
+<div className="mb-3">
+<label for="exampleInputPassword1" className="form-label" id='supplier'>Address</label>
+<input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Delivery Address"
+onChange={(e) =>{
+
+setAddress(e.target.value);
+}}/>
+  </div>
 
 <div className="mb-3">
     <label htmlFor="dateInput" className="form-label" id='supplier' >Date</label>
@@ -217,16 +186,22 @@ setNote(e.target.value);
 
 <div className="mb-3">
 <label for="exampleInputPassword1" className="form-label" id='supplier'>Delivery Status</label>
-<input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Delivery Status"
-onChange={(e) =>{
-
-setStatus(e.target.value);
-}}/>
+<select
+              className="form-select"
+              id="exampleInputPassword1"
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+              required
+            >
+              <option value="">Select Status</option>
+              <option value="Pending">Pending</option>
+              <option value="Delivered">Delivered</option>
+</select>
 </div>
 
 <div className="mb-3">
   <label htmlFor="exampleInputDistance" className="form-label" id='supplier'>Distance (in km)</label>
-  <input type="number" className="form-control" id="exampleInputDistance" placeholder="Enter Distance"
+  <input type="number" className="form-control" id="exampleInputPassword1" placeholder="Enter Distance"
       onChange={(e) => setDistance(parseInt(e.target.value))} />
 </div>
 

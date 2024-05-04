@@ -80,6 +80,8 @@ import getOrder from './component/Order Management(user)/getOrder';
 import Feedbackk from './component/Feedback management/Feedbackk';
 import EditInventoryOrders from './component/Product Management/EditInventoryOrders';
 import complainList from './component/Complain Management/complainList'
+import RequestSupplier from './component/Supplier/RequestSupplier';
+import EditRequestSupplier from './component/Supplier/EditRequestSupplier';
 
 
 
@@ -147,7 +149,10 @@ export default class App extends Component {
         <Route path="/customer/:id" component={CustomerDetails}></Route>
         <Route path="/add/usercustomer" component={UserCreateCustomer}></Route>
         <Route path="/usercustomer" exact component={UserCustomerList}></Route>
-        <Route path="/usercustomer/:id" component={UserCustomerDetails}></Route>
+        <Route path="/usercustomer/:id" exact component={UserCustomerDetails}></Route>
+        <Route path="/request/supplier" exact component={RequestSupplier}></Route>
+        <Route path="/request/supplier/:id" exact component={EditRequestSupplier}></Route>
+        
 
           {/* Samadhi Jayasundara (Transaction History) */}
         <Route path="/history" exact component={HistoryList}></Route>
