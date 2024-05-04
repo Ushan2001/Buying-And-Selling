@@ -35,40 +35,40 @@ export default class DeliveryDetail extends Component {
       <div>
          <Header/>
         <div className='container' id="detailsContiner">
-          <h4 id="AllSupplier">{oid}</h4>
+          <h4 id="AllDelivery">{oid}</h4>
           <hr/>
       <dl className='row'>
-        <dt className='col-sm-3' id='supplier'>Delivery ID</dt>
+        <dt className='col-sm-3' id='delivery'>Delivery ID</dt>
         <dd className='col-sm-9' id="details">{_id}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3' id='supplier'>Customer Name</dt>
+        <dt className='col-sm-3' id='delivery'>Customer Name</dt>
         <dd className='col-sm-9'id="details">{name}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3' id='supplier'>Phone Number</dt>
+        <dt className='col-sm-3' id='delivery'>Phone Number</dt>
         <dd className='col-sm-9' id="details">{number}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3' id='supplier'>Order ID</dt>
+        <dt className='col-sm-3' id='delivery'>Order ID</dt>
         <dd className='col-sm-9' id="details">{oid}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3' id='supplier'>Delivery Code</dt>
+        <dt className='col-sm-3' id='delivery'>Delivery Code</dt>
         <dd className='col-sm-9' id="details">{code}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3' id='supplier'>Delivery Address</dt>
+        <dt className='col-sm-3' id='delivery'>Delivery Address</dt>
         <dd className='col-sm-9' id="details">{address}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3' id='supplier'>Delivery Distance</dt>
+        <dt className='col-sm-3' id='delivery'>Delivery Distance</dt>
         <dd className='col-sm-9' id="details">{distance}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3' id='supplier'>Date</dt>
+        <dt className='col-sm-3' id='delivery'>Date</dt>
         <dd className='col-sm-9' id="details">{date}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3' id='supplier'>Additional Note</dt>
+        <dt className='col-sm-3' id='delivery'>Additional Note</dt>
         <dd className='col-sm-9' id="details">{note}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3' id='supplier'>Current State</dt>
+        <dt className='col-sm-3' id='delivery'>Current State</dt>
         <dd className='col-sm-9' id="details">{status}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3' id='supplier'>Delivery Fee</dt>
+        <dt className='col-sm-3' id='delivery'>Delivery Fee</dt>
         <dd className='col-sm-9' id="details">{deliveryFee}</dd>
       </dl>
       

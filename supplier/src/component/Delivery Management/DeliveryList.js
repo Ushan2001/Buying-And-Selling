@@ -159,7 +159,7 @@ export default class DeliveryList extends Component {
     return (
       <div>
         <Header/>
-        <div className='container' id="supplierContainer" style={{width:"78%"}}>
+        <div className='container' id="deliveryContainer" style={{width:"78%"}}>
         <div className='row' style={{marginTop:"1%",marginLeft:"50px"}}>
                         <div className='col' >
                         <button className='btn btn-warning'>
@@ -213,10 +213,10 @@ export default class DeliveryList extends Component {
        
         <div id="supplierCount">
                 <div className='card-body'>
-                    <h5 className='card-title' id="SupplierCardTitile" >✅ No. OF DELIVERIES : <span id="cardText"> {this.state.deliveryCount} </span></h5>        
+                    <h5 className='card-title' id="DeliveryCardTitile" >✅ No. OF DELIVERIES : <span id="cardText"> {this.state.deliveryCount} </span></h5>        
                 </div>
         </div>
-        <h2 id="AllSupplier">All Delivery Details</h2>
+        <h2 id="AllDelivery">All Delivery Details</h2>
         <br></br>
          <table className='table table-hover'>
             <thead>
