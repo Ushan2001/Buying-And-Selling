@@ -68,25 +68,24 @@ export default class InventoryOrders extends Component {
   };
 
 
-  productColor = (requestOrderStatus) =>{
-    let color;
-    if(requestOrderStatus=== "Not yet"){
-        color = 'tomato';
-    }else{
-        color = '#28a745';
-    }
-    return{color};
-}
-
-
-
-
 
   handlePageChange = (pageNumber) => {
     this.setState({
       currentPage: pageNumber
     });
   };
+
+
+  orderColor=(requestOrderStatus)=>{
+    let color;
+    if(requestOrderStatus==="Recived"){
+      color="blue"
+    }
+    else{
+      color="tomato"
+    }
+    return {color};
+  }
 
   render() {
 
@@ -138,7 +137,7 @@ export default class InventoryOrders extends Component {
                   <th scope='row'>{index + 1}</th>
                   <td id='order'>{order.oid}</td>
                   <td id='order'>{order.quantity}</td>
-                  <td id='order'>{order.requestOrderStatus}</td>
+                  <td id='order' style={this.orderColor(order.requestOrderStatus)}>{order.requestOrderStatus}</td>
                   <td>
                     <a className='btn' id='btnEdit' href={`/edit/inventory/order/${order._id}`}>
                       <i className='fas fa-edit' id='EditIcon'></i>
