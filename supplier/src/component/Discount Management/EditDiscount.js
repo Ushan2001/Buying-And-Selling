@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {useHistory } from "react-router-dom"
-import NavBar from '../NavBar/NavBar';
-
+import Header from "../Dashboard/Header/Header";
+import"./discount.css";
 export default function EditDiscount(props) {
 
     const [id, setId] = useState("");
@@ -70,16 +70,16 @@ export default function EditDiscount(props) {
 
   return (
     <div>
-      <NavBar/>
+      <Header/>
 
-<div className="container" style={{ marginTop:"55px"}}>
+<div className="container" id="editContainer">
     <form onSubmit={sendData}>
-      <h2>Edit Discount Records</h2>
+      <h2 id="AllSupplier" >Edit Discount Records</h2>
       <br></br>
 
 <div className="mb-3">
-    <label for="exampleInputEmail1" className="form-label">Product Name</label>
-    <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Product Name" 
+    <label for="exampleInputEmail1" id='supplier' className="form-label">Product Name</label>
+    <input type="text" className="form-control" id="exampleInputPassword1"  aria-describedby="emailHelp" placeholder="Enter Product Name" 
     value={name}
     onChange={(e) =>{
 
@@ -88,8 +88,8 @@ export default function EditDiscount(props) {
 </div>
 
 <div className="mb-3">
-<label for="exampleInputPassword1" className="form-label">Product Category</label>
-<select className="form-select" aria-label="Default select example" 
+<label for="exampleInputPassword1" id='supplier' className="form-label">Product Category</label>
+<select className="form-select" id="exampleInputPassword1" aria-label="Default select example" 
 value={category}
   onChange={(e) =>{
 
@@ -106,8 +106,8 @@ value={category}
 </div>
 
 <div className="mb-3">
-<label for="exampleInputPassword1" className="form-label">Discount</label>
-<select className="form-select" aria-label="Default select example" 
+<label for="exampleInputPassword1" id='supplier' className="form-label">Discount</label>
+<select className="form-select" id="exampleInputPassword1" aria-label="Default select example" 
 value={pdiscount}
   onChange={(e) =>{
 
@@ -125,16 +125,16 @@ value={pdiscount}
 
 
 <div className="mb-3">
-    <label htmlFor="dateInput" className="form-label">Start Date</label>
-    <input type="date" id="dateInput" name="date" max={""} value={date}
+    <label htmlFor="dateInput" id='supplier' className="form-label">Start Date</label>
+    <input type="date" style={{marginLeft:"0px"}} id="dateInput"  name="date" max={""} value={date}
     className="form-control"
      onChange={(e) => setDate(e.target.value)}
       required/>
   </div>
 
   <div className="mb-3">
-<label for="exampleInputPassword1" className="form-label">Time Duaration</label>
-<select className="form-select" aria-label="Default select example" 
+<label for="exampleInputPassword1" id='supplier' className="form-label">Time Duaration</label>
+<select className="form-select" id="exampleInputPassword1" aria-label="Default select example" 
 value={time}
   onChange={(e) =>{
 
@@ -151,8 +151,8 @@ value={time}
 </div>
 
 <div className="mb-3">
-    <label for="exampleInputEmail1" className="form-label">Additional Comment</label>
-    <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Additional Comment" 
+    <label for="exampleInputEmail1" id='supplier'className="form-label">Additional Comment</label>
+    <input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Additional Comment" 
     value={note}
     onChange={(e) =>{
 

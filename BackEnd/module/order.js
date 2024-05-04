@@ -50,9 +50,15 @@ const OrderSchema = new mongoose.Schema({
 
     send:{
         type: String,
-        required: true
+        default:"Pending",
+    },
+    requestOrderStatus:{
+        type:String,
+        default:"Not yet",
     }
 
 });
 
 module.exports = mongoose.model("Orders", OrderSchema)
+
+

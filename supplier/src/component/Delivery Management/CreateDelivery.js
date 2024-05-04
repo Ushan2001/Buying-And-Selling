@@ -6,9 +6,12 @@ import Header from '../Dashboard/Header/Header';
 
 export default function CreateDelivery() {
 
-    const [name, setName] = useState("");
-    const [number, setNumber] = useState("");
-    const [oid, setOid] = useState("");
+    const [names, setNames] = useState([]);
+    const [selectedName, setSelectedName] = useState("");
+    const [numbers, setNumbers] = useState("");
+    const [selectedNumber, setSelectedNumber] = useState("");
+    const [oids, setOids] = useState("");
+    const [selectedOid, setSelectedOid] = useState("");
     const [code, setCode] = useState("");
     const [address, setAddress] = useState("");
     const [date, setDate] = useState("");
@@ -31,9 +34,9 @@ export default function CreateDelivery() {
         a.preventDefault();
         const newDelivery = {
 
-              name,
-              number,
-              oid,
+              name: selectedName ,
+              number : selectedNumber,
+              oid : selectedOid,
               code,
               address,
               date,
@@ -52,21 +55,37 @@ export default function CreateDelivery() {
           })
       }
 
-      useEffect(() => {
-        // Get the current date
-        var currentDate = new Date();
-    
-        // Set the maximum date attribute for the input to the current date
-        var year = currentDate.getFullYear();
-        var month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
-        var day = currentDate.getDate().toString().padStart(2, '0');
-        var maxDate = `${year}-${month}-${day}`;
-    
-        // Update the input element
-        var dateInput = document.getElementById('dateInput');
-        dateInput.setAttribute('max', maxDate);
-        dateInput.setAttribute('min', maxDate); // Set the minimum date to the current date
-      }, []);
+      
+
+    useEffect(() => {
+        axios.get("http://localhost:8070/orders")
+            .then((response) => {
+                const orders = response.data.existingOrder;
+                const pendingOrders = orders.filter(order => order.send === "Pending");
+                const pendingNames = pendingOrders.map((order) => order.name);
+                setNames(pendingNames);
+                setOids(pendingOrders.reduce((acc, order) => {
+                    acc[order.name] = order._id; // Store name-ID pairs in an object
+                    return acc;
+                }, {}));
+                setNumbers(pendingOrders.reduce((acc1, order) => {
+                    acc1[order.name] = order.number; // Store name-Number pairs in an object
+                    return acc1;
+                }, {}));
+            })
+            .catch((error) => {
+                console.error("Error fetching orders:", error);
+            });
+    }, []);
+
+    function handleNameChange(event) {
+        const selectedName = event.target.value;
+        setSelectedName(selectedName);
+        setSelectedOid(oids[selectedName]); // Get the corresponding ID from the object
+        setSelectedNumber(numbers[selectedName]);
+    }
+
+   
 
   return (
     <div>
@@ -76,41 +95,59 @@ export default function CreateDelivery() {
     <form onSubmit={sendData} style={{ position: "relative",width: "70%" }}>
       <h2 id="AllSupplier">Create New Delivery Records</h2>
       <br></br>
-<div className="mb-3">
-<label for="exampleInputEmail1" className="form-label"  id='supplier'>Customer Name</label>
-<input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Customer Name" 
-onChange={(e) =>{
 
-setName(e.target.value);
-}}/>
-</div>
+      <div className="mb-3">
+                        <label htmlFor="exampleInputPassword1" className="form-label" id="supplier">
+                            Customer Name
+                        </label>
+                        <select
+                            className="form-control"
+                            onChange={handleNameChange}
+                            value={selectedName}
+                            id="exampleInputPassword1"
+                        >
+                            <option value="">Select Customer Name</option>
+                            {names.map((name) => (
+                                <option key={name} value={name}>
+                                    {name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
 
-<div className="mb-3">
-<label for="exampleInputPassword1" className="form-label" id='supplier'>Contact Number</label>
-<input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Contact Number"
-pattern="^\d{10}$"
-onChange={(e) =>{
-
-setNumber(e.target.value);
-}}/>
-</div>
-
-<div className="row">
-    <div className="col">
-<div className="mb-3">
-<label for="exampleInputEmail1" className="form-label" id='supplier'>Order ID</label>
-<input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Order ID" 
-onChange={(e) =>{
-
-setOid(e.target.value);
-}}/>
-</div>
-</div>
+                    <div className="mb-3">
+                        <label htmlFor="exampleInputEmail1" className="form-label" id="supplier">
+                           Contact Number
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="exampleInputPassword1"
+                            aria-describedby="emailHelp"
+                            value={selectedNumber}
+                            disabled
+                        />
+                    </div>
+                        <div className="row">
+                        <div className="mb-3">
+                        <label htmlFor="exampleInputEmail1" className="form-label" id="supplier">
+                            Order ID
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="exampleInputPassword1"
+                            aria-describedby="emailHelp"
+                            value={selectedOid}
+                            disabled
+                        />
+                    </div>
+                    
 
 <div className="col">
 <div className="mb-3">
 <label for="exampleInputEmail1" className="form-label" id='supplier'>Delivery Code</label>
-<input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Delivery Code" 
+<input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Delivery Code" 
 onChange={(e) =>{
 
 setCode(e.target.value);
@@ -121,12 +158,12 @@ setCode(e.target.value);
 
 <div className="mb-3">
 <label for="exampleInputPassword1" className="form-label" id='supplier'>Address</label>
-<input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Customer Address"
+<input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Delivery Address"
 onChange={(e) =>{
 
 setAddress(e.target.value);
 }}/>
-</div>
+  </div>
 
 <div className="mb-3">
     <label htmlFor="dateInput" className="form-label" id='supplier' >Date</label>
@@ -149,16 +186,22 @@ setNote(e.target.value);
 
 <div className="mb-3">
 <label for="exampleInputPassword1" className="form-label" id='supplier'>Delivery Status</label>
-<input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Delivery Status"
-onChange={(e) =>{
-
-setStatus(e.target.value);
-}}/>
+<select
+              className="form-select"
+              id="exampleInputPassword1"
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+              required
+            >
+              <option value="">Select Status</option>
+              <option value="Pending">Pending</option>
+              <option value="Delivered">Delivered</option>
+</select>
 </div>
 
 <div className="mb-3">
   <label htmlFor="exampleInputDistance" className="form-label" id='supplier'>Distance (in km)</label>
-  <input type="number" className="form-control" id="exampleInputDistance" placeholder="Enter Distance"
+  <input type="number" className="form-control" id="exampleInputPassword1" placeholder="Enter Distance"
       onChange={(e) => setDistance(parseInt(e.target.value))} />
 </div>
 

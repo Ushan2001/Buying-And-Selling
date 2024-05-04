@@ -28,10 +28,30 @@ export default class SupplierDetail extends Component {
         })
     
       }
+      
+      paymentColor = (PaymentStatus) =>{
+        let color;
+        if(PaymentStatus=== "Not yet"){
+            color = 'tomato';
+        }else{
+            color = '#28a745';
+        }
+        return{color};
+    }
+
+    productColor = (InventoryStatus) =>{
+        let color;
+        if(InventoryStatus=== "Not yet"){
+            color = 'tomato';
+        }else{
+            color = '#28a745';
+        }
+        return{color};
+    }
     
 
   render() {
-    const {sid, name, address, product, amount, quantity, date, note,totalAmount, _id } = this.state.supplier;
+    const {sid, name, address, product, amount, quantity, date, note,totalAmount, _id, InventoryStatus, PaymentStatus } = this.state.supplier;
     return (
       <div>
          <Header/>
@@ -65,12 +85,18 @@ export default class SupplierDetail extends Component {
         <br></br><br></br>
         <dt className='col-sm-3' id='supplier'>Total Amount</dt>
         <dd className='col-sm-9' id="details"> LKR :{totalAmount}</dd>
+        <br></br><br></br>
+        <dt className='col-sm-3' id='supplier'>Inventory Status</dt>
+        <dd className='col-sm-9' id="details" style={this.productColor(InventoryStatus)}>{InventoryStatus}</dd>
+        <br></br><br></br>
+        <dt className='col-sm-3' id='supplier'>Payment Status</dt>
+        <dd className='col-sm-9' id="details" style={this.paymentColor(PaymentStatus)}>{PaymentStatus}</dd>
         
       </dl>
       
        <div id='backBtnDiv' >
-      <button className='btn btn-dark' id='backBtn'><a href='/supplier'>
-      <i className='fas fa-arrow-left' id='backBtn'></i></a></button>
+      <button className='btn btn-dark' id='backBtn' onClick={() => window.history.back()} style={{marginBottom:"3%"}}>
+      <i className='fas fa-arrow-left' id='backBtn'></i></button>
       </div>
       </div>
       </div>

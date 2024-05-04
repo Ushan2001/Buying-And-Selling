@@ -6,6 +6,8 @@ import './order.css';
 import Chart from 'chart.js/auto';
 import Swal from 'sweetalert2';
 
+export const orderCount = "this.state.orderCount";
+
 export default class OrderList extends Component {
   constructor(props) {
     super(props);
@@ -19,6 +21,8 @@ export default class OrderList extends Component {
 
     };
   }
+
+
 
   componentDidMount() {
     this.fetchToken();
@@ -35,22 +39,21 @@ export default class OrderList extends Component {
 }
   
 
-  retrieveOrder() {
-    axios.get('http://localhost:8070/orders').then((res) => {
-      if (res.data.success) {
-        const existingOrder = res.data.existingOrder;
-        this.setState({
-          orders:existingOrder,
-          orderCount:existingOrder.length
-        }, () => {
-          // Call initializeChart after setting state
-          this.initializeChart(this.state.orders);
-        });
-  
-        console.log(this.state.orders);
-      }
-    });
-  }
+retrieveOrder() {
+  axios.get('http://localhost:8070/orders').then((res) => {
+    if (res.data.success) {
+      const existingOrder = res.data.existingOrder;
+      const pendingCount = existingOrder.filter(order => order.send === "Pending").length;
+      this.setState({
+        orders: existingOrder,
+        orderCount: existingOrder.length,
+        pendingCount
+      }, () => {
+        this.initializeChart(this.state.orders);
+      });
+    }
+  });
+}
   
 
   onDelete = (id) => {
@@ -118,8 +121,21 @@ export default class OrderList extends Component {
       this.chartInstance.destroy(); // Destroy existing chart instance
     }
 
-    const labels = orders.map((order) => order.oid);
-    const data = orders.map((order) => order.quantity);
+    const oidMap = new Map();
+    // Aggregate quantities by product code (oid)
+    orders.forEach(order => {
+        const quantity = parseInt(order.quantity); // Parse quantity as integer
+        if (!isNaN(quantity)) {
+            if (oidMap.has(order.oid)) {
+                oidMap.set(order.oid, oidMap.get(order.oid) + quantity); // Sum up quantities
+            } else {
+                oidMap.set(order.oid, quantity);
+            }
+        }
+    });
+
+    const labels = Array.from(oidMap.keys());
+    const data = Array.from(oidMap.values());
 
     this.chartInstance = new Chart(ctxB, {
       type: 'line',
@@ -195,7 +211,9 @@ export default class OrderList extends Component {
         }
       },
     });
-  }
+}
+
+
 
   handlePageChange = (pageNumber) => {
     this.setState({
@@ -205,7 +223,7 @@ export default class OrderList extends Component {
 
   render() {
 
-    const { orders, currentPage, itemsPerPage } = this.state;
+    const { orders, currentPage, itemsPerPage , pendingCount} = this.state;
 
     // Pagination logic
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -239,9 +257,10 @@ export default class OrderList extends Component {
             </a>
           </button>
           <div id="supplierCount">
-                                    <div className='card-body'>
-                                        <h5 className='card-title' id="SupplierCardTitile" >✅ No. OF ORDERS : <span id="cardText"> {this.state.orderCount} </span></h5>        
-                            </div>
+            <div className='card-body'>
+               <h5 className='card-title' id="SupplierCardTitile" >✅ No. OF ORDERS : <span id="cardText"> {this.state.orderCount} </span></h5> 
+               <h5 className='card-title' id="SupplierCardTitile" >✅ No. OF PENDING ORDERS : <span id="cardText" style={{color:"tomato"}}> {pendingCount} </span></h5>         
+            </div>
                         </div>
 
           <h2 id='btnAllOrder'>New Customer Orders</h2>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from "axios";
-import NavBar from '../NavBar/NavBar';
+import Header from '../Dashboard/Header/Header';
 
 
 export default class DiscountList extends Component {
@@ -71,19 +71,25 @@ export default class DiscountList extends Component {
   render() {
     return (
       <div>
-        <NavBar/>
-        <div className='container' style={{ marginTop:"40px"}}>
+        <Header/>
+        <div className='container' id="discountContainer">
          <div className='col-lg-3 mt-2 mb-2'>
             <input  className="form-control"
             type='search'
             placeholder='Search'
             name="serchQuery"
-            style={{marginLeft:"1000px"}}
+            style={{marginLeft:"10px"}}
             onChange={this.handleSearchArea}/>
          </div>
         
 
-        <h2>All Discount</h2>
+         
+
+        <h2 id="AllSupplier" style={{marginTop:"30px", marginBottom:"30px"}}>All Discount</h2>
+
+        <button className='btn btn-success' id="disAdd"><a href='add/discount' style={{textDecoration:"none", color:"white"}}>
+         <i className='fas fa-plus'></i>&nbsp;Add New</a></button>
+
         <br></br>
          <table className='table table-hover'>
             <thead>
@@ -100,21 +106,22 @@ export default class DiscountList extends Component {
             {this.state.discounts.map((discounts, index) =>(
                 <tr key={index}>
                     <th scope='row'>{index+1}</th>
-                    <td>
-                        <a href= {`/discount/${discounts._id}`} style={{textDecoration:"none"}}>
+                    <td
+                        href= {`/discount/${discounts._id}`} style={{textDecoration:"none"}}>
                         {discounts.name}
-                        </a>
+                        
                         </td>
-                    <td>{discounts.category}</td>
-                    <td>{discounts.pdiscount}</td>
+                    <td id="dayment">{discounts.category}</td>
+                    <td id="dayment">{discounts.pdiscount}</td>
                     <td>
-                        <a className='btn btn-warning' href={`/editdiscount/${discounts._id}`}>
-                            <i className='fas fa-edit'></i>&nbsp;Edit
-                        </a>
+                        <a className='btn' id="editBtn" href={`/editdiscount/${discounts._id}`}>
+                            <i className='fas fa-edit' id="editIcon"></i>&nbsp;
+                        </a>&nbsp; &nbsp; &nbsp;
                         &nbsp;
-                        <a className='btn btn-danger' href='# ' onClick={() => this.onDelete(discounts._id)}>
-                            <i className='fas fa-trash-alt'></i>&nbsp;Delete
-                        </a>
+                        <a className='btn' id="editDelete" href='# ' onClick={() => this.onDelete(discounts._id)}>
+                            <i className='fas fa-trash-alt' id="DeleteIcon"></i>&nbsp; &nbsp;
+                        </a>&nbsp; &nbsp; &nbsp;
+                        <a href={`/discount/${discounts._id}`} id="view">VIEW</a>
                         
                     </td>
                 </tr>
@@ -123,8 +130,7 @@ export default class DiscountList extends Component {
         </tbody>
          </table>
 
-         <button className='btn btn-success'><a href='add/discount' style={{textDecoration:"none", color:"white"}}>
-         <i className='fas fa-plus'></i>&nbsp;Add New</a></button>
+         
         
       </div>
       </div>

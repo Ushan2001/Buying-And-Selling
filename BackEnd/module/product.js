@@ -51,8 +51,13 @@ const ProductSchema = new mongoose.Schema({
     image: {
         type: String, // Assuming you store the image filename
         required: true
-    }
+    },
+
 
 });
 
 module.exports = mongoose.model("Products", ProductSchema)
+
+
+
+

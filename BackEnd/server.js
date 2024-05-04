@@ -31,6 +31,7 @@ const historyRouter = require("./routes/history")
 
 /* Haritha Lidapitiya (Report Genaration) */
 const discountRouter = require("./routes/discount")
+const ComplainRouter = require("./routes/complains")
 
 /* Dulaj Indula (Payment Management) */
 const paymentRouter = require("./routes/payments")
@@ -60,6 +61,7 @@ app.use(historyRouter)
 
 /* Haritha Lidapitiya (Report Genaration) */
 app.use(discountRouter)
+app.use(ComplainRouter)
 
 /* Dulaj Indula (Payment Management) */
 app.use(paymentRouter)
@@ -71,7 +73,7 @@ app.use(deliveryRouter)
 const PORT = process.env.PORT || 8070;
 
 mongoose
-.connect(process.env.URL,{ useUnifiedTopology: true, useNewUrlParser: true })
+.connect(process.env.URL,{ useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false  })
 .then(() =>{
     console.log("BuySell Nexus Database Connected 😌")
 })

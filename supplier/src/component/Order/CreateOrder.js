@@ -9,7 +9,7 @@ export default function CreateOrder() {
     
     const [name, setName] = useState("");
     const [number, setNumber] = useState("");
-    const [oid, setOid] = useState("PID");
+    const [oid, setOid] = useState("PR");
     const [amount, setAmount] = useState("");
     const [quantity, setQuantity] = useState("");
     const [date, setDate] = useState("");

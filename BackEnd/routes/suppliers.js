@@ -2,12 +2,13 @@ const express = require("express")
 const Supplier = require("../module/supplier");
 const nodemailer = require('nodemailer');
 const { verifyToken } = require("../helpers/auth-middleware");
+const PDFDocument = require("pdfkit");
+const fs = require("fs");
 
 
 const router = express.Router();
 
 //save supplier
-
 router.post("/supplier/save", verifyToken, async (req, res) => {
   try {
     // Check if a supplier with the same sid or name already exists
@@ -39,11 +40,9 @@ router.post("/supplier/save", verifyToken, async (req, res) => {
 
 
 
-
 //get details
-
 router.get("/supplier", (req, res) =>{
-    Supplier.find().exec((err, suppliers) =>{
+    Supplier.find().select("-__v -createdAt -updatedAt -addedBy").exec((err, suppliers) =>{
       if(err){
         return res.status(400).json({
           error:err
@@ -57,8 +56,9 @@ router.get("/supplier", (req, res) =>{
     })
 })
 
-//update
 
+
+//update
 router.put("/supplier/update/:id", verifyToken, async (req, res) => {
   try {
       const existingSupplier = await Supplier.findOne({ name: req.body.name });
@@ -84,8 +84,9 @@ router.put("/supplier/update/:id", verifyToken, async (req, res) => {
 });
 
 
-//delete
 
+
+//delete
 router.delete("/supplier/delete/:id", verifyToken, (req, res) =>{
   Supplier.findByIdAndRemove(req.params.id).exec((err, deleteSupplier) =>{
     if(err) return res.status(400).json({
@@ -98,22 +99,26 @@ router.delete("/supplier/delete/:id", verifyToken, (req, res) =>{
   })
 })
 
-//get a specific supplier
 
-router.get("/supplier/:id",(req, res) =>{
+
+//get a specific supplier
+router.get("/supplier/:id", (req, res) => {
   let supplierId = req.params.id;
 
-  Supplier.findById(supplierId,(err, supplier) =>{
-    if(err){
-      return res.status(400).json({success:fails, err})
+  Supplier.findById(supplierId, (err, supplier) => {
+    if (err) {
+      return res.status(400).json({ success: false, err }); // Change fails to false
     }
 
     return res.status(200).json({
-      success:true,
+      success: true,
       supplier
-    })
-  })
-})
+    });
+  });
+});
+
+
+
 
 // POST endpoint for sending emails
 router.post('/send-email', (req, res) => {
@@ -146,5 +151,96 @@ router.post('/send-email', (req, res) => {
     res.status(200).send('Email sent successfully');
   });
 });
+
+
+
+
+// Route to generate and download monthly supplier report in PDF format
+router.get("/supplier/report/:year/:month", async (req, res) => {
+  try {
+    const year = parseInt(req.params.year);
+    const month = parseInt(req.params.month);
+    const startDate = new Date(year, month - 1, 1);
+    const endDate = new Date(year, month, 0, 23, 59, 59);
+    const logoPath = "./images/BuySell Nexus.png"; // Update this with the actual path to your logo file
+    const logoImage = fs.readFileSync(logoPath);
+
+    const suppliers = await Supplier.find({
+      date: {
+        $gte: startDate.toISOString(),
+        $lte: endDate.toISOString()
+      }
+    });
+
+    if (suppliers.length === 0) {
+      return res.status(404).json({ error: "No data found for the specified month." });
+    }
+
+    const pdfDoc = new PDFDocument();
+    const buffers = [];
+
+
+     // Add current date
+     const currentDate = new Date().toLocaleDateString();
+     pdfDoc.font("Helvetica").fontSize(12).moveUp(2).text(`Report Genarate: ${currentDate}`, { align: "right" });
+
+    // Add the logo to the PDF document
+  pdfDoc.image(logoImage, {
+  fit: [120, 120], 
+  align:"left", 
+  valign: "left" ,
+  
+}).moveDown(12); 
+
+
+    // Add company address
+    pdfDoc.font("Helvetica-Bold").fontSize(12).text("BuySell Nexus,", { align: "left" });
+    pdfDoc.font("Helvetica-Bold").fontSize(12).text("Malabe,", { align: "left" });
+    pdfDoc.font("Helvetica-Bold").fontSize(12).text("Greater-Colombo.", { align: "left" });
+
+    pdfDoc.font("Helvetica-Bold").fontSize(20).text("Monthly Supplier Report", { align: "center" }).moveDown();
+
+   
+
+    // Add table content
+    suppliers.forEach((supplier, index) => {
+     
+      pdfDoc.font("Helvetica").fontSize(12).text(`${index+1}.Supplier ID: ${supplier.sid}`);
+      pdfDoc.font("Helvetica").fontSize(12).text(`Name: ${supplier.name}`);
+      pdfDoc.font("Helvetica").fontSize(12).text(`Product: ${supplier.product}`);
+      pdfDoc.font("Helvetica").fontSize(12).text(`Amount: ${supplier.amount}`);
+      pdfDoc.font("Helvetica").fontSize(12).text(`Quantity: ${supplier.quantity}`);
+      pdfDoc.font("Helvetica").fontSize(12).text(`Date: ${supplier.date}`);
+      pdfDoc.font("Helvetica").fontSize(12).text(`Note: ${supplier.note}`);
+      pdfDoc.font("Helvetica").fontSize(12).text(`Total Amount: ${supplier.totalAmount}`);
+      if (index < suppliers.length - 1) pdfDoc.moveDown();
+    });
+
+    // Add signature line
+    pdfDoc.moveDown(3).text("This report Contains supplier details for BuySell Nexus company (PVT) LTD.", { align: "left" });
+    pdfDoc.moveDown(3).text();
+    pdfDoc.moveDown(3).text("___________________________", { align: "right" });
+    pdfDoc.moveDown(3).text("Signature", { align: "right" });
+
+  
+
+    pdfDoc.on("data", (buffer) => buffers.push(buffer));
+    pdfDoc.on("end", () => {
+      const pdfData = Buffer.concat(buffers);
+      res.set({
+        "Content-Type": "application/pdf",
+        "Content-Disposition": `attachment; filename="supplier_report_${year}_${month}.pdf"`
+      });
+      res.send(pdfData);
+    });
+
+    pdfDoc.end();
+  } catch (error) {
+    console.error("Error generating supplier report:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
 
 module.exports = router

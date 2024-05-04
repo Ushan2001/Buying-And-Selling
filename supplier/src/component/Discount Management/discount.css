@@ -1,0 +1,85 @@
+
+
+#supplier{
+    color: #053345;
+    font-family: Inter;
+    font-weight: 600;
+
+}
+
+
+
+#example1{
+    border-radius: 20px;
+}
+
+#dateInput{
+    border-radius: 20px; 
+}
+#paymentAdd{
+    
+    border-radius: 20px;
+}
+#editBtn{
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    background-color: #4DB6AC1F;
+}
+
+#editIcon{
+    color: #4DB6AC;
+}
+
+#editDelete{
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    background-color: #F656561F;
+}
+#dis{
+    color: #053345;
+    font-family: Inter;
+    font-weight: 600;
+
+}
+#discountContainer{
+    margin-top: 8%;
+    margin-left: 23%;
+    position: fixed;
+    overflow-y: scroll; 
+    max-height: 80%;
+}
+#DeleteIcon{
+    color: #F65656;
+}
+
+#createDis{
+    margin-top: 8%;
+    margin-left: 33%;
+    position: fixed;
+    overflow-y: scroll; 
+    max-height: 80%;
+    
+}
+
+#AllDis{
+    color: #01161f;
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 25px;
+}
+
+#exampleInputPassword1{
+    border-radius: 20px;
+}
+
+#disAdd{
+    margin-bottom: 30px;
+}
+#details{
+    color: #000000;
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 16px;
+}

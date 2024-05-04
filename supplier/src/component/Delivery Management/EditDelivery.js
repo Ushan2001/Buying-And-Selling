@@ -2,6 +2,7 @@ import React, { useState,  useEffect} from "react";
 import axios from "axios";
 import {useHistory } from "react-router-dom"
 import Header from '../Dashboard/Header/Header';
+import "./style.css"
 
 
 export default function EditDelivery(props) {
@@ -88,14 +89,16 @@ export default function EditDelivery(props) {
     <div>
  <Header/>
 
-<div className="container"id="createSupplier" >
-    <form onSubmit={sendData}style={{ position: "relative", width: "65%" }}>
-      <h2 id="AllSupplier">Edit Delivery Records</h2>
+<div className="container"id="createDeliveryContainer" >
+    <form onSubmit={sendData}>
+      <h2 id="btnAllDelivery">Edit Delivery Records</h2>
       <br></br>
 <div className="mb-3">
-<label for="exampleInputEmail1" className="form-label"id='supplier'>Customer Name</label>
-<input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Customer Name"
+<label for="exampleInputEmail1" className="form-label"id='createDelivery'>Customer Name</label>
+
+<input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Customer Name"
 value={name} 
+pattern="[A-Za-z\s]+" title="Please enter only letters and spaces"
 onChange={(e) =>{
 
 setName(e.target.value);
@@ -103,7 +106,7 @@ setName(e.target.value);
 </div>
 
 <div className="mb-3">
-<label for="exampleInputPassword1" className="form-label"id='supplier'>Contact Number</label>
+<label for="exampleInputPassword1" className="form-label"id='createDelivery'>Contact Number</label>
 <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Contact Number"
 pattern="^\d{10}$"
 value={number}
@@ -116,8 +119,8 @@ setNumber(e.target.value);
 <div className="row">
     <div className="col">
 <div className="mb-3">
-<label for="exampleInputEmail1" className="form-label"id='supplier'>Order ID</label>
-<input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Order ID" 
+<label for="exampleInputEmail1" className="form-label"id='createDelivery'>Order ID</label>
+<input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Order ID" 
 value={oid}
 onChange={(e) =>{
 
@@ -128,8 +131,9 @@ setOid(e.target.value);
 
 <div className="col">
 <div className="mb-3">
-<label for="exampleInputEmail1" className="form-label"id='supplier'>Delivery Code</label>
-<input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Delivery Code"
+<label for="exampleInputPassword1" className="form-label"id='createDelivery'>Delivery Code</label>
+<input type="text" className="form-control" id="dateInput" aria-describedby="emailHelp" placeholder="Enter Delivery Code"
+
 value={code} 
 onChange={(e) =>{
 
@@ -140,7 +144,7 @@ setCode(e.target.value);
 </div>
 
 <div className="mb-3">
-<label for="exampleInputPassword1" className="form-label"id='supplier'>Address</label>
+<label for="exampleInputPassword1" className="form-label"id='createDelivery'>Address</label>
 <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Customer Address"
 value={address}
 onChange={(e) =>{
@@ -150,21 +154,22 @@ setAddress(e.target.value);
 </div>
 
 <div className="mb-3">
-    <label htmlFor="dateInput" className="form-label"id='supplier'>Date</label>
+    <label htmlFor="dateInput" className="form-label"id='createDelivery'>Date</label>
     <input type="date" id="dateInput" name="date" max={""} value={date} style={{marginLeft:"3px"}}
     className="form-control"
+    readOnly
      onChange={(e) => setDate(e.target.value)}
       required/>
   </div>
   <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label" id="createOrder">Distance</label>
+    <label for="exampleInputPassword1" className="form-label" id="createDelivery">Distance</label>
     <input type="number" className="form-control" id="exampleInputPassword1"
         max={"200"} min={"1"}
         value={distance}
         onChange={(e) => {
           if (distance > 10) {
             const extraDistance = distance - 10;
-            const calculatedDeliveryFee = extraDistance * 50;
+            const calculatedDeliveryFee = extraDistance * 20;
             setDeliveryFee(calculatedDeliveryFee);
         } else {
             setDeliveryFee(0); // Reset deliveryFee if distance is 10km or less
@@ -174,7 +179,7 @@ setAddress(e.target.value);
 </div>
 
 <div className="mb-3">
-<label for="exampleInputPassword1" className="form-label"id='supplier'>Additional Information</label>
+<label for="exampleInputPassword1" className="form-label"id='createDelivery'>Additional Information</label>
 <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Additional Information"
 value={note}
 onChange={(e) =>{
@@ -184,16 +189,23 @@ setNote(e.target.value);
 </div>
 
 <div className="mb-3">
-<label for="exampleInputPassword1" className="form-label"id='supplier'>Delivery Status</label>
-<input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Delivery Status"
-value={status}
-onChange={(e) =>{
+<label for="exampleInputPassword1" className="form-label"id='createDelivery'>Delivery Status</label>
+<select
+              className="form-select"
+              id="exampleInputPassword1"
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+              required
+            >
+              <option value="">Select Status</option>
+              <option value="Pending">Pending</option>
+              <option value="Delivered">Delivered</option>
+</select>
 
-setStatus(e.target.value);
-}}/>
+
 </div>
 <div class="count-display" style={{marginBottom:"2%", width:"70%"}}>
-    <label class="count-label" for="exampleInputPassword1" id='supplier'>Delivery Fee:</label>
+    <label class="count-label" for="exampleInputPassword1" id='createDelivery'>Delivery Fee:</label>
     <div class="count-value">LKR: {deliveryFee}</div>
 </div>
 

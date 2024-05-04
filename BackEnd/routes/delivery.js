@@ -88,5 +88,40 @@ router.get("/delivery/:id",(req, res) =>{
     })
   })
   
+
+// // POST endpoint for sending emails
+// router.post('/send-email/ridmi', (req, res) => {
+//   const { subject, message } = req.body;
+
+//   // Create a nodemailer transporter
+//   const transporter = nodemailer.createTransport({
+//     service: 'gmail',
+//     auth: {
+//       user: 'ridmi.25106@gmail.com', // replace with your Gmail address
+//       pass: 'siqn ncwj lzdi yrzx', // replace with your Gmail password
+//     },
+//   });
+
+//   // Email options
+//   const mailOptions = {
+//     from: 'ridmi.25106@gmail.com', // replace with your Gmail address
+//     to: 'ridmikranasinghe@gmail.com', // replace with your recipient's email address
+//     subject: subject,
+//     text: message,
+//   };
+
+//   // Send email
+//   transporter.sendMail(mailOptions, (error, info) => {
+//     if (error) {
+//       console.error(error);
+//       return res.status(500).send('Internal Server Error');
+//     }
+//     console.log('Email sent: ' + info.response);
+//     res.status(200).send('Email sent successfully');
+//   });
+// });
+
+
+
   module.exports = router
  

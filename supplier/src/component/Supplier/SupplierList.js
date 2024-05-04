@@ -5,6 +5,7 @@ import Header from '../Dashboard/Header/Header';
 import Chart from 'chart.js/auto'; 
 import "./supplier.css";
 import Swal from 'sweetalert2';
+import LoadingPage from './LoadingPage';
 
 
 export default class SupplierList extends Component {
@@ -18,7 +19,9 @@ export default class SupplierList extends Component {
             supplierCount: 0,
             currentPage: 1,
             itemsPerPage: 5,
-            token: ""
+            token: "",
+            loading: true,
+           
         }
     }
 
@@ -26,6 +29,7 @@ export default class SupplierList extends Component {
         this.fetchToken();
         this.retriveSupplier();
         this.retriveOldSupplier();
+      
     }
 
     fetchToken() {
@@ -33,18 +37,19 @@ export default class SupplierList extends Component {
         if (storedToken) {
             this.setState({ token: storedToken });
         }
-    }
-
+    }  
     retriveSupplier(){
         axios.get("http://localhost:8070/supplier").then((res) =>{
             if(res.data.success){
                 const  existingSupplier =  res.data.existingSupplier;
                 this.setState({
                  suppliers:existingSupplier,
-                 supplierCount: existingSupplier.length
+                 supplierCount: existingSupplier.length,
+                 loading: false
     
                 }, () => {
                     this.initializeChart(this.state.suppliers);
+                    
                 });
             }
         })
@@ -201,68 +206,69 @@ export default class SupplierList extends Component {
     
         // Define an array of colors
         const colors = [
-            /* Purple Plum */
-            'rgba(105, 0, 132, .2)',
-
-            /* Caribbean Green */
-            'rgba(0, 137, 132, .2)',
-
-            /* Blush Red */
-            'rgba(200, 99, 132, .7)',
-
-            /* Deep Sea Blue */
-            'rgba(0, 10, 130, .7)',
-
-            /* Royal Purple */
-            'rgba(145, 30, 180, .7)',
-
-            /* Lemon Yellow */
-            'rgba(255, 255, 0, .7)',
-
-            /* Fire Engine Red */
-            'rgba(255, 0, 0, .7)',
-
-            /* Neon Green */
-            'rgba(0, 255, 0, .7)',
-
-            /* Electric Blue */
-            'rgba(0, 0, 255, .7)',
-
-            /* Orange Peel */
-            'rgba(255, 128, 0, .7)',
-
-            /* Fuchsia */
-            'rgba(255, 0, 255, .7)',
-
-            /* Gray */
-            'rgba(128, 128, 128, .7)',
-
-            /* Purple Heart */
-            'rgba(128, 0, 128, .7)',
-
-            /* Teal */
-            'rgba(0, 128, 128, .7)',
-
-            /* Maroon */
-            'rgba(128, 0, 0, .7)',
-
-            /* Lime */
-            'rgba(0, 128, 0, .7)',
-
-            /* Navy Blue */
-            'rgba(0, 0, 128, .7)',
-
-            /* White */
-            'rgba(255, 255, 255, .7)',
-
-            /* Silver */
-            'rgba(192, 192, 192, .7)',
-
-            /* Olive */
-            'rgba(128, 128, 0, .7)'
-
-           
-        ];
+                /* Dark Purple Plum */
+                'rgba(75, 0, 94, .7)',
+            
+                /* Dark Caribbean Green */
+                'rgba(0, 75, 71, .7)',
+            
+                /* Dark Blush Red */
+                'rgba(150, 50, 94, .7)',
+            
+                /* Dark Deep Sea Blue */
+                'rgba(0, 5, 65, .7)',
+            
+                /* Dark Royal Purple */
+                'rgba(75, 15, 120, .7)',
+            
+                /* Dark Lemon Yellow */
+                'rgba(200, 200, 0, .7)',
+            
+                /* Dark Fire Engine Red */
+                'rgba(200, 0, 0, .7)',
+            
+                /* Dark Neon Green */
+                'rgba(0, 150, 0, .7)',
+            
+                /* Dark Electric Blue */
+                'rgba(0, 0, 150, .7)',
+            
+                /* Dark Orange Peel */
+                'rgba(200, 100, 0, .7)',
+            
+                /* Dark Fuchsia */
+                'rgba(150, 0, 150, .7)',
+            
+                /* Dark Gray */
+                'rgba(75, 75, 75, .7)',
+            
+                /* Dark Purple Heart */
+                'rgba(75, 0, 75, .7)',
+            
+                /* Dark Teal */
+                'rgba(0, 75, 75, .7)',
+            
+                /* Dark Maroon */
+                'rgba(75, 0, 0, .7)',
+            
+                /* Dark Lime */
+                'rgba(0, 75, 0, .7)',
+            
+                /* Dark Navy Blue */
+                'rgba(0, 0, 75, .7)',
+            
+                /* Dark White */
+                'rgba(150, 150, 150, .7)',
+            
+                /* Dark Silver */
+                'rgba(100, 100, 100, .7)',
+            
+                /* Dark Olive */
+                'rgba(75, 75, 0, .7)'
+            ];
+            
+       
+        
         
         // Prepare data for each SID
         const datasets = uniqueSIDs.map((sid, index) => {
@@ -306,10 +312,19 @@ export default class SupplierList extends Component {
         const currentSuppliers = suppliers.slice(indexOfFirstSupplier, indexOfLastSupplier);
         const currentOldSuppliers = oldsuppliers.slice(indexOfFirstSupplier, indexOfLastSupplier);
 
+        const { loading } = this.state; 
+
         return (
             <div>
+                
                 <Header/>
+                <LoadingPage loading={loading} />
                 <div className='container' id="supplierContainer" >
+                    <div id="notification-icon">
+
+
+</div>
+
 
                     <div id="lineChartContainer" style={{marginBottom:"5%"}}>
                     <div  style={{marginBottom:"2%"}}>
@@ -334,25 +349,34 @@ export default class SupplierList extends Component {
                         <div className='col' id="newCol">
                             <button className='btn btn-success' id="supplierAdd">
                                 <a href='add/supplier' style={{textDecoration:"none", color:"white"}}>
-                                    <i className='fas fa-plus'></i>&nbsp;Add New
+                                <i className='fas fa-plus'></i>&nbsp;Add New
                                 </a>
                             </button>
                         </div>
 
                         <div className='col' id="oldCol">
                             <button className='btn btn-info' id="supplierAddLod" >
-                                <a href='/Old Supplier' style={{textDecoration:"none", color:"white"}}>
+                                <a href='/Old_Supplier' style={{textDecoration:"none", color:"white"}}>
                                     <i className='fas fa-plus'></i>&nbsp;Add Old
                                 </a>
                             </button>
                         </div>
                     </div> 
-
                     <div id="supplierCount">
                                     <div className='card-body'>
                                         <h5 className='card-title' id="SupplierCardTitile" >✅ No. OF SUPPLIERS : <span id="cardText"> {this.state.supplierCount} </span></h5>        
                             </div>
                         </div>
+
+                        <div id="requestSupplier">
+                        <button className='btn btn-warning' id="supplierAddLod" >
+                                <a href='/request/supplier' style={{textDecoration:"none", color:"white"}}>
+                                <i class="bi bi-person-plus"></i>&nbsp;Request
+                                </a>
+                            </button>
+                        </div>
+
+                       
 
                     <h2 id="AllSupplier">All Suppliers</h2>
                     <br></br>       
