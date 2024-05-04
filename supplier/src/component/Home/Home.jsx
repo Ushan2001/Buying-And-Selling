@@ -25,7 +25,7 @@ export default function Home() {
                             <li className="nav-item"><a className="nav-link" href="/history"><i className='fas fa-history'></i>&nbsp;History</a></li>
                             <li className="nav-item"><a className="nav-link" href="/create"><i className='fas fa-record-vinyl'></i>&nbsp;Add Record</a></li>
                             <div style={{marginLeft:"35px"}}>
-                            <li className="nav-item"><a className="nav-link" href="/admin"><i className='fas fa-sign-out-alt'></i>&nbsp;Logout</a></li>
+                            <li className="nav-item"><a className="nav-link" href="/"><i className='fas fa-sign-out-alt'></i>&nbsp;Logout</a></li>
                             </div>
                         </ul>
                     </div>
