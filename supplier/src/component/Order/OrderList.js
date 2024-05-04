@@ -39,22 +39,21 @@ export default class OrderList extends Component {
 }
   
 
-  retrieveOrder() {
-    axios.get('http://localhost:8070/orders').then((res) => {
-      if (res.data.success) {
-        const existingOrder = res.data.existingOrder;
-        this.setState({
-          orders:existingOrder,
-          orderCount:existingOrder.length
-        }, () => {
-          // Call initializeChart after setting state
-          this.initializeChart(this.state.orders);
-        });
-  
-        console.log(this.state.orders);
-      }
-    });
-  }
+retrieveOrder() {
+  axios.get('http://localhost:8070/orders').then((res) => {
+    if (res.data.success) {
+      const existingOrder = res.data.existingOrder;
+      const pendingCount = existingOrder.filter(order => order.send === "Pending").length;
+      this.setState({
+        orders: existingOrder,
+        orderCount: existingOrder.length,
+        pendingCount
+      }, () => {
+        this.initializeChart(this.state.orders);
+      });
+    }
+  });
+}
   
 
   onDelete = (id) => {
@@ -224,7 +223,7 @@ export default class OrderList extends Component {
 
   render() {
 
-    const { orders, currentPage, itemsPerPage } = this.state;
+    const { orders, currentPage, itemsPerPage , pendingCount} = this.state;
 
     // Pagination logic
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -258,9 +257,10 @@ export default class OrderList extends Component {
             </a>
           </button>
           <div id="supplierCount">
-                                    <div className='card-body'>
-                                        <h5 className='card-title' id="SupplierCardTitile" >✅ No. OF ORDERS : <span id="cardText"> {this.state.orderCount} </span></h5>        
-                            </div>
+            <div className='card-body'>
+               <h5 className='card-title' id="SupplierCardTitile" >✅ No. OF ORDERS : <span id="cardText"> {this.state.orderCount} </span></h5> 
+               <h5 className='card-title' id="SupplierCardTitile" >✅ No. OF PENDING ORDERS : <span id="cardText" style={{color:"tomato"}}> {pendingCount} </span></h5>         
+            </div>
                         </div>
 
           <h2 id='btnAllOrder'>New Customer Orders</h2>

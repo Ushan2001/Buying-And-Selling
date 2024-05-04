@@ -22,6 +22,7 @@ export default class DeliveryList extends Component {
     componentDidMount(){
         this.fetchToken();
         this.retriveDelivery();
+        this.retrieveOrder();
     }
 
     fetchToken() {
@@ -30,6 +31,22 @@ export default class DeliveryList extends Component {
             this.setState({ token: storedToken });
         }
     }
+
+    retrieveOrder() {
+        axios.get('http://localhost:8070/orders').then((res) => {
+          if (res.data.success) {
+            const existingOrder = res.data.existingOrder;
+            const pendingCount = existingOrder.filter(order => order.send === "Pending").length;
+            const deliveredCount = existingOrder.filter(order => order.send === "Delivered").length;
+            this.setState({
+              orders: existingOrder,
+              orderCount: existingOrder.length,
+              pendingCount,
+              deliveredCount,
+            });
+          }
+        });
+      }
 
     retriveDelivery() {
         const { statusFilter } = this.state;
@@ -42,6 +59,7 @@ export default class DeliveryList extends Component {
                         deliverys: existingDelivery,
                         deliveryCount: existingDelivery.length
                     });
+                    this.countPdendingAndSDelivered(existingDelivery);
                 }
             })
             .catch((err) => {
@@ -49,7 +67,25 @@ export default class DeliveryList extends Component {
             });
     }
     
-    
+    countPdendingAndSDelivered(deliverys){
+        let pending = 0;
+        let delivered = 0;
+        
+        deliverys.forEach(delivery => {
+            if (delivery.ctype === "Pending") {
+                pending++;
+            }else if (delivery.ctype === "Delivered") {
+                delivered++;
+            }
+            
+        });
+        this.setState({
+            pendingCount: pending,
+            deliveredCount: delivered,
+            
+        });
+    }
+
   
 
     onDelete = (id) => {
@@ -94,7 +130,7 @@ export default class DeliveryList extends Component {
         )
       
         this.setState({deliverys:result,deliveryCount:result.length})
-      
+        this.countPdendingAndSDelivered(result);
       }
 
       handleSearchArea = (e) =>{
@@ -119,6 +155,7 @@ export default class DeliveryList extends Component {
     
 
   render() {
+    const {pendingCount, deliveredCount} = this.state;
     return (
       <div>
         <Header/>
@@ -129,6 +166,28 @@ export default class DeliveryList extends Component {
                             <a href='/requeste/order' style={{textDecoration:"none", color:"black"}}>
                             <i class="bi bi-truck"></i>&nbsp;Requested Order</a>
                         </button>
+                        </div>
+        </div>
+        <div className='row' id="customerRow">
+        <div className='col-md-2'>
+                            <div className='col-md-3' id="card">
+                                <div className='card' id="card1" style={{ width: '15rem', backgroundColor: 'lightblue'}}>
+                                    <div className='card-body'>
+                                        <h5 className='card-title' id="cardTitile">Pending</h5>
+                                        <p className='card-text' id="cardText">{pendingCount}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='col-md-2' id="customerCol1">
+                            <div className='col-md-3' id="card">
+                                <div className='card' id="card1" style={{ width: '15rem', backgroundColor: 'lightblue'}}>
+                                    <div className='card-body'>
+                                        <h5 className='card-title' id="cardTitile">Delivered</h5>
+                                        <p className='card-text' id="cardText">{deliveredCount}</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
         </div>
         <div className='col-lg-3 mt-2 mb-2'>
