@@ -38,7 +38,7 @@ const CustomerSchema = new mongoose.Schema({
     },
     supplierStatus:{
         type:String,
-        default:"not register"
+        default:"Not Register"
     }
 });
 
