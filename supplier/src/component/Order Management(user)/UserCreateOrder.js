@@ -141,7 +141,7 @@ export default function UserCreateOrder() {
 
             <div className="container" style={{ marginTop: "55px", marginLeft:"23%", maxWidth:"75%" }}>
                 <form onSubmit={sendData}>
-                    <h2 id='btnAllOrder' style={{ marginLeft:"25%" }}>Order Confirm Form</h2>
+                    <h2 id='btnAllOrder' style={{ marginLeft:"25%" }}>Order Confirmation  Form</h2>
                     <br></br>
 
 
@@ -186,7 +186,7 @@ export default function UserCreateOrder() {
     <label for="exampleInputPassword1" className="form-label" id="createOrder" >Product Code</label>
     <input type="text" className="form-control" id="exampleInputPassword1" 
     readOnly
-    disabled
+    disabled   // product code can't change
     value={oid}
     onChange={(e) =>{
 

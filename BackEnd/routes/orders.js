@@ -98,15 +98,15 @@ router.post('/send-email/lashini', (req, res) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'lashinijayasooriya3@gmail.com', // replace with your Gmail address
+      user: 'ushanmihiranga2017@gmail.com', // replace with your Gmail address
       pass: 'siqn ncwj lzdi yrzx', // replace with your Gmail password
     },
   });
 
   // Email options
   const mailOptions = {
-    from: 'lashinijayasooriya3@gmail.com', // replace with your Gmail address
-    to: 'it22095480@my.sliit.lk', // replace with your recipient's email address
+    from: 'ushanmihiranga2017@gmail.com',
+    to: 'it22243362@my.sliit.lk',
     subject: subject,
     text: message,
   };
