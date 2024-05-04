@@ -39,13 +39,7 @@ export default function EditCustomer(props) {
 
     const updateCustomer = {
       
-      name,
-      number,
-      address,
-      gender,
-      email,
-      ctype,
-      note
+      name,number,address,gender,email,ctype,note
     };
 
     axios.put(`http://localhost:8070/customer/update/${id}`, updateCustomer).then(() => {
@@ -66,7 +60,7 @@ export default function EditCustomer(props) {
         <h2>Edit Customer Record</h2>
         <br></br>
         <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">Customer Name</label>
+          <label htmlFor="exampleInputEmail1" className="form-label">User Name</label>
           <input
             type="text"
             className="form-control"

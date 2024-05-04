@@ -63,7 +63,7 @@ export default class UserCustomerDetails extends Component {
             </div>
       
             <div className='col-sm-3'>
-              <dt>Customer Type</dt>
+              <dt>User Type</dt>
               <dd>{ctype}</dd>
             </div>
       

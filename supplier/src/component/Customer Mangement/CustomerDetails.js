@@ -54,7 +54,7 @@ export default class CustomerDetails extends Component {
         <dt className='col-sm-3'>Email</dt>
         <dd className='col-sm-9'>{email}</dd>
         <br></br><br></br>
-        <dt className='col-sm-3'>Customer Type</dt>
+        <dt className='col-sm-3'>User Type</dt>
         <dd className='col-sm-9'>{ctype}</dd>
         <br></br><br></br>
         <dt className='col-sm-3'>Additional Information</dt>

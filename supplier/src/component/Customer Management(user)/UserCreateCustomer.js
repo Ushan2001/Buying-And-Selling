@@ -67,7 +67,7 @@ export default function UserCreateCustomer() {
 
     <div className="mb-3">
       <label htmlFor="exampleInputEmail1" className="form-label" id="rashini">
-        Customer Name
+        User Name
       </label>
       <input
         type="text"
@@ -148,7 +148,7 @@ export default function UserCreateCustomer() {
 
     <div className="mb-3">
       <label htmlFor="exampleInputPassword1" className="form-label" id="rashini">
-        Customer Type
+        User Type
       </label>
       <select
         className="form-select"
