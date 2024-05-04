@@ -78,7 +78,7 @@ router.get("/customer/:id",(req, res) =>{
   
     Customer.findById(customerId,(err, customer) =>{
       if(err){
-        return res.status(400).json({success:fails, err})
+        return res.status(400).json({success:false, err})
       }
   
       return res.status(200).json({
