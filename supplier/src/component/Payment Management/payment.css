@@ -1,78 +1,78 @@
-#payment{
+#payment {
     color: #053345;
     font-family: Inter;
     font-weight: 600;
 
 }
 
-#createPayment{
+#createPayment {
     margin-top: 8%;
     margin-left: 33%;
     position: fixed;
-    overflow-y: scroll; 
+    overflow-y: scroll;
     max-height: 80%;
-    
+
 }
 
-#dateInput{
-    border-radius: 20px; 
-   
-    
+#dateInput {
+    border-radius: 20px;
+
+
 }
 
-#exampleInputPassword1{
+#exampleInputPassword1 {
     border-radius: 20px;
 }
 
-#AllPayment{
+#AllPayment {
     color: #01161f;
     font-family: Inter;
     font-weight: 700;
     font-size: 25px;
 }
 
-#paymentContainer{
+#paymentContainer {
     margin-top: 8%;
     margin-left: 23%;
     position: fixed;
-    overflow-y: scroll; 
+    overflow-y: scroll;
     max-height: 80%;
 }
 
-#editBtn{
+#editBtn {
     border-radius: 100%;
     width: 40px;
     height: 40px;
     background-color: #4DB6AC1F;
 }
 
-#editIcon{
+#editIcon {
     color: #4DB6AC;
 }
 
-#editDelete{
+#editDelete {
     border-radius: 100%;
     width: 40px;
     height: 40px;
     background-color: #F656561F;
 }
 
-#DeleteIcon{
+#DeleteIcon {
     color: #F65656;
 }
 
-#PdfBtn{
+#PdfBtn {
     border-radius: 100%;
     width: 40px;
     height: 40px;
     background-color: #4d56b61f;
 }
 
-#PdfIcon{
+#PdfIcon {
     color: #5679f6;
 }
 
-#view{
+#view {
     text-decoration: none;
     font-family: Inter;
     font-weight: 600;
@@ -81,71 +81,133 @@
     color: #197E89;
 }
 
-#paymentAdd{
-    
+#paymentAdd {
+
     border-radius: 20px;
     margin-left: 80%;
 }
 
 
-#paymentCount{
+#paymentCount {
     margin-top: 1%;
     margin-bottom: 3%;
     margin-left: 1%;
 }
 
 
-#detailsContiner{
+#detailsContiner {
     margin-top: 8%;
     margin-left: 25%;
     position: fixed;
-    overflow-y: scroll; 
+    overflow-y: scroll;
     max-height: 80%;
 }
 
-@media (max-width:678px){
-    
-    #paymentCount{
+@media (max-width:678px) {
+
+    #paymentCount {
         margin-top: 1%;
         margin-bottom: 5%;
         margin-left: 4%;
     }
 }
 
-#paymentCardTitile{
+#paymentCardTitile {
     font-weight: 900;
     font-size: 25px;
-    color:#023b53;
+    color: #023b53;
 }
 
-#details{
+#details {
     color: #000000;
     font-family: Inter;
     font-weight: 600;
     font-size: 16px;
 }
 
-#backBtn{
+#backBtn {
     margin-top: 2%;
     border-radius: 100%;
     color: white;
- }
+}
 
-#paymentCount{
+#paymentCount {
     margin-left: 0%;
 }
+
 #paymentformbg {
     background-image: url('../../../public/images/paymentbg.jpg');
     background-size: cover;
     background-position: center;
     min-height: 100vh;
     background-repeat: no-repeat;
-  }
+}
 
-#userpayment{
+#userpayment {
     color: #053345;
     font-family: Inter;
     font-weight: 800;
 
 }
 
+#incomeview {
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px;
+    max-width: 600px;
+    animation: slideInFromLeft 0.5s ease forwards;
+    background-color: #f5f5f5;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+#totincome {
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #3498db;
+    text-align: center;
+}
+
+#rs {
+    margin-top: 15px;
+    font-weight: 600;
+    text-align: center;
+}
+
+#comparebtn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 35%;
+}
+
+#compareResult {
+    margin-top: 10px;
+    font-size: 16px;
+    text-align: center;
+
+
+}
+
+#rs1 {
+    margin-top: 30px;
+    font-size: 20px;
+    color: #888;
+    text-align: center;
+}
