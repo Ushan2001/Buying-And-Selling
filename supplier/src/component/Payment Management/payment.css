@@ -134,3 +134,18 @@
 #paymentCount{
     margin-left: 0%;
 }
+#paymentformbg {
+    background-image: url('../../../public/images/paymentbg.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+  }
+
+#userpayment{
+    color: #053345;
+    font-family: Inter;
+    font-weight: 800;
+
+}
+
