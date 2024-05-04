@@ -35,6 +35,10 @@ const CustomerSchema = new mongoose.Schema({
     note:{
         type: String,
         required: true
+    },
+    supplierStatus:{
+        type:String,
+        default:"not register"
     }
 });
 

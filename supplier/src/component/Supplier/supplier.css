@@ -444,6 +444,10 @@
   .btn.notification-icon:focus {
     outline: none; /* Remove focus outline when clicked */
   }
+
+  #requestSupplier{
+    margin-bottom: 2%;
+  }
   
 
 
