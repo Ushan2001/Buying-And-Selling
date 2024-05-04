@@ -138,7 +138,7 @@ retrieveOrder() {
     const data = Array.from(oidMap.values());
 //chart
     this.chartInstance = new Chart(ctxB, {
-      type: 'line',
+      type: 'bar',
       data: {
         labels: labels,
         datasets: [
