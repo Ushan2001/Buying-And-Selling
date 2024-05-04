@@ -277,7 +277,7 @@ export default class SupplierList extends Component {
             const data = [currentSupplier ? currentSupplier.totalAmount : 0, existingSupplier ? existingSupplier.totalAmount : 0];
             const colorIndex = index % colors.length; // Get color index within the range of colors array
             return {
-                label: `SID: ${sid}`,
+                label: `SC: ${sid}`,
                 data: data,
                 backgroundColor: colors[colorIndex],
                 borderColor: colors[colorIndex],
