@@ -58,6 +58,18 @@ export default class RequestedOrder extends Component {
     });
   };
 
+
+  requestedorderColor=(send)=>{
+    let color;
+    if(send==="Delivered"){
+      color="blue"
+    }
+    else{
+      color="tomato"
+    }
+    return {color};
+  }
+
   render() {
 
     const { orders, currentPage, itemsPerPage } = this.state;
@@ -106,7 +118,7 @@ export default class RequestedOrder extends Component {
                   <th scope='row'>{index + 1}</th>
                   <td id='order'>{order.name}</td>
                   <td id='order'>{order.number}</td>
-                  <td id='order' style={{color:"tomato"}}>{order.send}</td>
+                  <td id='order' style={this.requestedorderColor(order.send)}>{order.send}</td>
                   <td>
                     <a className='btn' id='btnEdit' href={`/edit/request/order/${order._id}`}>
                       <i className='fas fa-edit' id='EditIcon'></i>
