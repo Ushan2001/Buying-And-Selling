@@ -70,8 +70,8 @@ export default class OrderDetail extends Component {
         
       </dl>
       <div style={{marginBottom:"5%"}}>
-      <button className='btn btn-dark' style={{borderRadius:"100%"}}><a href='/order' style={{textDecoration:"none", color:"white"}}>
-      <i className='fas fa-arrow-left'></i></a></button>
+      <button className='btn btn-dark' style={{borderRadius:"100%"}} onClick={() => window.history.back()}>
+      <i className='fas fa-arrow-left'></i></button>
       </div>
       </div>
 

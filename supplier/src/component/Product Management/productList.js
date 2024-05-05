@@ -14,7 +14,9 @@ export default class productList extends Component {
         this.state = {
             products: [],
             initialProductCount:0,
+            initialorderCount:0,
             productCount: 0,
+            orderCount:orderCount,
             stockInRate: 0, 
             stockOutRate:0,
         }
@@ -22,22 +24,30 @@ export default class productList extends Component {
 
     componentDidMount() {
         this.retriveProduct();
+        this.retrieveOrder();
+        
     }
 
     retrieveOrder() {
         axios.get('http://localhost:8070/orders').then((res) => {
+            console.log(res.data);
           if (res.data.success) {
-            const existingOrder = res.data.existingOrder;
+            const existingOrder = res.data.existingOrder
+            const orderCount = existingOrder.length;
+
+            const stockOutRate = (orderCount/24) * 100;
 
             this.setState({
               orders:existingOrder,
-              orderCount:existingOrder.length
-             
+              initialorderCount: orderCount,
+              orderCount:orderCount,
+              stockOutRate:stockOutRate
+    
             }, () => {
-              // Call initializeChart after setting state
-              this.initializeChart(this.state.orders);
+              
+             // this.calculateStockOutRate();
             });
-      
+
             console.log(this.state.orders);
           }
         });
@@ -54,14 +64,14 @@ export default class productList extends Component {
                 
                     const stockInRate = (productCount/24) * 100;
 
-                    const stockOutRate = (orderCount/24) * 100;
+                    //const stockOutRate = (this.state.orderCount/24) * 100;
 
                     this.setState({
                         products: existingProduct,
                         initialProductCount: productCount,
-                        productCount,
-                        stockInRate,
-                        stockOutRate,
+                        productCount:productCount, 
+                        stockInRate:stockInRate,
+                       // stockOutRate:stockOutRate
                     });
                 }
             })
@@ -69,6 +79,7 @@ export default class productList extends Component {
     }
 
 
+    
     onDelete = (id) => {
         const isConfirmed = window.confirm('Are you sure you want to delete this product?');
 
@@ -137,10 +148,7 @@ export default class productList extends Component {
          </div>
          </div>
 
-         <div style={{marginBottom:"3%"}}>
-         <button className='btn btn-success'><a href='add/product' style={{textDecoration:"none", color:"white"}}>
-         <i className='fas fa-plus'></i>&nbsp;Add New</a></button>
-         </div>
+         
 
                     <div id="productCount" style={{ marginBottom: "20px" }}>
                         <div className='card-body'>

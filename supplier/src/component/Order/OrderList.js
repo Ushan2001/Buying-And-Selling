@@ -38,7 +38,7 @@ export default class OrderList extends Component {
     }
 }
   
-
+//calculate pendingOrder and order count
 retrieveOrder() {
   axios.get('http://localhost:8070/orders').then((res) => {
     if (res.data.success) {
@@ -136,7 +136,7 @@ retrieveOrder() {
 
     const labels = Array.from(oidMap.keys());
     const data = Array.from(oidMap.values());
-
+//chart
     this.chartInstance = new Chart(ctxB, {
       type: 'line',
       data: {
@@ -256,12 +256,19 @@ retrieveOrder() {
               <i className='fas fa-plus'></i>&nbsp;Add New
             </a>
           </button>
-          <div id="supplierCount">
-            <div className='card-body'>
-               <h5 className='card-title' id="SupplierCardTitile" >✅ No. OF ORDERS : <span id="cardText"> {this.state.orderCount} </span></h5> 
-               <h5 className='card-title' id="SupplierCardTitile" >✅ No. OF PENDING ORDERS : <span id="cardText" style={{color:"tomato"}}> {pendingCount} </span></h5>         
-            </div>
-                        </div>
+
+
+          <div class="dropdown" id='dropdownList'>
+  <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Order Summary
+  </button>
+  <ul class="dropdown-menu">
+    <li class="dropdown-item">✅ No. OF ORDERS : <span id="cardText"> {this.state.orderCount} </span></li>
+    <li class="dropdown-item" >✅ No. OF PENDING ORDERS : <span id="cardText" style={{color:"tomato"}}> {pendingCount} </span></li>
+    
+  </ul>
+</div>
+         
 
           <h2 id='btnAllOrder'>New Customer Orders</h2>
           <br></br>

@@ -349,7 +349,7 @@ export default class SupplierList extends Component {
                         <div className='col' id="newCol">
                             <button className='btn btn-success' id="supplierAdd">
                                 <a href='add/supplier' style={{textDecoration:"none", color:"white"}}>
-                                    <i className='fas fa-plus'></i>&nbsp;Add New
+                                <i className='fas fa-plus'></i>&nbsp;Add New
                                 </a>
                             </button>
                         </div>
@@ -366,6 +366,14 @@ export default class SupplierList extends Component {
                                     <div className='card-body'>
                                         <h5 className='card-title' id="SupplierCardTitile" >✅ No. OF SUPPLIERS : <span id="cardText"> {this.state.supplierCount} </span></h5>        
                             </div>
+                        </div>
+
+                        <div id="requestSupplier">
+                        <button className='btn btn-warning' id="supplierAddLod" >
+                                <a href='/request/supplier' style={{textDecoration:"none", color:"white"}}>
+                                <i class="bi bi-person-plus"></i>&nbsp;Request
+                                </a>
+                            </button>
                         </div>
 
                        

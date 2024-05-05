@@ -96,13 +96,16 @@ export default function EditDelivery(props) {
 <div className="mb-3">
 <label for="exampleInputEmail1" className="form-label"id='delivery'>Customer Name</label>
 
-<input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Customer Name"
+<input type="text" disabled className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Customer Name"
 value={name} 
-pattern="[A-Za-z\s]+" title="Please enter only letters and spaces"
+ title="Please enter only letters and spaces"
 onChange={(e) =>{
 
 setName(e.target.value);
 }}/>
+{!/^[A-Za-z\s]+$/.test(name) && (
+        <p style={{ color: "red", fontSize: "14px", marginTop: "5px" }}>Please enter only letters and spaces</p>
+    )}
 </div>
 
 <div className="mb-3">
@@ -119,8 +122,8 @@ setNumber(e.target.value);
 <div className="row">
     <div className="col">
 <div className="mb-3">
-<label for="exampleInputEmail1" className="form-label"id='delivery'>Order ID</label>
-<input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Order ID" 
+<label for="exampleInputEmail1"  className="form-label"id='delivery'>Order ID</label>
+<input type="text"disabled className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Order ID" 
 value={oid}
 onChange={(e) =>{
 

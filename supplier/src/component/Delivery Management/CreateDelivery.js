@@ -202,7 +202,7 @@ setNote(e.target.value);
 
 <div className="mb-3">
   <label htmlFor="exampleInputDistance" className="form-label" id='delivery'>Distance (in km)</label>
-  <input type="number" className="form-control" id="exampleInputPassword1" placeholder="Enter Distance"
+  <input type="number" className="form-control" id="exampleInputPassword1" placeholder="Enter Distance" min={1}
       onChange={(e) => setDistance(parseInt(e.target.value))} />
 </div>
 

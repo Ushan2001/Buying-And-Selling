@@ -29,7 +29,7 @@ export default class CustomerDetails extends Component {
       }
   render() {
 
-    const {name, number, address, gender, email, ctype, note, _id } = this.state.customer;
+    const {name, number, address, gender, email, ctype, note, _id, supplierStatus } = this.state.customer;
 
     return (
       <div>
@@ -59,6 +59,9 @@ export default class CustomerDetails extends Component {
         <br></br><br></br>
         <dt className='col-sm-3'>Additional Information</dt>
         <dd className='col-sm-9'>{note}</dd>
+        <br></br><br></br>
+        <dt className='col-sm-3'>Supplier Registration</dt>
+        <dd className='col-sm-9'>{supplierStatus}</dd>
         
       </dl>
       </div>
