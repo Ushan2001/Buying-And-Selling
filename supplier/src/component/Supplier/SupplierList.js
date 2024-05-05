@@ -316,15 +316,34 @@ export default class SupplierList extends Component {
 
         return (
             <div>
+{/* <!-- Modal --> */}
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Supplier Count</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <div id="supplierCount">
+            <div className='card-body'>
+                <h5 className='card-title' id="SupplierCardTitile" >✅ No. OF SUPPLIERS : <span id="cardText"> {this.state.supplierCount} </span></h5>        
+                            </div>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+            <div>
                 
                 <Header/>
                 <LoadingPage loading={loading} />
                 <div className='container' id="supplierContainer" >
-                    <div id="notification-icon">
-
-
-</div>
-
 
                     <div id="lineChartContainer" style={{marginBottom:"5%"}}>
                     <div  style={{marginBottom:"2%"}}>
@@ -362,22 +381,25 @@ export default class SupplierList extends Component {
                             </button>
                         </div>
                     </div> 
-                    <div id="supplierCount">
-                                    <div className='card-body'>
-                                        <h5 className='card-title' id="SupplierCardTitile" >✅ No. OF SUPPLIERS : <span id="cardText"> {this.state.supplierCount} </span></h5>        
-                            </div>
-                        </div>
-
+                    
                         <div id="requestSupplier">
+                            <div className='row'>
+                                 <div className='col-md-2'>
                         <button className='btn btn-warning' id="supplierAddLod" >
                                 <a href='/request/supplier' style={{textDecoration:"none", color:"white"}}>
                                 <i class="bi bi-person-plus"></i>&nbsp;Request
                                 </a>
                             </button>
-                        </div>
-
+                            </div>
+                            <div className='col-md-2' style={{marginLeft:"-7%"}}>
+                                 {/* <!-- Button trigger modal --> */}
+            <button type="button" id="supplierAddLod" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="bi bi-people-fill"></i>&nbsp;Supplier Count
+             </button>
+                                </div>
+                            </div>
+                            </div>
                        
-
                     <h2 id="AllSupplier">All Suppliers</h2>
                     <br></br>       
                     <table className='table table-hover'>
@@ -481,6 +503,7 @@ export default class SupplierList extends Component {
                         </ul>
                     </nav>
                 </div>
+            </div>
             </div>
         )
     }
