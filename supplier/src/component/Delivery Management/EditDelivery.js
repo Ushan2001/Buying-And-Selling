@@ -89,24 +89,27 @@ export default function EditDelivery(props) {
     <div>
  <Header/>
 
-<div className="container"id="createDeliveryContainer" >
+<div className="container"id="editContainer" >
     <form onSubmit={sendData}>
-      <h2 id="btnAllDelivery">Edit Delivery Records</h2>
+      <h2 id="AllDelivery">Edit Delivery Records</h2>
       <br></br>
 <div className="mb-3">
-<label for="exampleInputEmail1" className="form-label"id='createDelivery'>Customer Name</label>
+<label for="exampleInputEmail1" className="form-label"id='delivery'>Customer Name</label>
 
-<input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Customer Name"
+<input type="text" disabled className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Customer Name"
 value={name} 
-pattern="[A-Za-z\s]+" title="Please enter only letters and spaces"
+ title="Please enter only letters and spaces"
 onChange={(e) =>{
 
 setName(e.target.value);
 }}/>
+{!/^[A-Za-z\s]+$/.test(name) && (
+        <p style={{ color: "red", fontSize: "14px", marginTop: "5px" }}>Please enter only letters and spaces</p>
+    )}
 </div>
 
 <div className="mb-3">
-<label for="exampleInputPassword1" className="form-label"id='createDelivery'>Contact Number</label>
+<label for="exampleInputPassword1" className="form-label"id='delivery'>Contact Number</label>
 <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Contact Number"
 pattern="^\d{10}$"
 value={number}
@@ -119,8 +122,8 @@ setNumber(e.target.value);
 <div className="row">
     <div className="col">
 <div className="mb-3">
-<label for="exampleInputEmail1" className="form-label"id='createDelivery'>Order ID</label>
-<input type="text" className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Order ID" 
+<label for="exampleInputEmail1"  className="form-label"id='delivery'>Order ID</label>
+<input type="text"disabled className="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Enter Order ID" 
 value={oid}
 onChange={(e) =>{
 
@@ -131,7 +134,7 @@ setOid(e.target.value);
 
 <div className="col">
 <div className="mb-3">
-<label for="exampleInputPassword1" className="form-label"id='createDelivery'>Delivery Code</label>
+<label for="exampleInputPassword1" className="form-label"id='delivery'>Delivery Code</label>
 <input type="text" className="form-control" id="dateInput" aria-describedby="emailHelp" placeholder="Enter Delivery Code"
 
 value={code} 
@@ -144,7 +147,7 @@ setCode(e.target.value);
 </div>
 
 <div className="mb-3">
-<label for="exampleInputPassword1" className="form-label"id='createDelivery'>Address</label>
+<label for="exampleInputPassword1" className="form-label"id='delivery'>Address</label>
 <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Customer Address"
 value={address}
 onChange={(e) =>{
@@ -154,7 +157,7 @@ setAddress(e.target.value);
 </div>
 
 <div className="mb-3">
-    <label htmlFor="dateInput" className="form-label"id='createDelivery'>Date</label>
+    <label htmlFor="dateInput" className="form-label"id='delivery'>Date</label>
     <input type="date" id="dateInput" name="date" max={""} value={date} style={{marginLeft:"3px"}}
     className="form-control"
     readOnly
@@ -162,7 +165,7 @@ setAddress(e.target.value);
       required/>
   </div>
   <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label" id="createDelivery">Distance</label>
+    <label for="exampleInputPassword1" className="form-label" id="delivery">Distance</label>
     <input type="number" className="form-control" id="exampleInputPassword1"
         max={"200"} min={"1"}
         value={distance}
@@ -179,7 +182,7 @@ setAddress(e.target.value);
 </div>
 
 <div className="mb-3">
-<label for="exampleInputPassword1" className="form-label"id='createDelivery'>Additional Information</label>
+<label for="exampleInputPassword1" className="form-label"id='delivery'>Additional Information</label>
 <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Additional Information"
 value={note}
 onChange={(e) =>{
@@ -189,7 +192,7 @@ setNote(e.target.value);
 </div>
 
 <div className="mb-3">
-<label for="exampleInputPassword1" className="form-label"id='createDelivery'>Delivery Status</label>
+<label for="exampleInputPassword1" className="form-label"id='delivery'>Delivery Status</label>
 <select
               className="form-select"
               id="exampleInputPassword1"
@@ -205,7 +208,7 @@ setNote(e.target.value);
 
 </div>
 <div class="count-display" style={{marginBottom:"2%", width:"70%"}}>
-    <label class="count-label" for="exampleInputPassword1" id='createDelivery'>Delivery Fee:</label>
+    <label class="count-label" for="exampleInputPassword1" id='delivery'>Delivery Fee:</label>
     <div class="count-value">LKR: {deliveryFee}</div>
 </div>
 

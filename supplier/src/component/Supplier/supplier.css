@@ -1,467 +1,450 @@
 #supplierContainer{
-    margin-top: 8%;
-    margin-left: 23%;
-    position: fixed;
-    overflow-y: scroll; 
-    max-height: 80%;
+  margin-top: 8%;
+  margin-left: 23%;
+  position: fixed;
+  overflow-y: scroll; 
+  max-height: 80%;
 }
 
 #Extisting{
-    margin-top: 3%;    
+  margin-top: 3%;    
 }
 
 #editBtn{
-    border-radius: 100%;
-    width: 40px;
-    height: 40px;
-    background-color: #4DB6AC1F;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  background-color: #4DB6AC1F;
 }
 
 #editIcon{
-    color: #4DB6AC;
+  color: #4DB6AC;
 }
 
 #editDelete{
-    border-radius: 100%;
-    width: 40px;
-    height: 40px;
-    background-color: #F656561F;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  background-color: #F656561F;
 }
 
 #DeleteIcon{
-    color: #F65656;
+  color: #F65656;
 }
 
 #PdfBtn{
-    border-radius: 100%;
-    width: 40px;
-    height: 40px;
-    background-color: #4d56b61f;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  background-color: #4d56b61f;
 }
 
 #PdfIcon{
-    color: #5679f6;
+  color: #5679f6;
 }
 
 #view{
-    text-decoration: none;
-    font-family: Inter;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 14.52px;
-    color: #197E89;
+  text-decoration: none;
+  font-family: Inter;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 14.52px;
+  color: #197E89;
 }
 
 #supplier{
-    color: #053345;
-    font-family: Inter;
-    font-weight: 600;
+  color: #053345;
+  font-family: Inter;
+  font-weight: 600;
 
 }
 
 #AllSupplier{
-    color: #01161f;
-    font-family: Inter;
-    font-weight: 700;
-    font-size: 25px;
+  color: #01161f;
+  font-family: Inter;
+  font-weight: 700;
+  font-size: 25px;
 }
 
 #supplierAdd{
-    
-    border-radius: 20px;
+  
+  border-radius: 20px;
 }
 
 #supplierAddLod{
-    
-    border-radius: 20px;
+  
+  border-radius: 20px;
 }
 
 #BtnRow{
-    margin-left: 50%;
-    margin-bottom: 3%;
-    margin-top: -3%;
+  margin-left: 50%;
+  margin-bottom: 3%;
+  margin-top: -3%;
 }
 
 #supplierAdd{
-    margin-left: 63%;
+  margin-left: 63%;
 }
 
 #createSupplier{
-    margin-top: 8%;
-    margin-left: 33%;
-    position: fixed;
-    overflow-y: scroll; 
-    max-height: 80%;
-    
+  margin-top: 8%;
+  margin-left: 33%;
+  position: fixed;
+  overflow-y: scroll; 
+  max-height: 80%;
+  
 }
 
 #exampleInputPassword1{
-    border-radius: 20px;
+  border-radius: 20px;
 }
 
 #dateInput{
-    border-radius: 20px; 
+  border-radius: 20px; 
 }
 
 .count-display {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #f0f0f0;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    padding: 20px;
-    width: 500px; /* Adjust as needed */
-    margin-top: 3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  width: 500px; /* Adjust as needed */
+  margin-top: 3%;
 }
 
 .count-label {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .count-value {
-    font-size: 24px;
-    font-weight: bold;
-    color: #053345; /* or any color you prefer */
-    padding: 10px 20px;
-    border: 2px solid #053345;
-    border-radius: 5px;
-    animation: pulse 1s infinite alternate; /* Optional: Add animation */
+  font-size: 24px;
+  font-weight: bold;
+  color: #053345; /* or any color you prefer */
+  padding: 10px 20px;
+  border: 2px solid #053345;
+  border-radius: 5px;
+  animation: pulse 1s infinite alternate; /* Optional: Add animation */
 }
 
 @keyframes pulse {
-    from {
-        transform: scale(1);
-    }
-    to {
-        transform: scale(1.1);
-    }
+  from {
+      transform: scale(1);
+  }
+  to {
+      transform: scale(1.1);
+  }
 }
 
 #editContainer{
-    margin-top: 8%;
-    margin-left: 33%;
-    position: fixed;
-    overflow-y: scroll; 
-    max-height: 80%;
+  margin-top: 8%;
+  margin-left: 33%;
+  position: fixed;
+  overflow-y: scroll; 
+  max-height: 80%;
 }
 
 #detailsContiner{
-    margin-top: 8%;
-    margin-left: 25%;
-    position: fixed;
-    overflow-y: scroll; 
-    max-height: 80%;
+  margin-top: 8%;
+  margin-left: 25%;
+  position: fixed;
+  overflow-y: scroll; 
+  max-height: 80%;
 }
 
 #backBtn{
-   margin-top: 2%;
-   border-radius: 100%;
-   color: white;
+ margin-top: 2%;
+ border-radius: 100%;
+ color: white;
 }
 
 #details{
-    color: #000000;
-    font-family: Inter;
-    font-weight: 600;
-    font-size: 16px;
+  color: #000000;
+  font-family: Inter;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 #lineChart{
-   max-width: 1100px;
-   max-height: 400px;
+ max-width: 1100px;
+ max-height: 400px;
 }
 
 #graph{
-    color: #120545;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-weight: 700;
-    font-size: 20px; 
+  color: #120545;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: 700;
+  font-size: 20px; 
 }
 
 /* Default styles */
 .table th,
 .table td {
-    padding: 0.75rem;
-    vertical-align: top;
-    border-top: 1px solid #dee2e6;
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
 }
 
 #Extisting{
-    margin-top: 1%;
+  margin-top: 1%;
 }
 
 /* Hide the columns on smaller screens */
 @media (max-width: 767.98px){
 
-    #supplierContainer{
-        margin-left: 0%;
-    }
+  #supplierContainer{
+      margin-left: 0%;
+  }
 
-    #searchSupplier{
-        width: 350px;
+  #searchSupplier{
+      width: 350px;
 
-    }
+  }
 
-    #BtnRow{
-        margin-left: -45%;
-        margin-top: 5%;
-        margin-bottom: 5%;
-    }
+  #BtnRow{
+      margin-left: -45%;
+      margin-top: 5%;
+      margin-bottom: 5%;
+  }
 
-    #searchDiv{
-        margin-left: -10%;
-    }
+  #searchDiv{
+      margin-left: -10%;
+  }
 
-    #searchSupplier1{
-        max-width: 230px;
-    }
+  #searchSupplier1{
+      max-width: 230px;
+  }
 
-    #existingCol{
-        margin-top: 3%;
-    }
+  #existingCol{
+      margin-top: 3%;
+  }
 
-    #Extisting{
-        margin-top: 8%;
-    }
+  #Extisting{
+      margin-top: 8%;
+  }
 
-    
+  
 }
 
 
 .table th,
 .table td {
-    padding: 0.75rem;
-    vertical-align: top;
-    border-top: 1px solid #dee2e6;
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
 }
 
 /* Hide the Supplier Name and Address columns on smaller screens */
 @media (max-width: 767.98px) {
-    .table th:nth-child(3),
-    .table td:nth-child(3),
-    .table th:nth-child(4),
-    .table td:nth-child(4) {
-        display: none;
-    }
+  .table th:nth-child(3),
+  .table td:nth-child(3),
+  .table th:nth-child(4),
+  .table td:nth-child(4) {
+      display: none;
+  }
 }
 
 /* Adjust the remaining columns */
 @media (max-width: 767.98px) {
-    .table th:nth-child(2),
-    .table td:nth-child(2) {
-        width: 50%; /* Adjust the width of the Supplier Code column */
-    }
-    .table th:nth-child(5),
-    .table td:nth-child(5) {
-        width: 50%; /* Adjust the width of the Action column */
-    }
+  .table th:nth-child(2),
+  .table td:nth-child(2) {
+      width: 50%; /* Adjust the width of the Supplier Code column */
+  }
+  .table th:nth-child(5),
+  .table td:nth-child(5) {
+      width: 50%; /* Adjust the width of the Action column */
+  }
 }
 
 #supplierCount{
-    margin-top: 1%;
-    margin-bottom: 3%;
-    margin-left: 1%;
+  margin-top: 1%;
+  margin-bottom: 3%;
+  margin-left: 1%;
 }
 
 @media (max-width:678px){
-    
-    #supplierCount{
-        margin-top: 1%;
-        margin-bottom: 5%;
-        margin-left: 4%;
-    }
+  
+  #supplierCount{
+      margin-top: 1%;
+      margin-bottom: 5%;
+      margin-left: 4%;
+  }
 }
 
 #SupplierCardTitile{
-    font-weight: 900;
-    font-size: 25px;
-    color:#023b53;
+  font-weight: 900;
+  font-size: 25px;
+  color:#023b53;
 }
 
 /* Button styles */
 #PdfBtn1 {
-    
-    border: none;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    border-radius: 100%;
-    width: 30px;
-    height: 30px;
-   
+  
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+ 
 }
 
 /* Button icon styles */
 #PdfIcon1 {
-    color: #5679f6;
-    width: 30px;
-    height: 30px;
-    
+  color: #5679f6;
+  width: 30px;
+  height: 30px;
+  
 }
 
 
 
 .custom-title{
-    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: 600;
-    
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 600;
+  
 }
 
 .loading-container {
-    background-color: #FFFFFF; /* Set background color */
-    margin-top: 2%;
-    margin-left: 16%;
+  background-color: #FFFFFF; /* Set background color */
+  margin-top: 2%;
+  margin-left: 16%;
+}
+
+.img {
+  margin-bottom: 20px; /* Adjust spacing */
+}
+
+
+
+.loading-letter {
+  font-size: 60px; /* Set font size */
+  font-weight: bold; /* Set font weight */
+  animation: pulse-animation 1s infinite; /* Apply animation */
+}
+
+.loading-blue {
+  color: #1e88e5; /* Set blue color */
+}
+
+.loading-yellow {
+  color: #ffd600; /* Set yellow color */
+}
+
+.loading-green {
+  color: #4caf50; /* Set green color */
+}
+
+.loading-orange {
+  color: #ff9800; /* Set orange color */
+}
+
+.loading-red {
+  color: #f44336; /* Set red color */
+}
+
+.loading-purple {
+  color: #9c27b0; /* Set purple color */
+}
+
+@keyframes pulse-animation {
+  0% {
+    transform: scale(1);
   }
-  
-  .img {
-    margin-bottom: 20px; /* Adjust spacing */
+  50% {
+    transform: scale(1.1);
   }
-  
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate__animated {
+  animation-duration: 1s; /* Set animation duration */
+}
+
+.animate__fadeIn {
+  animation-name: fadeIn; /* Apply fadeIn animation */
+}
+
+.animate__bounce {
+  animation-name: bounce; /* Apply bounce animation */
+}
+
+.animate__spin {
+  animation-name: spin; /* Apply spin animation */
+  animation-duration: 2s; /* Set spin animation duration */
+  animation-iteration-count: infinite; /* Make the animation infinite */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#textEditor{
+  width: 700px;
  
-  
-  .loading-letter {
-    font-size: 60px; /* Set font size */
-    font-weight: bold; /* Set font weight */
-    animation: pulse-animation 1s infinite; /* Apply animation */
-  }
-  
-  .loading-blue {
-    color: #1e88e5; /* Set blue color */
-  }
-  
-  .loading-yellow {
-    color: #ffd600; /* Set yellow color */
-  }
-  
-  .loading-green {
-    color: #4caf50; /* Set green color */
-  }
-  
-  .loading-orange {
-    color: #ff9800; /* Set orange color */
-  }
-  
-  .loading-red {
-    color: #f44336; /* Set red color */
-  }
-  
-  .loading-purple {
-    color: #9c27b0; /* Set purple color */
-  }
-  
-  @keyframes pulse-animation {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.1);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
+}
 
-  .animate__animated {
-    animation-duration: 1s; /* Set animation duration */
-  }
-  
-  .animate__fadeIn {
-    animation-name: fadeIn; /* Apply fadeIn animation */
-  }
-  
-  .animate__bounce {
-    animation-name: bounce; /* Apply bounce animation */
-  }
 
-  .animate__spin {
-    animation-name: spin; /* Apply spin animation */
-    animation-duration: 2s; /* Set spin animation duration */
-    animation-iteration-count: infinite; /* Make the animation infinite */
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
-    }
-    40% {
-      transform: translateY(-30px);
-    }
-    60% {
-      transform: translateY(-15px);
-    }
-  }
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
-  #textEditor{
-    width: 700px;
-   
-  }
-
- 
 
 #notification-icon{
-    margin-left: 80%;
-    border: none;
+  margin-left: 80%;
+  border: none;
 }
 
 #notifyImg{
-    width: 40px;
-    height: 40px;
-    margin-top: 2px;
-    margin-right: 16px;
+  width: 40px;
+  height: 40px;
+  margin-top: 2px;
+  margin-right: 16px;
 }
 
 .btn.notification-icon {
-    border: none;
-    outline: none; /* Remove default focus outline */
-  }
-  
-  .btn.notification-icon:focus {
-    outline: none; /* Remove focus outline when clicked */
-  }
+  border: none;
+  outline: none; /* Remove default focus outline */
+}
 
-  #requestSupplier{
-    margin-bottom: 2%;
-  }
-  
+.btn.notification-icon:focus {
+  outline: none; /* Remove focus outline when clicked */
+}
 
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
+#requestSupplier{
+  margin-bottom: 2%;
+}
