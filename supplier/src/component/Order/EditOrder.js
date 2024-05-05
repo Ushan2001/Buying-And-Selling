@@ -159,7 +159,7 @@ export default function EditOrder(props) {
             className="form-control"
             id="exampleInputPassword1"
             placeholder="Enter Order code"
-            readOnly
+            disabled
             value={oid}
             onChange={(e) => setOid(e.target.value)}
           />
@@ -169,6 +169,7 @@ export default function EditOrder(props) {
     <label for="exampleInputPassword1" className="form-label"  id="createOrder">Amount</label>
     <input type="number" className="form-control" id="exampleInputPassword1" placeholder="Enter Amount"
         min={"1"}
+        disabled
         value={amount}
         onChange={(e) => {
             setAmount(e.target.value);
@@ -197,6 +198,7 @@ export default function EditOrder(props) {
     <label htmlFor="dateInput" className="form-label" id="createOrder">Date</label>
     <input type="date" id="dateInput" name="date" max={""} value={date}
     className="form-control"
+    disabled
      onChange={(e) => setDate(e.target.value)}
       required/>
   </div>
