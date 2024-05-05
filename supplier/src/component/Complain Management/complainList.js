@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from "axios";
 import Header from '../Dashboard/Header/Header';
-import "./complain.css"
+import PdfButton from './PdfButton';
 
 
 
@@ -32,7 +32,7 @@ export default class compaintlist extends Component {
     }
 
     onDelete = (id) =>{
-        const isConfirmed = window.confirm('Are you sure you want to delete this discount?');
+        const isConfirmed = window.confirm('Are you sure you want to delete this Complaint?');
 
         if (isConfirmed) {
             axios.delete(`http://localhost:8070/complain/delete/${id}`)
@@ -72,20 +72,21 @@ export default class compaintlist extends Component {
 
   render() {
     return (
+    
       <div>
-        <Header/>
-        <div className='container' id="ComplainContainer">
-         <div className='col-lg-3 mt-2 mb-2'>
+        <Header />
+        <div className='container' id="discountContainer">
+         <div className='col-lg-3 mt-2 mb-3'>
             <input  className="form-control"
             type='search'
             placeholder='Search'
             name="serchQuery"
-            style={{marginLeft:"100px"}}
+            style={{marginLeft:"10px"}}
             onChange={this.handleSearchArea}/>
          </div>
         
 
-        <h2>All Complain</h2>
+        <h2 id="AllSupplier" style={{marginTop:"30px", marginBottom:"30px"}}>All Complaint</h2>
         <br></br>
          <table className='table table-hover'>
             <thead>
@@ -93,7 +94,7 @@ export default class compaintlist extends Component {
                     <th scope='col'><i className='fas fa-list-ol'></i></th>
                     <th scope='col'>Name</th>
                     <th scope='col'>E-mail</th>
-                    <th scope='col'>Message</th>
+                    <th scope='col'>Complaint</th>
                     
                 </tr>
             </thead>
@@ -107,13 +108,14 @@ export default class compaintlist extends Component {
                         {complain.name}
                         </a>
                         </td>
-                    <td>{complain.email}</td>
-                    <td>{complain.message}</td>
+                    <td id="dayment">{complain.email}</td>
+                    <td id="dayment">{complain.message}</td>
                     <td>
                         
                         <a className='btn btn-danger' href='# ' onClick={() => this.onDelete(complain._id)}>
                             <i className='fas fa-trash-alt'></i>&nbsp;Delete
-                        </a>
+                        </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <PdfButton complain={complain} />
                         
                     </td>
                 </tr>
@@ -123,6 +125,7 @@ export default class compaintlist extends Component {
          </table>
       </div>
       </div>
+      
     )
   }
 }

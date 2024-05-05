@@ -60,7 +60,7 @@ router.put("/discount/update/:id", (req, res) =>{
 
 //delete
 
-router.delete("/discount/delete/:id", (req, res) =>{
+router.delete("/discount/delete/:id", (req, res)=>{
   Discount.findByIdAndRemove(req.params.id).exec((err, deleteDiscount) =>{
     if(err) return res.status(400).json({
       message:"Delete Unsuccessfull", err
@@ -71,6 +71,7 @@ router.delete("/discount/delete/:id", (req, res) =>{
     })
   })
 })
+
 
 //get a specific discount
 
