@@ -24,11 +24,6 @@ export default function UserHome() {
                             <li className="nav-item"><a className="nav-link" href="/user/order"><i className='fas fa-shopping-bag'></i>&nbsp;Your Orders</a></li>
                             <li className="nav-item"><a className="nav-link" href="/add/usercustomer"><i className='fas fa-user-plus'></i>&nbsp;Registration</a></li>
                             <li className="nav-item"><a className="nav-link" href="Feedbackk"><i className='fas fa-comment'></i>&nbsp;Feedback</a></li>
-                            <a href='/user/add/product'>
-                            <button className="btn btn-outline-warning">
-                            Post Your AD
-                            </button >
-                            </a>
                             <div style={{marginLeft:"35px"}}>
                             <li className="nav-item"><a className="nav-link" href="/"><i className='fas fa-sign-out-alt'></i>&nbsp;Logout</a></li>
                             </div>
