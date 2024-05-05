@@ -74,15 +74,15 @@ export default class DiscountList extends Component {
      
                     
                  }
-             })
-     }
+      })
+}
 
     render() {
         return (
             <div>
                 <Header />
                 
-                <div className='container' id="discountContainer">
+                <div className='container' id="discountContainer" style={{maxWidth:"80%"}}>
                     <div className='col-lg-3 mt-2 mb-2'>
                         <input className="form-control" id="serchbar"
                             type='search'

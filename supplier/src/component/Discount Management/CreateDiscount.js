@@ -49,7 +49,7 @@ export default function CreateDiscount() {
     if (price !== "" && pdiscount !== "") {
       calculateNewPrice();
     }
-  }, [price, pdiscount]);
+  });
 
   return (
     <div>
