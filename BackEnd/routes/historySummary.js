@@ -1,12 +1,12 @@
 const express = require("express")
-const History = require("../module/history");
+const HistorySum = require("../module/historySummary");
 
 const router = express.Router();
 
 //save history
 
-router.post("/history/save", (req, res) =>{
-    let newHistory = new History (req.body);
+router.post("/history/summary/save", (req, res) =>{
+    let newHistory = new HistorySum (req.body);
   
     newHistory.save((err) =>{
       if(err){
@@ -22,8 +22,8 @@ router.post("/history/save", (req, res) =>{
 
   //get details
 
-router.get("/history", (req, res) =>{
-    History.find().exec((err, historys) =>{
+router.get("/summary", (req, res) =>{
+    HistorySum.find().exec((err, Sumhistorys) =>{
       if(err){
         return res.status(400).json({
           error:err
@@ -32,15 +32,15 @@ router.get("/history", (req, res) =>{
 
       return res.status(200).json({
         success:true,
-        existingHistory:historys
+        existingSumHistory:Sumhistorys
       })
     })
 })
 
 //update
 
-router.put("/history/update/:id", (req, res) =>{
-    History.findByIdAndUpdate(
+router.put("/history/summary/update/:id", (req, res) =>{
+    HistorySum.findByIdAndUpdate(
      req.params.id,
      {
        $set:req.body
@@ -59,8 +59,8 @@ router.put("/history/update/:id", (req, res) =>{
 
  //delete
 
-router.delete("/history/delete/:id", (req, res) =>{
-    History.findByIdAndRemove(req.params.id).exec((err, deleteHistory) =>{
+router.delete("/history/summary/delete/:id", (req, res) =>{
+    HistorySum.findByIdAndRemove(req.params.id).exec((err, deleteHistory) =>{
       if(err) return res.status(400).json({
         message:"Delete Unsuccessfull", err
       })
@@ -73,12 +73,12 @@ router.delete("/history/delete/:id", (req, res) =>{
 
   //get a specific History
 
-router.get("/history/:id",(req, res) =>{
+router.get("/history/summary/:id",(req, res) =>{
     let historyId = req.params.id;
   
-    History.findById(historyId,(err, history) =>{
+    HistorySum.findById(historyId,(err, history) =>{
       if(err){
-        return res.status(400).json({ success: false, err }); 
+        return res.status(400).json({success:false, err})
       }
   
       return res.status(200).json({

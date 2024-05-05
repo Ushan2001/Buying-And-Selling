@@ -4,6 +4,7 @@ import PdfButton from './PdfButton';
 import Chart from 'chart.js/auto'; 
 import Header from '../Dashboard/Header/Header';
 import Swal from 'sweetalert2';
+import HistorySummary from './HistorySummary';
 
 
 export default class HistoryList extends Component {
@@ -185,10 +186,28 @@ export default class HistoryList extends Component {
           },
         });
       }
-    
-
+      
   render() {
     return (
+      <div>
+{/* <!-- Modal --> */}
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Highest Selling Item</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <HistorySummary/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
       <div>
         <Header/>
         <div className='container' id="supplierContainer">
@@ -215,6 +234,15 @@ export default class HistoryList extends Component {
                         </button>
                         </div>
         </div> 
+
+        <div style={{marginBottom:"2%"}}>
+
+                {/* <!-- Button trigger modal --> */}
+<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+ Add Highest Selling Item
+</button>
+
+</div>
 
         <div className='card-body'>
               <h5 className='card-title' id="SupplierCardTitile" >✅ Number of Transactions : <span id="cardText"> {this.state.historyCount} </span></h5>        
@@ -265,6 +293,7 @@ export default class HistoryList extends Component {
       </div>
 
      
+      </div>
       </div>
     )
   }

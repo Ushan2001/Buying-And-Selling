@@ -82,6 +82,7 @@ import EditInventoryOrders from './component/Product Management/EditInventoryOrd
 import complainList from './component/Complain Management/complainList'
 import RequestSupplier from './component/Supplier/RequestSupplier';
 import EditRequestSupplier from './component/Supplier/EditRequestSupplier';
+import HighestSelling from './component/Product Management/HighestSelling';
 
 
 
@@ -156,9 +157,11 @@ export default class App extends Component {
 
           {/* Samadhi Jayasundara (Transaction History) */}
         <Route path="/history" exact component={HistoryList}></Route>
-        <Route path="/add/history" component={CreateHistory}></Route>
-        <Route path="/edithistory/:id" component={EditHistory}></Route>
-        <Route path="/history/:id" component={HistoryDetails}></Route>
+        <Route path="/add/history" exact component={CreateHistory}></Route>
+        <Route path="/edithistory/:id" exact component={EditHistory}></Route>
+        <Route path="/summary" exact component={HighestSelling}></Route>
+        <Route path="/history/:id"  component={HistoryDetails}></Route>
+       
 
           {/* Haritha Lidapitiya (####) */}
         <Route path="/discount" exact component={DiscountList}></Route>

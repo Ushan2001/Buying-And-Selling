@@ -146,6 +146,14 @@ export default class productList extends Component {
          <i class="bi bi-bag-plus-fill"></i>&nbsp;Inventory  Orders</a></button>
          </div>
          </div>
+
+         <div className='col-md-2'>
+
+         <div style={{marginTop:"3%", marginBottom:"3%"}}>
+         <button className='btn btn-dark'><a href='/summary' style={{textDecoration:"none", color:"white"}}>
+         <i class="bi bi-bag-plus-fill"></i>&nbsp;Highest Selling</a></button>
+         </div>
+         </div>
          </div>
 
          

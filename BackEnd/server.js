@@ -28,6 +28,7 @@ const customerRouter = require("./routes/customers")
 
 /* Samadhi Jayasooriya (Transaction History) */
 const historyRouter = require("./routes/history")
+const historySumRouter = require("./routes/historySummary")
 
 /* Haritha Lidapitiya (Report Genaration) */
 const discountRouter = require("./routes/discount")
@@ -58,6 +59,7 @@ app.use(customerRouter)
 
 /* Samadhi Jayasooriya (Transaction History) */
 app.use(historyRouter)
+app.use(historySumRouter)
 
 /* Haritha Lidapitiya (Report Genaration) */
 app.use(discountRouter)
