@@ -11,7 +11,8 @@ export default function CreateHistory() {
     const [date, setDate] = useState("");
     const [bname, setBname] = useState("");
     const [sname, setSname] = useState("");
-    const [pname, setPname] = useState("");
+    const [pnames, setPnames] = useState([]);
+    const [selectedItem, setSelectedItem] = useState("");
     const [quantity, setQuantity] = useState("");
     const [price, setPrice] = useState("");
     const [address, setAddress] = useState("");
@@ -28,7 +29,7 @@ export default function CreateHistory() {
               date,
               bname,
               sname,
-              pname,
+              pname: selectedItem,
               quantity,
               price,
               address,
@@ -53,9 +54,20 @@ export default function CreateHistory() {
               icon: 'error',
               title: 'Error',
               text: err.message // Display the error message from the server
-            });
-          });
+        });
+    });
     }
+
+    useEffect(() => {
+      axios.get("http://localhost:8070/products")
+        .then((response) => {
+          setPnames(response.data.existingProduct.map((product) => product.name));
+        })
+        .catch((error) => {
+          console.error("Error fetching supplier data:", error);
+        });
+    }, []);
+
       useEffect(() => {
         // Get the current date
         var currentDate = new Date();
@@ -115,15 +127,22 @@ export default function CreateHistory() {
 </div>
 
 <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label" id='supplier'>Product Name</label>
-    <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Enter Product Name"
-    pattern="[A-Za-z\s]+" title="Please enter only letters and spaces"
+            <label htmlFor="exampleInputPassword1" className="form-label" id="supplier">Product Name</label>
+            <select
+              className="form-control"
+              onChange={(e) => setSelectedItem(e.target.value)}
+              value={selectedItem}
+              id="exampleInputPassword1"
+            >
+              <option value="">Select Product Name</option>
+              {pnames.map((name) => (
+                <option key={name} value={name}>
+                  {name}
+                </option>
+              ))}
+            </select>
+          </div>
 
-    onChange={(e) =>{
-
-    setPname(e.target.value);
-    }}/>
-</div>
 <div className="row">
     <div className="col-md-5">
 <div className="mb-3">
