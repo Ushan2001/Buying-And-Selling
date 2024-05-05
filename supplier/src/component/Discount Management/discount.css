@@ -16,9 +16,10 @@
 #dateInput{
     border-radius: 20px; 
 }
-#paymentAdd{
+#disAdd{
     
     border-radius: 20px;
+    margin-left: 80%;
 }
 #editBtn{
     border-radius: 100%;
@@ -75,7 +76,9 @@
 }
 
 #disAdd{
-    margin-bottom: 30px;
+    margin-bottom: 50px;
+    width: 15%;
+    
 }
 #details{
     color: #000000;
@@ -83,3 +86,26 @@
     font-weight: 600;
     font-size: 16px;
 }
+#newprice{
+    color: #6e68e8;
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 18px;
+}
+#paymentCount{
+    margin-top: 1%;
+    margin-bottom: 3%;
+    margin-left: 1%;
+}
+#paymentCardTitile{
+    font-weight: 900;
+    font-size: 25px;
+    color:#023b53;
+}
+#AllSupplier{
+    color: #01161f;
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 35px;
+}
+

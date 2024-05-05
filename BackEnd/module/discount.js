@@ -17,6 +17,10 @@ const DiscountSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    price:{
+        type: String,
+        required: true
+    },
 
     date:{
         type: String,
@@ -27,11 +31,16 @@ const DiscountSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    newPrice:{
+        type: String,
+        required: true
+    },
 
     note:{
         type: String,
         required: true
     }
+    
 });
 
 module.exports = mongoose.model("Discount", DiscountSchema)
