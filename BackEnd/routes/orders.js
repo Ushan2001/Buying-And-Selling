@@ -99,7 +99,7 @@ router.post('/send-email/lashini', (req, res) => {
     service: 'gmail',
     auth: {
       user: 'ushanmihiranga2017@gmail.com', // replace with your Gmail address
-      pass: 'siqn ncwj lzdi yrzx', // replace with your Gmail password
+      pass: 'pdni vfoz kaho irpc', // replace with your Gmail password
     },
   });
 
