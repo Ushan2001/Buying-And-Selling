@@ -67,14 +67,14 @@ export default function UserCreateCustomer() {
 
     <div className="mb-3">
       <label htmlFor="exampleInputEmail1" className="form-label" id="rashini">
-        Customer Name
+        User Name
       </label>
       <input
         type="text"
         className="form-control"
         id="exampleInputPassword1"
         aria-describedby="emailHelp"
-        placeholder="Enter Customer Name"
+        placeholder="Enter User Name"
         onChange={(e) => {
           setName(e.target.value);
         }}
@@ -105,7 +105,7 @@ export default function UserCreateCustomer() {
         type="text"
         className="form-control"
         id="exampleInputPassword1"
-        placeholder="Enter Customer Address"
+        placeholder="Enter user Address"
         onChange={(e) => {
           setAddress(e.target.value);
         }}
@@ -148,7 +148,7 @@ export default function UserCreateCustomer() {
 
     <div className="mb-3">
       <label htmlFor="exampleInputPassword1" className="form-label" id="rashini">
-        Customer Type
+        User Type
       </label>
       <select
         className="form-select"

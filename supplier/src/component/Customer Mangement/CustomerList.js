@@ -3,6 +3,8 @@ import axios from "axios";
 import Header from '../Dashboard/Header/Header';
 import PdfButton from './PdfButton';
 import "./customer.css";
+import Swal from 'sweetalert2';
+
 
 export default class CustomerList extends Component {
 
@@ -58,18 +60,28 @@ export default class CustomerList extends Component {
         });
     }
 
-    onDelete = (id) =>{
-        const isConfirmed = window.confirm('Are you sure you want to delete this customer?');
-
-        if (isConfirmed) {
-            axios.delete(`http://localhost:8070/customer/delete/${id}`)
-                .then((res) => {
-                    this.retrieveCustomer();
-                })
-                .catch((err) => {
-                    console.error(err);
-                });
-        }
+    onDelete = (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Are you sure you want to delete this user?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:8070/customer/delete/${id}`)
+                    .then((res) => {
+                        this.retrieveCustomer();
+                        Swal.fire('Deleted!', 'User has been deleted.', 'success');
+                    })
+                    .catch((err) => {
+                        console.error(err);
+                        Swal.fire('Error!', 'Failed to delete user.', 'error');
+                    });
+            }
+        });
     }
 
     filterData(customers, searchKey){
@@ -98,7 +110,7 @@ export default class CustomerList extends Component {
         return (
             <div>
                 <Header />
-                <div className='container' id="supplierContainer" style={{width:"85%"}}>
+                <div className='container' id="customerContainer" style={{width:"82%"}}>
                     <div className='col-lg-3 mt-2 mb-2'>
                         <input  className="form-control"
                             type='search'
@@ -109,7 +121,7 @@ export default class CustomerList extends Component {
                     </div>
                     <div className='row' id="customerRow">
                         <div className='col-md-2'>
-                            <h2 id="AllSupplier">All Customers</h2>
+                            <h2 id="AllSupplier">All Users</h2>
                         </div>
                         </div>
                         <div className='row' id="customerRow">
@@ -117,7 +129,7 @@ export default class CustomerList extends Component {
                             <div className='col-md-3' id="card">
                                 <div className='card' id="card1" style={{ width: '17rem', backgroundImage: 'url("/images/back.jpg")'}}>
                                     <div className='card-body'>
-                                        <h5 className='card-title' id="cardTitile">No. Of Customers</h5>
+                                        <h5 className='card-title' id="cardTitile">No. Of Users</h5>
                                         <p className='card-text' id="cardText">{this.state.customerCount}</p>
                                     </div>
                                 </div>
@@ -164,10 +176,12 @@ export default class CustomerList extends Component {
                         <thead>
                             <tr>
                                 <th scope='col'><i className='fas fa-list'></i></th>
-                                <th scope='col'>Customer Name</th>
+                                <th scope='col'>User Name</th>
                                 <th scope='col'>Contact Number</th>
                                 <th scope='col'>Address</th>
+                                <th scope='col'>Type</th>
                                 <th scope='col'>Action</th>
+                            
                             </tr>
                         </thead>
                         <tbody>
@@ -181,6 +195,7 @@ export default class CustomerList extends Component {
                                     </td>
                                     <td>{customer.number}</td>
                                     <td>{customer.address}</td>
+                                    <td>{customer.ctype}</td>
                                     <td>
                                         <a className='btn' id="editBtn" href={`/editcustomer/${customer._id}`}>
                                             <i className='fas fa-edit' id="editIcon"></i>
