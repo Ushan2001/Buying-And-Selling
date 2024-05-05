@@ -57,6 +57,8 @@ import PaymentList from './component/Payment Management/PaymentList';
 import CreatePayment from './component/Payment Management/CreatePayment';
 import EditPayment from './component/Payment Management/EditPayment';
 import PaymentDetails from './component/Payment Management/PaymentDetails';
+import Income from './component/Payment Management/Income';
+
 
 
 import DiscountList from './component/Discount Management/DiscountList';
@@ -178,6 +180,8 @@ export default class App extends Component {
         <Route path="/payment/:id" component={PaymentDetails}></Route>
         <Route path="/user/payment" exact component={UserPayment}></Route>
         <Route path="/user/payment/form" exact component={PaymentForm}></Route>
+        <Route path="/income/payment" component={Income}></Route>
+      
 
         {/* Ridmi Ranashinha (Delivery Management) */}
         <Route path="/delivery" exact component={DeliveryList}></Route>
