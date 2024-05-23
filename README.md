@@ -40,7 +40,7 @@ To get started with BuySell Nexus, follow these steps:
    
 2. Navigate to the project directory:
    ```bash
-   cd BuySellNexus
+   cd supplier
    cd BackEnd
 
 3. Install the required dependencies:
